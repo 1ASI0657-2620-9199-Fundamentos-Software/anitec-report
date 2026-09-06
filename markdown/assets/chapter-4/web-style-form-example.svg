@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#F5F0E6"/>
+  <text x="50" y="58" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#2f3b2f">Form Example</text>
+  <text x="50" y="92" font-family="Arial, sans-serif" font-size="18" fill="#5b6659">Ejemplo de formulario para registrar un evento sanitario.</text>
+
+  <rect x="130" y="130" width="940" height="500" rx="22" fill="#ffffff" stroke="#D1BFA5" stroke-width="3"/>
+
+  <text x="180" y="190" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#2f3b2f">Nuevo evento sanitario</text>
+  <text x="180" y="222" font-family="Arial, sans-serif" font-size="17" fill="#5b6659">Los campos se agrupan por información esencial, detalle clínico y seguimiento.</text>
+
+  <text x="180" y="275" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Animal</text>
+  <rect x="180" y="292" width="390" height="48" rx="8" fill="#F5F0E6" stroke="#D1BFA5"/>
+  <text x="205" y="322" font-family="Arial, sans-serif" font-size="16" fill="#7a8178">Seleccionar animal</text>
+
+  <text x="625" y="275" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Fecha</text>
+  <rect x="625" y="292" width="260" height="48" rx="8" fill="#F5F0E6" stroke="#D1BFA5"/>
+  <text x="650" y="322" font-family="Arial, sans-serif" font-size="16" fill="#7a8178">02/07/2026</text>
+
+  <text x="180" y="375" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Tipo de evento</text>
+  <rect x="180" y="392" width="390" height="48" rx="8" fill="#F5F0E6" stroke="#D1BFA5"/>
+  <text x="205" y="422" font-family="Arial, sans-serif" font-size="16" fill="#7a8178">Vacuna / Tratamiento / Incidencia</text>
+
+  <text x="625" y="375" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Veterinario o responsable</text>
+  <rect x="625" y="392" width="260" height="48" rx="8" fill="#F5F0E6" stroke="#D1BFA5"/>
+  <text x="650" y="422" font-family="Arial, sans-serif" font-size="16" fill="#7a8178">Nombre</text>
+
+  <text x="180" y="475" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Descripción</text>
+  <rect x="180" y="492" width="705" height="72" rx="8" fill="#F5F0E6" stroke="#D1BFA5"/>
+  <text x="205" y="527" font-family="Arial, sans-serif" font-size="16" fill="#7a8178">Detalle del diagnóstico, tratamiento o recomendación...</text>
+
+  <rect x="665" y="585" width="105" height="46" rx="10" fill="#ffffff" stroke="#A3794F" stroke-width="2"/>
+  <text x="691" y="614" font-family="Arial, sans-serif" font-size="16" fill="#925930">Cancelar</text>
+  <rect x="790" y="585" width="140" height="46" rx="10" fill="#925930"/>
+  <text x="827" y="614" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Guardar</text>
+</svg>

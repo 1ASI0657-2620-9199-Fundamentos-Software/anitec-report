@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+  <rect width="1200" height="620" fill="#F5F0E6"/>
+  <text x="50" y="58" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#2f3b2f">Buttons and Actions</text>
+  <text x="50" y="92" font-family="Arial, sans-serif" font-size="18" fill="#5b6659">Ejemplo visual de jerarquía de acciones para AniTec.</text>
+
+  <rect x="70" y="135" width="1060" height="390" rx="22" fill="#ffffff" stroke="#D1BFA5" stroke-width="3"/>
+
+  <text x="110" y="190" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#2f3b2f">Gestión de animales</text>
+  <text x="110" y="220" font-family="Arial, sans-serif" font-size="17" fill="#5b6659">Las acciones principales se muestran con mayor contraste y las secundarias se mantienen menos invasivas.</text>
+
+  <rect x="110" y="270" width="210" height="54" rx="10" fill="#925930"/>
+  <text x="163" y="304" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Registrar animal</text>
+  <text x="110" y="352" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Acción primaria</text>
+
+  <rect x="365" y="270" width="170" height="54" rx="10" fill="#79B267"/>
+  <text x="421" y="304" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Guardar</text>
+  <text x="365" y="352" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Confirmación</text>
+
+  <rect x="580" y="270" width="170" height="54" rx="10" fill="#ffffff" stroke="#A3794F" stroke-width="2"/>
+  <text x="632" y="304" font-family="Arial, sans-serif" font-size="18" fill="#925930">Cancelar</text>
+  <text x="580" y="352" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Acción secundaria</text>
+
+  <rect x="795" y="270" width="170" height="54" rx="10" fill="#C95F5F"/>
+  <text x="849" y="304" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Eliminar</text>
+  <text x="795" y="352" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Acción destructiva</text>
+
+  <rect x="110" y="410" width="855" height="58" rx="12" fill="#F5F0E6" stroke="#D1BFA5"/>
+  <text x="138" y="446" font-family="Arial, sans-serif" font-size="18" fill="#2f3b2f">Regla: una pantalla debe destacar una acción principal y mantener las demás como apoyo o confirmación.</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#F5F0E6"/>
+  <text x="50" y="58" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#2f3b2f">Web Components Guide</text>
+  <text x="50" y="92" font-family="Arial, sans-serif" font-size="18" fill="#5b6659">Elementos visuales principales para formularios, acciones y estados de información.</text>
+
+  <g transform="translate(60 140)">
+    <rect width="330" height="420" rx="18" fill="#ffffff" stroke="#D1BFA5" stroke-width="3"/>
+    <text x="28" y="44" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#925930">Botones</text>
+    <rect x="28" y="82" width="260" height="48" rx="10" fill="#925930"/>
+    <text x="91" y="113" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Guardar</text>
+    <rect x="28" y="150" width="260" height="48" rx="10" fill="#79B267"/>
+    <text x="94" y="181" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Registrar</text>
+    <rect x="28" y="218" width="260" height="48" rx="10" fill="#ffffff" stroke="#A3794F" stroke-width="2"/>
+    <text x="103" y="249" font-family="Arial, sans-serif" font-size="18" fill="#925930">Cancelar</text>
+    <rect x="28" y="286" width="260" height="48" rx="10" fill="#C95F5F"/>
+    <text x="103" y="317" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Eliminar</text>
+  </g>
+
+  <g transform="translate(435 140)">
+    <rect width="330" height="420" rx="18" fill="#ffffff" stroke="#D1BFA5" stroke-width="3"/>
+    <text x="28" y="44" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#925930">Formulario</text>
+    <text x="28" y="88" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Animal</text>
+    <rect x="28" y="102" width="270" height="42" rx="8" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <text x="28" y="172" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Tipo de evento</text>
+    <rect x="28" y="186" width="270" height="42" rx="8" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <text x="28" y="256" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">Descripción</text>
+    <rect x="28" y="270" width="270" height="80" rx="8" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <text x="52" y="385" font-family="Arial, sans-serif" font-size="17" fill="#5b6659">Campos claros y agrupados</text>
+  </g>
+
+  <g transform="translate(810 140)">
+    <rect width="330" height="420" rx="18" fill="#ffffff" stroke="#D1BFA5" stroke-width="3"/>
+    <text x="28" y="44" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#925930">Tarjeta / estado</text>
+    <rect x="28" y="82" width="270" height="125" rx="12" fill="#A3C4A8"/>
+    <text x="52" y="120" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#2f3b2f">Arete IoT 001</text>
+    <text x="52" y="153" font-family="Arial, sans-serif" font-size="17" fill="#2f3b2f">Estado: activo</text>
+    <text x="52" y="182" font-family="Arial, sans-serif" font-size="17" fill="#2f3b2f">Última lectura: 38.5 °C</text>
+    <rect x="28" y="245" width="270" height="110" rx="12" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <text x="74" y="288" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#2f3b2f">Sin registros</text>
+    <text x="55" y="320" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">El sistema muestra mensajes</text>
+    <text x="73" y="343" font-family="Arial, sans-serif" font-size="16" fill="#5b6659">claros cuando no hay datos.</text>
+  </g>
+</svg>

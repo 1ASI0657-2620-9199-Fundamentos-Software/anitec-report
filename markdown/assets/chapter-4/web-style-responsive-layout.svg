@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#F5F0E6"/>
+  <text x="50" y="58" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#2f3b2f">Responsive Web Layout</text>
+  <text x="50" y="92" font-family="Arial, sans-serif" font-size="18" fill="#5b6659">Adaptación de AniTec para desktop, tablet y celular.</text>
+
+  <g transform="translate(50 135)">
+    <text x="0" y="-18" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#925930">Desktop</text>
+    <rect x="0" y="0" width="500" height="330" rx="18" fill="#ffffff" stroke="#A3794F" stroke-width="4"/>
+    <rect x="0" y="0" width="500" height="45" rx="18" fill="#925930"/>
+    <rect x="0" y="28" width="500" height="18" fill="#925930"/>
+    <rect x="18" y="65" width="105" height="245" rx="10" fill="#E8DDCE"/>
+    <rect x="145" y="65" width="335" height="70" rx="10" fill="#A3C4A8"/>
+    <rect x="145" y="155" width="100" height="70" rx="10" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <rect x="260" y="155" width="100" height="70" rx="10" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <rect x="375" y="155" width="105" height="70" rx="10" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <rect x="145" y="245" width="335" height="65" rx="10" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <text x="38" y="105" font-family="Arial, sans-serif" font-size="15" fill="#5b6659">Menú lateral</text>
+    <text x="240" y="105" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#2f3b2f">Dashboard</text>
+  </g>
+
+  <g transform="translate(620 135)">
+    <text x="0" y="-18" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#925930">Tablet</text>
+    <rect x="0" y="0" width="280" height="360" rx="22" fill="#ffffff" stroke="#A3794F" stroke-width="4"/>
+    <rect x="20" y="30" width="240" height="42" rx="9" fill="#925930"/>
+    <rect x="20" y="92" width="240" height="68" rx="10" fill="#A3C4A8"/>
+    <rect x="20" y="178" width="110" height="70" rx="10" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <rect x="150" y="178" width="110" height="70" rx="10" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <rect x="20" y="270" width="240" height="56" rx="10" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <text x="74" y="119" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#2f3b2f">Contenido flexible</text>
+  </g>
+
+  <g transform="translate(970 135)">
+    <text x="0" y="-18" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#925930">Mobile</text>
+    <rect x="0" y="0" width="170" height="360" rx="26" fill="#ffffff" stroke="#A3794F" stroke-width="4"/>
+    <rect x="18" y="32" width="134" height="36" rx="8" fill="#925930"/>
+    <rect x="18" y="88" width="134" height="68" rx="10" fill="#A3C4A8"/>
+    <rect x="18" y="174" width="134" height="58" rx="10" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <rect x="18" y="248" width="134" height="58" rx="10" fill="#F5F0E6" stroke="#D1BFA5"/>
+    <text x="42" y="121" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#2f3b2f">Una columna</text>
+  </g>
+
+  <rect x="50" y="540" width="1100" height="100" rx="14" fill="#ffffff" stroke="#D1BFA5"/>
+  <text x="80" y="578" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#2f3b2f">Criterio de diseño</text>
+  <text x="80" y="612" font-family="Arial, sans-serif" font-size="18" fill="#5b6659">La información se reorganiza según el espacio disponible: dashboard denso en desktop, bloques flexibles en tablet y una sola columna en móvil.</text>
+</svg>
