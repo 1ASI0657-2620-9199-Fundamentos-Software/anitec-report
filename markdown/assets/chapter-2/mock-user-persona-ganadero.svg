@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#F4F7F2"/>
+  <rect x="45" y="40" width="1310" height="820" rx="24" fill="#FFFFFF" stroke="#2F6B4F" stroke-width="3"/>
+  <rect x="45" y="40" width="1310" height="125" rx="24" fill="#2F6B4F"/>
+  <text x="85" y="95" font-family="Arial" font-size="36" font-weight="700" fill="#FFFFFF">USER PERSONA · GANADERA</text>
+  <text x="85" y="135" font-family="Arial" font-size="20" fill="#DDEDE4">Arquetipo compuesto basado en GAN-M01–GAN-M05 · Datos sintéticos</text>
+  <circle cx="205" cy="300" r="92" fill="#DDEDE4" stroke="#2F6B4F" stroke-width="4"/>
+  <text x="205" y="315" text-anchor="middle" font-family="Arial" font-size="62" font-weight="700" fill="#2F6B4F">MQ</text>
+  <text x="90" y="430" font-family="Arial" font-size="34" font-weight="700" fill="#1F2D26">María Quispe</text>
+  <text x="90" y="468" font-family="Arial" font-size="20" fill="#44534B">50 años · Cajamarca</text>
+  <text x="90" y="500" font-family="Arial" font-size="20" fill="#44534B">Propietaria · 45 bovinos</text>
+  <text x="90" y="548" font-family="Arial" font-size="17" font-weight="700" fill="#A3482F">NOMBRE E IMAGEN FICTICIOS</text>
+  <rect x="390" y="205" width="440" height="245" rx="16" fill="#EEF5F0"/>
+  <text x="420" y="245" font-family="Arial" font-size="24" font-weight="700" fill="#2F6B4F">OBJETIVOS</text>
+  <text x="420" y="286" font-family="Arial" font-size="19" fill="#1F2D26">• Mantener un historial confiable por animal.</text>
+  <text x="420" y="322" font-family="Arial" font-size="19" fill="#1F2D26">• Evitar vacunas y controles olvidados.</text>
+  <text x="420" y="358" font-family="Arial" font-size="19" fill="#1F2D26">• Coordinar trabajadores y veterinario.</text>
+  <text x="420" y="394" font-family="Arial" font-size="19" fill="#1F2D26">• Decidir con información completa.</text>
+  <rect x="860" y="205" width="440" height="245" rx="16" fill="#FFF2ED"/>
+  <text x="890" y="245" font-family="Arial" font-size="24" font-weight="700" fill="#A3482F">FRUSTRACIONES</text>
+  <text x="890" y="286" font-family="Arial" font-size="19" fill="#1F2D26">• Datos duplicados o incompletos.</text>
+  <text x="890" y="322" font-family="Arial" font-size="19" fill="#1F2D26">• Búsquedas lentas entre varios medios.</text>
+  <text x="890" y="358" font-family="Arial" font-size="19" fill="#1F2D26">• Conectividad intermitente.</text>
+  <text x="890" y="394" font-family="Arial" font-size="19" fill="#1F2D26">• No saber si el dato se sincronizó.</text>
+  <rect x="390" y="480" width="440" height="245" rx="16" fill="#F3F1FA"/>
+  <text x="420" y="520" font-family="Arial" font-size="24" font-weight="700" fill="#58468C">COMPORTAMIENTOS</text>
+  <text x="420" y="561" font-family="Arial" font-size="19" fill="#1F2D26">• Usa cuadernos, fotos y WhatsApp.</text>
+  <text x="420" y="597" font-family="Arial" font-size="19" fill="#1F2D26">• Transcribe al terminar la jornada.</text>
+  <text x="420" y="633" font-family="Arial" font-size="19" fill="#1F2D26">• Consulta al veterinario de confianza.</text>
+  <text x="420" y="669" font-family="Arial" font-size="19" fill="#1F2D26">• Prefiere Android y lenguaje directo.</text>
+  <rect x="860" y="480" width="440" height="245" rx="16" fill="#EEF4FA"/>
+  <text x="890" y="520" font-family="Arial" font-size="24" font-weight="700" fill="#315F86">NECESIDADES</text>
+  <text x="890" y="561" font-family="Arial" font-size="19" fill="#1F2D26">• Registro simple y operación offline.</text>
+  <text x="890" y="597" font-family="Arial" font-size="19" fill="#1F2D26">• Historial, alertas y respaldo.</text>
+  <text x="890" y="633" font-family="Arial" font-size="19" fill="#1F2D26">• Permisos para trabajadores y veterinario.</text>
+  <text x="890" y="669" font-family="Arial" font-size="19" fill="#1F2D26">• Precio proporcional al tamaño del hato.</text>
+  <rect x="90" y="770" width="1210" height="54" rx="12" fill="#E8F2EC"/>
+  <text x="695" y="805" text-anchor="middle" font-family="Arial" font-size="21" font-style="italic" fill="#234B39">“Necesito registrar cuando ocurre y confiar en que no se perderá si no tengo señal.”</text>
+</svg>

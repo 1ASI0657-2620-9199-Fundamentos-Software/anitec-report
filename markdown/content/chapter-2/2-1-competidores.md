@@ -1,132 +1,129 @@
-# 2.1. Competidores.
+# 2.1. Competidores
 
-Comprender el entorno competitivo es crucial para el éxito de cualquier negocio. En esta sección realizaremos un análisis profundo de nuestros competidores, tanto directos como indirectos, evaluando las estrategias que aplican, así como sus principales fortalezas y debilidades.
+El análisis competitivo permite comprender cómo otras soluciones digitales atienden la gestión ganadera y qué vacíos puede aprovechar AniTec. Para esta revisión se seleccionaron tres productos vigentes con ofertas similares: **CattleMax**, **AgriWebb** y **BovControl**. CattleMax y AgriWebb son competidores directos por sus capacidades de registro y gestión de ganado; BovControl es un competidor directo regional por su orientación a la digitalización de la cadena pecuaria en América. La comparación se realizó con información pública de sus sitios oficiales consultada el **7 de septiembre de 2026**.
 
-## 2.1.1. Análisis competitivo.
+El análisis no pretende afirmar que los tres productos operen con las mismas condiciones comerciales en el Perú. Sus precios, disponibilidad, integraciones y soporte pueden variar por país, tamaño del hato y modalidad de contratación. Por ello, los campos sin una tarifa pública verificable se indican como **“cotización o cálculo requerido”**, en vez de estimar valores.
 
-Llevar a cabo un análisis competitivo es clave para reconocer oportunidades y riesgos en el mercado, así como para posicionar a AniTec de manera estratégica. Este análisis permite comprender cómo los competidores atienden las necesidades de los clientes, identificar vacíos en el mercado y destacar nuestra solución a través de ventajas diferenciadoras. También facilita la elaboración de estrategias más efectivas de marketing, precios y distribución, garantizando una propuesta de valor sólida y sostenible.
+## 2.1.1. Análisis competitivo
 
-<html>
-<body>
-    <table >
-        <tr>
-           <td colspan="6" class="sub">  <h1>Competitive Analysis Landscape</h1></td>
-        </tr>
-        <tr>
-            <td colspan="2" rowspan="2" class="sub">¿Por qué llevar a cabo este análisis?</td>
-            <td colspan="4" class="sub"><h3>¿Quiénes son nuestros principales competidores?</h3></td>
-        </tr>
-        <tr>
-            <td colspan="4">Gracias al análisis de la competencia del mercado, se logra comprender el entorno competitivo 
-                en el que operará nuestro producto. Ello proporciona una visión detallada de quiénes son nuestros competidores 
-                directos e indirectos, permitiendo trazar estrategias a partir de la información recopilada sobre su posicionamiento actual en el mercado.</td>
-        </tr>
-        <tr>
-            <td rowspan="3" class="sub">PERFIL</td>
-            <td rowspan="2" class="sub">Overview</td>
-            <td> AniTec <img src="../../assets/chapter-2/AniTec.png"></td>
-            <td> Livestock Manager <img src="../../assets/chapter-2/Livestock.png"></td>
-            <td> AgriTrack <img src="../../assets/chapter-2/AgriTrack.png"></td>
-            <td> FarmLogs <img src="../../assets/chapter-2/FarmLogs.png"></td> 
-        </tr>
-        <tr>
-            <td>Plataforma web diseñada para pequeños y medianos ganaderos y veterinarios en Latinoamérica, enfocada en trazabilidad, gestión sanitaria, monitoreo IoT y educación.</td>
-            <td>Aplicación móvil y web para gestión de hatos ganaderos, enfocada en registro sanitario y productividad.</td>
-            <td>Plataforma multifuncional para gestión agrícola y ganadera, con módulos de cultivo, inventario y finanzas.</td>
-            <td>Herramienta global para gestión agrícola, con funcionalidades básicas de ganadería.</td>      
-        </tr>
-        <tr>
-            <td class="sub">Ventaja Competitiva ¿Qué valor ofrece a los clientes?</td>
-            <td>Enfoque en ganadería, trazabilidad individual del hato, seguimiento veterinario y precios accesibles para pequeños y medianos productores.</td>
-            <td>Integración con dispositivos IoT. Reportes automatizados para exportación a autoridades sanitarias.</td>
-            <td>Versatilidad: integra cultivos y ganado en una sola plataforma. Análisis predictivo basado en clima y mercado.</td>
-            <td>Reconocimiento de marca internacional. Integración con mercados globales de commodities.</td>      
-        </tr>
-        <tr>
-            <td rowspan="2" class="sub">PERFIL DEL MARKETING</td>
-            <td class="sub" >Mercado Objetivo</td>
-            <td>Pequeños y medianos productores ganaderos, veterinarios de campo y técnicos agropecuarios.</td>
-            <td>Medianos y grandes ganaderos con acceso a tecnología avanzada.</td>
-            <td>Agricultores y ganaderos diversificados en zonas semiurbanas.</td>
-            <td>Grandes empresas agroindustriales con enfoque exportador.</td>
-        </tr>
-        <tr>
-            <td class="sub">Estrategias de Marketing</td>
-            <td>Alianzas con asociaciones ganaderas y programas gubernamentales. Talleres presenciales en zonas rurales.</td>
-            <td>Alianzas con empresas de insumos veterinarios. Publicidad en ferias ganaderas y redes sociales especializadas.</td>
-            <td>Contenido educativo en YouTube y webinars. Descuentos por volumen para cooperativas.</td>
-            <td>Campañas en medios internacionales (The Economist, Bloomberg). Acuerdos con distribuidores de maquinaria agrícola.</td>
-        </tr>
-        <tr>
-            <td rowspan="3" class="sub">PERFIL DEL PRODUCTO</td>
-            <td class="sub">Productos & Servicios</td>
-            <td>Plataforma web para gestión de hatos ganaderos, seguimiento sanitario, actividades, finanzas, dispositivos IoT y planes de suscripción.</td>
-            <td>Plataforma móvil y web para gestión de hatos ganaderos.</td>
-            <td>Plataforma multifuncional para gestión agrícola y ganadera.</td>
-            <td>Herramienta global para gestión agrícola y ganadera, con énfasis en mercados formales.</td>
-        </tr>
-        <tr>
-            <td class="sub">Precios & Costos</td>
-            <td>Básico: $10/mes. Premium: $25/mes. Empresarial: $50/mes.</td>
-            <td>Básico: $20/mes Premium: $100/mes.</td>
-            <td>Solo ganado: $15/mes Full agro: $50/mes.</td>
-            <td>Básico: $30/mes Empresarial: $200/mes.</td>
-        </tr>
-        <tr>
-            <td class="sub">Canales de distribución (web/móvil)</td>
-            <td>Plataforma web, app móvil y colaboración con ONGs rurales.</td>
-            <td>Venta directa en su sitio web y app stores.</td>
-            <td>Distribución mediante cooperativas agrícolas.</td>
-            <td>Venta directa y partners estratégicos en EE.UU. y Europa.</td>        
-        </tr>
-        <tr>
-            <td rowspan="4" class="sub">ANÁLISIS SWOT</td>
-            <td class="sub">Fortalezas</td>
-            <td>Diseño accesible para baja conectividad. Costos accesibles y planes de acuerdo al tamaño de la finca.</td>
-            <td>Tecnología IoT innovadora. Cumplimiento normativo automático.</td>
-            <td>Solución integral para agro. Precios accesibles.</td>
-            <td>Enfoque en mercados globales. Datos en tiempo real de mercados.</td>
-        </tr>
-        <tr>
-            <td class="sub">Debilidades</td>
-            <td>Dependencia de alianzas para distribución. </td>
-            <td>Alto costo para pequeños productores. Interfaz compleja para usuarios rurales.</td>
-            <td>Funcionalidades ganaderas menos desarrolladas. Falta de enfoque en trazabilidad sanitaria.</td>
-            <td>Precios elevados para Latinoamérica. Poca adaptación a necesidades locales.</td>  
-        </tr>
-        <tr>
-            <td class="sub">Oportunidades</td>
-            <td>Demanda creciente de trazabilidad en exportaciones. Subsidios gubernamentales para digitalización rural.</td>
-            <td>Expansión a mercados formales (exportación). Alianzas con gobiernos para subsidios.</td>
-            <td>Crecimiento de la agricultura de precisión. Demanda de análisis predictivo.</td>
-            <td>Expansión a Latinoamérica con socios locales. Demanda de trazabilidad para exportación.</td> 
-        </tr>
-        <tr>
-            <td class="sub">Amenazas</td>
-            <td>Competidores globales con más recursos. Resistencia a adoptar tecnología en productores tradicionales.</td>
-            <td>Competencia con soluciones low-cost. Resistencia al cambio en ganaderos tradicionales.</td>
-            <td>Especialización de competidores ganaderos. Saturación de plataformas multifuncionales.</td>
-            <td>Competencia de startups regionales. Barreras culturales y idiomáticas.</td>          
-        </tr>
-    </table>
-</body>
-</html>
+**Objetivo del análisis:** determinar cómo puede diferenciarse AniTec frente a soluciones consolidadas de gestión pecuaria, considerando las necesidades del segmento inicial peruano: uso móvil sencillo, conectividad intermitente, trazabilidad sanitaria, colaboración controlada entre ganaderos y veterinarios y un costo compatible con pequeños y medianos hatos.
 
-## 2.1.2. Estrategias y tácticas frente a competidores.
+<table>
+  <tr>
+    <th colspan="2">Competitive Analysis Landscape</th>
+    <th>AniTec<br><img src="../../assets/chapter-2/AniTec.png" width="110" alt="Logo de AniTec"></th>
+    <th>CattleMax<br><img src="../../assets/chapter-2/CattleMax.png" width="110" alt="Logo de CattleMax"></th>
+    <th>AgriWebb<br><img src="../../assets/chapter-2/AgriWebb.svg" width="110" alt="Logo de AgriWebb"></th>
+    <th>BovControl<br><img src="../../assets/chapter-2/BovControl.png" width="70" alt="Logo de BovControl"></th>
+  </tr>
+  <tr><th colspan="2">Tipo de competidor</th><td>Startup analizada</td><td>Directo</td><td>Directo</td><td>Directo regional</td></tr>
+  <tr>
+    <th rowspan="2">Perfil</th><th>Overview</th>
+    <td>Plataforma multicanal en evolución, orientada a pequeños y medianos ganaderos peruanos y a los veterinarios que atienden sus animales.</td>
+    <td>Software web de registro para operaciones de ganado bovino comercial y registrado, accesible desde teléfono, tableta o computadora.</td>
+    <td>Plataforma de gestión de ganado y pasturas con modalidades por lote e individuo, aplicación móvil y operación sin conexión.</td>
+    <td>Plataforma de productos cloud y móviles para digitalizar datos de productores, fincas y animales dentro de la cadena pecuaria.</td>
+  </tr>
+  <tr>
+    <th>Ventaja competitiva y valor</th>
+    <td>Adaptación al contexto peruano; flujo conjunto ganadero-veterinario; aplicación Android sencilla; permisos explícitos; historial sanitario y sincronización diferida como capacidades prioritarias.</td>
+    <td>Madurez del producto, soporte dirigido por ganaderos, registros completos, usuarios ilimitados y herramientas específicas para ganado registrado.</td>
+    <td>Amplia cobertura funcional: mapas, movimientos, tratamientos, reproducción, tareas, inventario, reportes e integraciones con hardware; registra datos offline y los sincroniza al recuperar conexión.</td>
+    <td>Portafolio especializado que cubre gestión de animales, carne, leche, reproducción, asistencia técnica, indicadores ambientales y analítica corporativa.</td>
+  </tr>
+  <tr>
+    <th rowspan="2">Perfil de marketing</th><th>Mercado objetivo</th>
+    <td>Pequeños y medianos ganaderos del Perú y veterinarios de campo; asociaciones y cooperativas se consideran un segmento institucional posterior.</td>
+    <td>Productores cow-calf comerciales y criadores de ganado registrado; ofrece planes según tipo de operación y número de animales activos.</td>
+    <td>Productores y equipos de operaciones ganaderas que gestionan animales individualmente o por lotes y requieren información productiva y de pasturas.</td>
+    <td>Productores, empresas pecuarias, agentes de campo e instituciones que participan en las cadenas de carne y leche, con presencia en América.</td>
+  </tr>
+  <tr>
+    <th>Estrategias de marketing observables</th>
+    <td>Propuesta inicial: alianzas locales, acompañamiento de adopción, demostraciones y contenido educativo en español.</td>
+    <td>Prueba gratuita de 21 días, clases y capacitación sin costo, soporte especializado y comunicación basada en más de 25 años de experiencia.</td>
+    <td>Prueba gratuita, demostración interactiva, contenido educativo, casos de clientes, soporte local en mercados como Brasil e integraciones con hardware.</td>
+    <td>Oferta de soluciones por caso de uso y alianzas institucionales; su portafolio comunica valor para productores, asistencia técnica, industria y sostenibilidad.</td>
+  </tr>
+  <tr>
+    <th rowspan="3">Perfil del producto</th><th>Productos y servicios</th>
+    <td>Aplicación Android, vistas administrativas web, gestión de animales y hatos, eventos sanitarios, actividades, colaboración por roles, telemetría y analítica; el alcance se implementará iterativamente.</td>
+    <td>Fichas de ganado, salud, reproducción, partos, destete, pasturas, equipos, ingresos y gastos, calendario, tareas, reportes y funciones para asociaciones de razas.</td>
+    <td>Registros individuales y por lotes, movimientos, tratamientos, alimentación, pesos, reproducción, mapas, pasturas, tareas, inventario, reportes e integraciones EID/IoT.</td>
+    <td>BovPilot, BovMilk, BovAssist, BovImpact y BovInsights, entre otros componentes para gestión animal, producción, rutinas de campo, sostenibilidad y análisis.</td>
+  </tr>
+  <tr>
+    <th>Precios y costos</th>
+    <td>Modelo de suscripción escalonado por validar. No se publica un precio definitivo hasta contrastar disposición de pago, alcance y costos cloud.</td>
+    <td>La página oficial calcula el precio según plan y animales activos. Como referencia consultada, hasta 250 animales: Commercial USD 30/mes y Registered USD 41/mes, ambos facturados anualmente.</td>
+    <td>Calculadora según cantidad y tipo de ganado, modalidad y plan. La tarifa final requiere ingresar datos; existen complementos publicados, como Movement Planner (USD 100/año) y Grazing Planner (USD 150/año).</td>
+    <td>Servicio por suscripción; las condiciones oficiales remiten el importe a la orden de compra o plan contratado. No se encontró una tarifa pública única verificable.</td>
+  </tr>
+  <tr>
+    <th>Canales de distribución</th>
+    <td>Aplicación Android, acceso web administrativo y API; adquisición digital y alianzas con asociaciones, veterinarios y programas de capacitación.</td>
+    <td>Acceso web adaptable desde teléfono, tableta y computadora; TagMax está disponible para iOS y Android en escenarios con lectores RFID o balanzas.</td>
+    <td>Web y aplicación móvil para iOS y Android, con prueba gratuita, demostración y venta asistida.</td>
+    <td>Sitios y aplicaciones web/móviles, complementados por programas y alianzas para cadenas pecuarias.</td>
+  </tr>
+  <tr>
+    <th rowspan="4">Análisis SWOT</th><th>Fortalezas</th>
+    <td>Conocimiento del problema local; español; prioridad móvil; colaboración productor-veterinario; arquitectura preparada para evolución independiente de capacidades.</td>
+    <td>Producto maduro, soporte especializado, usuarios ilimitados, amplitud de registros y herramientas para ganado comercial y registrado.</td>
+    <td>Gran amplitud funcional, trabajo offline, sincronización cloud, colaboración con roles e integraciones con dispositivos.</td>
+    <td>Orientación latinoamericana, portafolio especializado y cobertura de distintos actores y procesos de la cadena pecuaria.</td>
+  </tr>
+  <tr>
+    <th>Debilidades</th>
+    <td>Producto en evolución; reconocimiento de marca y evidencia comercial todavía limitados; modelo de precios por validar; mayor complejidad operativa por la transición a microservicios.</td>
+    <td>Enfoque comercial y normativo principalmente norteamericano; el acceso web general depende de Internet y el trabajo offline especializado utiliza TagMax u hojas de trabajo.</td>
+    <td>Amplitud que puede elevar la curva de aprendizaje; precios variables y no visibles sin configurar la calculadora; localización peruana no demostrada.</td>
+    <td>Portafolio amplio que puede dificultar identificar una experiencia única para el pequeño productor; precios no públicos y poca evidencia pública de una experiencia localizada para Perú.</td>
+  </tr>
+  <tr>
+    <th>Oportunidades</th>
+    <td>Digitalización de pequeños productores; necesidad de trazabilidad; adopción de Android; colaboración sanitaria y demanda de operaciones resilientes ante conectividad rural variable.</td>
+    <td>Expansión a nuevos países y asociaciones; mayor integración de hardware y servicios de analítica.</td>
+    <td>Localización regional, integraciones de precisión, programas de sostenibilidad y analítica productiva.</td>
+    <td>Alianzas con cooperativas, industria, asistencia técnica y programas de sostenibilidad o inclusión productiva.</td>
+  </tr>
+  <tr>
+    <th>Amenazas</th>
+    <td>Competidores con mayor capital, madurez e integraciones; resistencia al cambio; baja conectividad; sensibilidad al precio y riesgos de seguridad o pérdida de confianza.</td>
+    <td>Competidores móviles con una experiencia offline más integrada y soluciones locales de menor costo.</td>
+    <td>Soluciones regionales más simples o económicas y barreras de adopción por complejidad funcional.</td>
+    <td>Competidores especializados por nicho, cambios regulatorios y dificultad de sostener un portafolio amplio en contextos heterogéneos.</td>
+  </tr>
+</table>
 
-Entre las principales estrategias y tácticas que ejecutaremos como startup son las siguientes:
+### Síntesis del análisis
 
-Por un lado, estas son las estrategias preliminares:
+La comparación muestra que competir únicamente por cantidad de funcionalidades no es conveniente. AgriWebb posee una cobertura operativa e integraciones difícil de replicar en la etapa inicial, CattleMax cuenta con madurez y especialización en registros bovinos, y BovControl cubre distintos eslabones de la cadena pecuaria. El espacio de diferenciación de AniTec se encuentra en combinar una experiencia sencilla y localizada para el Perú con colaboración sanitaria entre ganadero y veterinario, control explícito de permisos y resiliencia ante conectividad intermitente.
 
-- Incursión en sectores rurales a través de alianzas con gremios ganaderos de la zona y organizaciones no gubernamentales.
-- Capacitación tecnológica gradual mediante material multimedia diseñado para personas con conocimientos digitales limitados.
-- Optimización de la asistencia técnica utilizando medios de contacto directos como llamadas telefónicas, WhatsApp y seguimiento veterinario dentro de la plataforma.
-- Generación de utilidad inmediata, brindando notificaciones en tiempo real, análisis de datos de valor y funciones sin costo.
+Las características de AniTec descritas en la matriz constituyen el **alcance objetivo** del producto durante el curso, no evidencia de que todas estén actualmente desplegadas. Su priorización deberá validarse con el Product Backlog, las iteraciones ADD y las pruebas de cada entrega.
 
-Por otro lado, estas son nuestras tácticas específicas:
+## 2.1.2. Estrategias y tácticas frente a competidores
 
-- Campañas de referidos para incentivar la difusión entre los mismos productores.
-- Material educativo y guías de uso para motivar la adopción frecuente de la aplicación.
-- Adaptación regional del sistema, empleando modismos locales y asistencia personalizada según la zona.
-- Presencia en eventos del sector, tales como ferias del campo y convenciones agropecuarias.
-- Acercamiento a veterinarios de campo, estudiantes de medicina veterinaria y técnicos agropecuarios para promover el uso de AniTec como herramienta de seguimiento sanitario.
+Las estrategias responden directamente a los hallazgos del Landscape. Cada una se acompaña de tácticas observables para evitar declaraciones generales sin una forma de ejecución o medición.
+
+| Estrategia | Hallazgo que atiende | Tácticas preliminares | Indicador inicial |
+|---|---|---|---|
+| **Diferenciación por contexto local y simplicidad** | Los competidores consolidados ofrecen muchas funciones, pero no demuestran una experiencia específicamente diseñada para pequeños productores peruanos. | Probar lenguaje, navegación y formularios con los dos segmentos; ofrecer configuración inicial guiada; priorizar las cinco tareas más frecuentes; preparar material en español y ejemplos ganaderos locales. | Al menos 80 % completa las tareas críticas sin ayuda en pruebas de usabilidad. |
+| **Operación resiliente en campo** | La conectividad rural variable amenaza la continuidad del registro; AgriWebb ya compite con una propuesta offline sólida. | Implementar almacenamiento local para operaciones prioritarias, cola de sincronización, estados visibles y recuperación ante conflictos; realizar pruebas con pérdida y retorno de red. | 100 % de registros aceptados localmente se conserva y al menos 95 % se sincroniza dentro de 5 minutos tras recuperar conexión. |
+| **Colaboración segura entre ganadero y veterinario** | Los competidores permiten colaboración, pero AniTec puede especializar el flujo clínico y la autorización del propietario. | Definir roles de mínimo privilegio; permitir asignar y revocar veterinarios; registrar auditoría; diseñar historial sanitario y seguimiento compartido sin exponer información no autorizada. | Al menos 80 % comprende los permisos y completa el flujo de atención compartida sin ayuda. |
+| **Adopción mediante confianza y acompañamiento** | La resistencia al cambio y la baja alfabetización digital pueden impedir la adopción aun cuando exista valor funcional. | Pilotos con veterinarios y asociaciones; tutoriales breves; soporte por canales conocidos; mensajes claros ante errores; demostraciones con datos de ejemplo y política de datos comprensible. | Tasa de finalización del onboarding y porcentaje de usuarios que realiza un segundo registro durante el piloto. |
+| **Precio accesible y validado** | Los precios internacionales pueden ser una barrera para hatos pequeños, pero un precio bajo sin validar puede comprometer la sostenibilidad. | Probar niveles de suscripción por tamaño y capacidad; mantener una prueba o alcance básico; contrastar disposición de pago; calcular costo cloud por usuario/hato antes de publicar tarifas. | Conversión por plan, disposición de pago y margen estimado positivo. |
+| **Evolución enfocada, no imitación funcional** | Los competidores poseen portafolios amplios y años de madurez. | Mantener un backlog guiado por valor, riesgo y atributos de calidad; implementar primero registro, historial, alertas, actividades y colaboración; integrar IoT y analítica mediante iteraciones posteriores verificables. | Porcentaje de drivers prioritarios cubiertos y validados en cada iteración ADD. |
+
+Estas estrategias son preliminares. Los resultados mock del apartado 2.2 permiten explorar coherencia y diseñar los artefactos del curso, pero no sustituyen validación comercial real. Antes de tomar decisiones de precio, adquisición o expansión, Titan deberá contrastarlas con usuarios y organizaciones reales.
+
+### Fuentes de la comparación
+
+- [CattleMax — Pricing](https://www.cattlemax.com/pricing), características, planes y referencia de precios. Consulta: 7 de septiembre de 2026.
+- [CattleMax — App](https://www.cattlemax.com/app), acceso móvil, TagMax y alternativas de trabajo sin conexión. Consulta: 7 de septiembre de 2026.
+- [AgriWebb — Our Product](https://www.agriwebb.com/us/our-product/), gestión, colaboración, seguridad y operación offline. Consulta: 7 de septiembre de 2026.
+- [AgriWebb — Pricing](https://www.agriwebb.com/us/pricing/), modalidades, calculadora y complementos. Consulta: 7 de septiembre de 2026.
+- [AgriWebb — Mobile App](https://www.agriwebb.com/mobile-app/), plataformas y capacidades móviles. Consulta: 7 de septiembre de 2026.
+- [BovControl — Terms of Service](https://web.bovpilot.bovcontrol.com/terms), descripción oficial del portafolio y modalidad de suscripción. Consulta: 7 de septiembre de 2026.
+
+Los nombres y logotipos de terceros se emplean únicamente con fines académicos de identificación y comparación; pertenecen a sus respectivos titulares.

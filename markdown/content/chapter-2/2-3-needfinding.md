@@ -1,94 +1,151 @@
-# 2.3. Needfinding.
+# 2.3. Needfinding
 
-En esta sección se presentarán los artefactos resultantes del proceso de análisis de la información recolectada de los segmentos objetivos. Aquí se incluyen secciones para User Personas, User Task Matrix, User Journey Maps, Empathy Mapping y As-is Scenario Mapping.
+El proceso de Needfinding transforma los hallazgos de las entrevistas mock en representaciones coherentes del contexto de uso. Los artefactos de esta sección no agregan evidencia nueva: sintetizan la matriz del apartado 2.2 y los vacíos identificados en el análisis competitivo. Por esta razón, cada característica relevante se relaciona con códigos de entrevistas mock y se mantiene la misma identidad en User Persona, User Task Matrix, Empathy Map y As-Is Scenario Mapping.
 
-## 2.3.1. User Personas.
+Las entrevistas son sintéticas y fueron autorizadas para fines académicos. En consecuencia, estos artefactos sirven para diseñar y priorizar el trabajo del curso, pero deberán contrastarse posteriormente con investigación y pruebas realizadas con usuarios reales.
 
-A continuación, se presentan los User Personas diseñados para representar a los segmentos objetivo identificados durante la fase de investigación. Estos arquetipos detallan variables demográficas, rasgos psicográficos, motivaciones y comportamientos, así como los pains (frustraciones) y gains (objetivos) que enfrentan en su gestión diaria. Asimismo, se analiza su nivel digital y su interacción con soluciones tecnológicas del sector agropecuario. Toda la información ha sido sintetizada a partir de los insights recolectados en las entrevistas y estructurada mediante la plataforma UXPressia para garantizar una representación fiel de las necesidades del usuario.
+## 2.3.1. User Personas
 
-### User Persona: Ganaderos
+Se elaboró un User Persona por segmento objetivo. Ambos son **arquetipos compuestos**: sus nombres y datos biográficos son ficticios, mientras que sus comportamientos, necesidades y frustraciones sintetizan patrones de los cinco perfiles mock de cada segmento. La comparación con CattleMax, AgriWebb y BovControl añadió dos criterios de diseño: AniTec no debe competir inicialmente por amplitud funcional, sino por simplicidad localizada, colaboración sanitaria controlada y operación resiliente.
 
-![User-Persona Ganadero](../../assets/chapter-2/user_persona_ganadero.png)
+### User Persona 1 — María Quispe, ganadera
 
-### User Persona: Veterinarios
+![User Persona mock del segmento ganadero](../../assets/chapter-2/mock-user-persona-ganadero.svg)
 
-![User-Persona Veterinario](../../assets/chapter-2/user_persona_veterinario.png)
+| Dimensión | Especificación del arquetipo |
+|---|---|
+| **Identidad** | María Quispe, 50 años, propietaria y administradora de una explotación familiar de aproximadamente 45 bovinos en Cajamarca. Nombre e imagen ficticios. |
+| **Frase representativa sintética** | “Necesito registrar las cosas cuando ocurren y confiar en que no se perderán si no tengo señal.” |
+| **Biografía** | Trabaja con familiares y personal eventual. Aprendió el manejo ganadero mediante experiencia familiar y asistencia técnica. Coordina controles con un veterinario y consolida apuntes al terminar la jornada. |
+| **Personalidad** | Responsable, práctica, preventiva y cautelosa ante herramientas nuevas. Adopta cambios cuando percibe utilidad inmediata y soporte cercano. |
+| **Habilidades** | Alto conocimiento práctico del hato; uso básico-intermedio de Android, WhatsApp y hojas de cálculo simples. |
+| **Dispositivos y canales** | Smartphone Android como dispositivo principal; WhatsApp y llamadas como canales habituales; laptop compartida para consolidaciones ocasionales. |
+| **Objetivos** | Mantener un historial confiable, evitar fechas olvidadas, coordinar al equipo y al veterinario, y tomar decisiones con información completa. |
+| **Comportamientos** | Anota en cuadernos o mensajes, captura información en campo y la transcribe después, consulta al veterinario y revisa calendarios manualmente. |
+| **Frustraciones** | Datos duplicados o incompletos, búsqueda lenta, conectividad intermitente, incertidumbre sobre la sincronización y herramientas complejas. |
+| **Necesidades** | Registro móvil simple, historial por animal, alertas, operación offline, estados de sincronización, permisos y exportación/recuperación de datos. |
+| **Influencias** | Familia, veterinario, asociaciones de productores, técnicos agropecuarios y recomendaciones de pares. |
+| **Criterios de adopción** | Facilidad, confiabilidad, funcionamiento sin conexión, precio proporcional al hato, soporte y control sobre quién accede a sus datos. |
 
-## 2.3.2. User Task Matrix.
+**Trazabilidad:** registros dispersos (GAN-M01–GAN-M05); dificultad para encontrar datos (GAN-M01, GAN-M02, GAN-M03, GAN-M05); conectividad limitada y alertas (GAN-M01–GAN-M05); permisos (GAN-M01, GAN-M03, GAN-M04, GAN-M05); necesidad de ayuda o simplicidad (GAN-M01, GAN-M02, GAN-M03, GAN-M05).
 
-A través de la User Task Matrix, es posible identificar y organizar las principales actividades que los usuarios realizan actualmente dentro de su contexto de trabajo. Al categorizar estas tareas según su frecuencia e importancia, se logra comprender cuáles representan mayores dificultades y necesidades para cada perfil de usuario, permitiendo detectar oportunidades de mejora en la gestión ganadera y veterinaria.
+### User Persona 2 — Andrea Ramos, veterinaria de campo
 
-| **User Task**                                                                          | **Jorge Luis Rivas (Frecuencia)** | **Jorge Luis Rivas (Importancia)** | **Valeria Mendoza (Frecuencia)** | **Valeria Mendoza (Importancia)** |
-| -------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------- | -------------------------------- | --------------------------------- |
-| Anotar el nacimiento o compra de un nuevo animal en cuadernos físicos                  | Sometimes                    | High                          | Rarely                           | Medium                            |
-| Registrar manualmente vacunas y tratamientos del ganado                                | Often                        | High                          | Always                           | High                              |
-| Revisar fechas de vacunación en notas, calendarios o cuadernos                         | Often                        | High                          | Often                            | High                              |
-| Recordar manualmente vacunas o controles pendientes                                    | Sometimes                    | High                          | Sometimes                        | High                              |
-| Anotar peso y crecimiento del ganado durante controles                                 | Often                        | Medium                        | Often                            | Medium                            |
-| Revisar manualmente información sobre productividad y rendimiento                      | Sometimes                    | Medium                        | Often                            | Medium                            |
-| Compartir documentos físicos o fotografías de registros con asociaciones o compradores | Rarely                       | Medium                        | Rarely                           | Low                               |
-| Buscar información o capacitaciones ganaderas en internet y redes sociales             | Sometimes                    | Low                           | Sometimes                        | Medium                            |
-| Llevar el control reproductivo mediante anotaciones manuales                           | Rarely                       | Medium                        | Rarely                           | Medium                            |
-| Buscar antecedentes médicos y sanitarios en cuadernos o archivos físicos               | Sometimes                    | High                          | Sometimes                        | High                              |
+![User Persona mock del segmento veterinario](../../assets/chapter-2/mock-user-persona-veterinario.svg)
 
-La User Task Matrix evidencia que tanto Jorge Luis como Valeria realizan constantemente actividades relacionadas con el control sanitario y el seguimiento del ganado. Mientras Jorge Luis depende principalmente de registros físicos y de su memoria para organizar la información de sus animales, Valeria necesita acceder rápidamente a datos precisos durante sus visitas de campo y procedimientos veterinarios. Asimismo, ambos perfiles presentan dificultades relacionadas con la organización, trazabilidad y acceso oportuno a la información, especialmente en procesos de vacunación, historial clínico y monitoreo del ganado. Estas tareas permiten comprender mejor el contexto actual de los usuarios e identificar necesidades reales dentro del entorno ganadero y veterinario.
+| Dimensión | Especificación del arquetipo |
+|---|---|
+| **Identidad** | Andrea Ramos, 34 años, médica veterinaria que atiende aproximadamente doce productores recurrentes en zonas rurales y semiurbanas de la sierra peruana. Nombre e imagen ficticios. |
+| **Frase representativa sintética** | “Antes de tratar necesito conocer los antecedentes y, después, dejar indicaciones que el productor pueda seguir.” |
+| **Biografía** | Divide su tiempo entre coordinación remota, visitas de campo, registro clínico y seguimiento. Recibe información en distintos formatos y debe mantener separados los datos de cada propietario. |
+| **Personalidad** | Metódica, empática, rigurosa y resolutiva; mantiene cautela respecto a la confidencialidad y las recomendaciones automáticas. |
+| **Habilidades** | Conocimiento clínico; uso intermedio-avanzado de Android, laptop, documentos compartidos, calendarios y hojas de cálculo. |
+| **Dispositivos y canales** | Android y laptop; en algunos contextos tableta. WhatsApp, correo, llamadas y documentos cloud. |
+| **Objetivos** | Consultar antecedentes antes o durante la visita, registrar atenciones rápidamente, programar seguimiento y evitar mezclar información de clientes. |
+| **Comportamientos** | Solicita fotos o cuadernos, reconstruye historiales, toma notas, envía indicaciones y usa recordatorios personales o calendarios. |
+| **Frustraciones** | Historiales incompletos, identificadores inconsistentes, duplicidad administrativa, falta de cobertura y ausencia de permisos claros. |
+| **Necesidades** | Acceso autorizado, historial sanitario, registro clínico breve, borradores offline, alertas, auditoría, separación por propietario y reportes básicos. |
+| **Influencias** | SENASA, colegas, asociaciones, universidad, literatura técnica y protocolos profesionales. |
+| **Criterios de adopción** | Rapidez, precisión, permisos revocables, auditoría, exportación, soporte multi-cliente y reducción del trabajo administrativo. |
 
-## 2.3.3. User Journey Mapping.
+**Trazabilidad:** historial fragmentado y acceso previo (VET-M01–VET-M05); conectividad limitada (VET-M01, VET-M02, VET-M04, VET-M05); seguimiento (VET-M01–VET-M04); roles y auditoría (VET-M01–VET-M05); analítica útil (VET-M01, VET-M02, VET-M03, VET-M05).
 
-En este apartado se describe de manera detallada el recorrido y la experiencia actual de los usuarios dentro de su contexto de trabajo cotidiano, enfocándose específicamente en los dos perfiles clave identificados: productores ganaderos y médicos veterinarios. A través de los User Journey Maps As-Is, se analizan las actividades, emociones, problemas y necesidades que experimentan los usuarios durante la gestión y seguimiento del ganado, sin considerar aún la existencia de una solución tecnológica implementada.
+## 2.3.2. User Task Matrix
 
-El mapeo de este recorrido inicia desde las primeras dificultades relacionadas con la organización y acceso a la información, avanzando a través de las tareas diarias de registro, seguimiento sanitario y búsqueda de antecedentes médicos. Asimismo, se identifican los principales puntos de contacto, canales utilizados y frustraciones presentes en el proceso actual, permitiendo comprender de forma integral cómo los usuarios realizan actualmente sus actividades y cuáles son las oportunidades de mejora dentro del entorno ganadero y veterinario.
+La matriz reúne tareas que María y Andrea realizan para cumplir sus objetivos **sin depender de la existencia de AniTec**. No se incluyen opciones de software como “sincronizar en AniTec”. Se usa la escala de frecuencia `Diaria`, `Semanal`, `Mensual`, `Ocasional` y `No aplica`, y la importancia `Alta`, `Media`, `Baja` y `No aplica`.
 
-User Ganadero:
+| Tarea actual | María — Frecuencia | María — Importancia | Andrea — Frecuencia | Andrea — Importancia |
+|---|---|---|---|---|
+| Observar el estado y comportamiento de los animales | Diaria | Alta | Diaria, durante visitas | Alta |
+| Identificar animales y actualizar altas, bajas o movimientos | Semanal | Alta | Ocasional | Media |
+| Registrar vacunas, tratamientos y otros eventos sanitarios | Semanal | Alta | Diaria | Alta |
+| Revisar fechas de vacunas, controles y tratamientos pendientes | Semanal | Alta | Diaria | Alta |
+| Registrar producción, peso o reproducción | Semanal | Alta | Ocasional | Media |
+| Consolidar apuntes de trabajadores o familiares | Diaria | Alta | No aplica | No aplica |
+| Solicitar y reconstruir antecedentes antes de una atención | Ocasional | Alta | Diaria | Alta |
+| Evaluar animales y definir diagnóstico o tratamiento | No aplica | No aplica | Diaria | Alta |
+| Entregar y explicar indicaciones sanitarias | Ocasional | Alta | Diaria | Alta |
+| Coordinar una visita o emergencia mediante llamada/mensajería | Ocasional | Alta | Diaria | Alta |
+| Compartir cuadernos, fotos o archivos con la contraparte | Semanal | Alta | Diaria | Alta |
+| Programar y verificar seguimiento posterior | Semanal | Alta | Semanal | Alta |
+| Separar y organizar información de distintos propietarios | No aplica | No aplica | Diaria | Alta |
+| Preparar reportes sanitarios, productivos o administrativos | Mensual | Media | Mensual | Media |
 
-![User-Ganadero-Journey](../../assets/chapter-2/User-Ganadero-Journey.png)
+### Análisis de la matriz
 
-User Veterinario:
+Las tareas de mayor frecuencia e importancia para María son observar el hato, consolidar información y registrar o revisar eventos sanitarios. Su mayor carga aparece antes de cualquier solución digital: debe unir datos producidos por varias personas y medios. Para Andrea, las tareas críticas son revisar antecedentes, evaluar, registrar una atención, comunicar indicaciones y mantener separados varios clientes.
 
-![User-Veterinario-Journey](../../assets/chapter-2/User-Veterinario-Journey.png)
+La principal coincidencia es la gestión del ciclo sanitario: ambos necesitan identificar el animal, comprender antecedentes, registrar lo ocurrido y realizar seguimiento. También comparten información mediante llamadas, mensajes, fotografías y documentos. La principal diferencia corresponde a la responsabilidad: María conserva el control integral del hato y autoriza accesos; Andrea ejerce funciones clínicas sobre los pacientes y propietarios que le fueron asignados. Esta diferencia debe reflejarse en los permisos y en las interfaces, no ocultarse tras un único tipo de usuario.
 
-## 2.3.4. Empathy Mapping.
+## 2.3.3. Empathy Mapping
 
-En esta sección se presenta el proceso de elaboración de los Empathy Maps correspondientes a los User Personas identificados para el proyecto: el productor ganadero y la médica veterinaria. Para el desarrollo de estos mapas de empatía, el equipo analizó la información obtenida durante la etapa de investigación y needfinding, considerando las necesidades, comportamientos, preocupaciones y motivaciones de cada perfil dentro de su contexto laboral cotidiano.
+El equipo preparó un mapa por User Persona. Para cada uno colocó el arquetipo en el centro, revisó las cinco fichas mock del segmento y agrupó observaciones repetidas. Después clasificó cada observación en `Who`, `Needs`, `Says`, `Sees`, `Does`, `Hears`, `Thinks & Feels`, `Pains` y `Gains`. Las frases atribuidas a los arquetipos son síntesis ficticias y no testimonios de personas reales.
 
-El proceso de elaboración inició colocando al User Persona en el centro del análisis, permitiendo identificar de manera estructurada qué piensa, siente, observa, escucha, dice y hace cada usuario en relación con la gestión sanitaria y administrativa del ganado. Asimismo, se identificaron los principales esfuerzos (Pains) y ganancias (Gains) presentes en sus actividades diarias, con el objetivo de comprender mejor sus frustraciones, expectativas y oportunidades de mejora dentro del entorno ganadero y veterinario.
+### Empathy Map — María Quispe
 
-Los Empathy Maps permitieron visualizar de forma más profunda la experiencia actual de los usuarios, evidenciando problemáticas relacionadas con la organización de información, trazabilidad sanitaria, dependencia de registros físicos y dificultades en la comunicación y acceso a datos confiables.
+![Empathy Map mock de María Quispe](../../assets/chapter-2/mock-empathy-map-ganadero.svg)
 
-User Ganadero:
+- **Who:** propietaria y administradora de un hato pequeño o mediano; coordina familiares, trabajadores y veterinario.
+- **Needs:** registrar en campo, recordar eventos, recuperar información y controlar accesos.
+- **Says:** “Lo simple me sirve si puedo confiar en que el dato quedó guardado”.
+- **Sees:** cuadernos, mensajes, hojas de cálculo y herramientas internacionales con demasiadas opciones.
+- **Does:** observa animales, anota eventos, toma fotografías, transcribe y consulta al veterinario.
+- **Hears:** recomendaciones de familiares, productores, técnicos, asociaciones y proveedores.
+- **Thinks & Feels:** responsabilidad por la salud del hato; temor a olvidar fechas, perder datos o pagar por algo difícil de usar.
+- **Pains:** duplicidad, información incompleta, búsqueda lenta, mala conexión y falta de claridad sobre permisos.
+- **Gains:** continuidad del registro, alertas claras, colaboración controlada, respaldo y decisiones con información ordenada.
 
-![User-Ganaderos-Empathy](../../assets/chapter-2/User-Ganadero-Empathy.png)
+### Empathy Map — Andrea Ramos
 
-User Veterinario:
+![Empathy Map mock de Andrea Ramos](../../assets/chapter-2/mock-empathy-map-veterinario.svg)
 
-![User-Mapping-Empathy](../../assets/chapter-2/User-Veterinario-Empathy.png)
+- **Who:** veterinaria que atiende varios productores y combina coordinación remota con visitas de campo.
+- **Needs:** conocer antecedentes, registrar rápido, separar clientes, programar seguimiento y demostrar trazabilidad.
+- **Says:** “Un historial incompleto me obliga a reconstruir el caso antes de poder avanzar”.
+- **Sees:** fotos, mensajes, cuadernos y archivos con distintos formatos e identificadores.
+- **Does:** solicita antecedentes, evalúa, registra, prescribe indicaciones y programa controles.
+- **Hears:** información de productores, colegas, SENASA, asociaciones y fuentes técnicas.
+- **Thinks & Feels:** responsabilidad clínica, presión por responder, frustración ante datos incompletos y preocupación por la confidencialidad.
+- **Pains:** pérdida de tiempo, duplicidad, falta de cobertura, mezcla de clientes y permisos ambiguos.
+- **Gains:** acceso autorizado, historial confiable, registro breve, recordatorios, auditoría y reportes útiles.
 
-## 2.3.5. As-is Scenario Mapping.
+## 2.3.4. As-Is Scenario Mapping
 
-El As-is Scenario Mapping permite representar cómo los usuarios realizan actualmente sus actividades antes de utilizar AniTec. Este análisis se construye a partir de las entrevistas, los User Personas, el User Task Matrix, los User Journey Maps y los Empathy Maps. Su objetivo es identificar acciones, pensamientos, emociones y oportunidades de mejora dentro del flujo actual de trabajo de cada segmento.
+Los As-Is Scenario Maps representan la experiencia actual sin AniTec. El equipo realizó el siguiente proceso: (1) preparó el escenario y el objetivo; (2) efectuó una lluvia de ideas individual usando las fichas mock; (3) revisó y agrupó observaciones; (4) identificó y nombró las fases; (5) ubicó `Doing`, `Thinking` y `Feeling`; y (6) marcó áreas positivas `[+]`, negativas `[-]` y vacíos `[?]` que requieren investigación real. Las oportunidades no se convierten automáticamente en funcionalidades: alimentan las hipótesis y el backlog del capítulo III.
 
-### As-is Scenario Mapping: Ganadero
+### As-Is Scenario Mapping — María Quispe
 
-**User Persona:** Jorge Luis Rivas  
-**Escenario:** Registro y seguimiento manual de información sanitaria y productiva del ganado.
+**Escenario:** registrar y dar seguimiento a un evento sanitario en un animal mediante los recursos actuales.
 
-| Etapa | Actividades actuales | Pensamientos del usuario | Emociones | Pain points | Oportunidades para AniTec |
-|-------|----------------------|--------------------------|-----------|-------------|---------------------------|
-| Inicio del día de trabajo | Revisa mentalmente las actividades pendientes y consulta apuntes o cuadernos físicos. | "Debo recordar qué animal necesita revisión o vacuna." | Preocupación y responsabilidad. | Depende de la memoria y de registros físicos que pueden perderse. | Mostrar actividades pendientes, recordatorios y resumen del hato. |
-| Registro de información | Anota nacimientos, tratamientos, peso o cambios del animal en cuadernos u hojas sueltas. | "Luego ordenaré esta información cuando tenga tiempo." | Cansancio y sensación de desorden. | Los datos quedan incompletos, duplicados o difíciles de encontrar. | Permitir registrar animales, eventos sanitarios y actividades desde formularios simples. |
-| Consulta de historial | Busca información anterior entre cuadernos, mensajes o fotografías. | "No sé exactamente dónde anoté el último tratamiento." | Frustración e incertidumbre. | La búsqueda toma tiempo y puede afectar decisiones sanitarias o comerciales. | Centralizar historial del animal, eventos sanitarios y datos productivos. |
-| Coordinación con veterinario o técnico | Comparte información por WhatsApp, llamada o fotografías del cuaderno. | "Necesito explicarle rápido lo que pasó con el animal." | Urgencia y dependencia de terceros. | La información enviada puede estar incompleta o poco clara. | Facilitar el acceso a información ordenada para el seguimiento veterinario. |
-| Toma de decisiones | Decide tratamientos, ventas o controles futuros con información parcial. | "Podría tomar una mejor decisión si tuviera todo ordenado." | Duda y necesidad de confianza. | La falta de trazabilidad reduce la seguridad de las decisiones. | Generar reportes, indicadores básicos y consultas rápidas por animal o hato. |
+![As-Is Scenario Mapping mock de María Quispe](../../assets/chapter-2/mock-asis-ganadero.svg)
 
-### As-is Scenario Mapping: Veterinario
+| Fila / fase | 1. Detectar | 2. Identificar antecedentes | 3. Registrar | 4. Coordinar atención | 5. Dar seguimiento |
+|---|---|---|---|---|---|
+| **Doing** | Observa síntomas o una fecha próxima. | Busca arete, cuaderno, mensajes y fotos. | Anota en papel o WhatsApp para transcribir después. | Llama o envía evidencia al veterinario. | Revisa apuntes y trata de recordar la próxima acción. |
+| **Thinking** | “Debo actuar antes de que empeore.” | “¿Dónde quedó el último tratamiento?” | “Espero no olvidar pasar este dato.” | “¿La información que envié será suficiente?” | “¿Cuándo corresponde el siguiente control?” |
+| **Feeling** | Preocupada `[-]` | Frustrada e insegura `[-]` | Aliviada por dejar constancia `[+]`, pero teme perderla `[-]` | Acompañada si recibe respuesta `[+]` | Carga mental e incertidumbre `[-]` |
 
-**User Persona:** Valeria Mendoza  
-**Escenario:** Atención sanitaria de animales sin historial clínico centralizado.
+**Blank areas `[?]`:** tiempo real invertido en buscar antecedentes; frecuencia de conflictos entre registros; conectividad por localidad; información mínima que cada veterinario necesita; disposición de pago observada, no declarada.
 
-| Etapa | Actividades actuales | Pensamientos del usuario | Emociones | Pain points | Oportunidades para AniTec |
-|-------|----------------------|--------------------------|-----------|-------------|---------------------------|
-| Recepción del caso | Recibe información del ganadero mediante llamada, WhatsApp o comentarios durante la visita. | "Necesito saber qué le ocurrió antes al animal." | Atención y presión por responder rápido. | La información inicial puede ser incompleta o poco precisa. | Mostrar clientes asignados, animales y antecedentes sanitarios. |
-| Revisión de antecedentes | Solicita cuadernos, fotos, archivos o mensajes anteriores para reconstruir el historial. | "Sin historial, el diagnóstico puede ser menos preciso." | Frustración y cautela profesional. | Se pierde tiempo buscando datos dispersos. | Centralizar historial sanitario, tratamientos y eventos clínicos. |
-| Evaluación del animal | Realiza diagnóstico o control con la información disponible en campo. | "Debo tomar una decisión con los datos que tengo." | Concentración y responsabilidad. | La falta de trazabilidad puede limitar la calidad del seguimiento. | Permitir consultar fichas de animales y eventos anteriores desde el dashboard veterinario. |
-| Registro de atención | Anota diagnóstico, tratamiento o recomendación en notas, Excel o mensajes al productor. | "Debo dejar constancia para la próxima visita." | Necesidad de orden. | Las notas pueden perderse o no estar disponibles para futuras consultas. | Registrar eventos sanitarios y actividades de seguimiento en la plataforma. |
-| Seguimiento posterior | Coordina próximas visitas o controles mediante mensajes y recordatorios personales. | "Tengo que recordar qué cliente necesita seguimiento." | Carga mental y preocupación. | No existe una vista centralizada de pacientes o controles pendientes. | Organizar clientes, pacientes, actividades y alertas sanitarias básicas. |
+### As-Is Scenario Mapping — Andrea Ramos
+
+**Escenario:** preparar, realizar y dar seguimiento a una atención veterinaria de campo con información fragmentada.
+
+![As-Is Scenario Mapping mock de Andrea Ramos](../../assets/chapter-2/mock-asis-veterinario.svg)
+
+| Fila / fase | 1. Recibir el caso | 2. Reconstruir historial | 3. Evaluar | 4. Registrar e indicar | 5. Realizar seguimiento |
+|---|---|---|---|---|---|
+| **Doing** | Recibe llamada, texto, audio o fotografías. | Solicita cuadernos y busca conversaciones o archivos. | Examina al animal con los antecedentes disponibles. | Escribe notas y envía indicaciones por distintos canales. | Usa calendario o memoria y consulta al productor. |
+| **Thinking** | “Necesito saber la urgencia y cuál animal es.” | “¿Esta información está completa y vigente?” | “Debo decidir con los datos disponibles.” | “La próxima persona debe entender qué se hizo.” | “¿Cumplieron el tratamiento y cómo evolucionó?” |
+| **Feeling** | Presionada `[-]` | Frustrada por el tiempo perdido `[-]` | Concentrada y responsable `[+]` | Aliviada si deja indicaciones claras `[+]` | Preocupada ante falta de respuesta `[-]` |
+
+**Blank areas `[?]`:** frecuencia real de historias incompletas; tiempo administrativo por cliente; reglas legales y profesionales de retención; información que puede compartirse con trabajadores; tolerancia a demoras de sincronización.
+
+### Oportunidades comunes derivadas
+
+- Reducir la fragmentación sin eliminar el control del propietario sobre los datos.
+- Mantener disponibles las tareas críticas cuando la conexión falle.
+- Mostrar estados de guardado y sincronización comprensibles.
+- Conservar procedencia, autoría y auditoría de los registros.
+- Diseñar flujos diferentes para el propietario del hato y el profesional autorizado.
+- Validar con usuarios reales los blank areas antes de convertirlos en requisitos definitivos.
