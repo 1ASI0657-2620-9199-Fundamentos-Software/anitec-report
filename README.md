@@ -73,7 +73,7 @@
     - [1.2.3.4. Lean UX Canvas](./markdown/content/chapter-1/1-2-solution-profile.md)
 - [1.3. Segmentos objetivo](./markdown/content/chapter-1/1-3-segmentos-objetivo.md)
 
-## CAPÍTULO II: Requirements Elicitation & Analysis
+## CAPÍTULO II: Requirements & Analysis
 
 - [2.1. Competidores](./markdown/content/chapter-2/2-1-competidores.md)
   - [2.1.1. Análisis Competitivo](./markdown/content/chapter-2/2-1-competidores.md)
@@ -88,12 +88,12 @@
   - [2.3.3. Empathy Maps](./markdown/content/chapter-2/2-3-needfinding.md)
   - [2.3.4. As-Is Scenario Mapping](./markdown/content/chapter-2/2-3-needfinding.md)
 
-## CAPÍTULO III: Requirements Elicitation & Analysis
+## CAPÍTULO III: Requirements Specification
 
-- 3.1. To-Be Scenario Mapping
-- [3.2. User Stories](./markdown/content/chapter-3/3-1-user-stories.md)
-- [3.3. Impact Map](./markdown/content/chapter-3/3-2-impact-mapping.md)
-- [3.4. Product Backlog](./markdown/content/chapter-3/3-3-product-backlog.md)
+- [3.1. To-Be Scenario Mapping](./markdown/content/chapter-3/3-1-to-be-scenario-mapping.md)
+- [3.2. User Stories](./markdown/content/chapter-3/3-2-user-stories.md)
+- [3.3. Impact Map](./markdown/content/chapter-3/3-3-impact-mapping.md)
+- [3.4. Product Backlog](./markdown/content/chapter-3/3-4-product-backlog.md)
 
 ## CAPÍTULO IV: Product Architecture Design
 

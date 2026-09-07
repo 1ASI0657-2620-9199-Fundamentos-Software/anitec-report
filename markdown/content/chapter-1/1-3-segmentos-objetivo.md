@@ -21,7 +21,7 @@ Son productores responsables del cuidado cotidiano de hatos de escala familiar o
 | **Frustraciones** | Pérdida de apuntes, duplicidad, fechas olvidadas, información incompleta y herramientas difíciles de aprender. |
 | **Criterios de adopción** | Facilidad de uso, utilidad inmediata, confianza, soporte ante errores, funcionamiento con conectividad limitada y precio accesible. |
 
-La investigación exploratoria existente incluye tres ganaderos de 54, 62 y 65 años, ubicados en Lima y Canta. Los tres describieron el uso de registros manuales o dispersos y señalaron al teléfono como un canal habitual de comunicación o consulta. Debido al tamaño de la muestra, estos resultados sirven para formular hipótesis y construir arquetipos, pero no representan estadísticamente a todos los ganaderos del país. La caracterización deberá ampliarse y validarse durante el curso.
+La exploración académica del capítulo II utiliza cinco entrevistas mock autorizadas por el docente para este segmento. Los perfiles sintéticos tienen entre 36 y 61 años y representan contextos de Cajamarca, Puno, Junín y Arequipa. Los cinco utilizan registros manuales o dispersos, un teléfono Android y trabajan en lugares donde la conectividad puede ser limitada; cuatro de cinco también manifiestan dificultades para encontrar información y la necesidad de una experiencia sencilla o acompañamiento. Estos porcentajes describen únicamente la muestra mock: sirven para formular hipótesis y construir artefactos consistentes, pero no representan estadísticamente a los ganaderos peruanos. Las necesidades y decisiones comerciales deberán validarse posteriormente con usuarios reales.
 
 ## Veterinarios que atienden animales de campo
 
@@ -36,7 +36,7 @@ Son profesionales que brindan atención clínica o sanitaria a animales pertenec
 | **Frustraciones** | Historiales incompletos, información distribuida entre diferentes medios, demoras para identificar antecedentes y falta de continuidad entre visitas. |
 | **Criterios de adopción** | Rapidez, precisión, disponibilidad, permisos claros, protección de datos y reducción del tiempo administrativo. |
 
-La investigación exploratoria existente incluye dos veterinarios de 24 y 27 años que trabajan en la sierra sur y la selva central del Perú. Ambos reportaron el uso de smartphone y laptop, así como dificultades ocasionadas por historiales inexistentes o distribuidos entre cuadernos, archivos y conversaciones. Al igual que en el segmento ganadero, estos resultados deben tratarse como evidencia cualitativa inicial y ampliarse con nuevas entrevistas.
+La exploración académica del capítulo II utiliza cinco entrevistas mock autorizadas por el docente para este segmento. Los perfiles sintéticos tienen entre 27 y 47 años y representan trabajo de campo en Cusco, Cajamarca, Junín, Puno y Arequipa. Los cinco utilizan Android, reciben historiales fragmentados y consideran necesario consultar antecedentes y registrar las atenciones con rapidez; cuatro de cinco enfrentan conectividad limitada durante parte de su trabajo. Estos resultados son insumos sintéticos para el diseño y no evidencia de mercado. La frecuencia de las necesidades, las condiciones de adopción y la disposición de pago deberán contrastarse con veterinarios reales.
 
 ## Relación entre los segmentos
 

@@ -167,7 +167,7 @@ El éxito se evaluará mediante la capacidad de los usuarios para completar tare
 | H-04 | Creemos que el acceso compartido por roles mejorará la colaboración porque el veterinario podrá consultar pacientes autorizados y registrar una atención. | Prueba del flujo ganadero-veterinario con usuarios de ambos segmentos. | Al menos 80 % completa el flujo sin ayuda y comprende los permisos aplicados. |
 | H-05 | Creemos que la sincronización diferida generará confianza porque evitará perder registros cuando falle la conexión. | Piloto técnico que simule pérdida y recuperación de conectividad. | 100 % de los registros aceptados localmente se conserva y al menos 95 % se sincroniza dentro de los 5 minutos posteriores al retorno de la conexión. |
 
-Los porcentajes y tiempos anteriores constituyen umbrales iniciales. Deberán revisarse con los resultados de las entrevistas, pruebas de usabilidad y pilotos técnicos de cada entrega.
+Los porcentajes y tiempos anteriores constituyen umbrales iniciales. Las entrevistas mock autorizadas y documentadas en el capítulo II se utilizan para mantener coherencia durante el diseño académico, pero no validan esos umbrales frente al mercado. Por ello, deberán revisarse posteriormente mediante investigación con usuarios reales, pruebas de usabilidad y pilotos técnicos de cada entrega.
 
 ### 1.2.3.4. Lean UX Canvas
 

@@ -1,6 +1,22 @@
-# 3.1. User Stories.
+# 3.2. User Stories
 
-En esta sección se presentan los Epics, User Stories y Technical Stories identificados para AniTec a partir del análisis de entrevistas, needfinding, definición de segmentos objetivo y alcance actual de la solución. Las User Stories describen necesidades funcionales de ganaderos, veterinarios, usuarios autenticados y visitantes de la landing page. Las Technical Stories describen necesidades técnicas del frontend y del RESTful API, usando el rol Developer y criterios de aceptación en formato Given-When-Then.
+Esta sección especifica los Epics, User Stories y Technical Enablers de AniTec. Los requisitos parten de las diez entrevistas mock, los User Personas María Quispe y Andrea Ramos, los escenarios As-Is/To-Be y el análisis competitivo. Las entrevistas son sintéticas y orientan el diseño académico; las hipótesis de adopción y negocio deberán validarse con usuarios reales.
+
+Las User Stories describen resultados valiosos para ganaderos, veterinarios, colaboradores autorizados y visitantes. Los criterios de aceptación emplean Given–When–Then e incluyen, cuando corresponde, autorización, errores, conectividad y trazabilidad. Los Technical Enablers se mantienen separados conceptualmente: habilitan las historias, pero su prioridad y solución se validarán mediante ADD y no sustituyen requisitos centrados en el usuario.
+
+## Trazabilidad desde Needfinding
+
+| Hallazgo mock | Evidencia | Cambio To-Be | Epics e historias relacionadas |
+|---|---|---|---|
+| Registro manual o disperso | GAN-M01–GAN-M05 | Registrar y consultar por animal | EP-004, EP-005; US-008–US-019 |
+| Conectividad limitada | GAN-M01–GAN-M05; VET-M01, VET-M02, VET-M04, VET-M05 | Guardar localmente, conocer el estado y reintentar | EP-014; US-065–US-069 |
+| Necesidad de alertas y seguimiento | GAN-M01–GAN-M05; VET-M01–VET-M04 | Priorizar, confirmar y cerrar actividades | EP-007; US-027–US-030, US-070 |
+| Acceso controlado y auditable | GAN-M01, GAN-M03–GAN-M05; VET-M01–VET-M05 | Solicitar, aprobar, limitar y revocar | EP-015; US-023, US-024, US-071–US-074 |
+| Separación por propietario y paciente | VET-M01–VET-M05 | Consultar solo clientes y animales autorizados | EP-006, EP-015; US-021–US-026, US-073 |
+| Confianza y propiedad de los datos | Ambos segmentos | Exportar, recuperar y conservar trazabilidad | EP-016; US-075–US-077 |
+| Uso de Android en campo | GAN-M01–GAN-M05; VET-M01–VET-M05 | Completar tareas prioritarias desde la aplicación móvil | EP-014; US-065, US-066, US-078 |
+
+## Catálogo de Epics, User Stories y Technical Enablers
 
 <table>
   <thead>
@@ -105,6 +121,27 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
       <td>No aplica</td>
     </tr>
     <tr>
+      <td><b>EP-014</b></td>
+      <td>Experiencia móvil y sincronización edge-to-cloud</td>
+      <td>Esta épica agrupa el registro y consulta desde Android, la persistencia local, la cola de sincronización, el reintento y la resolución segura de conflictos.</td>
+      <td>No aplica</td>
+      <td>No aplica</td>
+    </tr>
+    <tr>
+      <td><b>EP-015</b></td>
+      <td>Colaboración, permisos y auditoría</td>
+      <td>Esta épica permite que el propietario solicite, apruebe, limite y revoque accesos, y que las operaciones sensibles conserven autoría y trazabilidad.</td>
+      <td>No aplica</td>
+      <td>No aplica</td>
+    </tr>
+    <tr>
+      <td><b>EP-016</b></td>
+      <td>Propiedad, conservación y portabilidad de datos</td>
+      <td>Esta épica agrupa la exportación, recuperación y conservación de información sanitaria y ganadera sin eliminar su historial.</td>
+      <td>No aplica</td>
+      <td>No aplica</td>
+    </tr>
+    <tr>
       <td><b>US-001</b></td>
       <td>Visualizar resumen operativo del ganadero</td>
       <td>Como ganadero, quiero ver un resumen de mis animales, fincas, alertas y actividades para conocer rapidamente el estado de mi operacion.</td>
@@ -148,9 +185,9 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
     </tr>
     <tr>
       <td><b>US-007</b></td>
-      <td>Eliminar finca</td>
-      <td>Como ganadero, quiero eliminar una finca cuando ya no forma parte de mi operacion.</td>
-      <td><b>Eliminacion confirmada.</b><br>Given existe una finca registrada<br>When el ganadero confirma su eliminacion<br>Then el sistema elimina la finca del listado<br><br><b>Eliminacion cancelada.</b><br>Given el ganadero abre la confirmacion de eliminacion<br>When cancela la accion<br>Then el sistema conserva la finca sin cambios</td>
+      <td>Desactivar una finca</td>
+      <td>Como ganadero, quiero desactivar una finca que ya no forma parte de mi operación para retirarla de las vistas activas sin perder sus registros históricos.</td>
+      <td><b>Desactivación.</b><br>Given la finca pertenece al ganadero y no tiene procesos pendientes incompatibles<br>When confirma fecha y motivo<br>Then el sistema la marca como inactiva<br>And conserva animales y eventos históricos<br><br><b>Operación cancelada.</b><br>Given el ganadero abre la confirmación<br>When cancela<br>Then la finca conserva su estado</td>
       <td>EP-003</td>
     </tr>
     <tr>
@@ -183,10 +220,10 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
     </tr>
     <tr>
       <td><b>US-012</b></td>
-      <td>Eliminar animal</td>
-      <td>Como ganadero, quiero eliminar un animal cuando ya no pertenece a mi hato o registro productivo.</td>
-      <td><b>Eliminacion confirmada.</b><br>Given existe un animal registrado<br>When el ganadero confirma la eliminacion<br>Then el sistema elimina el animal del listado<br><br><b>Eliminacion cancelada.</b><br>Given el ganadero abre la confirmacion de eliminacion<br>When cancela la accion<br>Then el animal permanece registrado</td>
-      <td>EP-004</td>
+      <td>Cambiar el estado de un animal sin perder su historial</td>
+      <td>Como ganadero, quiero marcar un animal como vendido, transferido, fallecido o inactivo para reflejar que ya no forma parte del hato activo y conservar su trazabilidad.</td>
+      <td><b>Cambio de estado.</b><br>Given el ganadero es propietario de un animal activo<br>When selecciona un estado final, indica fecha y motivo y confirma la operación<br>Then el sistema retira el animal de la vista activa<br>And conserva su ficha e historial para consulta<br>And registra autor, fecha y estado anterior<br><br><b>Operación no autorizada.</b><br>Given el usuario no es propietario ni tiene permiso de administración<br>When intenta cambiar el estado del animal<br>Then el sistema rechaza la operación sin modificar información</td>
+      <td>EP-004, EP-016</td>
     </tr>
     <tr>
       <td><b>US-013</b></td>
@@ -218,17 +255,17 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
     </tr>
     <tr>
       <td><b>US-017</b></td>
-      <td>Editar registro sanitario</td>
-      <td>Como usuario autorizado, quiero editar un registro sanitario para corregir o complementar informacion clinica.</td>
-      <td><b>Edicion exitosa.</b><br>Given existe un registro sanitario visible para el usuario<br>When el usuario actualiza los datos y guarda<br>Then el sistema muestra el registro actualizado<br><br><b>Registro inexistente.</b><br>Given el registro sanitario no existe<br>When el usuario intenta editarlo<br>Then el sistema redirige a la lista de gestion sanitaria</td>
+      <td>Editar un borrador sanitario</td>
+      <td>Como profesional autorizado, quiero editar una atención mientras permanece en borrador para completarla antes de incorporarla al historial clínico.</td>
+      <td><b>Edición de borrador.</b><br>Given el profesional es autor de un registro no finalizado<br>When modifica datos válidos y guarda<br>Then el sistema conserva el borrador actualizado<br><br><b>Registro finalizado.</b><br>Given la atención ya fue finalizada<br>When intenta editarla directamente<br>Then el sistema impide sobrescribirla<br>And ofrece el flujo de rectificación de US-018</td>
       <td>EP-005</td>
     </tr>
     <tr>
       <td><b>US-018</b></td>
-      <td>Eliminar registro sanitario</td>
-      <td>Como usuario autorizado, quiero eliminar un registro sanitario incorrecto para mantener limpio el historial.</td>
-      <td><b>Eliminacion confirmada.</b><br>Given existe un registro sanitario<br>When el usuario confirma la eliminacion<br>Then el sistema elimina el registro del listado<br><br><b>Eliminacion cancelada.</b><br>Given el usuario abre la confirmacion de eliminacion<br>When cancela la accion<br>Then el registro permanece sin cambios</td>
-      <td>EP-005</td>
+      <td>Rectificar o anular un registro sanitario</td>
+      <td>Como profesional autorizado, quiero rectificar o anular un registro sanitario indicando el motivo para corregir errores sin borrar la historia clínica.</td>
+      <td><b>Rectificación trazable.</b><br>Given el veterinario es autor del registro o posee permiso explícito de corrección<br>When ingresa el motivo y confirma los nuevos valores<br>Then el sistema crea una nueva versión vinculada a la anterior<br>And conserva autor y fecha de cada versión<br><br><b>Anulación.</b><br>Given un registro no debe considerarse vigente<br>When el profesional lo anula con un motivo válido<br>Then el sistema lo identifica como anulado sin eliminarlo<br><br><b>Sin permiso.</b><br>Given el usuario no tiene permiso de corrección<br>When intenta modificar o anular el registro<br>Then el sistema rechaza la operación y conserva el historial</td>
+      <td>EP-005, EP-015, EP-016</td>
     </tr>
     <tr>
       <td><b>US-019</b></td>
@@ -260,17 +297,17 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
     </tr>
     <tr>
       <td><b>US-023</b></td>
-      <td>Agregar cliente ganadero a la cartera del veterinario</td>
-      <td>Como veterinario, quiero buscar ganaderos registrados y enviar una peticion para agregarlos a mi cartera de clientes.</td>
-      <td><b>Busqueda de ganadero.</b><br>Given existen ganaderos registrados en la aplicacion<br>When el veterinario ingresa al panel de agregar cliente<br>Then el sistema muestra ganaderos en cartas con nombre, fincas y avatar circular<br><br><b>Envio de peticion.</b><br>Given el veterinario encuentra un ganadero disponible<br>When selecciona enviar peticion<br>Then el sistema registra la relacion veterinario-cliente en el backend<br>And lo muestra como cliente agregado<br><br><b>Busqueda sin resultados.</b><br>Given el veterinario escribe un nombre sin coincidencias<br>When el sistema filtra los ganaderos<br>Then muestra un mensaje indicando que no se encontraron ganaderos</td>
-      <td>EP-006</td>
+      <td>Solicitar acceso a un cliente ganadero</td>
+      <td>Como veterinario, quiero solicitar acceso sanitario a un ganadero mediante un código o invitación para atender sus animales cuando el propietario lo apruebe.</td>
+      <td><b>Solicitud pendiente.</b><br>Given el veterinario identifica al ganadero mediante un código o invitación<br>When envía una solicitud con alcance y duración<br>Then el sistema la registra como pendiente<br>And no permite consultar datos antes de la aprobación<br><br><b>Aprobación del propietario.</b><br>Given existe una solicitud pendiente<br>When el ganadero la aprueba<br>Then el veterinario obtiene únicamente los permisos concedidos<br>And la decisión queda auditada<br><br><b>Solicitud rechazada.</b><br>Given el ganadero rechaza la solicitud<br>When el sistema procesa la decisión<br>Then el veterinario no obtiene acceso</td>
+      <td>EP-006, EP-015</td>
     </tr>
     <tr>
       <td><b>US-024</b></td>
-      <td>Eliminar cliente de la cartera del veterinario</td>
-      <td>Como veterinario, quiero eliminar un cliente de mi lista para dejar de visualizar sus datos ganaderos y sanitarios.</td>
-      <td><b>Eliminacion de relacion veterinario-cliente.</b><br>Given el veterinario tiene un cliente asignado<br>When selecciona eliminar cliente<br>Then el sistema elimina la relacion entre veterinario y ganadero<br>And el cliente deja de aparecer en su lista<br><br><b>Datos del ganadero se conservan.</b><br>Given el veterinario elimina un cliente de su cartera<br>When el sistema procesa la accion<br>Then las fincas, animales y registros del ganadero se conservan en la aplicacion</td>
-      <td>EP-006</td>
+      <td>Finalizar una relación veterinario-cliente</td>
+      <td>Como veterinario, quiero finalizar una relación profesional para dejar de acceder a nuevos datos del cliente sin eliminar los registros clínicos ya emitidos.</td>
+      <td><b>Finalización voluntaria.</b><br>Given el veterinario tiene acceso vigente a un cliente<br>When confirma la finalización de la relación<br>Then pierde acceso a los datos no necesarios para conservación profesional<br>And el sistema registra fecha, actor y motivo<br><br><b>Conservación.</b><br>Given la relación finalizó<br>When el propietario consulta su historial<br>Then las atenciones previamente registradas permanecen trazables</td>
+      <td>EP-006, EP-015, EP-016</td>
     </tr>
     <tr>
       <td><b>US-025</b></td>
@@ -309,9 +346,9 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
     </tr>
     <tr>
       <td><b>US-030</b></td>
-      <td>Eliminar actividad</td>
-      <td>Como usuario, quiero eliminar actividades que ya no son necesarias para mantener mi calendario ordenado.</td>
-      <td><b>Eliminacion confirmada.</b><br>Given existe una actividad registrada<br>When el usuario confirma la eliminacion<br>Then el sistema elimina la actividad<br><br><b>Eliminacion cancelada.</b><br>Given el usuario abre la confirmacion de eliminacion<br>When cancela la accion<br>Then la actividad permanece registrada</td>
+      <td>Cancelar una actividad</td>
+      <td>Como responsable, quiero cancelar una actividad indicando el motivo para retirarla de pendientes sin perder su trazabilidad.</td>
+      <td><b>Cancelación.</b><br>Given existe una actividad pendiente y el usuario tiene permiso<br>When confirma el motivo de cancelación<br>Then el sistema la marca como cancelada<br>And conserva actor y fecha<br><br><b>Sin permiso.</b><br>Given el usuario no es responsable ni propietario<br>When intenta cancelarla<br>Then el sistema rechaza la operación</td>
       <td>EP-007</td>
     </tr>
     <tr>
@@ -337,9 +374,9 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
     </tr>
     <tr>
       <td><b>US-034</b></td>
-      <td>Eliminar movimiento financiero</td>
-      <td>Como ganadero, quiero eliminar un movimiento incorrecto para mantener mi balance limpio.</td>
-      <td><b>Eliminacion confirmada.</b><br>Given existe un movimiento financiero<br>When el ganadero confirma la eliminacion<br>Then el sistema elimina el movimiento<br>And recalcula ingresos, egresos y balance<br><br><b>Eliminacion cancelada.</b><br>Given el ganadero abre la confirmacion de eliminacion<br>When cancela la accion<br>Then el movimiento permanece registrado</td>
+      <td>Anular un movimiento financiero</td>
+      <td>Como ganadero, quiero anular un movimiento incorrecto indicando el motivo para corregir el balance sin borrar la operación original.</td>
+      <td><b>Anulación.</b><br>Given el movimiento pertenece al ganadero<br>When confirma el motivo<br>Then el sistema lo marca como anulado<br>And recalcula el balance<br>And conserva la operación original<br><br><b>Cancelación del flujo.</b><br>Given abrió la confirmación<br>When cancela<br>Then el movimiento no cambia</td>
       <td>EP-008</td>
     </tr>
     <tr>
@@ -449,9 +486,9 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
     </tr>
     <tr>
       <td><b>US-050</b></td>
-      <td>Consultar testimonios de usuarios</td>
-      <td>Como visitante, quiero leer testimonios de ganaderos o veterinarios para conocer experiencias de uso de AniTec.</td>
-      <td><b>Testimonios visibles.</b><br>Given el visitante navega a una pagina con testimonios<br>When llega a la seccion de testimonios<br>Then el sistema muestra comentarios, nombres e imagenes de usuarios representativos</td>
+      <td>Consultar casos de uso ilustrativos</td>
+      <td>Como visitante, quiero revisar casos de uso claramente identificados como ilustrativos para comprender cómo AniTec podría apoyar a ganaderos y veterinarios sin confundirlos con testimonios reales.</td>
+      <td><b>Casos ilustrativos.</b><br>Given existen escenarios de demostración basados en personas mock<br>When el visitante abre la sección de casos de uso<br>Then el sistema muestra contexto, problema y resultado esperado<br>And identifica de forma visible que el caso es ilustrativo y no un testimonio real<br><br><b>Testimonio futuro.</b><br>Given el equipo desea publicar una experiencia real<br>When configura el contenido<br>Then debe existir autorización verificable y no se presentan afirmaciones no sustentadas</td>
       <td>EP-011</td>
     </tr>
     <tr>
@@ -553,6 +590,105 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
       <td>EP-002, EP-006, EP-009</td>
     </tr>
     <tr>
+      <td><b>US-065</b></td>
+      <td>Acceder a tareas prioritarias desde Android</td>
+      <td>Como usuario de campo, quiero acceder desde Android a animales, historial, alertas y registro sanitario para completar mis tareas sin depender de una computadora.</td>
+      <td><b>Acceso móvil.</b><br>Given el usuario inició sesión en la aplicación Android<br>When abre la navegación principal<br>Then encuentra acceso a las tareas permitidas para su rol<br>And la interfaz mantiene legibilidad y objetivos táctiles adecuados<br><br><b>Rol limitado.</b><br>Given una tarea no corresponde al rol<br>When el usuario abre la navegación<br>Then la opción no se muestra y el acceso directo es rechazado</td>
+      <td>EP-014, EP-001</td>
+    </tr>
+    <tr>
+      <td><b>US-066</b></td>
+      <td>Guardar un registro sanitario sin conexión</td>
+      <td>Como usuario de campo autorizado, quiero guardar un evento sanitario cuando no tengo conexión para no perder la información capturada durante el trabajo.</td>
+      <td><b>Guardado local.</b><br>Given el dispositivo no tiene conexión y los datos obligatorios son válidos<br>When el usuario guarda el evento<br>Then la aplicación lo conserva localmente con identificador único<br>And lo muestra como pendiente de sincronización<br><br><b>Cierre de aplicación.</b><br>Given existe un registro pendiente<br>When la aplicación se cierra y vuelve a abrir<br>Then el registro continúa disponible sin duplicarse</td>
+      <td>EP-014, EP-005</td>
+    </tr>
+    <tr>
+      <td><b>US-067</b></td>
+      <td>Consultar el estado de sincronización</td>
+      <td>Como usuario de campo, quiero distinguir registros guardados, pendientes, sincronizados y con conflicto para saber si mi información llegó a la nube.</td>
+      <td><b>Estados visibles.</b><br>Given existen operaciones locales<br>When el usuario abre el estado de sincronización<br>Then cada operación muestra un estado comprensible y la última actualización<br><br><b>Sin pendientes.</b><br>Given todas las operaciones se sincronizaron<br>When el usuario revisa el estado<br>Then la aplicación confirma que no quedan cambios pendientes</td>
+      <td>EP-014</td>
+    </tr>
+    <tr>
+      <td><b>US-068</b></td>
+      <td>Reintentar una sincronización fallida</td>
+      <td>Como usuario de campo, quiero que la aplicación reintente operaciones fallidas sin crear duplicados para recuperar continuidad cuando regrese la conexión.</td>
+      <td><b>Reintento automático.</b><br>Given existe una operación pendiente y la conexión regresa<br>When se ejecuta la sincronización<br>Then la operación se envía de forma idempotente<br>And cambia a sincronizada una sola vez<br><br><b>Fallo persistente.</b><br>Given el servidor continúa no disponible<br>When termina el intento<br>Then la operación permanece local<br>And la aplicación informa el problema sin descartar datos</td>
+      <td>EP-014</td>
+    </tr>
+    <tr>
+      <td><b>US-069</b></td>
+      <td>Resolver un conflicto de sincronización</td>
+      <td>Como usuario autorizado, quiero revisar diferencias cuando dos personas modifican el mismo dato para resolver el conflicto sin sobrescribir información silenciosamente.</td>
+      <td><b>Conflicto detectado.</b><br>Given la versión remota cambió desde la última sincronización<br>When el dispositivo intenta enviar una modificación incompatible<br>Then el sistema conserva ambas versiones<br>And marca la operación como conflicto<br><br><b>Resolución.</b><br>Given existe un conflicto visible<br>When un usuario con permiso selecciona o combina los valores y confirma<br>Then se crea una versión resuelta<br>And la decisión queda auditada</td>
+      <td>EP-014, EP-015, EP-016</td>
+    </tr>
+    <tr>
+      <td><b>US-070</b></td>
+      <td>Confirmar la atención de una alerta</td>
+      <td>Como responsable de una actividad, quiero confirmar, posponer justificadamente o cerrar una alerta para mantener visible su estado y evitar olvidos.</td>
+      <td><b>Confirmación.</b><br>Given existe una alerta pendiente asignada al usuario<br>When confirma su atención<br>Then el sistema registra actor, fecha y resultado<br><br><b>Vencimiento.</b><br>Given una alerta prioritaria vence sin atención<br>When se actualiza su estado<br>Then permanece visible como vencida y no se elimina automáticamente</td>
+      <td>EP-007</td>
+    </tr>
+    <tr>
+      <td><b>US-071</b></td>
+      <td>Revisar solicitudes de acceso veterinario</td>
+      <td>Como ganadero propietario, quiero aprobar o rechazar solicitudes indicando su alcance y duración para controlar quién consulta o registra información de mis animales.</td>
+      <td><b>Aprobación limitada.</b><br>Given existe una solicitud pendiente<br>When el propietario selecciona pacientes, permisos y vigencia y confirma<br>Then el acceso queda activo solo con ese alcance<br>And la decisión se audita<br><br><b>Rechazo.</b><br>Given existe una solicitud pendiente<br>When el propietario la rechaza<br>Then no se concede acceso y el veterinario recibe el estado sin datos privados</td>
+      <td>EP-015, EP-006</td>
+    </tr>
+    <tr>
+      <td><b>US-072</b></td>
+      <td>Revocar el acceso de un veterinario</td>
+      <td>Como ganadero propietario, quiero revocar un acceso vigente para impedir nuevas consultas o modificaciones cuando termine la relación profesional.</td>
+      <td><b>Revocación efectiva.</b><br>Given un veterinario tiene acceso vigente<br>When el propietario confirma la revocación<br>Then las siguientes solicitudes del veterinario son rechazadas<br>And la fecha y el actor quedan auditados<br><br><b>Conservación clínica.</b><br>Given el acceso fue revocado<br>When el propietario revisa el historial<br>Then las atenciones legítimas anteriores permanecen disponibles</td>
+      <td>EP-015, EP-016</td>
+    </tr>
+    <tr>
+      <td><b>US-073</b></td>
+      <td>Consultar únicamente clientes y pacientes autorizados</td>
+      <td>Como veterinario, quiero visualizar solo propietarios y animales con autorización vigente para evitar mezclar clientes o exponer información ajena.</td>
+      <td><b>Listado autorizado.</b><br>Given el veterinario posee relaciones vigentes<br>When consulta clientes o pacientes<br>Then el sistema devuelve solo recursos incluidos en sus permisos<br><br><b>Acceso directo no autorizado.</b><br>Given conoce el identificador de un animal fuera de su cartera<br>When intenta consultarlo directamente<br>Then el sistema rechaza la solicitud sin revelar datos</td>
+      <td>EP-006, EP-015</td>
+    </tr>
+    <tr>
+      <td><b>US-074</b></td>
+      <td>Consultar la auditoría de información sensible</td>
+      <td>Como ganadero propietario, quiero conocer quién creó, modificó, rectificó o consultó información sensible para verificar el uso de mis datos.</td>
+      <td><b>Eventos auditables.</b><br>Given existen operaciones sobre permisos o registros sanitarios<br>When el propietario consulta la auditoría<br>Then visualiza actor, acción, recurso, fecha y resultado<br><br><b>Integridad.</b><br>Given un usuario ordinario accede al sistema<br>When intenta modificar eventos de auditoría<br>Then el sistema rechaza la operación</td>
+      <td>EP-015, EP-016</td>
+    </tr>
+    <tr>
+      <td><b>US-075</b></td>
+      <td>Exportar información propia</td>
+      <td>Como ganadero propietario, quiero exportar la información de mis hatos y animales en un formato reutilizable para conservar una copia y evitar dependencia del proveedor.</td>
+      <td><b>Exportación.</b><br>Given el propietario selecciona un alcance autorizado<br>When solicita la exportación<br>Then el sistema genera un archivo con datos y fechas comprensibles<br>And no incluye información de otros propietarios<br><br><b>Preparación diferida.</b><br>Given la exportación requiere procesamiento<br>When aún no está lista<br>Then el sistema informa el estado sin generar archivos parciales</td>
+      <td>EP-016</td>
+    </tr>
+    <tr>
+      <td><b>US-076</b></td>
+      <td>Recuperar información después de un fallo local</td>
+      <td>Como usuario de campo, quiero recuperar registros sincronizados después de reinstalar o cambiar el dispositivo para continuar mi trabajo sin reconstruir el historial.</td>
+      <td><b>Recuperación autorizada.</b><br>Given el usuario valida su identidad en un nuevo dispositivo<br>When inicia la recuperación<br>Then recibe únicamente la información vigente permitida para su rol<br><br><b>Cambios nunca sincronizados.</b><br>Given existían datos solo en un dispositivo perdido<br>When el usuario consulta la recuperación<br>Then el sistema no afirma haberlos recuperado y explica el alcance de la copia cloud</td>
+      <td>EP-016, EP-014</td>
+    </tr>
+    <tr>
+      <td><b>US-077</b></td>
+      <td>Consultar versiones de un registro sanitario</td>
+      <td>Como profesional autorizado, quiero revisar las versiones y rectificaciones de una atención para comprender qué cambió y utilizar el dato vigente.</td>
+      <td><b>Historial de versiones.</b><br>Given un registro fue rectificado o anulado<br>When el usuario autorizado consulta sus detalles<br>Then el sistema muestra la versión vigente y la secuencia de cambios<br>And identifica autor, fecha y motivo<br><br><b>Sin autorización.</b><br>Given el usuario no posee permiso sobre el paciente<br>When intenta consultar las versiones<br>Then el sistema rechaza el acceso</td>
+      <td>EP-005, EP-015, EP-016</td>
+    </tr>
+    <tr>
+      <td><b>US-078</b></td>
+      <td>Completar una guía inicial móvil</td>
+      <td>Como usuario nuevo, quiero una guía breve y contextual para aprender a registrar, reconocer estados offline y gestionar permisos sin depender de capacitación extensa.</td>
+      <td><b>Primera sesión.</b><br>Given el usuario abre por primera vez una función prioritaria<br>When inicia la guía<br>Then recibe instrucciones breves con opción de omitir y volver a consultar<br><br><b>Comprensión de estados.</b><br>Given la guía explica guardado local y sincronización<br>When finaliza<br>Then presenta un ejemplo visual de pendiente, sincronizado y conflicto</td>
+      <td>EP-010, EP-014, EP-015</td>
+    </tr>
+    <tr><th colspan="5">Technical Enablers — sujetos a validación arquitectónica mediante ADD</th></tr>
+    <tr>
       <td><b>TS-001</b></td>
       <td>Configuracion inicial del frontend con Vue, Vite y PrimeVue</td>
       <td>Como Developer frontend, quiero configurar la base del proyecto con Vue, Vite y PrimeVue para construir una aplicacion web modular, rapida y con componentes reutilizables.</td>
@@ -582,16 +718,16 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
     </tr>
     <tr>
       <td><b>TS-005</b></td>
-      <td>Configuracion inicial del backend con ASP.NET Core</td>
-      <td>Como Developer backend, quiero crear la solucion de AniTec con ASP.NET Core para implementar una API REST organizada y preparada para integrarse con el frontend.</td>
-      <td><b>Proyecto backend creado.</b><br>Given la solucion backend fue creada<br>When se revisa la estructura del proyecto<br>Then existe un proyecto ASP.NET Core con carpetas organizadas por bounded contexts<br><br><b>Backend ejecutable.</b><br>Given el backend esta configurado<br>When se ejecuta dotnet run<br>Then la API inicia correctamente en ambiente de desarrollo</td>
+      <td>Configuración base de microservicios con ASP.NET Core</td>
+      <td>Como Developer backend, quiero una base consistente para los microservicios ASP.NET Core para implementar contratos REST independientes sin acoplar los bounded contexts.</td>
+      <td><b>Servicios ejecutables.</b><br>Given se selecciona un bounded context para extracción<br>When se construye y ejecuta su servicio<br>Then inicia de manera independiente<br>And publica health check y contrato OpenAPI<br><br><b>Independencia.</b><br>Given dos servicios están desplegados<br>When uno se detiene<br>Then el otro conserva las operaciones que no dependen de él</td>
       <td>EP-001, EP-003, EP-004, EP-005, EP-006, EP-007, EP-008, EP-009</td>
     </tr>
     <tr>
       <td><b>TS-006</b></td>
-      <td>Persistencia con Entity Framework Core y MySQL</td>
-      <td>Como Developer backend, quiero configurar Entity Framework Core con MySQL para almacenar la informacion de AniTec en una base de datos relacional.</td>
-      <td><b>Conexion a MySQL.</b><br>Given la cadena de conexion esta configurada<br>When la API inicia<br>Then el backend se conecta a la base de datos MySQL<br><br><b>Migraciones aplicadas.</b><br>Given existen migraciones de Entity Framework Core<br>When se ejecuta la actualizacion de base de datos<br>Then las tablas necesarias se crean o actualizan correctamente</td>
+      <td>Persistencia delimitada por servicio</td>
+      <td>Como Developer backend, quiero que cada microservicio sea propietario de su esquema o base de datos para evitar acceso directo entre bounded contexts.</td>
+      <td><b>Propiedad de datos.</b><br>Given un servicio necesita persistir información<br>When se configura Entity Framework Core y MySQL<br>Then utiliza credenciales y migraciones de su almacenamiento delimitado<br><br><b>Sin acceso cruzado.</b><br>Given otro servicio necesita información<br>When realiza la consulta<br>Then usa un contrato o evento publicado y no tablas ajenas</td>
       <td>EP-003, EP-004, EP-005, EP-006, EP-007, EP-008, EP-009</td>
     </tr>
     <tr>
@@ -603,9 +739,9 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
     </tr>
     <tr>
       <td><b>TS-008</b></td>
-      <td>Implementacion de bounded contexts de gestion ganadera</td>
-      <td>Como Developer backend, quiero implementar los bounded contexts principales de AniTec para exponer servicios REST de fincas, animales, sanidad, actividades y finanzas.</td>
-      <td><b>Endpoints CRUD disponibles.</b><br>Given los bounded contexts principales fueron implementados<br>When se consulta Swagger<br>Then existen endpoints para fincas, animales, eventos sanitarios, actividades y registros financieros<br><br><b>Operaciones persistentes.</b><br>Given el frontend o Swagger envia una operacion de creacion, edicion o eliminacion<br>When la API procesa la solicitud<br>Then el cambio se guarda correctamente en MySQL</td>
+      <td>Extracción incremental de bounded contexts</td>
+      <td>Como Developer backend, quiero extraer las capacidades prioritarias en microservicios alineados con el dominio para desplegarlas y evolucionarlas independientemente.</td>
+      <td><b>Extracción trazable.</b><br>Given ADD selecciona un bounded context y sus drivers<br>When se implementa el microservicio<br>Then expone contratos versionados y conserva sus invariantes<br><br><b>Migración incremental.</b><br>Given una capacidad aún permanece en la línea base<br>When el nuevo servicio entra en operación<br>Then la transición evita escrituras simultáneas no controladas sobre los mismos datos</td>
       <td>EP-003, EP-004, EP-005, EP-007, EP-008</td>
     </tr>
     <tr>
@@ -617,9 +753,9 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
     </tr>
     <tr>
       <td><b>TS-010</b></td>
-      <td>Servicios backend para dispositivos, metricas y suscripciones</td>
-      <td>Como Developer backend, quiero implementar dispositivos, metricas y suscripciones para ampliar AniTec con informacion IoT y planes de uso de la plataforma.</td>
-      <td><b>Dispositivos y metricas.</b><br>Given existen dispositivos registrados<br>When se consultan sus metricas<br>Then la API devuelve las lecturas asociadas al dispositivo<br><br><b>Planes y suscripciones.</b><br>Given existen planes de suscripcion<br>When se consultan los endpoints de suscripciones<br>Then la API devuelve planes, suscripciones y pagos mock para pruebas</td>
+      <td>Servicios separados de telemetría y suscripciones</td>
+      <td>Como Developer backend, quiero separar telemetría IoT y suscripciones en servicios con contratos propios para escalar y desplegar cada capacidad según sus drivers.</td>
+      <td><b>Telemetría.</b><br>Given llegan lecturas de dispositivos<br>When el servicio de telemetría las procesa<br>Then las valida y almacena sin depender de tablas de suscripciones<br><br><b>Suscripciones.</b><br>Given se consulta un plan o pago de prueba<br>When el servicio de suscripciones responde<br>Then no accede directamente al almacenamiento de telemetría</td>
       <td>EP-012, EP-013</td>
     </tr>
     <tr>
@@ -705,6 +841,62 @@ En esta sección se presentan los Epics, User Stories y Technical Stories identi
       <td>Como Developer, quiero documentar y validar el flujo de IAM, endpoints protegidos y Stripe para evidenciar que el Sprint 4 cumple su objetivo.</td>
       <td><b>Evidencia de seguridad.</b><br>Given los endpoints principales estan protegidos<br>When se documenta el Sprint<br>Then se incluyen evidencias de acceso con token y rechazo sin token<br><br><b>Evidencia de suscripcion.</b><br>Given el flujo de Stripe esta integrado<br>When se documenta el Sprint<br>Then se incluyen evidencias del checkout y resultado del proceso de pago</td>
       <td>EP-001, EP-013</td>
+    </tr>
+    <tr>
+      <td><b>TS-023</b></td>
+      <td>Base de la aplicación Android</td>
+      <td>Como Developer mobile, quiero una aplicación Android modular para implementar los flujos de campo con navegación, sesión y componentes reutilizables.</td>
+      <td><b>Build verificable.</b><br>Given el proyecto Android está configurado<br>When se ejecutan build y pruebas<br>Then la aplicación compila y puede instalarse en el nivel de API soportado<br><br><b>Separación.</b><br>Given existen funciones de ganadero y veterinario<br>When se revisa la estructura<br>Then la lógica de presentación no contiene acceso directo a bases cloud</td>
+      <td>EP-014, EP-001</td>
+    </tr>
+    <tr>
+      <td><b>TS-024</b></td>
+      <td>Persistencia local y cola transaccional móvil</td>
+      <td>Como Developer mobile, quiero persistencia local y una cola durable para conservar operaciones aceptadas sin conexión.</td>
+      <td><b>Durabilidad.</b><br>Given una operación válida fue aceptada localmente<br>When la aplicación reinicia<br>Then la operación permanece disponible con el mismo identificador<br><br><b>Atomicidad.</b><br>Given falla el guardado local<br>When la transacción se revierte<br>Then no se muestra al usuario como pendiente</td>
+      <td>EP-014</td>
+    </tr>
+    <tr>
+      <td><b>TS-025</b></td>
+      <td>API Gateway y contratos versionados</td>
+      <td>Como Developer backend, quiero un API Gateway y contratos versionados para ofrecer un punto de entrada controlado a clientes móviles y web.</td>
+      <td><b>Enrutamiento.</b><br>Given una solicitud autenticada llega al gateway<br>When corresponde a un servicio disponible<br>Then se enruta conservando identidad y correlación<br><br><b>Versión incompatible.</b><br>Given el cliente solicita una versión no soportada<br>When el gateway procesa la solicitud<br>Then responde con un error documentado sin enrutar silenciosamente</td>
+      <td>EP-001, EP-014, EP-015</td>
+    </tr>
+    <tr>
+      <td><b>TS-026</b></td>
+      <td>Procesamiento idempotente de sincronización</td>
+      <td>Como Developer backend, quiero comandos idempotentes para que los reintentos móviles no dupliquen animales, eventos ni atenciones.</td>
+      <td><b>Repetición.</b><br>Given dos solicitudes válidas comparten la misma clave idempotente<br>When el servicio las procesa<br>Then aplica el cambio una sola vez<br>And devuelve un resultado coherente<br><br><b>Claves distintas.</b><br>Given son operaciones independientes<br>When se procesan<br>Then cada una conserva su identidad</td>
+      <td>EP-014, EP-005</td>
+    </tr>
+    <tr>
+      <td><b>TS-027</b></td>
+      <td>Eventos asíncronos para integración</td>
+      <td>Como Developer backend, quiero publicar eventos de dominio relevantes para propagar alertas, telemetría y analítica sin acoplar internamente los servicios.</td>
+      <td><b>Publicación confiable.</b><br>Given una transacción genera un evento<br>When se confirma el cambio<br>Then el evento se publica mediante un mecanismo que evita pérdida entre persistencia y envío<br><br><b>Consumidor repetido.</b><br>Given un evento se entrega más de una vez<br>When un consumidor lo procesa<br>Then no duplica el efecto</td>
+      <td>EP-007, EP-009, EP-012, EP-014</td>
+    </tr>
+    <tr>
+      <td><b>TS-028</b></td>
+      <td>Autorización de mínimo privilegio y auditoría</td>
+      <td>Como Developer backend, quiero políticas de autorización y eventos de auditoría para aplicar permisos por recurso y conservar operaciones sensibles.</td>
+      <td><b>Autorización por recurso.</b><br>Given un veterinario tiene alcance limitado<br>When solicita otro propietario o paciente<br>Then el servicio rechaza el acceso aunque el rol sea válido<br><br><b>Auditoría.</b><br>Given se modifica un permiso o registro clínico<br>When la operación termina<br>Then se conserva actor, recurso, acción, fecha, correlación y resultado</td>
+      <td>EP-015, EP-016</td>
+    </tr>
+    <tr>
+      <td><b>TS-029</b></td>
+      <td>Observabilidad distribuida</td>
+      <td>Como equipo de operación, quiero métricas, logs estructurados y trazas correlacionadas para detectar fallos entre gateway, servicios y sincronización móvil.</td>
+      <td><b>Correlación.</b><br>Given una solicitud atraviesa varios componentes<br>When se consultan las trazas<br>Then comparten un identificador de correlación sin registrar secretos<br><br><b>Alerta operativa.</b><br>Given la tasa de errores supera el umbral definido<br>When el monitoreo evalúa la ventana<br>Then genera una alerta accionable</td>
+      <td>EP-014, EP-015</td>
+    </tr>
+    <tr>
+      <td><b>TS-030</b></td>
+      <td>Pruebas de contratos, seguridad y sincronización</td>
+      <td>Como equipo de desarrollo, quiero suites automatizadas para validar contratos, aislamiento, permisos, idempotencia y recuperación ante pérdida de conexión.</td>
+      <td><b>Pipeline.</b><br>Given existe un cambio en un servicio o cliente<br>When se ejecuta integración continua<br>Then corren pruebas unitarias, de contrato y de integración relevantes<br><br><b>Fallo.</b><br>Given una prueba crítica no cumple<br>When finaliza el pipeline<br>Then se bloquea el artefacto candidato y se conserva evidencia</td>
+      <td>EP-014, EP-015, EP-016</td>
     </tr>
   </tbody>
 </table>
