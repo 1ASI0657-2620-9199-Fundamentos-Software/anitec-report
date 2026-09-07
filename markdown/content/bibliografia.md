@@ -8,6 +8,10 @@ Food and Agriculture Organization of the United Nations. (2022). _Digital agricu
 
 Food and Agriculture Organization of the United Nations. (2023). _Livestock and the environment_. https://www.fao.org/livestock-environment/en/
 
+Instituto Nacional de Estadística e Informática. (2025). _Estadísticas de las tecnologías de información y comunicación en los hogares: enero-febrero-marzo 2025_. https://www.inei.gob.pe/media/MenuRecursivo/boletines/informe-tecnico_tecnologiasdelainformacion_ene_feb_mar2025.pdf
+
+Ministerio de Desarrollo Agrario y Riego. (2023, 1 de junio). _MIDAGRI impulsa a los pequeños ganaderos para mejorar la producción de leche_. https://www.gob.pe/institucion/midagri/noticias/771209-midagri-impulsa-a-los-pequenos-ganaderos-para-mejorar-la-produccion-de-leche
+
 Chandrasekaran, P. (2023, marzo 20). _Remote EventStorming in practice_. Domain-driven Design: A Practitioner's Guide. https://ddd-practitioners.com/2023/03/20/remote-eventstorming-workshop/
 
 Cohn, M. (2006). _User stories applied: For agile software development_. Addison-Wesley Professional.

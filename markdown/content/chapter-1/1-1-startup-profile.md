@@ -1,26 +1,30 @@
 # 1.1. Startup Profile
 
-En esta sección se presenta la descripción del startup y los perfiles de los miembros del equipo.
+Esta sección presenta a Titan, la startup responsable de AniTec, y resume la orientación que guiará la evolución del producto durante el curso de Fundamentos de Arquitectura de Software. El equipo tomará como punto de partida la solución web desarrollada previamente y la transformará progresivamente en una solución empresarial cloud-native basada en microservicios, Domain-Driven Design (DDD) y el método Attribute-Driven Design (ADD). Los perfiles de los integrantes permiten identificar los conocimientos y habilidades disponibles para abordar este proceso.
 
-## 1.1.1. Descripción del startup.
+## 1.1.1. Descripción del Startup
 
-Titan es una startup enfocada en brindar soluciones tecnológicas accesibles y efectivas para los pequeños y medianos ganaderos de Latinoamérica. A través de una plataforma web intuitiva, AniTec digitaliza la gestión del ganado mediante una estructura organizada en módulos clave que abarcan toda la operación productiva. Asimismo, la solución considera al segmento veterinario, permitiendo que los profesionales puedan revisar clientes asignados, consultar pacientes, registrar eventos sanitarios y dar seguimiento clínico a los animales atendidos.
+Titan es una startup de base tecnológica orientada a resolver problemas de gestión, trazabilidad y colaboración dentro del sector ganadero. Su propuesta busca acercar capacidades digitales a pequeños y medianos productores y a los veterinarios que los atienden, considerando las condiciones reales del trabajo de campo: información dispersa, baja alfabetización digital, conectividad intermitente y necesidad de consultar datos de manera rápida y segura.
 
-La plataforma organiza la vida productiva del ganado en los siguientes módulos clave:
+El principal producto de la startup es AniTec, una plataforma que centraliza la información sanitaria, operativa y económica relacionada con el ganado. La solución existente constituye la línea base funcional del proyecto. Durante este curso será refactorizada para evolucionar de una aplicación monolítica modular hacia una arquitectura empresarial orientada a microservicios, con servicios desplegables de manera independiente, contratos REST documentados mediante OpenAPI, persistencia delimitada por servicio y mecanismos de integración síncrona y asíncrona.
 
-- Gestión integral de animales, incluyendo el registro individual (raza, edad, sexo y estado de salud), así como su listado, búsqueda, filtrado, edición y eliminación.
-- Registro y gestión del historial de las visitas médicas por cada animal
-- Calendario sanitario (eventos, vacunas, tratamientos)
-- Control económico (ingresos, egresos)
-- Visualización de reportes y estadísticas, con alertas automáticas según análisis de tendencias del ganado.
+El ecosistema objetivo de AniTec estará compuesto por:
 
-Gracias a la integración de datos históricos y actualizados en tiempo real, AniTec permite a los ganaderos tomar decisiones informadas, mejorar la productividad, reducir pérdidas operativas y optimizar el control sanitario del ganado. De esta manera, se transforma la gestión tradicional en una ganadería más inteligente, eficiente y sostenible.
+- Una aplicación móvil Android enfocada en las tareas de campo de ganaderos y veterinarios.
+- Vistas web administrativas para la consulta y actualización de información.
+- Una API Gateway como punto de entrada controlado a las capacidades del sistema.
+- Microservicios alineados con los bounded contexts de identidad, gestión ganadera, sanidad, operaciones, telemetría IoT, suscripciones y analítica.
+- Infraestructura cloud con seguridad, observabilidad, escalabilidad y automatización del despliegue.
 
-**Misión:** Revolucionar la gestión y trazabilidad del ganado en pequeños y medianos hatos ganaderos de Latinoamérica, mediante una plataforma digital accesible que optimice los procesos productivos, sanitarios y económicos.
+El trabajo arquitectónico se realizará de forma iterativa. Los architectural drivers, atributos de calidad, restricciones y riesgos del producto orientarán las decisiones mediante ADD. DDD permitirá conservar límites de dominio explícitos y evitar que la separación técnica de los microservicios pierda relación con las necesidades del negocio.
 
-**Visión:** AniTec se proyecta como una de las plataformas más destacadas del sector ganadero en el registro y control integral de animales durante los próximos tres años. La startup busca consolidarse como un modelo de negocio sostenible, confiable y orientado a la mejora continua de la productividad rural a través de tecnología simple y efectiva.
+**Misión:** Facilitar una gestión ganadera trazable, segura y accesible mediante soluciones digitales que ayuden a productores y veterinarios a registrar información confiable, coordinar actividades sanitarias y tomar mejores decisiones.
 
-## 1.1.2. Perfiles de los integrantes del equipo.
+**Visión:** Consolidar a AniTec como una plataforma cloud-native confiable para la gestión ganadera en el Perú y, progresivamente, en Latinoamérica, capaz de evolucionar mediante servicios independientes, interoperables y adaptados a las condiciones del trabajo rural.
+
+**Objetivo de la startup para el curso:** Diseñar, implementar, validar y desplegar la evolución arquitectónica de AniTec aplicando microservicios, DDD, ADD y patrones cloud, demostrando mediante escenarios medibles que la solución mejora atributos como modificabilidad, disponibilidad, seguridad, rendimiento y escalabilidad.
+
+## 1.1.2. Perfiles de los integrantes del equipo
 
 <table>
   <tr>

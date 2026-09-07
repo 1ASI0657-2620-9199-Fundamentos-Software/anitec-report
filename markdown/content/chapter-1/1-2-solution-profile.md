@@ -1,211 +1,180 @@
 # 1.2. Solution Profile
 
-## 1.2.1. Antecedentes y Problemática.
+Esta sección define el producto que soportará el modelo de negocio de Titan, explica el problema que busca resolver y establece las principales decisiones de alcance que guiarán su evolución durante el curso. La propuesta combina la perspectiva de negocio y experiencia de usuario de Lean UX con una evolución técnica basada en microservicios, Domain-Driven Design (DDD), Attribute-Driven Design (ADD) y arquitectura cloud-native.
 
-**Qué (What)**
+## 1.2.1. Nombre del producto
 
-_¿Cuál es la situación problemática?_
+El producto se denomina **AniTec**. El nombre combina la idea de gestión animal con el uso de tecnología y comunica de forma breve el propósito de la solución: facilitar el registro, seguimiento y análisis de información ganadera.
 
-Muchos pequeños y medianos ganaderos no manejan de manera adecuada la información de su ganado. Dependiendo de métodos manuales como cuadernos o hojas sueltas para registrar salud, vacunas, productividad y reproducción, los errores y olvidos son frecuentes, reduciendo la eficiencia. Esta situación limita la trazabilidad, dificulta cumplir con las regulaciones y restringe el acceso a mejores oportunidades de mercado.
+AniTec será una plataforma digital multicanal compuesta por una aplicación móvil Android para tareas de campo, vistas web administrativas y servicios backend desplegados en la nube. Su propuesta de valor es ofrecer a ganaderos y veterinarios una fuente de información única, trazable y segura para coordinar el cuidado de los animales y tomar decisiones sanitarias, productivas y económicas con menor dependencia de cuadernos, hojas de cálculo o conversaciones dispersas.
 
-**Cuándo (When)**
+La solución desarrollada previamente funciona como línea base. En este curso se realizará su evolución desde un monolito modular hacia una arquitectura orientada a microservicios. Esta transformación permitirá que las capacidades principales del negocio puedan evolucionar y desplegarse de forma independiente, manteniendo contratos de integración explícitos y atributos de calidad verificables.
 
-_¿Cuándo ocurre el problema?_
+## 1.2.2. Antecedentes y Problemática
 
-La problemática se presenta de forma continua a lo largo de todo el ciclo de vida del ganado, desde el nacimiento hasta la venta o comercialización. La ausencia de un control sistemático afecta diariamente la operación del productor.
+La caracterización preliminar del problema se realizó mediante la técnica **5W + 2H**: What, When, Where, Who, Why, How y How Much.
 
-**Dónde (Where)**
+### Qué (What)
 
-_¿Dónde se manifiesta?_
+Pequeños y medianos ganaderos registran información sanitaria, productiva y económica mediante cuadernos, hojas sueltas, archivos de cálculo y mensajes. Esta dispersión dificulta reconstruir el historial de un animal, recordar controles sanitarios, compartir información con el veterinario y tomar decisiones con datos completos.
 
-Se manifiesta principalmente en unidades ganaderas rurales, asociaciones de pequeños productores y negocios ganaderos que todavía tienen baja digitalización. En estos contextos, la información suele estar dispersa entre cuadernos, hojas sueltas, archivos simples o mensajes.
+Los veterinarios que trabajan en campo también reciben información fragmentada o incompleta. Cuando no existe un historial confiable deben invertir tiempo en recopilar antecedentes o tomar decisiones con evidencia limitada.
 
-_¿Dónde se origina el problema?_
+Desde la perspectiva técnica, la solución inicial de AniTec concentra sus módulos en una única aplicación backend y una única base de datos. Aunque esta línea base permitió validar funcionalidades, limita el despliegue independiente, el escalamiento selectivo, el aislamiento de fallos y la evolución autónoma de los bounded contexts.
 
-Principalmente en zonas rurales de América Latina, donde se concentra gran parte de la producción ganadera de pequeña y mediana escala.
+### Cuándo (When)
 
-**Quién (Who)**
+El problema aparece durante todo el ciclo de manejo del animal: registro, alimentación, vacunación, tratamiento, seguimiento, traslado y comercialización. Se vuelve especialmente crítico durante emergencias sanitarias, campañas de vacunación, visitas veterinarias y momentos en los que la conectividad es limitada.
 
-_¿Quiénes participan en la problemática?_
+### Dónde (Where)
 
-Están involucrados los ganaderos de pequeña y mediana escala, veterinarios que atienden animales de campo, técnicos agropecuarios, asociaciones ganaderas y organismos públicos que promueven la trazabilidad y la formalización del sector.
+La problemática se manifiesta principalmente en unidades ganaderas rurales y semiurbanas del Perú, así como en asociaciones de productores y servicios veterinarios que atienden animales en campo. La información puede originarse en lugares sin una conexión estable y ser consultada posteriormente desde una vivienda, consultorio u oficina administrativa.
 
-_¿Quiénes usarán la plataforma?_
+### Quién (Who)
 
-Principalmente los ganaderos interesados en mejorar la productividad, control y trazabilidad de sus hatos, así como los veterinarios que necesitan consultar historiales sanitarios, registrar atenciones y hacer seguimiento a sus pacientes.
+Los actores directamente afectados son:
 
-**Por qué (Why)**
+- Pequeños y medianos ganaderos responsables del manejo diario de los animales.
+- Veterinarios que realizan atención clínica y sanitaria en campo.
+- Trabajadores o técnicos autorizados que apoyan las operaciones del hato.
+- Asociaciones ganaderas que requieren información consolidada para brindar asistencia o seguimiento.
 
-_¿Cuál es la causa principal del problema?_
+El segmento inicial estará formado por pequeños y medianos ganaderos y por los veterinarios que atienden sus animales. Las asociaciones se consideran clientes institucionales potenciales para una etapa posterior.
 
-La falta de herramientas tecnológicas adaptadas al contexto rural, el desconocimiento sobre la relevancia de la trazabilidad y la limitada asistencia técnica han llevado a que muchos productores sigan empleando métodos manuales poco eficientes.
+### Por qué (Why)
 
-**Cómo (How)**
+Las principales causas identificadas son la falta de una fuente única de información, el uso de herramientas no especializadas, la baja alfabetización digital de una parte de los usuarios, el costo percibido de adoptar nuevas soluciones y las limitaciones de conectividad rural. A esto se suma la dificultad de compartir información sanitaria de manera controlada entre productores y veterinarios.
 
-_¿Cómo se implementará la solución?_
+En la línea base técnica, la concentración de capacidades en un solo backend genera acoplamiento operativo: un cambio, despliegue o fallo puede afectar a todo el sistema. El nuevo curso brinda la oportunidad de rediseñar esta estructura a partir de los límites del dominio y de los atributos de calidad prioritarios.
 
-AniTec será una plataforma web accesible desde dispositivos móviles o computadoras, donde los ganaderos podrán registrar los datos de cada animal, recibir alertas sanitarias, gestionar ingresos y gastos, consultar reportes y acceder a contenido educativo de manera intuitiva, sin necesidad de conocimientos técnicos avanzados. Además, los veterinarios podrán revisar clientes asignados, consultar pacientes y registrar eventos sanitarios para mejorar el seguimiento clínico del ganado.
+### Cómo (How)
 
-_¿Cómo se logrará una gestión eficiente dentro de la plataforma?_
+AniTec abordará el problema mediante una aplicación móvil Android orientada a operaciones de campo, vistas administrativas web y una plataforma backend cloud-native. La solución permitirá registrar animales, consultar historiales, administrar eventos sanitarios, coordinar actividades, integrar datos de dispositivos IoT y visualizar indicadores.
 
-Mediante un diseño modular, simple y adaptable que permita ingresar y visualizar información clave del ganado. La plataforma contará con secciones para animales, fincas, sanidad, actividades, finanzas, dispositivos IoT, reportes y planes, de modo que el usuario pueda consultar y actualizar sus datos sin depender de registros manuales dispersos.
+El backend evolucionará hacia microservicios alineados con bounded contexts. Un API Gateway centralizará el acceso de los clientes; los contratos REST se documentarán con OpenAPI; cada servicio será responsable de sus datos; y los procesos que atraviesen varios servicios utilizarán mecanismos de integración síncrona o eventos asíncronos según sus necesidades de consistencia, disponibilidad y rendimiento.
 
-**Cuánto (How much)**
+### Cuánto (How Much)
 
-_¿Cuál es la magnitud del problema?_
+El mercado potencial es significativo. El Ministerio de Desarrollo Agrario y Riego informó en 2023 que el Perú contaba con **452 218 productores de ganado vacuno lechero** y que **85,9 %** eran pequeños productores con menos de diez cabezas de ganado. Estas cifras respaldan la necesidad de soluciones accesibles para unidades productivas de menor escala.
 
-Una parte importante de los pequeños y medianos ganaderos todavía carece de sistemas de registro adecuados, lo que puede provocar pérdida de información, baja productividad, incumplimiento de controles sanitarios y dificultades para acceder a mercados más formales.
+La conectividad condiciona la experiencia de uso. Según el Instituto Nacional de Estadística e Informática, durante el primer trimestre de 2025 el **52,4 %** de la población rural de seis o más años utilizó Internet, frente al **79,0 %** nacional. Por ello, AniTec no debe asumir conectividad permanente y deberá considerar operaciones resilientes, mensajes claros ante fallos de red y sincronización diferida para las tareas móviles prioritarias.
 
-_¿Qué porcentaje de la industria podría beneficiarse?_
+### Enunciado consolidado del problema
 
-Los ganaderos familiares, asociaciones y veterinarios que trabajan con información dispersa podrían beneficiarse de una solución como AniTec, especialmente en zonas rurales donde la tecnología aún es limitada pero está en expansión.
+Los pequeños y medianos ganaderos necesitan mantener información confiable sobre sus animales, pero suelen utilizar registros manuales o herramientas dispersas que producen omisiones, duplicidad y baja trazabilidad. Los veterinarios necesitan consultar esos antecedentes y registrar sus atenciones, pero no siempre disponen de una fuente compartida, actualizada y segura. Esta situación afecta la continuidad del seguimiento sanitario y la capacidad de tomar decisiones oportunas.
 
-### Descripción de antecedentes y problemática
+AniTec busca reducir esta brecha mediante una plataforma accesible que centralice la información relevante y permita la colaboración controlada entre ganaderos y veterinarios. Su arquitectura debe soportar el crecimiento del producto sin reproducir las limitaciones del monolito inicial.
 
-A partir del análisis 5W + 2H, se identifica que muchos pequeños y medianos ganaderos continúan gestionando la información de sus animales mediante cuadernos, hojas sueltas, archivos simples o mensajes dispersos. Aunque estos métodos permiten llevar algunos registros básicos, también generan problemas frecuentes como pérdida de información, datos incompletos, dificultad para recordar fechas importantes y poca trazabilidad sobre la salud, reproducción y productividad del ganado.
+### Objetivos del producto
 
-Esta situación afecta la toma de decisiones del productor, ya que no siempre cuenta con información ordenada y actualizada para actuar frente a enfermedades, vacunaciones, tratamientos, ventas o cambios en la producción. Del mismo modo, los veterinarios y técnicos que apoyan a los ganaderos suelen depender de información incompleta, lo que dificulta el seguimiento sanitario de los animales y puede reducir la efectividad de las recomendaciones o tratamientos.
+- Centralizar la información esencial de animales, hatos, eventos sanitarios, actividades, dispositivos y operaciones económicas.
+- Reducir el tiempo necesario para registrar y consultar información frecuente.
+- Mejorar la trazabilidad de los eventos sanitarios y la coordinación entre ganadero y veterinario.
+- Permitir el uso de las tareas prioritarias desde dispositivos Android en condiciones de conectividad variable.
+- Evolucionar la línea base hacia microservicios desplegables de manera independiente.
+- Verificar mediante escenarios medibles los atributos de calidad que dirijan el diseño.
 
-AniTec busca responder a esta problemática mediante una aplicación web sencilla y accesible, orientada a centralizar la información principal de la gestión ganadera. La solución considera el registro de animales, fincas, eventos sanitarios, actividades importantes, datos financieros, dispositivos IoT y reportes que ayuden al usuario a consultar su información con mayor rapidez y orden. Para el segmento veterinario, la plataforma también permite revisar clientes asignados, consultar animales bajo seguimiento y registrar información sanitaria relevante.
+### Alcance inicial
 
-El objetivo principal del proyecto es mejorar la organización y trazabilidad de la información ganadera, reduciendo errores de registro y facilitando el seguimiento sanitario y productivo. Como alcance inicial, el proyecto incluye una landing page informativa y una aplicación web responsive para ganaderos y veterinarios.
+El alcance comprende la experiencia móvil Android, las vistas administrativas necesarias, los servicios REST, la documentación OpenAPI, las pruebas, los mecanismos de integración y el despliegue cloud de los microservicios seleccionados. Las capacidades se desarrollarán de manera iterativa de acuerdo con el Product Backlog y el Architectural Design Backlog.
 
-Como restricciones del proyecto, la solución debe mantenerse simple de usar, estar alineada con las tecnologías trabajadas en el curso y considerar que parte del público objetivo no tiene alta experiencia usando plataformas digitales. Por ello, AniTec prioriza flujos claros, formularios directos y funcionalidades esenciales antes que procesos complejos de automatización.
+No se asume que todos los módulos del sistema anterior serán extraídos simultáneamente. La priorización se realizará mediante ADD, considerando valor de negocio, riesgo, dependencias y atributos de calidad.
 
-## 1.2.2. Lean UX Process.
+### Restricciones
 
-### 1.2.2.1. Lean UX Problem Statements.
+- La solución debe aplicar una arquitectura orientada a microservicios, DDD y ADD.
+- Los servicios deben exponer API REST documentadas mediante OpenAPI/Swagger.
+- El despliegue final debe realizarse en AWS, Microsoft Azure o Google Cloud.
+- Las tareas de campo deben considerar una experiencia móvil Android.
+- La conectividad rural puede ser intermitente y no debe asumirse disponibilidad permanente de red.
+- La información de usuarios, animales y atenciones sanitarias debe protegerse mediante autenticación, autorización, cifrado en tránsito y mínimo privilegio.
+- El proyecto está condicionado por el tiempo académico, el tamaño del equipo y el uso responsable de servicios cloud.
+- Cada decisión arquitectónica debe mantener trazabilidad con drivers, escenarios de calidad o restricciones documentadas.
+
+## 1.2.3. Lean UX Process
+
+Lean UX se utilizará para relacionar las necesidades de los usuarios con resultados de negocio y aprendizaje verificable. El equipo trabajará con supuestos explícitos, formulará hipótesis medibles y realizará experimentos pequeños antes de ampliar el alcance. Los resultados obtenidos podrán confirmar, rechazar o modificar las decisiones iniciales del producto.
+
+En AniTec, Lean UX también servirá para evitar que la evolución arquitectónica se convierta en un objetivo aislado. La separación en microservicios, el soporte de conectividad intermitente y los mecanismos de seguridad deberán contribuir a experiencias concretas de los ganaderos y veterinarios.
+
+### 1.2.3.1. Lean UX Problem Statement
+
+| Elemento | Definición para AniTec |
+|---|---|
+| **Domain** | Gestión y trazabilidad sanitaria, operativa y económica del ganado. |
+| **Customer segments** | Pequeños y medianos ganaderos; veterinarios que atienden animales de campo; posteriormente, asociaciones ganaderas. |
+| **Pain points** | Registros manuales, información dispersa, dificultad para recordar eventos, historiales incompletos, conectividad limitada y poca coordinación entre productor y veterinario. |
+| **Gap** | Las herramientas genéricas o manuales no ofrecen una fuente única, sencilla, móvil y adaptada al trabajo rural que permita compartir información de forma controlada. |
+| **Vision / Strategy** | Proporcionar una plataforma multicanal sustentada en microservicios cloud, diseñada alrededor de tareas simples, trazabilidad por animal, operación resiliente y acceso seguro por roles. |
+| **Initial segment** | Ganaderos de pequeña y mediana escala que usan registros manuales y los veterinarios que atienden sus animales. |
 
 **Problem Statement:**
 
-El estado actual de la gestión ganadera para pequeños y medianos productores se ha centrado principalmente en controles manuales, registros en cuadernos y herramientas digitales improvisadas para administrar la información sanitaria, reproductiva y económica del hato.
+El estado actual de la gestión ganadera de pequeña y mediana escala se caracteriza por el uso de registros manuales y herramientas digitales dispersas para administrar datos sanitarios, operativos y económicos. Los productos existentes no siempre responden a la necesidad de una solución sencilla, asequible, móvil y tolerante a conectividad limitada que permita compartir información confiable entre ganaderos y veterinarios.
 
-Lo que los productos y servicios existentes no abordan es la necesidad de contar con una plataforma digital sencilla, accesible y adaptada a productores con recursos limitados, que permita centralizar la información del ganado, automatizar procesos clave y garantizar la trazabilidad sin requerir conocimientos técnicos avanzados.
+AniTec abordará esta brecha mediante una aplicación móvil Android, vistas administrativas web y servicios cloud que centralicen el historial de los animales, las actividades y los eventos sanitarios. El enfoque inicial estará dirigido a productores que dependen de cuadernos, hojas de cálculo o mensajes y a los veterinarios responsables de su seguimiento.
 
-Nuestro producto, AniTec, abordará esta brecha mediante una plataforma digital intuitiva que permitirá registrar, organizar y supervisar la información del ganado en tiempo real, automatizando recordatorios sanitarios, seguimiento reproductivo y control económico para reducir errores, evitar pérdida de datos y facilitar la toma de decisiones.
+El éxito se evaluará mediante la capacidad de los usuarios para completar tareas sin asistencia, el tiempo de registro y consulta, la atención oportuna de alertas, la ausencia de pérdida de datos durante la sincronización y la percepción de utilidad de ambos segmentos.
 
-Nuestro enfoque inicial será pequeños y medianos ganaderos que actualmente dependen de registros manuales o sistemas poco organizados para gestionar su producción, junto con veterinarios que necesitan consultar información sanitaria y dar seguimiento a los animales de sus clientes.
+### 1.2.3.2. Lean UX Assumptions
 
-Sabremos que hemos tenido éxito cuando observemos una reducción en el uso de registros manuales, un aumento en la precisión y frecuencia de los registros ganaderos, una mejora en el cumplimiento de vacunaciones y tratamientos, una mejor consulta de historiales sanitarios por parte de veterinarios y una mayor capacidad de los usuarios para tomar decisiones basadas en datos.
+#### Business Assumptions
 
-### 1.2.2.2. Lean UX Assumptions.
+1. Creemos que los ganaderos necesitan una forma confiable de registrar y consultar información del hato sin depender de documentos dispersos.
+2. Creemos que los veterinarios valoran acceder, con autorización, al historial de los animales atendidos y registrar seguimientos desde el campo.
+3. Creemos que una experiencia móvil sencilla generará mayor adopción que una solución disponible únicamente desde una computadora.
+4. Creemos que las asociaciones ganaderas pueden actuar como canal de adopción y como clientes institucionales en etapas posteriores.
+5. Creemos que un modelo de suscripción escalonado puede ser viable si el valor percibido supera el costo y existe una opción accesible para hatos pequeños.
+6. Creemos que la confianza, la seguridad y la claridad sobre el uso de los datos influirán directamente en la adopción.
+7. Creemos que las funciones con mayor valor inicial son el registro de animales, historial sanitario, alertas, actividades y colaboración con el veterinario.
+8. Creemos que el uso recurrente dependerá más de la facilidad y confiabilidad de las tareas diarias que de la cantidad total de funcionalidades.
 
-### **Business Assumptions:**
+#### User Assumptions
 
-1. **Creemos que nuestros usuarios necesitan** un método confiable y eficiente para registrar y supervisar la salud, productividad y trazabilidad de su ganado.
-2. **Creemos que esta necesidad puede satisfacerse** mediante una plataforma web accesible que permita registrar información clave, generar alertas automáticas y crear reportes útiles para la toma de decisiones.
-3. **Creemos que nuestros primeros usuarios serán** pequeños y medianos ganaderos con acceso a teléfono o computadora, así como veterinarios y técnicos agropecuarios que asesoran directamente en el campo.
-4. **Creemos que lo más importante para los clientes es** contar con un control ordenado y automatizado del ganado, evitando pérdidas y cumpliendo los requisitos de trazabilidad para mejorar la comercialización.
-5. **Creemos que los usuarios también recibirán** alertas sanitarias, reportes económicos, acceso al historial de cada animal y contenido educativo dentro de la plataforma.
-6. **Creemos que conseguiremos clientes mediante** alianzas con asociaciones ganaderas, programas de desarrollo rural y campañas digitales dirigidas a regiones con alta actividad ganadera.
-7. **Creemos que los ingresos se generarán mediante** un modelo de suscripción mensual con planes ajustados al tamaño del hato, y licencias institucionales para asociaciones y entidades del sector agropecuario.
-8. **Creemos que nuestra competencia incluye** aplicaciones genéricas de gestión ganadera, hojas de cálculo y métodos tradicionales de registro manual.
-9. **Creemos que nuestra ventaja competitiva radica en** ofrecer una solución adaptada al contexto rural, fácil de usar, con enfoque educativo y diseñada específicamente para pequeños y medianos productores.
-10. **Creemos que un riesgo importante es** que algunos ganaderos no adopten fácilmente la tecnología por factores culturales o falta de experiencia digital.
-11. **Creemos que lo mitigaremos mediante** capacitaciones virtuales, diseño de interfaz intuitiva, tutoriales paso a paso y el soporte de la “Academia Ganadera”.
+1. Los ganaderos del segmento inicial utilizan principalmente teléfonos Android y canales como WhatsApp, pero presentan distintos niveles de alfabetización digital.
+2. Los usuarios necesitan formularios breves, lenguaje directo, botones visibles y recuperación clara ante errores.
+3. Los ganaderos quieren conservar el control sobre quién puede consultar o modificar la información de sus animales.
+4. Los veterinarios necesitan encontrar antecedentes y registrar una atención sin recorrer procesos extensos.
+5. Los usuarios pueden iniciar una tarea con conectividad limitada y esperan que la aplicación no pierda la información registrada.
+6. Ganaderos y veterinarios valorarán alertas útiles si pueden entender su prioridad y confirmar su atención.
 
-### **User Assumptions:**
+#### Feature Assumptions
 
-- **Creemos que** los principales usuarios son pequeños y medianos ganaderos, veterinarios y técnicos agropecuarios que asesoran en campo. Creemos que, en etapas posteriores, la plataforma también podría ser utilizada por asociaciones, cooperativas y entidades públicas vinculadas a sanidad, trazabilidad y formalización del sector.
+| Id | Supuesto de funcionalidad | Señal inicial de valor |
+|---|---|---|
+| FA-01 | Un registro móvil simplificado facilitará la creación y actualización de fichas de animales. | La mayoría de participantes completa una ficha válida sin ayuda. |
+| FA-02 | Las alertas sanitarias ayudarán a priorizar vacunaciones, tratamientos y seguimientos. | Los usuarios identifican el evento prioritario y la acción requerida. |
+| FA-03 | Un historial centralizado reducirá el tiempo de búsqueda de antecedentes. | Ganaderos y veterinarios encuentran un registro solicitado en menos de 30 segundos. |
+| FA-04 | El acceso por roles facilitará la colaboración sin perder control sobre los datos. | Los usuarios comprenden qué puede consultar y modificar cada rol. |
+| FA-05 | La sincronización diferida evitará pérdida de trabajo ante cortes de conexión. | Los registros pendientes se conservan y sincronizan al recuperar conectividad. |
+| FA-06 | Los reportes resumidos apoyarán decisiones sanitarias y operativas. | Los usuarios interpretan correctamente los indicadores principales. |
 
-- **Creemos que** AniTec ayuda a organizar la información del hato, evitando la pérdida de datos importantes y solucionando la falta de seguimiento de vacunas, partos, tratamientos y control económico. Para los veterinarios, ayuda a consultar clientes, revisar pacientes y registrar eventos sanitarios con información más ordenada.Creemos que esto impacta directamente en la rentabilidad del ganadero, en la calidad del seguimiento sanitario y en el cumplimiento de normativas de mercado.
+#### Assumptions técnicas y de riesgo
 
-- **Creemos que** los usuarios valoran el registro individual de cada animal (edad, raza, salud, productividad), alertas automáticas, reportes económicos simples, historial completo del hato y contenido educativo práctico. También creemos que los veterinarios valoran el acceso a clientes asignados, pacientes y eventos sanitarios. Creemos que la facilidad de uso es esencial para su adopción en zonas rurales.
+- Los bounded contexts identificados proporcionan fronteras iniciales útiles, pero deberán validarse mediante ADD antes de convertirse en microservicios.
+- Una base de datos por servicio mejorará la autonomía, aunque introducirá consistencia eventual y mayor complejidad operativa.
+- La comunicación asíncrona será útil para telemetría, notificaciones y analítica, mientras que algunas consultas requerirán interacción síncrona.
+- El costo y la complejidad cloud pueden superar el beneficio si se extraen demasiados servicios desde el primer sprint.
+- La seguridad centralizada en identidad y acceso debe evitar que los demás servicios dependan del código interno del módulo IAM.
 
-- **Creemos que** AniTec se integra en la rutina diaria del ganadero, mejorando la planificación, reduciendo pérdidas, facilitando el cumplimiento de normativas y permitiendo decisiones informadas, lo que aumenta su rentabilidad y calidad de vida. Creemos que se utiliza cada vez que se registra un animal, tratamiento, parto, control de ingresos o productividad, y también para analizar datos históricos para tomar decisiones estratégicas. Creemos que puede usarse desde celular o computadora, tanto en campo como en casa.
+### 1.2.3.3. Lean UX Hypothesis
 
-- **Creemos que** AniTec debe tener una interfaz intuitiva, amigable y estable, pensada para usuarios con poca experiencia tecnológica. Creemos que debe proteger los datos del ganadero, transmitir confianza y eficiencia, y reflejar cercanía con el contexto rural.
+| Id | Hipótesis | Experimento | Criterio de éxito inicial |
+|---|---|---|---|
+| H-01 | Creemos que una experiencia móvil sencilla aumentará la capacidad de los ganaderos para registrar información porque podrán hacerlo durante su trabajo de campo. | Prueba de usabilidad del registro de un animal con 5 a 10 ganaderos. | Al menos 80 % completa una ficha válida sin ayuda y en menos de 3 minutos. |
+| H-02 | Creemos que las alertas mejorarán el seguimiento sanitario porque mostrarán eventos y prioridades de forma oportuna. | Prototipo de bandeja de alertas y entrevista posterior. | Al menos 70 % identifica correctamente la alerta prioritaria y la acción que debe realizar. |
+| H-03 | Creemos que un historial único mejorará la toma de decisiones porque reducirá el tiempo dedicado a buscar antecedentes. | Prueba de consulta con ganaderos y veterinarios. | Al menos 80 % encuentra el antecedente solicitado en menos de 30 segundos. |
+| H-04 | Creemos que el acceso compartido por roles mejorará la colaboración porque el veterinario podrá consultar pacientes autorizados y registrar una atención. | Prueba del flujo ganadero-veterinario con usuarios de ambos segmentos. | Al menos 80 % completa el flujo sin ayuda y comprende los permisos aplicados. |
+| H-05 | Creemos que la sincronización diferida generará confianza porque evitará perder registros cuando falle la conexión. | Piloto técnico que simule pérdida y recuperación de conectividad. | 100 % de los registros aceptados localmente se conserva y al menos 95 % se sincroniza dentro de los 5 minutos posteriores al retorno de la conexión. |
 
-### Feature Assumptions:
+Los porcentajes y tiempos anteriores constituyen umbrales iniciales. Deberán revisarse con los resultados de las entrevistas, pruebas de usabilidad y pilotos técnicos de cada entrega.
 
-**Feature Assumption 01**
+### 1.2.3.4. Lean UX Canvas
 
-**Creemos que** una funcionalidad de registro digital centralizado del ganado permitirá a los pequeños y medianos ganaderos gestionar toda la información sanitaria, reproductiva y económica de sus animales de manera más eficiente.
+El Lean UX Canvas consolida el problema de negocio, los segmentos, los resultados esperados, los beneficios, las ideas de solución, las hipótesis prioritarias y los experimentos mínimos. La versión actualizada elimina referencias al producto anterior, incorpora explícitamente a ganaderos y veterinarios y relaciona la experiencia móvil con las decisiones arquitectónicas que serán evaluadas durante el curso.
 
-**Sabremos que esta funcionalidad es valiosa cuando** la mayoría de los usuarios registren y actualicen periódicamente la información de sus animales dentro de la plataforma.
+![Lean UX Canvas de AniTec 2026](../../assets/chapter-1/lean_ux_canvas_2026.png)
 
-**Feature Assumption 02**
-
-**Creemos que** un sistema de alertas automáticas para vacunaciones, tratamientos y eventos reproductivos ayudará a los ganaderos a recordar actividades importantes y reducir los descuidos en el manejo del hato.
-
-**Sabremos que esta funcionalidad es valiosa cuando** los usuarios atiendan los recordatorios y reporten una disminución en eventos olvidados o registros incompletos.
-
-**Feature Assumption 03**
-
-**Creemos que** un módulo de reportes visuales e historial de cada animal facilitará la interpretación de la información y permitirá tomar mejores decisiones productivas, reproductivas y económicas.
-
-**Sabremos que esta funcionalidad es valiosa cuando** los usuarios consulten frecuentemente los reportes antes de realizar acciones relacionadas con la gestión del ganado.
-
-**Feature Assumption 04**
-
-**Creemos que** un sistema digital con validación de datos reducirá los errores presentes en los registros manuales y mejorará la organización de la información del hato.
-
-**Sabremos que esta funcionalidad es valiosa cuando** disminuyan los registros incompletos, duplicados o inconsistentes respecto al método tradicional.
-
-**Feature Assumption 05**
-
-**Creemos que** un módulo para veterinarios con acceso a clientes, historial clínico y registro de eventos sanitarios facilitará el seguimiento de los animales y mejorará la colaboración con los ganaderos.
-
-**Sabremos que esta funcionalidad es valiosa cuando** los veterinarios utilicen la plataforma como herramienta principal para registrar y consultar la información sanitaria de los animales atendidos.
-
-### 1.2.2.3. Lean UX Hypothesis Statements.
-
-- **Hypothesis Statement 01:**
-
-  **Creemos que lograremos** una mayor adopción y uso continuo de AniTec
-
-  **Si** los pequeños y medianos ganaderos
-
-  **Obtienen** una forma sencilla y centralizada de registrar digitalmente toda la información de su ganado, incluyendo datos sanitarios, reproductivos y económicos
-
-  **Con** una plataforma integral de gestión ganadera que centralice y organice toda la información del hato.
-
-
-- **Hypothesis Statement 02:**
-
-  **Creemos que lograremos** mejorar la gestión sanitaria del hato y reducir incidentes prevenibles
-
-  **Si** los pequeños y medianos ganaderos
-
-  **Obtienen** recordatorios oportunos sobre vacunaciones, tratamientos y eventos reproductivos
-
-  **Con** un sistema de alertas y notificaciones automáticas.
-
-- **Hypothesis Statement 03:**
-
-  **Creemos que lograremos** una mejor toma de decisiones y una mayor productividad en las explotaciones ganaderas
-
-  **Si** los pequeños y medianos ganaderos
-
-  **Obtienen** acceso a reportes visuales y al historial completo de cada animal
-
-  **Con** un panel de reportes interactivos y un historial detallado del ganado.
-
-
-- **Hypothesis Statement 04:**
-  
-  **Creemos que lograremos** una gestión más organizada y precisa de la información del hato
-
-  **Si** los pequeños y medianos ganaderos
-
-  **Obtienen** una forma confiable de registrar y administrar la información de sus animales sin depender de cuadernos u hojas de cálculo
-
-  **Con** un sistema digital de registro y validación de datos centralizado.
-
-
-- **Hypothesis Statement 05:**
-  
-  **Creemos que lograremos** una mejor colaboración entre ganaderos y veterinarios y un seguimiento sanitario más eficiente
-
-  **Si** los veterinarios
-
-  **Obtienen** acceso rápido a los clientes asignados, al historial de los animales y al registro de eventos sanitarios
-
-  **Con** un módulo para veterinarios integrado dentro de la plataforma AniTec.
-
-### 1.2.2.4. Lean UX Canvas.
-
-El Lean UX Canvas es una herramienta utilizada en el marco del diseño centrado en el usuario (UX) y la metodología Lean, cuyo objetivo es apoyar la creación y mejora de productos de manera ágil y eficiente. Su propósito principal es proporcionar una estructura organizada que fomente la colaboración entre equipos multidisciplinarios. A continuación, se presenta el Lean UX Canvas elaborado por el equipo utilizando la plataforma digital Mural.
-
-![Lean UX Canvas](../../assets/chapter-1/lean_ux_canvas.png)
-Enlace para acceder al Lean UX Canvas en Mural:  https://tinyurl.com/LeanUxCanvasMural
+<div align="center">
+  <p><i><b>Fuente:</b> Elaboración propia, septiembre de 2026.</i></p>
+</div>
