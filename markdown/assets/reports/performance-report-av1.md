@@ -28,7 +28,7 @@
     </tr>
     <tr>
         <td><b>1</b></td>
-        <td>Ayala Fernandez, Jorge Brayan</td>
+        <td>Manuel Fernando Joao Castro Picon</td>
         <td>Redactar el capítulo I. Introducción</td>
         <td>X</td>
         <td></td>
@@ -38,7 +38,7 @@
     </tr>
     <tr>
         <td><b>2</b></td>
-        <td>Huaman Gallardo, Bruno Aldair</td>
+        <td>Josep Eliu Melgarejo Quiroz</td>
         <td>Redactar el capítulo II. Requirements Elicitation & Analysis</td>
         <td>X</td>
         <td></td>
@@ -48,7 +48,7 @@
     </tr>
     <tr>
         <td><b>3</b></td>
-        <td>Melgarejo Quiroz, Josep Eliu</td>
+        <td>Santiago Armando Baldeon Vivar</td>
         <td>Redactar el capítulo III. Requirements Specification</td>
         <td>X</td>
         <td></td>
@@ -56,24 +56,5 @@
         <td></td>
         <td>20</td>
     </tr>
-    <tr>
-        <td><b>4</b></td>
-        <td>Raymundo Villarroel, Nadhim Abigail</td>
-        <td>Redactar el capítulo IV. Product Design</td>
-        <td>X</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>20</td>
-    </tr>
-    <tr>
-        <td><b>5</b></td>
-        <td>Sanchez Silva, Luciana Celeste</td>
-        <td>Redactar el capítulo V. Product Implementation, Validation & Deployment</td>
-        <td>X</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>20</td>
-    </tr>
+   
 </table>

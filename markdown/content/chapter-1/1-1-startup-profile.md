@@ -32,10 +32,10 @@ El trabajo arquitectónico se realizará de forma iterativa. Los architectural d
       <img src="../../assets/chapter-1/Integrante-1.jpg" width="180">
     </td>
     <td width="70%">
-      <h3>Luciana Celeste Sanchez Silva</h3>
-      <h4>U202215979</h4>
+      <h3>Manuel Fernando Joao Castro Picón</h3>
+      <h4>U20231G159</h4>
       <p>
-        Mi nombre es Luciana Celeste Sanchez Silva, tengo 20 años y vivo en Lima. En la actualidad, me encuentro estudiando el 6to ciclo de la carrera de ingeniería de software en la UPC debido a que desde una edad temprana tuve una fascinación relacionada con el uso de la tecnología y la programación. En mi tiempo libre trato de crecer y expandir mi conocimiento en todas las áreas posibles. De igual forma, me gusta nadar, escuchar música y tocar la guitarra. Me comprometo a colaborar en todo momento con la elaboración de esta startup, y llegar a un trabajo sobresaliente. Mis habilidades son: responsabilidad, resolución de problemas, y disciplina.
+        Mi nombre es Manuel Fernando Joao Castro Picón, tengo 20 años y vivo en Chaclacayo, Lima – Perú; actualmente estudio el séptimo ciclo de Ingeniería de Software en la UPC porque me apasiona la tecnología y todo lo innovador que se puede crear con ella, especialmente a través de la programación; en mi tiempo libre disfruto ver anime, leer mangas o novelas ligeras, además de jugar fútbol con mis amigos y con mi equipo en campeonatos, y también me gusta escuchar música, hacer ejercicio y practicar otros deportes; finalmente, me comprometo a ser responsable y atento en las labores del equipo, aportando siempre mi mayor esfuerzo para lograr los objetivos en conjunto.
       </p>
     </td>
   </tr>
@@ -52,43 +52,18 @@ El trabajo arquitectónico se realizará de forma iterativa. Los architectural d
       </p>
     </td>
   </tr>
-
-   <tr>
-    <td width="30%" align="center">
-      <img src="../../assets/chapter-1/Integrante-3.jpeg" width="180">
-    </td>
-    <td width="70%">
-      <h3>Abigail Nadhim Raymundo Villarroel</h3>
-      <h4>U202318001</h4>
-      <p>
-        Mi nombre es Abigail Nadhim Raymundo Villarroel, tengo 20 años y vivo en Lima. Actualmente estoy cursando el 5° ciclo de Ingeniería de Software, avanzando algunos cursos del ciclo superior. Desde siempre me ha apasionado crear, diseñar y programar para ofrecer soluciones, me gusta aprender constantemente para ampliar mis conocimientos y perfil profesional. Además, me encuentro en el nivel intermedio de inglés y me interesan mucho los idiomas, por lo que también estoy aprendiendo francés y portugués. En mi tiempo libre, disfruto dibujar, bailar y cantar, actividades que me ayudan a mantener mi creatividad y energía. Me comprometo a aportar con responsabilidad y dedicación al equipo, trabajar de manera colaborativa y contribuir a que juntos podamos desarrollar un proyecto sobresaliente. Mis principales habilidades incluyen creatividad, disciplina y trabajo en equipo, cualidades que aplico para lograr resultados efectivos y de calidad.
-      </p>
-    </td>
-  </tr>
-
    <tr>
     <td width="30%" align="center">
       <img src="../../assets/chapter-1/Integrante-4.jpg" width="180">
     </td>
     <td width="70%">
-      <h3>Bruno Aldair Huaman Gallardo</h3>
-      <h4>U202117762</h4>
+      <h3>Santiago Armando Baldeon Vivar</h3>
+      <h4>u202319881</h4>
       <p>
-        Mi nombre es Bruno Aldair Huaman Gallardo, tengo 21 años y vivo en Lima. Actualmente soy estudiante de Ingeniería de Software, me apasiona transformar ideas en realidades funcionales; desde el diseño de arquitecturas de red hasta la implementación de sistemas inteligentes. Soy una persona que valora el aprendizaje continuo, lo que me ha llevado a dominar herramientas como SQL Server, Node.js y Java, además de mantenerme en constante mejora de mi nivel de inglés para fortalecer mi perfil global. Me distingo por mi autodisciplina y mentalidad analítica, lo que me permite abordar desafíos técnicos con orden y eficiencia. Busco sumar al equipo no solo mis conocimientos en desarrollo, sino también mi compromiso con la calidad y la mejora continua. Soy un convencido de que la tecnología, cuando se maneja con creatividad y rigor, puede optimizar cualquier entorno.
+        descripcion 
       </p>
     </td>
   </tr>
 
-   <tr>
-    <td width="30%" align="center">
-      <img src="../../assets/chapter-1/Integrante-5.png" width="180">
-    </td>
-    <td width="70%">
-      <h3>Jorge Brayan Ayala Fernandez</h3>
-      <h4>U20241C030</h4>
-      <p>
-        Mi nombre es Jorge Brayan Ayala Fernandez, tengo 20 años y vivo en Lima - Comas. Actualmente estoy cursando el 5to ciclo de la carrera de Ingeniería de Software. Me encanta examinar diversas problemáticas y crear soluciones a los retos que ocurren en el día a día. Me desempeño principalmente en el área de desarrollo web, mobile y desktop en lo cuales tuve experiencia anteriormente trabajando para proyectos relacionados a ello donde se desplegaron aplicaciones a producción satisfaciendo las demandas de los clientes en ese entonces. En cuanto a mis pasatiempos, me encanta salir a hacer todo tipo de deporte, escuchar música, mirar películas, series y programar activamente. En la medida de lo posible aportaré al grupo de manera colaborativa en las diversas tareas que haya para mejorar el producto que estamos creando.
-      </p>
-    </td>
-  </tr>
+ 
 </table>
