@@ -60,7 +60,7 @@ El trabajo arquitectónico se realizará de forma iterativa. Los architectural d
       <h3>Santiago Armando Baldeon Vivar</h3>
       <h4>u202319881</h4>
       <p>
-        descripcion 
+        Mi nombre es Santiago Armando Baldeon y tengo 20 años. Actualmente estoy cursando la carrera de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas. En mi caso elegí esta carrera porque desde chico sentí gran pasión por la tecnología y siempre quise ser alguien importante en este mundo, brindando mis aportes a la humanidad. Creo que voy por buen camino y espero en un futuro cumplir estos sueños y objetivos que tengo. 
       </p>
     </td>
   </tr>

@@ -28,12 +28,16 @@
     </thead>
     <tbody>
       <tr>
-        <td align="center">codigo</td>
-        <td align="center">nombre</td>
+        <td align="center">u202319881</td>
+        <td align="center">Santiago Armando Baldeon Vivar
+
+</td>
       </tr>
       <tr>
-        <td align="center">codigo</td>
-        <td align="center">nombre</td>
+        <td align="center">U20231G159</td>
+        <td align="center">Manuel Fernando Joao Castro Picon
+
+</td>
       </tr>
       <tr>
         <td align="center">U202315165</td>
