@@ -1,10 +1,10 @@
-# 4.7. Software Object-Oriented Design.
+# UX-G. Software Object-Oriented Design.
 
 El diseño orientado a objetos de AniTec representa las principales clases, entidades, relaciones y responsabilidades que permiten implementar la lógica de la aplicación. Para mantener coherencia con la arquitectura del backend, el diseño se organiza tomando como referencia los bounded contexts definidos en la solución: IAM, Profiles, Livestock, Sanitary, Activities, Financial, Analytics, Devices, Subscriptions y Shared.
 
 El objetivo de esta sección es mostrar cómo los conceptos principales del dominio se transforman en clases del sistema, considerando entidades persistentes, servicios de aplicación, repositorios y componentes compartidos. De esta manera, el diseño orientado a objetos mantiene relación directa con la arquitectura por capas utilizada en el backend de AniTec.
 
-## 4.7.1. Class Diagrams.
+## UX-G.1. Class Diagrams.
 
 El Class Diagram de AniTec presenta una vista general de las clases principales utilizadas para representar usuarios, perfiles, animales, hatos, eventos sanitarios, actividades, registros financieros, métricas, dispositivos, suscripciones y pagos. Este diagrama permite visualizar la relación entre los elementos principales del dominio y sirve como base para comprender la estructura lógica de la solución.
 
@@ -20,7 +20,7 @@ El Class Diagram de AniTec presenta una vista general de las clases principales 
 
 Enlace para acceder al https://lucid.app/lucidchart/2cf9b98f-737c-43ac-9833-a2e6a387c4af/edit?viewport_loc=-5835%2C-1184%2C9341%2C3780%2C0_0&invitationId=inv_26c88d5c-929c-4141-bbb1-e3a73b17aa13
 
-## 4.7.2. Class Dictionary.
+## UX-G.2. Class Dictionary.
 
 Diccionario de clases usado para el desarrollo de AniTec.
 

@@ -1,4 +1,4 @@
-# 4.1. Style Guidelines
+# UX-A. Style Guidelines
 
 Las directrices de estilo establecen los principios visuales y de diseño que deben seguirse al desarrollar la interfaz de usuario (UI) de AniTec. El objetivo es crear una experiencia digital clara, accesible e intuitiva que responda a las necesidades de pequeños y medianos ganaderos, así como de veterinarios que realizan seguimiento sanitario de animales en campo.
 
@@ -8,7 +8,7 @@ El diseño debe priorizar la facilidad de uso, incluso para personas con poca ex
 
 AniTec se desarrolla como una experiencia responsive web, por lo que las decisiones de estilo móvil se integran dentro del Web Style Guide. No se plantea una aplicación móvil nativa independiente; en su lugar, la landing page y la aplicación web deben adaptarse correctamente a desktop, tablet y celulares mediante layouts flexibles, componentes legibles y navegación simplificada.
 
-## 4.1.1. General Style Guidelines
+## UX-A.1. General Style Guidelines
 
 Los colores resultan fundamentales para transmitir la identidad visual de la marca. En este sector, la paleta cromática seleccionada fue inspirada en la naturaleza y el entorno rural, utilizando tonos tierra, verdes orgánicos y acentos neutros. Estos colores reflejan sostenibilidad, confianza y cercanía con el campo.
 
@@ -70,7 +70,7 @@ El tono de AniTec debe ser claro, cercano y respetuoso. Se busca una comunicaci�
 
 El espaciado debe favorecer la lectura rápida y la separación clara entre módulos. En desktop se priorizan paneles amplios, tablas o tarjetas con información resumida; en pantallas pequeñas se organizan los elementos en una sola columna para mantener legibilidad. Los formularios deben agrupar campos relacionados y evitar saturar al usuario con demasiada información en una misma vista.
 
-## 4.1.2. Web Style Guidelines
+## UX-A.2. Web Style Guidelines
 
 El Web Style Guide de AniTec nos ayuda a mostrar una identidad visual coherente y accesible en toda la plataforma. Definimos colores, tipografías y elementos de diseño inspirados en el entorno rural para transmitir confianza, tecnología cercana y facilidad de uso.
 

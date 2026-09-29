@@ -192,9 +192,9 @@ Las User Stories describen resultados valiosos para ganaderos, veterinarios, col
     </tr>
     <tr>
       <td><b>US-008</b></td>
-      <td>Visualizar animales en cartas</td>
-      <td>Como ganadero, quiero ver mis animales en cartas para revisar rapidamente la informacion principal de cada uno.</td>
-      <td><b>Animales existentes.</b><br>Given el ganadero tiene animales registrados<br>When ingresa al apartado de animales<br>Then el sistema muestra una carta por animal<br>And muestra codigo, nombre, especie, raza, sexo, peso, estado y finca<br><br><b>Sin animales registrados.</b><br>Given el ganadero no tiene animales registrados<br>When ingresa al apartado de animales<br>Then el sistema muestra un mensaje de lista vacia</td>
+      <td>Visualizar animales en un listado con busqueda y filtros</td>
+      <td>Como ganadero, quiero ver mis animales en una tabla con busqueda y filtro por corral para revisar rapidamente la informacion principal de cada uno, incluso desde un dispositivo movil.</td>
+      <td><b>Listado en tabla con datos principales.</b><br>Given el ganadero tiene animales registrados<br>When ingresa al apartado de animales<br>Then el sistema muestra una tabla con nombre, tipo de animal, finca, corral, estado y acciones para ver ficha tecnica, editar o eliminar<br>And permite buscar por texto y filtrar por corral<br><br><b>Listado adaptado a pantallas moviles.</b><br>Given el ganadero abre el listado de animales desde una pantalla de 720 pixeles de ancho o menos<br>When la tabla se renderiza<br>Then el sistema oculta las columnas de tipo de animal, finca y corral y conserva solo nombre, estado y acciones<br>And no muestra una barra de desplazamiento horizontal<br><br><b>Sin animales registrados.</b><br>Given el ganadero no tiene animales registrados<br>When ingresa al apartado de animales<br>Then el sistema muestra un mensaje de lista vacia</td>
       <td>EP-004</td>
     </tr>
     <tr>
@@ -206,9 +206,9 @@ Las User Stories describen resultados valiosos para ganaderos, veterinarios, col
     </tr>
     <tr>
       <td><b>US-010</b></td>
-      <td>Registrar animal</td>
-      <td>Como ganadero, quiero registrar un animal indicando su especie y raza para mantener trazabilidad de mi ganado.</td>
-      <td><b>Registro con datos validos.</b><br>Given el ganadero tiene al menos una finca registrada<br>When ingresa codigo, nombre, especie, raza, sexo, fecha de nacimiento, peso, estado y finca<br>Then el sistema registra el animal<br>And lo muestra en el listado correspondiente<br><br><b>Registro sin finca.</b><br>Given el ganadero no selecciona una finca<br>When intenta guardar el animal<br>Then el sistema solicita asociar el animal a una finca</td>
+      <td>Registrar animal indicando finca y corral</td>
+      <td>Como ganadero, quiero registrar un animal seleccionando su finca y su corral para mantener la trazabilidad de mi ganado y saber en que corral se encuentra.</td>
+      <td><b>Registro con datos validos.</b><br>Given el ganadero tiene al menos una finca y un corral registrados<br>When ingresa codigo, nombre, tipo de animal, raza, sexo, fecha de nacimiento, peso, estado, finca y corral<br>Then el sistema registra el animal<br>And lo muestra en el listado correspondiente asociado a su corral<br><br><b>Registro con campos invalidos.</b><br>Given el ganadero deja vacio el codigo, el nombre, el tipo de animal, la raza, el sexo, la finca o el corral, o ingresa un peso negativo<br>When intenta guardar el animal<br>Then el sistema rechaza el registro<br>And muestra la lista especifica de mensajes de validacion correspondientes a cada campo invalido, incluyendo que el corral es obligatorio</td>
       <td>EP-004</td>
     </tr>
     <tr>
@@ -687,6 +687,76 @@ Las User Stories describen resultados valiosos para ganaderos, veterinarios, col
       <td><b>Primera sesión.</b><br>Given el usuario abre por primera vez una función prioritaria<br>When inicia la guía<br>Then recibe instrucciones breves con opción de omitir y volver a consultar<br><br><b>Comprensión de estados.</b><br>Given la guía explica guardado local y sincronización<br>When finaliza<br>Then presenta un ejemplo visual de pendiente, sincronizado y conflicto</td>
       <td>EP-010, EP-014, EP-015</td>
     </tr>
+    <tr>
+      <td><b>US-079</b></td>
+      <td>Visualizar listado de corrales</td>
+      <td>Como ganadero, quiero ver mis corrales en una tabla con su finca y la cantidad de animales para conocer como esta organizado mi ganado dentro de cada finca.</td>
+      <td><b>Corrales existentes.</b><br>Given el ganadero tiene corrales registrados<br>When ingresa al apartado de corrales<br>Then el sistema muestra una tabla con nombre del corral, finca a la que pertenece y cantidad de animales alojados<br><br><b>Sin corrales registrados.</b><br>Given el ganadero no tiene corrales registrados<br>When ingresa al apartado de corrales<br>Then el sistema muestra un mensaje de lista vacia e invita a registrar un corral</td>
+      <td>EP-003, EP-004</td>
+    </tr>
+    <tr>
+      <td><b>US-080</b></td>
+      <td>Registrar corral</td>
+      <td>Como ganadero, quiero registrar un corral asociado a una finca para organizar fisicamente a mis animales dentro de esa unidad productiva.</td>
+      <td><b>Registro con datos validos.</b><br>Given el ganadero selecciona una finca existente<br>When ingresa el nombre del corral y confirma el registro<br>Then el sistema crea el corral asociado a esa finca<br>And lo muestra en el listado de corrales<br><br><b>Registro sin finca seleccionada.</b><br>Given el ganadero no selecciona una finca<br>When intenta guardar el corral<br>Then el sistema rechaza el registro<br>And solicita asociar el corral a una finca</td>
+      <td>EP-003, EP-004</td>
+    </tr>
+    <tr>
+      <td><b>US-081</b></td>
+      <td>Editar o eliminar un corral</td>
+      <td>Como ganadero, quiero editar o eliminar un corral para mantener actualizada la organizacion de mis fincas.</td>
+      <td><b>Edicion exitosa.</b><br>Given existe un corral registrado<br>When el ganadero modifica su nombre o su finca y guarda<br>Then el sistema actualiza el corral<br>And refleja el cambio en el listado y en los animales que ya estaban asociados<br><br><b>Eliminacion de un corral.</b><br>Given existe un corral registrado<br>When el ganadero confirma su eliminacion<br>Then el sistema lo elimina<br>And deja de mostrarlo en el listado de corrales y en el filtro por corral del listado de animales</td>
+      <td>EP-003, EP-004</td>
+    </tr>
+    <tr>
+      <td><b>US-082</b></td>
+      <td>Registrar varios animales en un mismo corral</td>
+      <td>Como ganadero, quiero registrar varios animales de una sola vez indicando finca, corral, especie, raza y cantidad para no completar el formulario individualmente cuando ingreso muchos animales similares, como un lote de aves.</td>
+      <td><b>Registro por lote valido.</b><br>Given el ganadero selecciona el modo "Varios (corral)", una finca, un corral, especie, raza, sexo, estado y una cantidad entre 1 y 500<br>When confirma el registro<br>Then el sistema crea un animal individual por cada unidad del lote<br>And asigna a cada uno un codigo secuencial derivado del nombre del corral, como Corral1-001 y Corral1-002<br>And cada animal queda disponible para acciones individuales posteriores<br><br><b>Cantidad fuera de rango.</b><br>Given el ganadero ingresa una cantidad menor a 1 o mayor a 500<br>When intenta confirmar el registro por lote<br>Then el sistema rechaza la operacion<br>And solicita ingresar una cantidad entre 1 y 500</td>
+      <td>EP-004</td>
+    </tr>
+    <tr>
+      <td><b>US-083</b></td>
+      <td>Aplicar acciones masivas sobre animales seleccionados</td>
+      <td>Como ganadero, quiero seleccionar varios animales del listado con casillas de verificacion y cambiar su estado o eliminarlos en conjunto para no repetir la misma accion animal por animal.</td>
+      <td><b>Cambio de estado masivo.</b><br>Given el ganadero selecciona varios animales mediante casillas de verificacion<br>When elige un estado y confirma la accion masiva<br>Then el sistema actualiza el estado de todos los animales seleccionados<br>And conserva el resto de su informacion sin cambios<br><br><b>Eliminacion masiva.</b><br>Given el ganadero selecciona varios animales<br>When confirma la eliminacion masiva<br>Then el sistema elimina todos los animales seleccionados<br>And limpia la seleccion del listado</td>
+      <td>EP-004</td>
+    </tr>
+    <tr>
+      <td><b>US-084</b></td>
+      <td>Filtrar animales por corral</td>
+      <td>Como ganadero, quiero filtrar el listado de animales por corral para revisar unicamente los animales alojados en un corral especifico.</td>
+      <td><b>Filtro por corral seleccionado.</b><br>Given el ganadero tiene animales distribuidos en mas de un corral<br>When selecciona un corral especifico en el filtro "Filtrar por corral"<br>Then el sistema muestra solo los animales de ese corral<br><br><b>Filtro restablecido.</b><br>Given el ganadero esta filtrando por un corral especifico<br>When selecciona la opcion "Todos los corrales"<br>Then el sistema vuelve a mostrar todos los animales visibles para su rol</td>
+      <td>EP-004</td>
+    </tr>
+    <tr>
+      <td><b>US-085</b></td>
+      <td>Registrar procedencia y rango de edad aproximada del animal</td>
+      <td>Como ganadero, quiero indicar la procedencia y un rango de edad aproximada al registrar un animal para dejar constancia de su origen cuando no conozco su fecha exacta de nacimiento.</td>
+      <td><b>Registro con procedencia y edad aproximada.</b><br>Given el ganadero registra un animal individual o un lote<br>When selecciona una procedencia entre comprado, nacido en la finca, donacion u otro, y un rango de edad entre cria, juvenil y adulto<br>Then el sistema guarda ambos datos junto con el animal o con cada animal generado del lote<br>And los muestra en su ficha tecnica<br><br><b>Registro sin estos datos.</b><br>Given el ganadero no conoce la procedencia ni el rango de edad<br>When guarda el animal sin completar esos campos opcionales<br>Then el sistema registra el animal igualmente<br>And conserva los campos vacios para completarse mas adelante</td>
+      <td>EP-004</td>
+    </tr>
+    <tr>
+      <td><b>US-086</b></td>
+      <td>Adjuntar fotografia al registrar un animal o un lote</td>
+      <td>Como ganadero, quiero subir una fotografia al registrar un animal o un lote de animales para reconocerlos visualmente en su ficha tecnica.</td>
+      <td><b>Fotografia de un animal individual.</b><br>Given el ganadero registra un animal en modo individual<br>When adjunta una fotografia valida del animal<br>Then el sistema la sube al servidor<br>And la asocia a ese animal para mostrarla en su ficha tecnica<br><br><b>Fotografia de un lote.</b><br>Given el ganadero registra varios animales en modo "Varios (corral)"<br>When adjunta una fotografia del corral con el lote completo, siguiendo la sugerencia mostrada en pantalla de fotografiar el corral y no un solo animal<br>Then el sistema asocia esa misma fotografia a cada uno de los animales generados por el lote</td>
+      <td>EP-004</td>
+    </tr>
+    <tr>
+      <td><b>US-087</b></td>
+      <td>Consultar la ficha tecnica de un animal</td>
+      <td>Como ganadero, quiero abrir una ficha tecnica flotante de un animal desde el listado para ver todos sus datos, incluida su fotografia, sin depender de las columnas visibles en la tabla.</td>
+      <td><b>Apertura de la ficha tecnica.</b><br>Given el ganadero esta en el listado de animales<br>When selecciona el boton de ficha tecnica de un animal<br>Then el sistema abre un dialogo flotante con codigo, nombre, especie, raza, sexo, fecha de nacimiento, peso, estado, finca, corral, procedencia, rango de edad y fotografia si existe<br><br><b>Consulta desde pantalla movil.</b><br>Given el ganadero abre el listado desde una pantalla de 720 pixeles de ancho o menos, donde la tabla solo muestra nombre, estado y acciones sin barra de desplazamiento horizontal<br>When selecciona el boton de ficha tecnica<br>Then el sistema muestra igualmente el dialogo con la informacion completa del animal</td>
+      <td>EP-004, EP-010</td>
+    </tr>
+    <tr>
+      <td><b>US-088</b></td>
+      <td>Consultar el detalle de un movimiento financiero</td>
+      <td>Como ganadero, quiero abrir el detalle de un movimiento financiero desde el listado para revisar su fecha y descripcion completas cuando la tabla no las muestra.</td>
+      <td><b>Apertura del detalle.</b><br>Given el ganadero esta en el listado de movimientos financieros<br>When selecciona el boton de mas informacion de un movimiento<br>Then el sistema abre un dialogo con tipo, categoria, monto, fecha y descripcion completos<br><br><b>Consulta desde pantalla movil.</b><br>Given el ganadero abre el listado desde una pantalla de 720 pixeles de ancho o menos, donde la tabla oculta fecha y descripcion para evitar desplazamiento horizontal<br>When selecciona el boton de mas informacion<br>Then el sistema muestra el detalle completo del movimiento, incluida su fecha y descripcion</td>
+      <td>EP-008, EP-010</td>
+    </tr>
     <tr><th colspan="5">Technical Enablers — sujetos a validación arquitectónica mediante ADD</th></tr>
     <tr>
       <td><b>TS-001</b></td>
@@ -897,6 +967,20 @@ Las User Stories describen resultados valiosos para ganaderos, veterinarios, col
       <td>Como equipo de desarrollo, quiero suites automatizadas para validar contratos, aislamiento, permisos, idempotencia y recuperación ante pérdida de conexión.</td>
       <td><b>Pipeline.</b><br>Given existe un cambio en un servicio o cliente<br>When se ejecuta integración continua<br>Then corren pruebas unitarias, de contrato y de integración relevantes<br><br><b>Fallo.</b><br>Given una prueba crítica no cumple<br>When finaliza el pipeline<br>Then se bloquea el artefacto candidato y se conserva evidencia</td>
       <td>EP-014, EP-015, EP-016</td>
+    </tr>
+    <tr>
+      <td><b>TS-031</b></td>
+      <td>Consistencia visual de PrimeVue independiente del modo oscuro del sistema</td>
+      <td>Como Developer frontend, quiero fijar los tokens de tema de PrimeVue a la paleta propia de AniTec para evitar que tablas, campos, dialogos y demas componentes cambien a colores oscuros cuando el sistema operativo o el navegador del visitante usa modo oscuro.</td>
+      <td><b>Paleta consistente en modo claro del sistema.</b><br>Given el visitante usa su sistema operativo en modo claro<br>When navega por tablas, formularios y dialogos de AniTec<br>Then los componentes de PrimeVue usan la paleta crema, marron y verde definida para la aplicacion<br><br><b>Paleta consistente en modo oscuro del sistema.</b><br>Given el visitante usa su sistema operativo o navegador en modo oscuro<br>When navega por las mismas pantallas<br>Then los componentes de PrimeVue conservan la misma paleta fija de la aplicacion<br>And no cambian automaticamente a los colores oscuros por defecto de la libreria</td>
+      <td>EP-010</td>
+    </tr>
+    <tr>
+      <td><b>TS-032</b></td>
+      <td>Endpoint de carga de imagenes para animales</td>
+      <td>Como Developer backend, quiero un endpoint REST para subir imagenes en formato multipart/form-data para que el frontend pueda asociar una fotografia a un animal o a un lote registrado.</td>
+      <td><b>Carga valida.</b><br>Given el frontend envia un archivo de imagen valido en formato JPEG, PNG, WEBP o GIF<br>When se consume el endpoint de carga de imagenes<br>Then el backend almacena el archivo<br>And responde con la URL publica de la imagen almacenada<br><br><b>Archivo invalido.</b><br>Given no se envia un archivo o el archivo tiene un tipo de contenido no permitido<br>When se consume el endpoint de carga de imagenes<br>Then el backend rechaza la solicitud<br>And responde con un mensaje indicando los formatos permitidos</td>
+      <td>EP-004</td>
     </tr>
   </tbody>
 </table>

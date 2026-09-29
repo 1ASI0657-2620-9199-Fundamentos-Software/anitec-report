@@ -1,10 +1,10 @@
-# 4.3. Landing Page UI Design
+# UX-C. Landing Page UI Design
 
 El diseño de la Landing Page de AniTec fue desarrollado con el propósito de ofrecer al visitante una primera impresión clara, atractiva y funcional sobre la aplicación y sus beneficios. La interfaz busca comunicar de manera efectiva la propuesta de valor de la plataforma, enfocándose en la digitalización y optimización de la gestión ganadera y veterinaria mediante herramientas tecnológicas accesibles e intuitivas.
 
 La propuesta visual toma como base las decisiones definidas en las Style Guidelines y en la Information Architecture. Por ello, la landing page organiza el contenido con una jerarquía clara, navegación simple, mensajes dirigidos a ganaderos y veterinarios, y secciones adaptadas para una experiencia responsive en desktop y mobile web.
 
-## 4.3.1. Landing Page Wireframe
+## UX-C.1. Landing Page Wireframe
 
 El wireframe de la landing page de AniTec actúa como una guía visual preliminar que organiza los elementos esenciales de la página sin entrar en detalles gráficos. Este esquema muestra la distribución de secciones clave como el encabezado con el logo y menú de navegación, una propuesta de valor centrada en la digitalización ganadera, testimonios de usuarios reales del campo, y llamadas a la acción destacadas que invitan a conocer la aplicación. El objetivo es garantizar una experiencia intuitiva para el visitante y facilitar su conversión en usuario activo de la plataforma.
 
@@ -30,7 +30,7 @@ La propuesta del wireframe aplica principios de diseño, diseño inclusivo y arq
   </p>
 </div>
 
-## 4.3.2. Landing Page Mock-up
+## UX-C.2. Landing Page Mock-up
 
 El mock-up de la landing page de AniTec representa una versión detallada y cercana al diseño final, integrando colores, tipografías e imágenes que reflejan la identidad visual de la plataforma. Este diseño ofrece una vista realista de cómo se presentará la página a los usuarios, destacando una estética moderna, accesible y alineada con el sector agroindustrial ganadero. Además, refuerza la importancia de mantener coherencia visual y claridad en la propuesta de valor, transmitiendo confianza, profesionalismo y compromiso con la innovación tecnológica en el campo.
 

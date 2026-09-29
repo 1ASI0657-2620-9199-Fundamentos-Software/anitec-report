@@ -1,10 +1,10 @@
-# 4.2. Information Architecture
+# UX-B. Information Architecture
 
 La arquitectura de información de AniTec organiza el contenido de la landing page y de la aplicación web para que visitantes, ganaderos y veterinarios encuentren con facilidad las secciones que necesitan. La propuesta considera que los usuarios pueden tener distintos niveles de experiencia digital, por lo que se priorizan etiquetas claras, recorridos simples y una separación de módulos según el rol.
 
 En la landing page, la información se organiza para presentar la propuesta de valor, beneficios, segmentos, testimonios, planes y llamadas a la acción. En la aplicación web, la información se organiza por tareas operativas: gestión de fincas, animales, sanidad, actividades, finanzas, clientes veterinarios, pacientes, analíticas, IoT y suscripciones.
 
-## 4.2.1. Organization Systems
+## UX-B.1. Organization Systems
 
 - **Organización jerárquica:** Se aplica en dashboards, landing page y vistas principales para destacar primero los datos más importantes. Por ejemplo, el dashboard del ganadero prioriza indicadores de animales, fincas, alertas y actividades; mientras que el dashboard veterinario prioriza clientes, pacientes, eventos sanitarios y seguimientos.
 
@@ -18,7 +18,7 @@ En la landing page, la información se organiza para presentar la propuesta de v
 
 - **Organización matricial:** Se utiliza en dashboards, reportes y analíticas, donde el usuario puede comparar indicadores por finca, animal, cliente, estado sanitario o tipo de evento.
 
-## 4.2.2. Labeling Systems
+## UX-B.2. Labeling Systems
 
 El sistema de etiquetado de AniTec usa palabras breves y familiares para evitar confusión. Las etiquetas deben ser entendibles tanto para ganaderos con poca experiencia digital como para veterinarios que necesitan revisar información clínica con rapidez.
 
@@ -43,7 +43,7 @@ El sistema de etiquetado de AniTec usa palabras breves y familiares para evitar 
 
 Las etiquetas de acción también se mantienen simples: "Registrar", "Guardar", "Editar", "Eliminar", "Cancelar", "Buscar", "Agregar cliente" y "Ver historial". Estas palabras describen directamente la acción esperada y reducen la posibilidad de interpretación ambigua.
 
-## 4.2.3. SEO Tags and Meta Tags
+## UX-B.3. SEO Tags and Meta Tags
 
 **Landing Page:**
 
@@ -59,7 +59,7 @@ Las etiquetas de acción también se mantienen simples: "Registrar", "Guardar", 
 - **Keywords:** AniTec app, dashboard ganadero, dashboard veterinario, gestión de animales, eventos sanitarios, clientes veterinarios, pacientes, finanzas ganaderas, analíticas ganaderas, métricas IoT, suscripciones AniTec
 - **Author:** AniTec
 
-## 4.2.4. Searching Systems
+## UX-B.4. Searching Systems
 
 El sistema de búsqueda en AniTec ayuda a encontrar información dentro de módulos con muchos registros. Las opciones de búsqueda deben mostrar resultados filtrados de forma inmediata y acompañarse de estados vacíos cuando no existan coincidencias.
 
@@ -73,7 +73,7 @@ El sistema de búsqueda en AniTec ayuda a encontrar información dentro de módu
 
 Después de una búsqueda, los datos deben mostrarse en tarjetas, listas o tablas según el módulo. Si no hay coincidencias, la interfaz debe mostrar mensajes claros como "No se encontraron animales" o "No hay registros disponibles".
 
-## 4.2.5. Navigation Systems
+## UX-B.5. Navigation Systems
 
 Los sistemas de navegación de AniTec se diseñan para guiar a visitantes y usuarios autenticados de forma clara. La landing page utiliza navegación superior, mientras que la aplicación web utiliza menú lateral adaptado al rol.
 

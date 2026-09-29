@@ -1,4 +1,4 @@
-# 4.5. Web Applications Prototyping.
+# UX-E. Web Applications Prototyping.
 
 El prototipado de la aplicación web de AniTec permite validar la navegación e interacción entre las principales pantallas antes de la implementación final. Los criterios considerados para el prototipo fueron claridad en los recorridos, consistencia visual con el Style Guide, separación de acciones por rol y facilidad para completar tareas frecuentes como iniciar sesión, consultar animales, registrar eventos, revisar historial médico, controlar ingresos y egresos, y visualizar reportes.
 

@@ -101,61 +101,80 @@
 
 ## CAPÍTULO IV: Product Architecture Design
 
-- 4.1. Design Concepts, ViewPoints & ER Diagrams
-  - 4.1.1. Principles Statements
-  - 4.1.2. Approaches Statements Architectural Styles & Patterns
-  - 4.1.3. Context Diagram
-  - 4.1.4. Approach Driven ViewPoints Diagrams
-  - 4.1.5. Relational/Non Relational Database Diagram
-  - 4.1.6. Design Patterns
-  - 4.1.7. Tactics
-- 4.2. Architectural Drivers
-  - 4.2.1. Design Purpose
-  - 4.2.2. Primary Functionality (Primary User Stories)
-  - 4.2.3. Quality Attribute Scenarios
-  - 4.2.4. Constraints
-  - 4.2.5. Architectural Concerns
+- [4.1. Design Concepts, ViewPoints & ER Diagrams](./markdown/content/chapter-4/4-1-design-concepts-viewpoints-er-diagrams.md)
+  - [4.1.1. Principles Statements](./markdown/content/chapter-4/4-1-design-concepts-viewpoints-er-diagrams.md)
+  - [4.1.2. Approaches Statements Architectural Styles & Patterns](./markdown/content/chapter-4/4-1-design-concepts-viewpoints-er-diagrams.md)
+  - [4.1.3. Context Diagram](./markdown/content/chapter-4/4-1-design-concepts-viewpoints-er-diagrams.md)
+  - [4.1.4. Approach Driven ViewPoints Diagrams](./markdown/content/chapter-4/4-1-design-concepts-viewpoints-er-diagrams.md)
+  - [4.1.5. Relational/Non Relational Database Diagram](./markdown/content/chapter-4/4-1-design-concepts-viewpoints-er-diagrams.md)
+  - [4.1.6. Design Patterns](./markdown/content/chapter-4/4-1-design-concepts-viewpoints-er-diagrams.md)
+  - [4.1.7. Tactics](./markdown/content/chapter-4/4-1-design-concepts-viewpoints-er-diagrams.md)
+- [4.2. Architectural Drivers](./markdown/content/chapter-4/4-2-architectural-drivers.md)
+  - [4.2.1. Design Purpose](./markdown/content/chapter-4/4-2-architectural-drivers.md)
+  - [4.2.2. Primary Functionality (Primary User Stories)](./markdown/content/chapter-4/4-2-architectural-drivers.md)
+  - [4.2.3. Quality Attribute Scenarios](./markdown/content/chapter-4/4-2-architectural-drivers.md)
+  - [4.2.4. Constraints](./markdown/content/chapter-4/4-2-architectural-drivers.md)
+  - [4.2.5. Architectural Concerns](./markdown/content/chapter-4/4-2-architectural-drivers.md)
 - 4.3. ADD Iterations
-  - 4.3.1. Iteration 1: Global System Structure
-    - 4.3.1.1. Architectural Design Backlog 1
-    - 4.3.1.2. Establish Iteration Goal by Selecting Drivers
-    - 4.3.1.3. Choose One or More Elements of the System to Refine
-    - 4.3.1.4. Choose One or More Design Concepts That Satisfy the Selected Drivers
-    - 4.3.1.5. Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces
-    - 4.3.1.6. Sketch Views (C4 & UML) and Record Design Decisions
-    - 4.3.1.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)
-  - 4.3.2. Iteration 2: Sincronización Edge-to-Cloud y Pipeline de Telemetría
-    - 4.3.2.1. Architectural Design Backlog 2
-    - 4.3.2.2. Establish Iteration Goal by Selecting Drivers
-    - 4.3.2.3. Choose One or More Elements of the System to Refine
-    - 4.3.2.4. Choose One or More Design Concepts That Satisfy the Selected Drivers
-    - 4.3.2.5. Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces
-    - 4.3.2.6. Sketch Views (C4 & UML) and Record Design Decisions
-    - 4.3.2.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)
-  - 4.3.3. Iteration 3: Orquestación del Ciclo de Riego Autónomo e Integración con el Edge
-    - 4.3.3.1. Architectural Design Backlog 3
-    - 4.3.3.2. Establish Iteration Goal by Selecting Drivers
-    - 4.3.3.3. Choose One or More Elements of the System to Refine
-    - 4.3.3.4. Choose One or More Design Concepts That Satisfy the Selected Drivers
-    - 4.3.3.5. Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces
-    - 4.3.3.6. Sketch Views (C4 & UML) and Record Design Decisions
-    - 4.3.3.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)
-  - 4.3.4. Iteration 4: Seguridad e Identidad
-    - 4.3.4.1. Architectural Design Backlog 4
-    - 4.3.4.2. Establish Iteration Goal by Selecting Drivers
-    - 4.3.4.3. Choose One or More Elements of the System to Refine
-    - 4.3.4.4. Choose One or More Design Concepts That Satisfy the Selected Drivers
-    - 4.3.4.5. Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces
-    - 4.3.4.6. Sketch Views (C4 & UML) and Record Design Decisions
-    - 4.3.4.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)
-  - 4.3.5. Iteration 5: Refinamiento del Crop Analysis Service y Diagnóstico de Cultivos
-    - 4.3.5.1. Architectural Design Backlog 5
-    - 4.3.5.2. Establish Iteration Goal by Selecting Drivers
-    - 4.3.5.3. Choose One or More Elements of the System to Refine
-    - 4.3.5.4. Choose One or More Design Concepts That Satisfy the Selected Drivers
-    - 4.3.5.5. Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces
-    - 4.3.5.6. Sketch Views (C4 & UML) and Record Design Decisions
-    - 4.3.5.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)
+  - [4.3.1. Iteration 1: Global System Structure](./markdown/content/chapter-4/4-3-1-iteration-1-estructura-global-del-sistema.md)
+    - [4.3.1.1. Architectural Design Backlog 1](./markdown/content/chapter-4/4-3-1-iteration-1-estructura-global-del-sistema.md)
+    - [4.3.1.2. Establish Iteration Goal by Selecting Drivers](./markdown/content/chapter-4/4-3-1-iteration-1-estructura-global-del-sistema.md)
+    - [4.3.1.3. Choose One or More Elements of the System to Refine](./markdown/content/chapter-4/4-3-1-iteration-1-estructura-global-del-sistema.md)
+    - [4.3.1.4. Choose One or More Design Concepts That Satisfy the Selected Drivers](./markdown/content/chapter-4/4-3-1-iteration-1-estructura-global-del-sistema.md)
+    - [4.3.1.5. Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces](./markdown/content/chapter-4/4-3-1-iteration-1-estructura-global-del-sistema.md)
+    - [4.3.1.6. Sketch Views (C4 & UML) and Record Design Decisions](./markdown/content/chapter-4/4-3-1-iteration-1-estructura-global-del-sistema.md)
+    - [4.3.1.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)](./markdown/content/chapter-4/4-3-1-iteration-1-estructura-global-del-sistema.md)
+  - [4.3.2. Iteration 2: Seguridad e Identidad](./markdown/content/chapter-4/4-3-2-iteration-2-seguridad-e-identidad.md)
+    - [4.3.2.1. Architectural Design Backlog 2](./markdown/content/chapter-4/4-3-2-iteration-2-seguridad-e-identidad.md)
+    - [4.3.2.2. Establish Iteration Goal by Selecting Drivers](./markdown/content/chapter-4/4-3-2-iteration-2-seguridad-e-identidad.md)
+    - [4.3.2.3. Choose One or More Elements of the System to Refine](./markdown/content/chapter-4/4-3-2-iteration-2-seguridad-e-identidad.md)
+    - [4.3.2.4. Choose One or More Design Concepts That Satisfy the Selected Drivers](./markdown/content/chapter-4/4-3-2-iteration-2-seguridad-e-identidad.md)
+    - [4.3.2.5. Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces](./markdown/content/chapter-4/4-3-2-iteration-2-seguridad-e-identidad.md)
+    - [4.3.2.6. Sketch Views (C4 & UML) and Record Design Decisions](./markdown/content/chapter-4/4-3-2-iteration-2-seguridad-e-identidad.md)
+    - [4.3.2.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)](./markdown/content/chapter-4/4-3-2-iteration-2-seguridad-e-identidad.md)
+  - [4.3.3. Iteration 3: Extracción de Servicios Críticos y API Gateway](./markdown/content/chapter-4/4-3-3-iteration-3-extraccion-de-servicios-y-api-gateway.md)
+    - [4.3.3.1. Architectural Design Backlog 3](./markdown/content/chapter-4/4-3-3-iteration-3-extraccion-de-servicios-y-api-gateway.md)
+    - [4.3.3.2. Establish Iteration Goal by Selecting Drivers](./markdown/content/chapter-4/4-3-3-iteration-3-extraccion-de-servicios-y-api-gateway.md)
+    - [4.3.3.3. Choose One or More Elements of the System to Refine](./markdown/content/chapter-4/4-3-3-iteration-3-extraccion-de-servicios-y-api-gateway.md)
+    - [4.3.3.4. Choose One or More Design Concepts That Satisfy the Selected Drivers](./markdown/content/chapter-4/4-3-3-iteration-3-extraccion-de-servicios-y-api-gateway.md)
+    - [4.3.3.5. Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces](./markdown/content/chapter-4/4-3-3-iteration-3-extraccion-de-servicios-y-api-gateway.md)
+    - [4.3.3.6. Sketch Views (C4 & UML) and Record Design Decisions](./markdown/content/chapter-4/4-3-3-iteration-3-extraccion-de-servicios-y-api-gateway.md)
+    - [4.3.3.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)](./markdown/content/chapter-4/4-3-3-iteration-3-extraccion-de-servicios-y-api-gateway.md)
+  - [4.3.4. Iteration 4: Sincronización Edge-to-Cloud para Campo sin Conexión](./markdown/content/chapter-4/4-3-4-iteration-4-sincronizacion-edge-to-cloud.md)
+    - [4.3.4.1. Architectural Design Backlog 4](./markdown/content/chapter-4/4-3-4-iteration-4-sincronizacion-edge-to-cloud.md)
+    - [4.3.4.2. Establish Iteration Goal by Selecting Drivers](./markdown/content/chapter-4/4-3-4-iteration-4-sincronizacion-edge-to-cloud.md)
+    - [4.3.4.3. Choose One or More Elements of the System to Refine](./markdown/content/chapter-4/4-3-4-iteration-4-sincronizacion-edge-to-cloud.md)
+    - [4.3.4.4. Choose One or More Design Concepts That Satisfy the Selected Drivers](./markdown/content/chapter-4/4-3-4-iteration-4-sincronizacion-edge-to-cloud.md)
+    - [4.3.4.5. Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces](./markdown/content/chapter-4/4-3-4-iteration-4-sincronizacion-edge-to-cloud.md)
+    - [4.3.4.6. Sketch Views (C4 & UML) and Record Design Decisions](./markdown/content/chapter-4/4-3-4-iteration-4-sincronizacion-edge-to-cloud.md)
+    - [4.3.4.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)](./markdown/content/chapter-4/4-3-4-iteration-4-sincronizacion-edge-to-cloud.md)
+  - [4.3.5. Iteration 5: Observabilidad y Confiabilidad Operativa](./markdown/content/chapter-4/4-3-5-iteration-5-observabilidad-y-confiabilidad-operativa.md)
+    - [4.3.5.1. Architectural Design Backlog 5](./markdown/content/chapter-4/4-3-5-iteration-5-observabilidad-y-confiabilidad-operativa.md)
+    - [4.3.5.2. Establish Iteration Goal by Selecting Drivers](./markdown/content/chapter-4/4-3-5-iteration-5-observabilidad-y-confiabilidad-operativa.md)
+    - [4.3.5.3. Choose One or More Elements of the System to Refine](./markdown/content/chapter-4/4-3-5-iteration-5-observabilidad-y-confiabilidad-operativa.md)
+    - [4.3.5.4. Choose One or More Design Concepts That Satisfy the Selected Drivers](./markdown/content/chapter-4/4-3-5-iteration-5-observabilidad-y-confiabilidad-operativa.md)
+    - [4.3.5.5. Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces](./markdown/content/chapter-4/4-3-5-iteration-5-observabilidad-y-confiabilidad-operativa.md)
+    - [4.3.5.6. Sketch Views (C4 & UML) and Record Design Decisions](./markdown/content/chapter-4/4-3-5-iteration-5-observabilidad-y-confiabilidad-operativa.md)
+    - [4.3.5.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)](./markdown/content/chapter-4/4-3-5-iteration-5-observabilidad-y-confiabilidad-operativa.md)
+- [4.4. Architectural View Model (4+1)](./markdown/content/chapter-4/4-4-architectural-view-model.md)
+  - [4.4.1. Logic View](./markdown/content/chapter-4/4-4-architectural-view-model.md)
+  - [4.4.2. Development View](./markdown/content/chapter-4/4-4-architectural-view-model.md)
+  - [4.4.3. Process View](./markdown/content/chapter-4/4-4-architectural-view-model.md)
+  - [4.4.4. Physical View](./markdown/content/chapter-4/4-4-architectural-view-model.md)
+  - [4.4.5. Database Diagram](./markdown/content/chapter-4/4-4-architectural-view-model.md)
+
+### Material de apoyo: Product UX Design
+
+Contenido de diseño UX/UI, arquitectura de información, DDD/EventStorming y diseño OO/BD elaborado por el equipo que no corresponde a la numeración de este capítulo (Product Architecture Design / ADD v3). Se conserva como material de apoyo y fuente de diagramas reutilizados en el Capítulo IV.
+
+- [UX-A. Style Guidelines](./markdown/content/chapter-4-ux-design/4-1-style-guidelines.md)
+- [UX-B. Information Architecture](./markdown/content/chapter-4-ux-design/4-2-information-architecture.md)
+- [UX-C. Landing Page UI Design](./markdown/content/chapter-4-ux-design/4-3-landing-page-ui-design.md)
+- [UX-D. Web Applications UX/UI Design](./markdown/content/chapter-4-ux-design/4-4-web-applications-ux-ui-design.md)
+- [UX-E. Web Applications Prototyping](./markdown/content/chapter-4-ux-design/4-5-web-applications-prototyping.md)
+- [UX-F. Domain-Driven Software Architecture](./markdown/content/chapter-4-ux-design/4-6-domain-driven-software-architecture.md)
+- [UX-G. Software Object-Oriented Design](./markdown/content/chapter-4-ux-design/4-7-software-object-oriented-design.md)
+- [UX-H. Database Design](./markdown/content/chapter-4-ux-design/4-8-database-design.md)
 
 ## CAPÍTULO V: Product Implementation, Validation & Deployment
 

@@ -1,10 +1,10 @@
-# 4.6. Domain-Driven Software Architecture.
+# UX-F. Domain-Driven Software Architecture.
 
 El Domain-Driven Design (DDD) tiene como objetivo central establecer un entendimiento mutuo sobre el dominio del negocio, promoviendo la sinergia entre el equipo técnico y los expertos del área a través de un lenguaje ubicuo. Este marco de trabajo trasciende el vocabulario técnico al integrar patrones estratégicos, metodologías de diseño y diagramas arquitectónicos que garantizan que el software evolucione en total sintonía con las prioridades empresariales. De esta forma, se logra una solución técnica robusta, profundamente ligada al conocimiento del negocio y capaz de resolver problemas complejos de manera eficiente.
 
 Para ilustrar la aplicación práctica de estos conceptos en el proyecto, se detallan a continuación los primeros tres niveles del modelo C4, implementados mediante Structurizr, los cuales brindan una visión clara y estructurada del sistema en desarrollo.
 
-## 4.6.1. Design Level EventStorming
+## UX-F.1. Design Level EventStorming
 
 El Design-Level EventStorming de AniTec se presenta desde el paso 4 porque los primeros pasos del proceso, correspondientes a la exploración general del dominio mediante Big Picture EventStorming, fueron desarrollados previamente en la sección de Needfinding. Por ello, esta sección continúa con los pasos orientados al diseño del dominio, la identificación de comandos, políticas, modelos de lectura, sistemas externos, agregados y bounded contexts.
 
@@ -124,7 +124,7 @@ El Design-Level EventStorming de AniTec se presenta desde el paso 4 porque los p
 
 Enlace para acceder al miro https://tinyurl.com/EventSorming
 
-## 4.6.2. Software Architecture Context Diagram.
+## UX-F.2. Software Architecture Context Diagram.
 
 El Software Architecture Context Level Diagram presenta una vista general del sistema Anitec y sus interacciones con usuarios y sistemas externos. Este diagrama permite identificar los principales actores de la plataforma, así como los servicios externos utilizados para funcionalidades como procesamiento de pagos y envío de correos electrónicos.
 
@@ -138,7 +138,7 @@ El Software Architecture Context Level Diagram presenta una vista general del si
   </p>
 </div>
 
-## 4.6.3. Software Architecture Container Diagrams.
+## UX-F.3. Software Architecture Container Diagrams.
 
 El Software Architecture Container Diagram permite visualizar la descomposición interna del sistema de gestión ganadera en unidades técnicas desplegables. Se presenta una infraestructura donde el Rancher y el Veterinarian interactúan con una Single Page Application (SPA) de Vue.js y Vite, la cual es entregada por una Web Application y complementada por una Landing Page informativa. Esta estructura se explica mediante el flujo de datos hacia una API Application que procesa la lógica del negocio, gestiona módulos como IAM, perfiles, ganadería, sanidad, actividades, finanzas, analíticas, dispositivos y suscripciones, y almacena la información en una base de datos MySQL.
 
@@ -152,7 +152,7 @@ El Software Architecture Container Diagram permite visualizar la descomposición
   </p>
 </div>
 
-## 4.6.4. Software Architecture Components Diagrams.
+## UX-F.4. Software Architecture Components Diagrams.
 
 Los Software Architecture Component Diagrams presentan la descomposición interna del contenedor API Application de AniTec. Estos diagramas permiten identificar los principales bounded contexts, sus responsabilidades, los controladores REST, servicios de aplicación, repositorios, componentes compartidos y la interacción con la base de datos MySQL.
 

@@ -1,8 +1,8 @@
-# 4.4. Web Applications UX/UI Design.
+# UX-D. Web Applications UX/UI Design.
 
 La aplicación web de AniTec contempla una experiencia diferenciada para ganaderos y veterinarios. El ganadero utiliza la plataforma para administrar fincas, animales, sanidad, actividades, finanzas, dispositivos IoT y planes; mientras que el veterinario la utiliza para revisar clientes, pacientes, registros clínicos, seguimientos y analíticas. Esta separación permite que cada rol acceda a las funciones necesarias para cumplir sus tareas dentro de la solución.
 
-## 4.4.1. Web Applications Wireframes.
+## UX-D.1. Web Applications Wireframes.
 
 Los wireframes de la aplicación web de AniTec ilustran la estructura y distribución de las principales pantallas dirigidas al ámbito agroindustrial, con énfasis en el sector ganadero. Estos bocetos permiten validar la estructura, navegación y jerarquía de la información antes de avanzar hacia el diseño visual definitivo. También permiten visualizar la organización de los componentes de la interfaz y el flujo de navegación entre las distintas secciones, sirviendo como referencia para el diseño definitivo. De este modo, se asegura una experiencia de usuario clara, ágil y alineada con las necesidades reales de los productores. Fueron elaborados utilizando Figma. Enlace para acceder a los wireframes: https://www.figma.com/design/9RliVy9r8aEzyfyEof3DGr/Untitled?node-id=0-1&t=q2mM6e2YoQyJLZaK-1
 
@@ -136,7 +136,7 @@ Dashboard donde se presentan los reportes generados
 
 </div>
 
-## 4.4.2. Web Applications Wireflow Diagrams.
+## UX-D.2. Web Applications Wireflow Diagrams.
 
 En esta sección se presentan los Wireflows para cada objetivo del usuario. Para ello se consideró los User Persona correspondientes. Cada diagrama muestra el flujo de interacción entre pantallas a nivel de wireframe. Enlace para acceder a los wireflows en Figma: https://www.figma.com/design/9RliVy9r8aEzyfyEof3DGr/Untitled?node-id=44-1275&t=fdPLEZQXM0PqMAv3-1
 
@@ -200,7 +200,7 @@ En esta sección se presentan los Wireflows para cada objetivo del usuario. Para
 
 </div>
 
-## 4.4.3. Web Applications Mock-ups.
+## UX-D.3. Web Applications Mock-ups.
 
 En esta sección se exponen y analizan los mockups de la aplicación web AniTec, diseñada para apoyar la gestión del sector ganadero y el seguimiento veterinario. En ellos se aprecia la implementación de principios fundamentales de diseño visual, accesibilidad, arquitectura de la información y del Design System definido para el producto. Cada mockup muestra cómo estos elementos se integran en una interfaz orientada a optimizar la trazabilidad, el control sanitario, la gestión eficiente del ganado y la consulta de información por rol. Asimismo, los mockups aplican la navegación por rol definida para ganaderos y veterinarios. Se incluye el enlace para acceder al contenido. https://www.figma.com/design/9RliVy9r8aEzyfyEof3DGr/Untitled?node-id=42-837&t=fdPLEZQXM0PqMAv3-1
 
@@ -334,7 +334,7 @@ Dashboard donde se presentan los reportes generados
 
 </div>
 
-## 4.4.4. Web Applications User Flow Diagrams.
+## UX-D.4. Web Applications User Flow Diagrams.
 
 En esta parte se detallan los diagramas de flujo de usuario, donde se describen las rutas posibles dentro de la aplicación y las decisiones que puede tomar el usuario. Estos diagramas garantizan una navegación clara y alineada con los objetivos funcionales. Cada User Flow se deriva de los wireflows presentados anteriormente y muestra la ruta esperada que sigue el usuario para cumplir una meta específica dentro de la aplicación.
 
