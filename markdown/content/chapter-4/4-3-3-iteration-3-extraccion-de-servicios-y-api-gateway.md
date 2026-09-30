@@ -55,16 +55,26 @@ Se formaliza un nuevo escenario de calidad para esta iteración:
 | **Core API** (el monolito actual, sin Subscriptions) | Conserva los 11 bounded contexts restantes exactamente como están documentados en 4.1 y refinados en la Iteración 1 — sin cambios de código más allá de retirar el registro DI de Subscriptions. |
 | **Base de datos de Subscriptions** (nueva instancia/esquema MySQL) | Contiene únicamente `subscription_plans`, `subscriptions`, `payments` — migradas desde la base compartida actual (sección 4.1.5). Ninguna otra tabla las referencia mediante *foreign key* real (confirmado en 4.1.5), por lo que la migración no requiere coordinar borrado/actualización con otros contextos. |
 
+<div align="center">
+  <img src="../../assets/chapter-4/anitec-subscriptions-service-schema.png" alt="Esquema aislado del Subscriptions Service" width="600">
+</div>
+
+*Diagrama ER del esquema aislado (to-be), regenerado a partir de `CodeDiagrams/4-3-3-.../anitec-subscriptions-service-schema.sql` — mismas 3 tablas que hoy viven en la base compartida, sin cambio de modelo de datos, solo de despliegue.*
+
 ## 4.3.3.6. Sketch Views (C4 & UML) and Record Design Decisions
 
-Siguiendo la recomendación metodológica de mostrar solo el fragmento que cambia (no todo el diagrama de nuevo): el Diagrama de Contenedores de la sección 4.1.4 gana **tres contenedores nuevos** y **una relación modificada**:
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/03-Containers-Iteration3-Gateway.svg" alt="Diagrama de Contenedores - TO-BE Iteración 3 (API Gateway + Subscriptions Service)" width="750">
+</div>
+
+Diagrama regenerado en Structurizr DSL. El Diagrama de Contenedores de la sección 4.1.4 gana **tres contenedores nuevos** (en naranja, to-be) y **una relación modificada**:
 
 - **Nuevo:** API Gateway — recibe todo el tráfico del SPA.
 - **Nuevo:** Subscriptions Service — recibe el tráfico de suscripciones/pagos enrutado por el Gateway; se conecta a Stripe exactamente como antes.
 - **Nuevo:** Subscriptions Database (MySQL) — exclusiva del Subscriptions Service.
 - **Modificado:** la relación `Single Page Application → API Application` (JSON/HTTPS) de 4.1.4 pasa a ser `Single Page Application → API Gateway → {Core API, Subscriptions Service}`.
 
-Todo lo demás del diagrama de contenedores y los 10 diagramas de componentes restantes (Iteración 1) queda **sin cambios**.
+Todo lo demás del diagrama de contenedores y los diagramas de componentes restantes (Iteración 1) queda **sin cambios**.
 
 **Decisiones de diseño registradas:**
 

@@ -1,0 +1,72 @@
+@startuml package-development-view-backend
+!theme plain
+title AniTec — Development View: Paquetes del Backend (Anitec.Platform)
+' Fuente: anitec-report/markdown/content/chapter-4/4-4-architectural-view-model.md
+' (sección 4.4.2), verificado contra la estructura real de carpetas.
+' Mismo patrón de 4 capas repetido en los 12 bounded contexts — se muestra
+' Livestock como representativo y el resto abreviado.
+
+package "Anitec.Platform" {
+
+  package "Livestock" as Livestock {
+    package "Domain" {
+      package "Model" as LivestockModel
+      package "Repositories" as LivestockRepos
+    }
+    package "Application" {
+      package "CommandServices" as LivestockCmd
+      package "QueryServices" as LivestockQuery
+      package "Internal" as LivestockInternal
+    }
+    package "Infrastructure" {
+      package "Persistence" as LivestockPersistence
+    }
+    package "Interfaces" {
+      package "Rest" as LivestockRest
+    }
+
+    LivestockRest ..> LivestockCmd : usa
+    LivestockRest ..> LivestockQuery : usa
+    LivestockCmd ..> LivestockRepos : usa
+    LivestockQuery ..> LivestockRepos : usa
+    LivestockPersistence ..> LivestockRepos : implementa
+    LivestockCmd ..> LivestockModel : usa
+    LivestockInternal ..> LivestockModel : mapea
+  }
+
+  package "Sanitary" as Sanitary <<mismo patrón>>
+  package "Financial" as Financial <<mismo patrón>>
+  package "Activities" as Activities <<mismo patrón>>
+  package "Analytics" as Analytics <<mismo patrón>>
+  package "Devices" as Devices <<mismo patrón>>
+  package "Metrics" as Metrics <<mismo patrón>>
+  package "Subscriptions" as Subscriptions <<mismo patrón>>
+  package "Clients" as Clients <<mismo patrón>>
+  package "Profiles" as Profiles <<mismo patrón>>
+  package "Iam" as Iam <<mismo patrón>>
+  package "Shared" as Shared <<transversal>>
+
+  package "Program.cs" as Composition <<único punto de composición (DI)>>
+
+  Composition ..> Livestock
+  Composition ..> Sanitary
+  Composition ..> Financial
+  Composition ..> Activities
+  Composition ..> Analytics
+  Composition ..> Devices
+  Composition ..> Metrics
+  Composition ..> Subscriptions
+  Composition ..> Clients
+  Composition ..> Profiles
+  Composition ..> Iam
+  Composition ..> Shared
+}
+
+note bottom
+  Aislamiento por bounded context (principio 4.1.1.1): ningún paquete de
+  contexto referencia directamente el paquete de otro contexto — las
+  referencias cruzadas se resuelven por ID lógico, nunca por import directo
+  de clases de dominio ajenas.
+end note
+
+@enduml

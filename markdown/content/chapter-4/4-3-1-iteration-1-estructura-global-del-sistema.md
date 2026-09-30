@@ -1,6 +1,12 @@
 # 4.3.1. Iteration 1: Estructura Global del Sistema
 
-Primera iteración ADD v3. Formaliza y valida la línea base estructural del sistema (el monolito modular de 12 bounded contexts documentado en 4.1) antes de que las iteraciones 2 a 5 introduzcan cambios sobre ella. No se diseña algo nuevo desde cero: se confirma que el estilo y los patrones ya vigentes (4.1.2, 4.1.6) se sostienen de forma consistente en **todo** el sistema, cerrando los vacíos de documentación detectados en 4.1.4 (los bounded contexts Clients y Metrics no tenían diagrama de componentes).
+<div align="center">
+  <img src="../../assets/chapter-4/add-methodology-cycle.svg" alt="Ciclo ADD v3 - estructura repetida en las 7 iteraciones de 4.3" width="700">
+</div>
+
+*Antes de la primera iteración: diagrama conceptual del ciclo ADD v3 (SEI) que se repite en cada una de las 7 iteraciones de esta sección — no es un diagrama del sistema AniTec, sino del método aplicado. Ver detalle de cada paso en las secciones 4.3.X.1 a 4.3.X.7 de cada iteración.*
+
+Primera iteración ADD v3. Formaliza y valida la línea base estructural del sistema (el monolito modular de 12 bounded contexts documentado en 4.1) antes de que las iteraciones 2 a 7 introduzcan cambios sobre ella. No se diseña algo nuevo desde cero: se confirma que el estilo y los patrones ya vigentes (4.1.2, 4.1.6) se sostienen de forma consistente en **todo** el sistema, cerrando los vacíos de documentación detectados en 4.1.4 (los bounded contexts Clients y Metrics no tenían diagrama de componentes).
 
 ## 4.3.1.1. Architectural Design Backlog 1
 

@@ -1,0 +1,59 @@
+@startuml add-methodology-cycle
+!theme plain
+title AniTec — Ciclo ADD v3 (SEI): estructura repetida en cada una de las 7 iteraciones de 4.3
+' Diagrama conceptual del método en sí (genérico), no del sistema AniTec —
+' se incluye como apoyo visual introductorio a la sección 4.3, antes de la
+' Iteración 1. No es un diagrama exigido por el enunciado del curso, que
+' solo pide "Sketch Views (C4 & UML)" para cada iteración concreta (4.2.X.6).
+
+start
+
+repeat :Architectural Design Backlog N\n(4.3.X.1);
+note right
+  Lista de pendientes arquitectónicos de esta
+  iteración: concerns y riesgos trasladados de
+  la iteración anterior, QAS aún sin resolver.
+end note
+
+:Establish Iteration Goal by\nSelecting Drivers (4.3.X.2);
+note right
+  Se seleccionan y priorizan los drivers
+  (QAS, constraints, concerns de 4.2) que
+  esta iteración va a resolver, con
+  justificación explícita del orden.
+end note
+
+:Choose One or More Elements of\nthe System to Refine (4.3.X.3);
+
+:Choose One or More Design Concepts\nThat Satisfy the Selected Drivers (4.3.X.4);
+
+:Instantiate Architectural Elements,\nAllocate Responsibilities, and\nDefine Interfaces (4.3.X.5);
+
+:Sketch Views (C4 & UML) and\nRecord Design Decisions (4.3.X.6);
+note right
+  Diagramas C4/UML actualizados (contenedores,
+  componentes, secuencia, estados, etc.) +
+  decisiones de diseño registradas.
+end note
+
+:Analysis of Current Design and Review\nIteration Goal — Kanban Board (4.3.X.7);
+note right
+  Se revisa qué quedó "Diseño completo" vs.
+  "Implementación pendiente", y qué riesgo
+  se traslada explícitamente a la iteración N+1.
+end note
+
+repeat while (¿Quedan drivers\narquitectónicamente\nsignificativos sin resolver?) is (sí — inicia\niteración N+1) not (no — se alcanza\nel capstone)
+
+:Iteración 7 (Observabilidad y Confiabilidad\nOperativa) cierra el capítulo;
+note right
+  En AniTec el número de iteraciones (7) se
+  re-derivó directamente de los drivers reales
+  documentados en 4.2, no de un índice heredado
+  — ver 4.3.1 a 4.3.7 y el cierre de capítulo
+  en 4.3.7.7.
+end note
+
+stop
+
+@enduml

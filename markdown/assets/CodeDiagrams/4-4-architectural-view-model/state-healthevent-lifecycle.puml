@@ -1,0 +1,46 @@
+@startuml state-healthevent-lifecycle
+!theme plain
+title AniTec — Diagrama de Estados: Ciclo de vida de un Registro Sanitario (TO-BE)
+' Fuente: anitec-report/markdown/content/chapter-4/4-4-architectural-view-model.md
+' (sección 4.4.1, Logic View). DISEÑO OBJETIVO, no comportamiento actual:
+' se verificó en Anitec.Platform/Sanitary/Domain/Model/Entities/HealthEvent.cs
+' que la entidad real NO tiene ningún campo Status ni mecanismo de
+' borrador/rectificación/anulación — responde a US-017 y US-018.
+
+[*] --> Borrador : Crear registro\n(CreateHealthEventCommand)
+
+state Borrador {
+  Borrador : Editable — campos clínicos\nmodificables libremente (US-017)
+}
+
+state Finalizado {
+  Finalizado : Solo lectura de campos originales
+}
+
+state Rectificado {
+  Rectificado : Nueva versión con motivo obligatorio\nEl registro original se conserva (US-018)
+}
+
+state Anulado {
+  Anulado : Marcado como no vigente\nNO se elimina físicamente
+}
+
+Borrador --> Finalizado : Finalizar
+
+Finalizado --> Rectificado : Rectificar\n(requiere motivo)
+Finalizado --> Anulado : Anular
+
+Rectificado --> Anulado : Anular
+
+Rectificado --> [*]
+Anulado --> [*]
+
+note right of Finalizado
+  Regla de diseño: cualquier corrección posterior a
+  Finalizado pasa OBLIGATORIAMENTE por una nueva
+  versión Rectificada — nunca por edición in-place.
+  UpdateHealthEventCommand, si se implementa,
+  debe verificar el estado antes de aplicar el cambio.
+end note
+
+@enduml

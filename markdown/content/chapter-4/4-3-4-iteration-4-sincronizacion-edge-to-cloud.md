@@ -54,14 +54,30 @@ Cuarta iteración ADD v3. A diferencia de las iteraciones 1 a 3 — que refinan 
 | Tabla `processed_sync_operations` (nueva, `OperationId` PK, `ProcessedAt`, `ResultStatus`) | Registro de idempotencia: antes de aplicar una operación, se verifica si su `OperationId` ya fue procesado. |
 | Marcador de concurrencia optimista en `Animal`/`HealthEvent` | Extiende `IAuditableEntity` (patrón ya usado por `User`/`Profile`) para exponer `UpdatedAt` y compararlo contra el valor que el cliente envía. |
 
+<div align="center">
+  <img src="../../assets/chapter-4/sync-schema-additions.png" alt="Esquema TO-BE - idempotencia de sincronización" width="650">
+</div>
+
+*Diagrama ER del esquema propuesto (to-be), regenerado a partir de `CodeDiagrams/4-3-4-.../sync-schema-additions.sql`: `processed_sync_operations` (servidor) y `outbox_operation` (persistencia local del cliente móvil, Room/SQLite).*
+
 ## 4.3.4.6. Sketch Views (C4 & UML) and Record Design Decisions
 
-**Fragmento nuevo del Diagrama de Contenedores** (se agrega sobre la versión ya extendida en la Iteración 3, sección 4.3.3.6):
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/04-Containers-Iteration4-MobileSync.svg" alt="Diagrama de Contenedores - TO-BE Iteración 4 (AniTec Mobile App)" width="750">
+</div>
+
+Diagrama regenerado en Structurizr DSL — se agrega sobre la versión ya extendida en la Iteración 3 (sección 4.3.3.6):
 
 - **Nuevo:** AniTec Mobile App `[Container: Kotlin, Android, Room]` — se conecta al **API Gateway** por JSON/HTTPS, igual que el SPA.
 - **Nuevo componente dentro de Core API:** Sync Orchestration Component (en `Shared`) — depende de los *command services* de Livestock y Sanitary, no introduce un bounded context de dominio nuevo.
 
-**Flujo de sincronización (secuencia, notación textual):**
+**Flujo de sincronización (diagrama de secuencia, TO-BE):**
+
+<div align="center">
+  <img src="../../assets/chapter-4/sequence-mobile-sync.svg" alt="Diagrama de secuencia - Sincronización offline" width="750">
+</div>
+
+Diagrama regenerado en PlantUML. Resumen del flujo:
 
 1. El usuario de campo registra un evento sanitario sin conexión → se guarda en Room con un `OperationId` nuevo, `Status = Pendiente`.
 2. Vuelve la conectividad → `SyncWorker` despierta → envía el lote pendiente a `POST /sync/batch`.
@@ -88,4 +104,4 @@ Cuarta iteración ADD v3. A diferencia de las iteraciones 1 a 3 — que refinan 
 
 **Revisión de la meta:** cumplida a nivel de diseño — existe un protocolo concreto y trazable a componentes específicos que satisface QAS-01/BG-04, reutilizando patrones ya vigentes en el backend (auditoría, *command services*) en vez de inventar mecanismos nuevos donde no hace falta. Se reitera explícitamente: **no existe código de la aplicación móvil ni del endpoint de sincronización a la fecha de este informe** — esta iteración es un diseño para una implementación futura, coherente con la preocupación 4.2.5 #1.
 
-**Riesgo que se traslada:** el diseño de pruebas para este protocolo (idempotencia, conflictos, recuperación) corresponde a TS-030 y se retoma en la Iteración 5 (Observabilidad y Confiabilidad Operativa).
+**Riesgo que se traslada:** el diseño de pruebas para este protocolo (idempotencia, conflictos, recuperación) corresponde a TS-030 y se retoma en la Iteración 7 (Observabilidad y Confiabilidad Operativa).

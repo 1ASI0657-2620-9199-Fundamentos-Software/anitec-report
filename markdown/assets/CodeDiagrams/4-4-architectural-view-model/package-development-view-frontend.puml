@@ -1,0 +1,52 @@
+@startuml package-development-view-frontend
+!theme plain
+title AniTec — Development View: Paquetes del Frontend (anitec-frontend/src)
+' Fuente: anitec-report/markdown/content/chapter-4/4-4-architectural-view-model.md
+' (sección 4.4.2), verificado contra la estructura real de carpetas.
+' El frontend replica deliberadamente la misma partición por bounded context
+' que el backend, adaptada a Vue 3 (domain/application/infrastructure/presentation).
+
+package "src" {
+
+  package "livestock" as Livestock {
+    package "domain" as LivestockDomain
+    package "application" as LivestockApp <<Pinia stores>>
+    package "infrastructure" as LivestockInfra <<Axios>>
+    package "presentation" as LivestockPres <<Vue components/views>>
+
+    LivestockPres ..> LivestockApp : usa
+    LivestockApp ..> LivestockInfra : usa
+    LivestockApp ..> LivestockDomain : usa
+  }
+
+  package "sanitary" as Sanitary <<mismo patrón>>
+  package "financial" as Financial <<mismo patrón>>
+  package "activities" as Activities <<mismo patrón>>
+  package "analytics" as Analytics <<mismo patrón>>
+  package "devices" as Devices <<mismo patrón>>
+  package "iam" as Iam <<mismo patrón>>
+  package "subscriptions" as Subscriptions <<mismo patrón>>
+
+  package "shared" as Shared {
+    package "infrastructure" as SharedInfra <<cliente HTTP base,\ninterceptores JWT>>
+    package "presentation" as SharedPres <<layout, navegación>>
+  }
+
+  Livestock ..> Shared : usa cliente HTTP base
+  Sanitary ..> Shared
+  Financial ..> Shared
+  Activities ..> Shared
+  Analytics ..> Shared
+  Devices ..> Shared
+  Iam ..> Shared
+  Subscriptions ..> Shared
+}
+
+note bottom
+  Nota: los bounded contexts Clients y Metrics (backend) no tienen módulo
+  frontend propio verificado con este mismo patrón de 4 capas a la fecha
+  de este informe — mismo vacío ya señalado en 4.1.4 para sus diagramas
+  de componentes C4.
+end note
+
+@enduml

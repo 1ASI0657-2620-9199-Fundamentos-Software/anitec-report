@@ -1,0 +1,48 @@
+@startuml sequence-veterinarian-approval
+!theme plain
+title AniTec — Diagrama de Secuencia: Aprobación Veterinario-Ganadero (TO-BE, Iteración 2)
+' Fuente: anitec-report/markdown/content/chapter-4/4-3-2-iteration-2-seguridad-e-identidad.md
+' (sección 4.3.2.6). DISEÑO OBJETIVO — hoy VeterinarianClient nace con
+' Status = "Accepted" automáticamente (sin este flujo), verificado en
+' VeterinarianClientCommandService.cs.
+
+actor Veterinario
+participant "VeterinarianClientsController" as Controller
+participant "VeterinarianClientCommandService" as CmdSvc
+database "veterinarian_clients" as DB
+actor Ganadero
+
+Veterinario -> Controller : POST /{veterinarianId}/clients/{rancherId}
+Controller -> CmdSvc : Handle(CreateVeterinarianClientCommand)
+CmdSvc -> DB : INSERT Status = "Pending"
+DB --> CmdSvc : OK
+CmdSvc --> Controller : Result<VeterinarianClient>
+Controller --> Veterinario : 201 Created (Status: Pending)
+
+... el ganadero revisa sus solicitudes pendientes (US-071) ...
+
+alt Aprobación
+  Ganadero -> Controller : PATCH /{veterinarianId}/clients/{rancherId}/approve
+  Controller -> CmdSvc : Handle(ApproveVeterinarianClientCommand)
+  CmdSvc -> DB : UPDATE Status = "Accepted", AcceptedAt = now
+  DB --> CmdSvc : OK
+  CmdSvc --> Controller : Result
+  Controller --> Ganadero : 200 OK
+  note right of DB
+    A partir de aquí, las consultas del veterinario
+    sobre animales/registros sanitarios de este
+    ganadero dejan de estar vacías (QAS-08 satisfecho).
+  end note
+else Rechazo
+  Ganadero -> Controller : PATCH /{veterinarianId}/clients/{rancherId}/reject
+  Controller -> CmdSvc : Handle(RejectVeterinarianClientCommand)
+  CmdSvc -> DB : UPDATE Status = "Rejected"
+  note right of DB
+    La relación NO se elimina — queda como historial.
+  end note
+  DB --> CmdSvc : OK
+  CmdSvc --> Controller : Result
+  Controller --> Ganadero : 200 OK
+end
+
+@enduml

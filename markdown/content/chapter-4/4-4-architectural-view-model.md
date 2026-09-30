@@ -4,9 +4,13 @@ Esta sección complementa las secciones 4.1–4.3 con el modelo de vistas 4+1 de
 
 ## 4.4.1. Logic View
 
-**Diagrama de clases:** se reutiliza el Class Diagram ya presentado en la sección 4.1.4, con la misma salvedad ya registrada ahí: la imagen no incluye todavía la entidad `Corral` (agregada en el ciclo actual, sección 3 del Product Backlog) ni el campo `ImageUrl`/`Source`/`AgeRange` de `Animal` — la corrección visual queda como pendiente operativo, ya señalado en 4.1.4.
+**Diagrama de clases:** se reutiliza el Class Diagram ya presentado en la sección 4.1.4 — regenerado en PlantUML, ya incluye `Corral` y los campos `ImageUrl`/`Source`/`AgeRange` de `Animal`. No se repite la imagen aquí para no duplicar la misma fuente de verdad.
 
 **Diagrama de estados — ciclo de vida de un Registro Sanitario (propuesto, *to-be*):**
+
+<div align="center">
+  <img src="../../assets/chapter-4/state-healthevent-lifecycle.svg" alt="Diagrama de estados - Ciclo de vida de un Registro Sanitario" width="650">
+</div>
 
 Al preparar esta vista se verificó directamente en el código (`Anitec.Platform/Sanitary/Domain/Model/Entities/HealthEvent.cs`) si existe algún mecanismo de estado para el registro sanitario, dado que el Product Backlog ya compromete US-017 ("Editar un borrador sanitario") y US-018 ("Rectificar o anular un registro sanitario"). El resultado es concluyente: **`HealthEvent` no tiene ningún campo `Status`, ni versión, ni marca de borrador/finalizado** — es un registro plano que se crea una sola vez con `CreateHealthEventCommand` y no expone ninguna transición de estado. La búsqueda de las palabras `Draft`, `Rectif`, `Annul`, `Finaliz` o `Status` en todo el bounded context Sanitary no arrojó ninguna coincidencia.
 
@@ -46,6 +50,10 @@ Anitec.Platform/
 └── Program.cs                         Único punto de composición (DI) de los 12 contextos
 ```
 
+<div align="center">
+  <img src="../../assets/chapter-4/package-development-view-backend.svg" alt="Diagrama de paquetes - Backend" width="700">
+</div>
+
 **Frontend (`anitec-frontend/src`) — mismo principio de aislamiento por contexto, adaptado a Vue 3** (verificado con la estructura real):
 
 ```
@@ -61,23 +69,32 @@ src/
     └── presentation/                  Componentes reutilizables (layout, navegación)
 ```
 
+<div align="center">
+  <img src="../../assets/chapter-4/package-development-view-frontend.svg" alt="Diagrama de paquetes - Frontend" width="700">
+</div>
+
 **Decisión de diseño observada (no prescrita, ya vigente):** el frontend replica deliberadamente la misma partición por bounded context que el backend, en vez de organizarse por tipo técnico (`components/`, `stores/`, `services/` a nivel global) — reduce la distancia conceptual entre ambos repositorios y facilita ubicar el código correspondiente a una historia de usuario en ambos lados con el mismo nombre de carpeta.
 
 ## 4.4.3. Process View
 
 **Estado actual (as-built):** AniTec corre hoy como un **único proceso** ASP.NET Core (Kestrel) sirviendo peticiones HTTP síncronas request/response sobre el *thread pool* estándar de .NET — cada petición HTTP se atiende en su propio hilo administrado por el runtime, sin *workers* en segundo plano, sin colas ni *message broker* (confirmado en 4.1.1.2), y sin tareas programadas (`IHostedService`/`BackgroundService`) registradas en `Program.cs`. Las conexiones a MySQL se gestionan mediante el *connection pooling* propio de EF Core/Pomelo, transparente a nivel de aplicación. En síntesis: **no existen hoy problemas reales de concurrencia, distribución ni sincronización entre procesos** que documentar — sería incorrecto describir mecanismos que el sistema no tiene.
 
-**Estado objetivo (to-be, cross-referenciado con las Iteraciones 3 y 4):** la Process View sí gana complejidad real una vez que el diseño de las Iteraciones 3 y 4 se implemente:
+**Estado objetivo (to-be, cross-referenciado con las Iteraciones 3, 4 y 5):** la Process View sí gana complejidad real una vez que el diseño de las Iteraciones 3, 4 y 5 se implemente:
 
 - **Iteración 3 (4.3.3):** al extraer Subscriptions como servicio independiente detrás de un API Gateway (YARP), el sistema pasa de **un** proceso a **dos** procesos concurrentes (Core API y Subscriptions Service), cada uno con su propio *runtime* y *connection pool* hacia su propia base de datos — la falla de uno ya no bloquea el hilo del otro (QAS-09).
 - **Iteración 4 (4.3.4):** el `SyncWorker` del cliente móvil (Android/WorkManager, diseño *to-be*) introduce un proceso en segundo plano **en el dispositivo**, distinto del proceso del servidor — su concurrencia relevante es local al teléfono (encolar/reintentar sin bloquear la interfaz), no del backend.
-- El Circuit Breaker propuesto en la Iteración 5 (4.3.5, Polly/YARP) mantiene estado de fallo **por instancia de Gateway**, relevante solo una vez que exista más de un proceso downstream al cual enrutar.
+- **Iteración 5 (4.3.5):** `DueDateScanningService`, un `BackgroundService` (`IHostedService`) que corre **dentro del mismo proceso** ASP.NET Core — es el primer *worker* en segundo plano del lado del servidor. A diferencia de los dos puntos anteriores, no introduce un proceso nuevo ni concurrencia distribuida: comparte el *thread pool* del proceso único ya descrito arriba, despertando periódicamente en un hilo administrado por el runtime, igual que cualquier petición HTTP.
+- El Circuit Breaker propuesto en la Iteración 7 (4.3.7, Polly/YARP) mantiene estado de fallo **por instancia de Gateway**, relevante solo una vez que exista más de un proceso downstream al cual enrutar.
 
-Ninguno de estos tres puntos está implementado a la fecha de este informe; se documentan aquí como la evolución esperada de la Process View, consistente con lo ya diseñado en 4.3.3–4.3.5.
+Ninguno de estos puntos está implementado a la fecha de este informe; se documentan aquí como la evolución esperada de la Process View, consistente con lo ya diseñado en 4.3.3–4.3.5 y 4.3.7.
 
 ## 4.4.4. Physical View
 
-Diagrama de despliegue (notación textual), verificado contra la configuración real del repositorio:
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/19-Deployment-Production.svg" alt="Diagrama de Despliegue - Physical View" width="750">
+</div>
+
+Diagrama regenerado en Structurizr DSL, verificado contra la configuración real del repositorio (equivalente en notación textual, para lectura rápida):
 
 ```
 ┌─────────────────────────────┐        HTTPS/JSON        ┌──────────────────────────────┐

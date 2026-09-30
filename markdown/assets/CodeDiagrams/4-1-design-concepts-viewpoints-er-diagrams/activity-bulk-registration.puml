@@ -1,0 +1,45 @@
+@startuml activity-bulk-registration
+!theme plain
+title AniTec — Diagrama de Actividad: Registro de animales (individual vs. por lote)
+' Fuente: anitec-report/markdown/content/chapter-4/4-1-design-concepts-viewpoints-er-diagrams.md
+' (sección 4.1.4). Flujo real implementado en animal-form.vue / AnimalsController.
+
+start
+:Ganadero abre "Registrar animal";
+
+switch (Modo de registro?)
+case ( Individual )
+  :Completar código, nombre, tipo, raza, sexo,
+  fecha de nacimiento, peso, estado, hato, corral,
+  procedencia/rango de edad (opcionales) y foto (opcional);
+case ( Por lote )
+  :Completar hato, corral, especie, raza, sexo,
+  estado, cantidad (1-500), procedencia/rango de
+  edad (opcionales) y foto del corral (opcional);
+endswitch
+
+repeat
+  :Enviar formulario;
+  :Servidor valida
+  (ValidateAnimalResource / validación manual en CreateBatch);
+  note right
+    ¿Hato y corral presentes?
+    ¿Campos requeridos completos?
+    ¿Peso >= 0?
+    ¿Cantidad entre 1 y 500? (solo modo lote)
+  end note
+repeat while (¿Válido?) is (No — mostrar errores por campo) not (Sí)
+
+if (Modo?) then ( Individual )
+  :Crear **un** registro Animal;
+else ( Por lote )
+  :Crear **N** registros Animal
+  (uno por unidad, etiqueta secuencial
+  derivada del corral: Corral1-001, Corral1-002, ...);
+endif
+
+:Redirigir al listado de animales;
+:Nuevos registros aparecen asociados a su corral;
+
+stop
+@enduml

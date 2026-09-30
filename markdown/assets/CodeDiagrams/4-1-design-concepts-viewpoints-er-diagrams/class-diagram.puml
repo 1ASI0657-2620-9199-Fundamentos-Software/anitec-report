@@ -1,0 +1,236 @@
+@startuml class-diagram
+!theme plain
+title AniTec — Diagrama de Clases (dominio, as-built)
+' Fuente: anitec-report/markdown/content/chapter-4/4-1-design-concepts-viewpoints-er-diagrams.md
+' (secciones 4.1.4 y 4.1.5), verificado contra el esquema real (AppDbContextModelSnapshot.cs).
+' Corrige el diagrama de clases anterior del equipo: agrega Corral, los campos
+' nuevos de Animal (corralId, imageUrl, source, ageRange) y deja explícito que
+' las referencias entre bounded contexts son por ID lógico, no por asociación
+' de objeto real (principio 4.1.1.1 — aislamiento por bounded context).
+
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 2
+skinparam packageStyle rectangle
+
+package "Iam" {
+  class User {
+    +Id: int
+    +Username: string
+    +FullName: string
+    +Role: string
+    -PasswordHash: string
+    +CreatedAt: DateTime
+    +UpdatedAt: DateTime
+  }
+}
+
+package "Profiles" {
+  class Profile {
+    +Id: int
+    +FirstName: string
+    +LastName: string
+    +EmailAddress: string
+    +AddressStreet: string
+    +AddressNumber: string
+    +AddressCity: string
+    +AddressPostalCode: string
+    +AddressCountry: string
+    +CreatedAt: DateTime
+    +UpdatedAt: DateTime
+  }
+}
+
+package "Livestock" {
+  class Herd {
+    +Id: int
+    +Name: string
+    +Location: string
+    +Owner: string
+    +OwnerId: int
+    +VeterinarianId: int?
+    +MainType: string
+  }
+
+  class Corral {
+    +Id: int
+    +Name: string
+    +HerdId: int
+  }
+
+  class Animal {
+    +Id: int
+    +Tag: string
+    +Name: string
+    +Species: string
+    +Breed: string
+    +Gender: string
+    +BirthDate: DateTime?
+    +Weight: decimal
+    +Status: string
+    +HerdId: int
+    +CorralId: int?
+    +Source: string
+    +AgeRange: string
+    +ImageUrl: string
+  }
+
+  ' Agregación (diamante hueco), no composición: herd_id es RESTRICT en ambos
+  ' casos, no CASCADE — el hato no "gestiona el ciclo de vida" del corral/animal
+  ' a nivel de base de datos, aunque sí exista una relación todo-parte lógica.
+  Herd "1" o-- "0..*" Corral : contiene (herd_id, Restrict)
+  Herd "1" o-- "0..*" Animal : contiene (herd_id, Restrict)
+  Corral "0..1" -- "0..*" Animal : agrupa (opcional)
+}
+
+package "Sanitary" {
+  class HealthEvent {
+    +Id: int
+    +AnimalId: int
+    +Type: string
+    +Date: DateTime
+    +Description: string
+    +Veterinarian: string
+    +Diagnosis: string
+    +Treatment: string
+    +Prescription: string
+    +FollowUp: string
+    +NextDueDate: DateTime?
+    .. to-be (4.4.1, US-017/US-018) ..
+    +Status: string
+    +RectifiesEventId: int?
+    +RectificationReason: string
+  }
+}
+
+package "Financial" {
+  class FinancialRecord {
+    +Id: int
+    +OwnerId: int
+    +Type: string
+    +Category: string
+    +Amount: decimal
+    +Date: DateTime
+    +Description: string
+  }
+}
+
+package "Activities" {
+  class FarmActivity {
+    +Id: int
+    +OwnerId: int?
+    +VeterinarianId: int?
+    +Title: string
+    +Type: string
+    +Date: DateTime
+    +Priority: string
+    +Status: string
+  }
+}
+
+package "Analytics" {
+  class ReportMetric {
+    +Id: int
+    +Label: string
+    +Value: string
+    +Trend: string
+  }
+}
+
+package "Devices" {
+  class Device {
+    +Id: int
+    +Name: string
+    +Type: string
+    +SerialNumber: string
+    +Status: string
+    +HerdId: int?
+    +AnimalId: int?
+  }
+}
+
+package "Metrics" {
+  class DeviceMetric {
+    +Id: int
+    +DeviceId: int
+    +Type: string
+    +Value: decimal
+    +Unit: string
+    +RecordedAt: DateTime
+  }
+}
+
+package "Subscriptions" {
+  class SubscriptionPlan {
+    +Id: int
+    +Name: string
+    +Price: decimal
+    +StripePriceId: string
+    +MaxAnimals: int
+    +IsActive: bool
+  }
+
+  class Subscription {
+    +Id: int
+    +UserId: int
+    +PlanId: int
+    +StripeCustomerId: string
+    +StripeSubscriptionId: string
+    +Status: string
+    +StartedAt: DateTime
+    +EndsAt: DateTime?
+  }
+
+  class Payment {
+    +Id: int
+    +UserId: int
+    +SubscriptionId: int
+    +Amount: decimal
+    +Currency: string
+    +Provider: string
+    +ProviderPaymentId: string
+    +Status: string
+    +PaidAt: DateTime
+  }
+
+  SubscriptionPlan "1" -- "0..*" Subscription : plan_id (Restrict)
+  ' Composición (diamante relleno): subscription_id es CASCADE — un Payment
+  ' no tiene sentido ni persiste sin su Subscription (ciclo de vida gestionado).
+  Subscription "1" *-- "0..*" Payment : subscription_id (Cascade)
+}
+
+package "Clients" {
+  class VeterinarianClient {
+    +Id: int
+    +VeterinarianId: int
+    +RancherId: int
+    +Status: string
+    +RequestedAt: DateTime
+    +AcceptedAt: DateTime?
+  }
+}
+
+' -- Relaciones FK reales (línea sólida) --
+' (Animal-Herd ya está representada arriba como agregación — no se repite aquí)
+Device "0..*" --> "0..1" Herd : herd_id (SetNull)
+Device "0..*" --> "0..1" Animal : animal_id (SetNull)
+DeviceMetric "0..*" --> "1" Device : device_id
+
+' -- Referencias lógicas entre bounded contexts (línea punteada, SIN FK real) --
+Herd .right.> User : owner_id / veterinarian_id\n(lógica, sin FK)
+FinancialRecord .> User : owner_id (lógica, sin FK)
+FarmActivity .> User : owner_id / veterinarian_id (lógica, sin FK)
+Subscription .> User : user_id (lógica, sin FK)
+Payment .> User : user_id (lógica, sin FK)
+VeterinarianClient .> User : veterinarian_id / rancher_id (lógica, sin FK)
+' Composición (diamante relleno): animal_id es CASCADE — un HealthEvent
+' no persiste sin su Animal (ciclo de vida gestionado por el animal).
+Animal "1" *-- "0..*" HealthEvent : historial clínico (animal_id, Cascade)
+
+note bottom of HealthEvent
+  Verificado en Anitec.Platform/Sanitary/Domain/Model/Entities/HealthEvent.cs:
+  HOY NO existe el campo Status ni el mecanismo de rectificación —
+  los atributos marcados "to-be" son el diseño objetivo de la sección 4.4.1,
+  no el estado real del código a la fecha de este informe.
+end note
+
+@enduml

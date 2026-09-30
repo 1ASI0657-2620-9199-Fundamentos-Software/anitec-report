@@ -25,67 +25,98 @@ Estos son los principios generales que se observan de forma consistente en el c�
 ## 4.1.3. Context Diagram
 
 <div align="center">
-  <img src="../../assets/chapter-4/DiagramaContextoAnitec.png" alt="Diagrama de Contexto C4 - AniTec" width="600">
+  <img src="../../assets/chapter-4/c4diagrams/01-SystemContext.svg" alt="Diagrama de Contexto C4 - AniTec" width="750">
 </div>
 
-El diagrama de contexto muestra a AniTec como un único sistema de software con dos tipos de usuario humano y dos sistemas externos:
+*Diagrama regenerado en Structurizr DSL (`CodeDiagrams/workspace.dsl`), verificado y sin errores de inspección — reemplaza la versión previa en PNG.*
+
+El diagrama de contexto muestra a AniTec como un único sistema de software con dos tipos de usuario humano y tres sistemas externos (uno de ellos, to-be):
 
 - **Ganadero (Rancher)** — usuario principal, gestiona su operación (hatos, corrales, animales, finanzas) a través de la plataforma.
 - **Veterinario (Veterinarian)** — emite diagnósticos, prescribe tratamientos y valida historiales clínicos del ganado de sus clientes.
 - **Stripe** *(sistema externo, confirmado real)* — pasarela de pagos utilizada para gestionar suscripciones en modo de prueba (`Stripe.net`, `SessionService` real dentro de `SubscriptionsController`).
-- **Resend** *(sistema externo, aún no implementado)* — el diagrama documenta un sistema de mensajería de correo planeado para notificaciones; a la fecha de este informe **no existe ninguna integración real con Resend en el backend** (se verificó que no hay referencia alguna al SDK ni a llamadas HTTP hacia Resend en el código). Se conserva en el diagrama como parte del diseño objetivo, pero debe leerse como *pendiente de implementación*, no como una integración vigente.
+- **Resend** *(sistema externo, aún no implementado)* — el diagrama documenta un sistema de mensajería de correo planeado para notificaciones; a la fecha de este informe **no existe ninguna integración real con Resend en el backend** (se verificó que no hay referencia alguna al SDK ni a llamadas HTTP hacia Resend en el código). Se conserva en el diagrama como parte del diseño objetivo (diseñado en la Iteración 5, 4.3.5), pero debe leerse como *pendiente de implementación*, no como una integración vigente.
+- **Dispositivo IoT** *(sistema externo, to-be)* — collar GPS, sensor de corral u otro dispositivo de campo. Se agrega al diagrama de contexto como parte del diseño de la Iteración 6 (4.3.6); no existe ningún mecanismo de ingesta real a la fecha de este informe.
 
 ## 4.1.4. Approach Driven ViewPoints Diagrams
 
 ### Diagrama de Contenedores (C4)
 
 <div align="center">
-  <img src="../../assets/chapter-4/DiagramaContenedoresAnitec.png" alt="Diagrama de Contenedores C4 - AniTec" width="700">
+  <img src="../../assets/chapter-4/c4diagrams/02-Containers-AsBuilt.svg" alt="Diagrama de Contenedores C4 - AniTec (as-built)" width="750">
 </div>
 
-Este diagrama es válido en su estructura (Landing Page, Web Application que sirve el SPA, Single Page Application en Vue.js + Vite, API Application, y una base de datos), pero conserva dos imprecisiones heredadas de una versión de diseño anterior que deben leerse corregidas:
-
-| En la imagen | Valor real |
-|---|---|
-| `Database [Container: SQL Server]` | El motor real es **MySQL** (`Pomelo.EntityFrameworkCore.MySql`), no SQL Server. |
-| Relaciones marcadas como `[technology]` sin completar | SPA → API: **JSON/HTTPS**. API → Base de datos: **Entity Framework Core / MySQL**. Usuarios → Landing/Web App: **HTTPS**. |
-
-La corrección visual de la imagen (regenerarla en Visual Paradigm con el motor y las tecnologías correctas) queda como pendiente operativo del equipo; este informe dejará constancia explícita en vez de presentar el diagrama como si ya estuviera corregido.
+Diagrama regenerado en Structurizr DSL — corrige las dos imprecisiones que tenía la versión anterior (el motor real es **MySQL**, no SQL Server, vía `Pomelo.EntityFrameworkCore.MySql`; y las relaciones ya tienen su tecnología completa: SPA → API Application en **JSON/HTTPS**, API Application → Base de datos en **Entity Framework Core / MySQL**, Usuarios → Landing/Web App en **HTTPS**). Muestra el sistema **real, hoy**: Landing Page, Web Application que sirve el SPA, Single Page Application en Vue 3 + Vite, API Application y la base de datos — excluye el API Gateway, el Subscriptions Service y la Mobile App, que son diseño *to-be* de las Iteraciones 3 y 4 (secciones 4.3.3 y 4.3.4, con sus propios diagramas de contenedores extendidos).
 
 ### Diagramas de Componentes (C4) por Bounded Context
 
-Se reutilizan los 11 diagramas de componentes ya elaborados por el equipo, uno por bounded context expuesto en la API Application:
+Regenerados en Structurizr DSL a partir del inventario real de clases del backend (verificado directamente contra `Program.cs` y cada carpeta `Interfaces/Rest`) — cierran el vacío que tenía la versión anterior del equipo, que no cubría **Clients** ni **Metrics**. Los 12 bounded contexts expuestos en la API Application quedan documentados, cada uno con su borde de entrada (SPA) y salida (Database) reales:
 
 <div align="center">
-  <img src="../../assets/chapter-4/ApiApplicationComponents.png" alt="API Application - vista general de componentes" width="650">
+  <img src="../../assets/chapter-4/c4diagrams/05-Components-Iam.svg" alt="Diagrama de Componentes - Iam" width="700">
 </div>
 
-| Bounded Context | Diagrama |
-|---|---|
-| IAM | `IamComponents.png` |
-| Profiles | `ProfilesComponents.png` |
-| Livestock | `LivestockComponents.png` |
-| Sanitary | `SanitaryComponents.png` |
-| Activities | `ActivitiesComponents.png` |
-| Financial | `FinancialComponents.png` |
-| Analytics | `AnalyticsComponents.png` |
-| Devices | `DevicesComponents.png` |
-| Subscriptions | `SubscriptionsComponents.png` |
-| Shared | `SharedComponents.png` |
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/06-Components-Profiles.svg" alt="Diagrama de Componentes - Profiles" width="700">
+</div>
 
-**Vacío identificado:** el backend real tiene **12** bounded contexts (se confirmó la existencia de `Clients` y `Metrics` además de los diez anteriores), pero no existen diagramas de componentes para **Clients** (relación veterinario-ganadero, tabla `veterinarian_clients`) ni para **Metrics** (`device_metrics`). Se documenta como pendiente en vez de improvisar un diagrama no verificado; ambos contextos siguen exactamente el mismo patrón de capas que los diez ya diagramados (un `I<Contexto>Repository`, un `I<Contexto>CommandService`, un `I<Contexto>QueryService`, como confirma `Program.cs`).
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/07-Components-Livestock.svg" alt="Diagrama de Componentes - Livestock" width="700">
+</div>
+
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/08-Components-Sanitary.svg" alt="Diagrama de Componentes - Sanitary" width="700">
+</div>
+
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/09-Components-Financial.svg" alt="Diagrama de Componentes - Financial" width="700">
+</div>
+
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/10-Components-Activities.svg" alt="Diagrama de Componentes - Activities" width="700">
+</div>
+
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/11-Components-Analytics.svg" alt="Diagrama de Componentes - Analytics" width="700">
+</div>
+
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/12-Components-Devices.svg" alt="Diagrama de Componentes - Devices" width="700">
+</div>
+
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/13-Components-Metrics.svg" alt="Diagrama de Componentes - Metrics" width="700">
+</div>
+
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/14-Components-Subscriptions.svg" alt="Diagrama de Componentes - Subscriptions" width="700">
+</div>
+
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/15-Components-Clients.svg" alt="Diagrama de Componentes - Clients" width="700">
+</div>
+
+<div align="center">
+  <img src="../../assets/chapter-4/c4diagrams/16-Components-Shared.svg" alt="Diagrama de Componentes - Shared" width="700">
+</div>
+
+El de **Shared** ya incluye `AuditLogger`, diseñado en la Iteración 7 (4.3.7) — la infraestructura transversal (persistencia, auditoría, manejo de errores) se documenta en un solo lugar en vez de repetirse en cada iteración que la usa.
 
 ### Diagrama de clases (UML)
 
 <div align="center">
-  <img src="../../assets/chapter-4/Diagrama-Clases-Anitec.png" alt="Diagrama de clases AniTec" width="750">
+  <img src="../../assets/chapter-4/class-diagram.svg" alt="Diagrama de clases AniTec" width="750">
 </div>
 
-El diagrama refleja correctamente el modelo de estado del frontend (`Herd`, `Animal`, stores de Pinia) tal como existía antes de este ciclo de trabajo. **Queda desactualizado en un punto:** no incluye la clase `Corral` ni los atributos agregados a `Animal` este ciclo (`corralId`, `imageUrl`, `source`, `ageRange`), ni los métodos de registro por lote/acciones masivas del `LivestockStore` (`addAnimalsBulk`, `updateAnimalsStatusBulk`, `deleteAnimalsBulk`, `uploadAnimalImage`). Se deja constancia del vacío en vez de dibujar una versión no verificada; la actualización de este diagrama es un pendiente operativo del equipo.
+Diagrama regenerado en PlantUML a partir del esquema real (verificado contra `AppDbContextModelSnapshot.cs`) — cierra el vacío que tenía la versión anterior: incluye `Corral` y los atributos agregados a `Animal` este ciclo (`corralId`, `imageUrl`, `source`, `ageRange`). Las 14 entidades de dominio quedan agrupadas por bounded context, con sus 9 relaciones FK reales (diferenciadas entre agregación y composición según el comportamiento real de `ON DELETE` en MySQL) y sus 6 referencias lógicas hacia `User` en línea punteada, sin FK real, consistente con el principio de aislamiento por bounded context (4.1.1.1). Los 3 campos de `HealthEvent` marcados como *to-be* (`Status`, `RectifiesEventId`, `RectificationReason`) corresponden al diseño objetivo de la sección 4.4.1 — verificado en el código que no existen hoy.
 
 ### Diagrama de actividad — Registro de animales (individual vs. por lote)
 
-No se cuenta con acceso a la herramienta de diagramación del equipo (Visual Paradigm) dentro de este entorno de trabajo, por lo que el siguiente flujo se documenta en notación textual estructurada en vez de fabricar una imagen no verificada. Representa el flujo real implementado en `animal-form.vue` / `AnimalsController`:
+<div align="center">
+  <img src="../../assets/chapter-4/activity-bulk-registration.svg" alt="Diagrama de actividad - Registro de animales" width="650">
+</div>
+
+Diagrama regenerado en PlantUML. Representa el flujo real implementado en `animal-form.vue` / `AnimalsController`:
 
 1. **Inicio** — el ganadero abre "Registrar animal".
 2. **Decisión — Modo de registro**: ¿Individual o "Varios (corral)"?
@@ -101,7 +132,11 @@ No se cuenta con acceso a la herramienta de diagramación del equipo (Visual Par
 
 AniTec usa una única base de datos relacional **MySQL**, con un `DbContext` compartido por todos los bounded contexts (sin *schemas* separados). Los nombres de tabla/columna/constraint se derivan automáticamente del modelo C# vía convención *snake_case* (`p_k_<tabla>`, `f_k_<tabla>__<referencia>`, `i_x_<tabla>_<columna>`).
 
-**Nota sobre el diagrama previo:** el equipo cuenta con un boceto ER inicial (`DiagramaBaseDeDatosAnitec.png`), elaborado en una etapa temprana del diseño. Se conserva como referencia histórica, pero **no representa el esquema real implementado**: entre otras diferencias, modela `species`/`breed` como tablas normalizadas (`animal_species`, `animal_breeds`) cuando en realidad son columnas de texto simples en `animals`; nombra `farms` a lo que en el código es `herds`; y no incluye la tabla `corrals` ni las columnas agregadas a `animals` este ciclo. Por esa razón, esta sección presenta el **esquema real vigente** como diccionario de tablas — la fuente de verdad para el diseño relacional — en vez de apoyarse en esa imagen.
+<div align="center">
+  <img src="../../assets/chapter-4/anitec-schema.png" alt="Diagrama Entidad-Relación - Esquema real de AniTec" width="800">
+</div>
+
+Diagrama ER regenerado a partir del esquema SQL real (`CodeDiagrams/4-1-design-concepts-viewpoints-er-diagrams/anitec-schema.sql`, extraído de `AppDbContextModelSnapshot.cs`) — reemplaza el boceto inicial del equipo, que no representaba el esquema real implementado (modelaba `species`/`breed` como tablas normalizadas cuando son columnas de texto simples; nombraba `farms` a lo que en el código es `herds`; no incluía `corrals` ni las columnas agregadas a `animals` este ciclo). Nota de lectura: las líneas que conectan `users` con otras tablas (`herds`, `financial_records`, `farm_activities`, `veterinarian_clients`, `subscriptions`, `payments`) son inferencia de la herramienta de diagramación por nombre de columna, no *foreign keys* reales — ninguna de esas columnas tiene un `CONSTRAINT` en el SQL, consistente con el principio de aislamiento por bounded context (4.1.1.1).
 
 <details>
 <summary>Boceto ER inicial (histórico, no vigente)</summary>

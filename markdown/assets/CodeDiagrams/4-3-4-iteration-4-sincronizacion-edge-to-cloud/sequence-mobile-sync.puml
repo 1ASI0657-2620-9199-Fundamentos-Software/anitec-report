@@ -1,0 +1,59 @@
+@startuml sequence-mobile-sync
+!theme plain
+title AniTec — Diagrama de Secuencia: Sincronización Offline (TO-BE, Iteración 4)
+' Fuente: anitec-report/markdown/content/chapter-4/4-3-4-iteration-4-sincronizacion-edge-to-cloud.md
+' (sección 4.3.4.6). DISEÑO OBJETIVO — no existe código de app móvil ni de
+' este endpoint a la fecha de este informe (EP-014, QAS-01/BG-04).
+
+actor "Usuario de campo" as Field
+participant "Room (local, sin conexión)" as Room
+participant "SyncWorker" as Worker
+participant "API Gateway" as Gateway
+participant "SyncController" as SyncCtrl
+participant "Command Service\n(Livestock / Sanitary)" as CmdSvc
+database "processed_sync_operations" as ProcDB
+database "Animal / HealthEvent" as EntityDB
+
+Field -> Room : Registrar evento sanitario sin conexión
+Room -> Room : INSERT OutboxOperation\n(OperationId = UUID nuevo, Status = Pendiente)
+
+... vuelve la conectividad ...
+
+Worker -> Room : Leer operaciones Pendiente
+Worker -> Gateway : POST /api/v1/sync/batch\n(lote de operaciones)
+Gateway -> SyncCtrl : enrutar
+
+loop por cada operación del lote
+  SyncCtrl -> ProcDB : ¿OperationId ya procesado?
+
+  alt Ya procesado
+    ProcDB --> SyncCtrl : Sí
+    SyncCtrl --> Worker : "ya sincronizado" (sin duplicar)
+  else No procesado
+    ProcDB --> SyncCtrl : No
+    SyncCtrl -> EntityDB : ¿UpdatedAt coincide con el que\nel cliente conoce?
+
+    alt UpdatedAt desalineado
+      EntityDB --> SyncCtrl : No coincide
+      SyncCtrl --> Worker : 409 Conflict\n(ambas versiones, sin aplicar cambio)
+      Worker -> Room : UPDATE Status = Conflicto
+    else UpdatedAt coincide
+      EntityDB --> SyncCtrl : Coincide
+      SyncCtrl -> CmdSvc : Handle(comando existente correspondiente)
+      CmdSvc -> EntityDB : aplicar cambio
+      SyncCtrl -> ProcDB : INSERT OperationId (registrar como procesado)
+      SyncCtrl --> Worker : 200 OK
+      Worker -> Room : UPDATE Status = Sincronizado
+    end
+  end
+end
+
+note over Room
+  Riesgo aceptado y documentado (4.3.4.6):
+  una operación que nunca superó "Pendiente"
+  (dispositivo perdido/dañado antes de sincronizar)
+  se pierde — limitación inherente de offline-first
+  sin respaldo local redundante.
+end note
+
+@enduml
