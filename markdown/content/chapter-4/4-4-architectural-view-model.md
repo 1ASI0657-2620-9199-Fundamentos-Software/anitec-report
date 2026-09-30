@@ -156,6 +156,21 @@ Diagrama regenerado en Structurizr DSL, verificado contra la configuración real
 
 El cambio físico relevante frente al estado actual: de **un** proceso desplegado y **una** base de datos, se pasa a **tres** procesos desplegados de forma independiente (Gateway, Core API, Subscriptions Service) y **dos** bases de datos MySQL separadas — consistente con lo ya establecido en la Process View (4.4.3) para esta misma iteración. Ninguno de estos elementos está implementado a la fecha de este informe.
 
+**Estado objetivo (to-be, cross-referenciado con la Iteración 6):** a diferencia de la Iteración 3, la Iteración 6 (4.3.6) no agrega una unidad de despliegue nueva — el canal de ingesta de telemetría vive dentro del mismo Core API. Lo que sí cambia es el **conjunto de terminadores físicos** de la vista: hoy el único terminador es el navegador del cliente (Ganadero/Veterinario); con el diseño de la Iteración 6 se suma un segundo tipo de terminador, de naturaleza distinta:
+
+```
+┌─────────────────────────────┐        HTTPS/JSON        ┌──────────────────────────────┐
+│  Cliente (navegador)         │ ────────────────────────▶│                               │
+└─────────────────────────────┘                           │   Render (contenedor Docker)  │
+                                                            │   Core API / API Gateway      │
+┌─────────────────────────────┐   HTTPS/JSON +            │                               │
+│  Dispositivo IoT              │   X-Device-Api-Key        │                               │
+│  (collar GPS, sensor de corral)│ ─────────────────────────▶│                               │
+└─────────────────────────────┘                           └──────────────────────────────┘
+```
+
+El dispositivo IoT no pasa por GitHub Pages ni por el SPA — se conecta directamente al backend, autenticado por API key en vez de sesión de usuario (4.3.6.5). Es un terminador físico en el sentido literal que usa el statement para esta vista (*"objetos físicos integrados... que interactúan e intercambian información"*): un sensor de campo con conectividad intermitente, no un cliente interactivo. Ningún dispositivo real está desplegado a la fecha de este informe — el diseño es *to-be*, igual que el resto de esta vista.
+
 ## 4.4.5. Scenarios View
 
 **Nota de alcance:** el modelo original de Kruchten (*"The 4+1 View Model of Architecture"*, 1995) define el "+1" como la vista de **Escenarios** — un conjunto pequeño de casos de uso, representados como diagramas de secuencia, que sirven para identificar elementos arquitectónicos y para **validar que las otras cuatro vistas son consistentes entre sí**. Un diagrama de base de datos nunca formó parte del modelo 4+1; el modelo de datos de AniTec ya está documentado en la sección 4.1.5 y no se repite aquí.
