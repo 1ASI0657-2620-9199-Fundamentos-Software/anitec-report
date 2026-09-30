@@ -1,6 +1,6 @@
 # 4.4. Architectural View Model (4+1)
 
-Esta sección complementa las secciones 4.1–4.3 con el modelo de vistas 4+1 de Kruchten, organizando el mismo sistema ya documentado desde cuatro perspectivas adicionales (lógica, de desarrollo, de proceso y física), más una referencia cruzada al modelo de datos. No se repiten diagramas ya presentados — cada vista que reutiliza contenido de 4.1 o 4.3 lo referencia explícitamente en vez de duplicarlo.
+Esta sección complementa las secciones 4.1–4.3 con el modelo de vistas 4+1 de Kruchten (Kruchten, 1995), organizando el mismo sistema ya documentado desde cuatro perspectivas adicionales (lógica, de desarrollo, de proceso y física), más la quinta vista — Escenarios — que amarra a las otras cuatro. El modelo de datos ya está cubierto en la sección 4.1.5 y no forma parte del 4+1 propiamente dicho (ver nota en 4.4.5). No se repiten diagramas ya presentados — cada vista que reutiliza contenido de 4.1 o 4.3 lo referencia explícitamente en vez de duplicarlo.
 
 ## 4.4.1. Logic View
 
@@ -156,6 +156,34 @@ Diagrama regenerado en Structurizr DSL, verificado contra la configuración real
 
 El cambio físico relevante frente al estado actual: de **un** proceso desplegado y **una** base de datos, se pasa a **tres** procesos desplegados de forma independiente (Gateway, Core API, Subscriptions Service) y **dos** bases de datos MySQL separadas — consistente con lo ya establecido en la Process View (4.4.3) para esta misma iteración. Ninguno de estos elementos está implementado a la fecha de este informe.
 
-## 4.4.5. Database Diagram
+## 4.4.5. Scenarios View
 
-Ya cubierto en la sección 4.1.5 (Relational Database Diagram) con el diccionario completo de las 14 tablas reales extraídas de `AppDbContextModelSnapshot.cs`, agrupadas por los 12 bounded contexts, más la tabla de relaciones por llave foránea. Esta vista no lo repite — remite directamente a esa sección para evitar mantener dos fuentes de verdad sobre el mismo modelo de datos.
+**Nota de alcance:** el modelo original de Kruchten (*"The 4+1 View Model of Architecture"*, 1995) define el "+1" como la vista de **Escenarios** — un conjunto pequeño de casos de uso, representados como diagramas de secuencia, que sirven para identificar elementos arquitectónicos y para **validar que las otras cuatro vistas son consistentes entre sí**. Un diagrama de base de datos nunca formó parte del modelo 4+1; el modelo de datos de AniTec ya está documentado en la sección 4.1.5 y no se repite aquí.
+
+Dos escenarios, ya diseñados en las iteraciones ADD y con su diagrama de secuencia propio, cumplen este rol de vista de validación cruzada:
+
+**Escenario 1 — Aprobación veterinario-ganadero (Iteración 2, sección 4.3.2.6, QAS-08):**
+
+<div align="center">
+  <img src="../../assets/chapter-4/sequence-veterinarian-approval.svg" alt="Diagrama de secuencia - Aprobación veterinario-ganadero" width="650">
+</div>
+
+Este escenario recorre y valida las cuatro vistas a la vez:
+- **Logic View (4.4.1):** ejercita las transiciones de estado de `VeterinarianClient` (`Pending → Accepted/Rejected`) que sustentan la regla de confidencialidad QAS-08.
+- **Development View (4.4.2):** cruza la frontera entre los paquetes de Livestock, Sanitary y Clients a través de `IVeterinarianClientQueryService` — confirma que la partición por bounded context documentada en 4.4.2 es real y no solo declarativa.
+- **Process View (4.4.3):** se ejecuta íntegramente como peticiones HTTP síncronas dentro del único proceso *as-built* — consistente con lo descrito en 4.4.3.
+- **Physical View (4.4.4):** todo el flujo ocurre dentro de un mismo contenedor Render, sin salto de red adicional — consistente con el despliegue *as-built* de 4.4.4.
+
+**Escenario 2 — Sincronización offline-first (Iteración 4, sección 4.3.4, US-069):**
+
+<div align="center">
+  <img src="../../assets/chapter-4/sequence-mobile-sync.svg" alt="Diagrama de secuencia - Sincronización offline" width="700">
+</div>
+
+Este segundo escenario valida específicamente el estado **to-be** de las otras vistas, no el as-built:
+- **Logic View:** ejercita la lógica de idempotencia por `OperationId` y de detección de conflictos por `UpdatedAt`, reglas que no tienen equivalente en el flujo síncrono del Escenario 1.
+- **Development View:** involucra una unidad de despliegue nueva (AniTec Mobile App, Kotlin/Android) que no existe en el repositorio actual — el escenario es la evidencia de que ese componente fue considerado end-to-end, no solo nombrado en el diagrama de contenedores.
+- **Process View:** es la caminata concreta del `SyncWorker` en segundo plano descrito en 4.4.3 — el escenario demuestra que ese proceso *to-be* efectivamente resuelve el caso de uso que lo motiva, no solo que "existe" en el diagrama.
+- **Physical View:** recorre la ruta física completa, de un dispositivo móvil (fuera del diagrama de despliegue actual) hasta el contenedor Render — es el escenario que justificaría, en una futura iteración de esta vista, agregar el dispositivo móvil como nuevo nodo físico.
+
+Ningún escenario adicional se incluye por ahora — el modelo de Kruchten pide "un conjunto pequeño", no uno exhaustivo, y estos dos ya cubren el caso síncrono *as-built* más representativo y el caso asíncrono *to-be* más complejo del sistema.
