@@ -105,11 +105,11 @@ Diagrama regenerado en Structurizr DSL — el bounded context `Notifications` es
 
 | Backlog Item | Estado |
 |---|---|
-| 1. Modelo de datos de `Alert` | ✅ Diseño completo (to-be) |
-| 2. Scheduler de detección de vencimientos | ✅ Diseño completo (to-be) |
-| 3. Endpoints confirmar/posponer/cerrar | ✅ Diseño completo (to-be) |
-| 4. Integración real con Resend | ✅ Diseño completo (to-be) |
-| 5. Documentar el primer *background worker* del sistema | ✅ Done |
+| 1. Modelo de datos de `Alert` | Diseño completo (to-be) |
+| 2. Scheduler de detección de vencimientos | Diseño completo (to-be) |
+| 3. Endpoints confirmar/posponer/cerrar | Diseño completo (to-be) |
+| 4. Integración real con Resend | Diseño completo (to-be) |
+| 5. Documentar el primer *background worker* del sistema | Done |
 
 **Revisión de la meta:** cumplida a nivel de diseño — QAS-03 y la preocupación #7 comparten ahora una solución concreta y trazable a un bounded context, una entidad y un flujo de detección específicos, en vez de permanecer como una preocupación documentada sin dueño. Se reitera: **no existe código de `Notifications`, del scheduler ni de la integración con Resend a la fecha de este informe** — es un diseño para implementación futura, igual que el resto del capítulo.
 

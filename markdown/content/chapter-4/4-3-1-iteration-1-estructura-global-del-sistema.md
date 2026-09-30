@@ -69,25 +69,25 @@ Confirmado contra el diccionario de tablas (4.1.5) y el código real: `Corral` y
 
 ## 4.3.1.6. Sketch Views (C4 & UML) and Record Design Decisions
 
-Se reutiliza el Diagrama de Contenedores de la sección 4.1.4 sin cambios (esta iteración no modifica contenedores, solo confirma componentes). Como parte de esta iteración se registra la asignación de responsabilidades de Clients y Metrics en las tablas de 4.3.1.5 — sustituyendo, en notación textual, al diagrama de componentes C4 que el equipo aún no ha redibujado en Visual Paradigm para estos dos contextos.
+Se reutiliza el Diagrama de Contenedores de la sección 4.1.4 sin cambios (esta iteración no modifica contenedores, solo confirma componentes). La asignación de responsabilidades de Clients y Metrics, registrada en las tablas de 4.3.1.5, ya tiene su contraparte gráfica: los diagramas de componentes `15-Components-Clients.svg` y `13-Components-Metrics.svg` (regenerados en Structurizr DSL, sección 4.1.4) — el vacío que motivó esta iteración queda cerrado tanto en contenido como en diagrama.
 
 **Decisiones de diseño registradas:**
 
 1. Se **mantiene el monolito modular** como estilo arquitectónico para esta etapa del proyecto — no se extraen servicios en esta iteración; esa decisión se evalúa explícitamente en la Iteración 3 (sección 4.3.3), con sus propios drivers y trade-offs.
 2. Clients y Metrics **adoptan sin variación** el patrón de 4 capas + Repository/CQRS/Assembler/Result — no se introduce una excepción por ser contextos pequeños.
-3. La deuda de documentación de componentes para Clients y Metrics se considera **cerrada a nivel de contenido** (tablas de responsabilidades e interfaces en 4.3.1.5); la producción del diagrama C4 formal en la herramienta del equipo queda como pendiente operativo, igual que las correcciones ya señaladas en 4.1.4 para el diagrama de contenedores y el de clases.
+3. La deuda de documentación de componentes para Clients y Metrics queda **cerrada por completo** (tablas de responsabilidades e interfaces en 4.3.1.5, más los diagramas C4 correspondientes en 4.1.4) — a diferencia de cuando se redactó esta iteración por primera vez, ya no depende de una herramienta de diagramación externa.
 
 ## 4.3.1.7. Analysis of Current Design and Review Iteration Goal (Kanban Board)
 
 | Backlog Item | Estado |
 |---|---|
-| 1. Confirmar patrón de 4 capas en los 12 contextos | ✅ Done |
-| 2. Documentar responsabilidades de Clients | ✅ Done |
-| 3. Documentar responsabilidades de Metrics | ✅ Done |
-| 4. Validar que Livestock incluye `Corral` | ✅ Done |
-| 5. Registrar decisión de mantener el monolito modular | ✅ Done |
-| — Redibujar en Visual Paradigm los diagramas de Clients/Metrics/Contenedores/Clases | 🔲 Backlog (pendiente operativo del equipo, fuera del alcance de esta iteración) |
+| 1. Confirmar patrón de 4 capas en los 12 contextos | Done |
+| 2. Documentar responsabilidades de Clients | Done |
+| 3. Documentar responsabilidades de Metrics | Done |
+| 4. Validar que Livestock incluye `Corral` | Done |
+| 5. Registrar decisión de mantener el monolito modular | Done |
+| — Producir los diagramas C4 de Clients/Metrics/Contenedores/Clases | Done — regenerados en Structurizr DSL y PlantUML (secciones 4.1.3–4.1.4), ya no es deuda pendiente |
 
-**Revisión de la meta:** la meta de la iteración se cumplió — la estructura modular quedó formalizada y validada, incluyendo los dos componentes que carecían de documentación. El driver de modificabilidad (QAS-04) ya contaba con evidencia directa (la introducción de `Corral` este ciclo no afectó a ningún otro bounded context) y esta iteración confirma que esa propiedad se sostiene también en Clients y Metrics.
+**Revisión de la meta:** la meta de la iteración se cumplió — la estructura modular quedó formalizada y validada, incluyendo los dos componentes que carecían de documentación, hoy con diagrama C4 propio. El driver de modificabilidad (QAS-04) ya contaba con evidencia directa (la introducción de `Corral` este ciclo no afectó a ningún otro bounded context) y esta iteración confirma que esa propiedad se sostiene también en Clients y Metrics.
 
 **Riesgo que se traslada a la siguiente iteración:** el acoplamiento por base de datos compartida (preocupación 4.2.5 #3) permanece sin resolver, tal como se decidió en 4.3.1.2 — queda como entrada directa para la Iteración 3 (Extracción de Servicios Críticos y API Gateway).

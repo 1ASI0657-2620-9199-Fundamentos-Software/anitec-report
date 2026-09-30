@@ -127,6 +127,35 @@ Diagrama regenerado en Structurizr DSL, verificado contra la configuración real
 - La cadena de conexión a MySQL se obtiene de `builder.Configuration.GetConnectionString("DefaultConnection")` (`Program.cs`), es decir, se inyecta por configuración/variable de entorno en el entorno de despliegue — **no está hardcodeada ni versionada en el repositorio**, por lo que el proveedor físico exacto de la base de datos (instancia gestionada de Render u otro proveedor externo) no se puede verificar desde el código fuente; se documenta la conexión lógica (API → MySQL vía EF Core), no la ubicación física exacta del servidor de base de datos.
 - La Landing Page (contenedor ya documentado en el Context/Container Diagram, sección 4.1.3–4.1.4) se despliega como sitio estático independiente, separado del SPA de la aplicación — mismo patrón de hosting estático que el SPA, sin backend propio.
 
+**Estado objetivo (to-be, cross-referenciado con la Iteración 3):** el diagrama y el diagrama de texto anteriores describen el despliegue *as-built* (un único proceso Render + una única base de datos MySQL). Una vez implementado el diseño de la Iteración 3 (4.3.3), la Physical View gana una unidad de despliegue nueva:
+
+```
+┌─────────────────────────────┐        HTTPS/JSON        ┌──────────────────────────────┐
+│  Cliente (navegador)         │ ────────────────────────▶│  GitHub Pages                │
+│                               │                           │  Single Page Application     │
+└─────────────────────────────┘                           └──────────────┬───────────────┘
+                                                                            │ HTTPS/JSON
+                                                                            ▼
+                                                             ┌──────────────────────────────┐
+                                                             │  Render (contenedor Docker)   │
+                                                             │  API Gateway (YARP)           │
+                                                             └───────┬──────────────┬────────┘
+                                                     JSON/HTTPS interno│              │ JSON/HTTPS interno
+                                                                            ▼              ▼
+                                              ┌──────────────────────────┐   ┌──────────────────────────┐
+                                              │  Render (contenedor)      │   │  Render (contenedor)      │
+                                              │  Core API (11 contextos)  │   │  Subscriptions Service    │
+                                              └────────────┬─────────────┘   └────────────┬─────────────┘
+                                                            │ EF Core/MySQL                │ EF Core/MySQL
+                                                            ▼                               ▼
+                                              ┌──────────────────────────┐   ┌──────────────────────────┐
+                                              │  Base de datos MySQL      │   │  Base de datos MySQL      │
+                                              │  (compartida, 11 contextos)│   │  (exclusiva, Subscriptions)│
+                                              └──────────────────────────┘   └──────────────────────────┘
+```
+
+El cambio físico relevante frente al estado actual: de **un** proceso desplegado y **una** base de datos, se pasa a **tres** procesos desplegados de forma independiente (Gateway, Core API, Subscriptions Service) y **dos** bases de datos MySQL separadas — consistente con lo ya establecido en la Process View (4.4.3) para esta misma iteración. Ninguno de estos elementos está implementado a la fecha de este informe.
+
 ## 4.4.5. Database Diagram
 
 Ya cubierto en la sección 4.1.5 (Relational Database Diagram) con el diccionario completo de las 14 tablas reales extraídas de `AppDbContextModelSnapshot.cs`, agrupadas por los 12 bounded contexts, más la tabla de relaciones por llave foránea. Esta vista no lo repite — remite directamente a esa sección para evitar mantener dos fuentes de verdad sobre el mismo modelo de datos.

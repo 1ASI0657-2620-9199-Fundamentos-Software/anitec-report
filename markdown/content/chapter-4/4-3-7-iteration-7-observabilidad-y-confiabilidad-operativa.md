@@ -102,11 +102,11 @@ Fragmento agregado sobre el Diagrama de Contenedores ya extendido en las Iteraci
 
 | Backlog Item | Estado |
 |---|---|
-| 1. Registro de auditoría (US-074) | ✅ Diseño completo — 🔲 Implementación pendiente |
-| 2. Observabilidad distribuida (TS-029) | ✅ Diseño completo — 🔲 Implementación pendiente |
-| 3. Tácticas de disponibilidad (Circuit Breaker, Health Check) | ✅ Diseño completo — 🔲 Implementación pendiente |
-| 4. Catálogo de pruebas (TS-030) | ✅ Diseño completo — 🔲 Implementación pendiente |
-| 5. Cierre de riesgos trasladados | ✅ Ver tabla siguiente |
+| 1. Registro de auditoría (US-074) | Diseño completo — Implementación pendiente |
+| 2. Observabilidad distribuida (TS-029) | Diseño completo — Implementación pendiente |
+| 3. Tácticas de disponibilidad (Circuit Breaker, Health Check) | Diseño completo — Implementación pendiente |
+| 4. Catálogo de pruebas (TS-030) | Diseño completo — Implementación pendiente |
+| 5. Cierre de riesgos trasladados | Ver tabla siguiente |
 
 ### Cierre del capítulo — estado final de los riesgos trasladados entre iteraciones
 

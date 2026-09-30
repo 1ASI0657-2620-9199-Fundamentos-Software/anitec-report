@@ -104,12 +104,12 @@ Diagrama regenerado en PlantUML. Resumen del flujo:
 
 | Backlog Item | Estado |
 |---|---|
-| 1. Filtrado por propiedad en Query Services | ✅ Diseño completo — 🔲 Implementación pendiente |
-| 2. Flujo de aprobación pendiente/aceptado | ✅ Diseño completo — 🔲 Implementación pendiente |
-| 3. Endpoints aprobar/rechazar | ✅ Diseño completo — 🔲 Implementación pendiente |
-| 4. Auditoría mínima | 🔲 Solo nivel conceptual — diseño detallado trasladado a Iteración 7 |
-| 5. Restricción de CORS | ✅ Diseño completo — 🔲 Implementación pendiente |
-| 6. Unicidad de `username` | ✅ Diseño completo — 🔲 Implementación pendiente |
+| 1. Filtrado por propiedad en Query Services | Diseño completo — Implementación pendiente |
+| 2. Flujo de aprobación pendiente/aceptado | Diseño completo — Implementación pendiente |
+| 3. Endpoints aprobar/rechazar | Diseño completo — Implementación pendiente |
+| 4. Auditoría mínima | Solo nivel conceptual — diseño detallado trasladado a Iteración 7 |
+| 5. Restricción de CORS | Diseño completo — Implementación pendiente |
+| 6. Unicidad de `username` | Diseño completo — Implementación pendiente |
 
 **Revisión de la meta:** la meta se cumplió a nivel de diseño — QAS-08 tiene una solución concreta y trazable a clases y endpoints reales del código actual, sin requerir un cambio de esquema mayor, y se verificó explícitamente que esa solución no regresiona QAS-02 (el propietario del recurso conserva visibilidad). QAS-06 se confirma como línea base ya satisfecha. Se deja explícito que, a la fecha de este informe, **el código de producción todavía no implementa esta corrección** — es un hallazgo y un diseño de esta iteración, no un cambio ya desplegado.
 

@@ -96,11 +96,11 @@ Diagrama regenerado en PlantUML. Resumen del flujo:
 
 | Backlog Item | Estado |
 |---|---|
-| 1. Persistencia local del cliente móvil | ✅ Diseño completo (to-be) |
-| 2. Protocolo de sincronización idempotente | ✅ Diseño completo (to-be) |
-| 3. Detección y presentación de conflictos | ✅ Diseño completo (to-be) |
-| 4. Endpoint de sincronización en el servidor | ✅ Diseño completo (to-be) |
-| 5. Documentar el límite ante fallo de dispositivo | ✅ Done |
+| 1. Persistencia local del cliente móvil | Diseño completo (to-be) |
+| 2. Protocolo de sincronización idempotente | Diseño completo (to-be) |
+| 3. Detección y presentación de conflictos | Diseño completo (to-be) |
+| 4. Endpoint de sincronización en el servidor | Diseño completo (to-be) |
+| 5. Documentar el límite ante fallo de dispositivo | Done |
 
 **Revisión de la meta:** cumplida a nivel de diseño — existe un protocolo concreto y trazable a componentes específicos que satisface QAS-01/BG-04, reutilizando patrones ya vigentes en el backend (auditoría, *command services*) en vez de inventar mecanismos nuevos donde no hace falta. Se reitera explícitamente: **no existe código de la aplicación móvil ni del endpoint de sincronización a la fecha de este informe** — esta iteración es un diseño para una implementación futura, coherente con la preocupación 4.2.5 #1.
 

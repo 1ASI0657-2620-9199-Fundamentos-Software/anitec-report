@@ -110,6 +110,14 @@ El de **Shared** ya incluye `AuditLogger`, diseñado en la Iteración 7 (4.3.7) 
 
 Diagrama regenerado en PlantUML a partir del esquema real (verificado contra `AppDbContextModelSnapshot.cs`) — cierra el vacío que tenía la versión anterior: incluye `Corral` y los atributos agregados a `Animal` este ciclo (`corralId`, `imageUrl`, `source`, `ageRange`). Las 14 entidades de dominio quedan agrupadas por bounded context, con sus 9 relaciones FK reales (diferenciadas entre agregación y composición según el comportamiento real de `ON DELETE` en MySQL) y sus 6 referencias lógicas hacia `User` en línea punteada, sin FK real, consistente con el principio de aislamiento por bounded context (4.1.1.1). Los 3 campos de `HealthEvent` marcados como *to-be* (`Status`, `RectifiesEventId`, `RectificationReason`) corresponden al diseño objetivo de la sección 4.4.1 — verificado en el código que no existen hoy.
 
+Este diagrama documenta el **modelo de dominio del backend**. El *statement* no exige que el diagrama de clases sea de una capa en particular — como complemento, y porque el equipo ya tenía uno del *frontend* que había quedado desactualizado, se incluye también la vista de clases del lado del cliente:
+
+<div align="center">
+  <img src="../../assets/chapter-4/class-diagram-frontend.svg" alt="Diagrama de clases - Frontend (Vue 3 + Pinia)" width="750">
+</div>
+
+Diagrama regenerado en PlantUML, verificado directamente contra los 8 *stores* de Pinia reales (`anitec-frontend/src`) — no es el modelo de dominio del backend, es la arquitectura de estado del cliente (*stores*, entidades locales, *dashboards*, formularios). Cierra el mismo vacío que tenía la versión anterior (`Corral` no existía, `Animal` no tenía los campos nuevos, faltaban los 4 métodos de registro por lote/imagen en `LivestockStore`) y agrega dos *stores* que la versión anterior no cubría en absoluto: `DevicesStore` y `SubscriptionsStore`.
+
 ### Diagrama de actividad — Registro de animales (individual vs. por lote)
 
 <div align="center">

@@ -1,0 +1,333 @@
+@startuml class-diagram-frontend
+!theme plain
+title AniTec — Diagrama de Clases (Frontend, Vue 3 + Pinia, as-built)
+' Fuente: verificado directamente contra anitec-frontend/src (stores, entidades
+' de dominio del cliente). Actualiza la versión anterior del equipo: agrega
+' Corral (faltaba por completo), los campos nuevos de Animal (corralId,
+' source, ageRange, imageUrl), los 4 métodos bulk/imagen de LivestockStore
+' (addAnimalsBulk, updateAnimalsStatusBulk, deleteAnimalsBulk,
+' uploadAnimalImage), signUp en IamStore, y agrega DevicesStore y
+' SubscriptionsStore, que no existían en el diagrama anterior.
+' NO es el modelo de dominio del backend — ver ese en class-diagram.puml
+' (4.1.4). Este es el diagrama de objetos/estado del cliente Vue.
+
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+
+package "Iam" {
+  class User {
+    +id: Number
+    +username: String
+    +role: String
+    +fullName: String
+    +veterinarianId: Number
+  }
+
+  class IamStore {
+    -demoUsers: User[]
+    -currentUser: User
+    -errors: Error[]
+    +users: User[]
+    +isSignedIn: Boolean
+    +currentUserId: Number
+    +currentRole: String
+    +currentFullName: String
+    --
+    +fetchUsers()
+    +fetchVeterinarianClients(veterinarianId)
+    +fetchAvailableRanchers(veterinarianId)
+    +signUp(resource, router): Boolean
+    +signIn(credentials, router): Boolean
+    +signOut(router)
+    +assignRancherToVeterinarian(rancherId, veterinarianId): Boolean
+    +unassignRancherFromVeterinarian(rancherId, veterinarianId): Boolean
+  }
+
+  IamStore "1" o-- "0..*" User : gestiona
+}
+
+package "Livestock" {
+  class Herd {
+    +id: Number
+    +name: String
+    +location: String
+    +owner: String
+    +ownerId: Number
+    +veterinarianId: Number
+    +mainType: String
+  }
+
+  class Corral {
+    +id: Number
+    +name: String
+    +herdId: Number
+  }
+
+  class Animal {
+    +id: Number
+    +tag: String
+    +name: String
+    +species: String
+    +breed: String
+    +gender: String
+    +birthDate: String
+    +weight: Number
+    +status: String
+    +herdId: Number
+    +corralId: Number
+    +source: String
+    +ageRange: String
+    +imageUrl: String
+  }
+
+  class LivestockStore {
+    -animals: Animal[]
+    -herds: Herd[]
+    -corrals: Corral[]
+    -errors: Error[]
+    +animalCount: Number
+    +healthyCount: Number
+    --
+    +fetchAnimals()
+    +fetchHerds()
+    +fetchCorrals()
+    +getAnimalsByOwnerId(ownerId): Animal[]
+    +getAnimalsByVeterinarianId(veterinarianId): Animal[]
+    +getCorralsByHerdId(herdId): Corral[]
+    +addAnimal(animal): Boolean
+    +updateAnimal(animal): Boolean
+    +deleteAnimal(animal)
+    +addAnimalsBulk(payload): Boolean
+    +updateAnimalsStatusBulk(animalIds, status): Boolean
+    +deleteAnimalsBulk(animalIds): Boolean
+    +uploadAnimalImage(file): String
+    +addHerd(herd): Boolean
+    +updateHerd(herd): Boolean
+    +deleteHerd(herd)
+    +addCorral(corral): Boolean
+    +updateCorral(corral): Boolean
+    +deleteCorral(corral)
+  }
+
+  Herd "1" o-- "0..*" Corral : contiene
+  Herd "1" o-- "0..*" Animal : contiene
+  Corral "0..1" -- "0..*" Animal : agrupa (opcional)
+  LivestockStore "1" o-- "0..*" Herd : gestiona
+  LivestockStore "1" o-- "0..*" Corral : gestiona
+  LivestockStore "1" o-- "0..*" Animal : gestiona
+}
+
+package "Sanitary" {
+  class HealthEvent {
+    +id: Number
+    +animalId: Number
+    +type: String
+    +date: String
+    +description: String
+    +veterinarian: String
+    +diagnosis: String
+    +treatment: String
+    +prescription: String
+    +followUp: String
+    +nextDueDate: String
+  }
+
+  class SanitaryStore {
+    -healthEvents: HealthEvent[]
+    -errors: Error[]
+    +pendingAlerts: HealthEvent[]
+    --
+    +fetchHealthEvents()
+    +getHealthEventById(id): HealthEvent
+    +addHealthEvent(event): Boolean
+    +updateHealthEvent(event): Boolean
+    +deleteHealthEvent(event)
+  }
+
+  SanitaryStore "1" o-- "0..*" HealthEvent : gestiona
+}
+
+package "Financial" {
+  class FinancialRecord {
+    +id: Number
+    +ownerId: Number
+    +type: String
+    +category: String
+    +amount: Number
+    +date: String
+    +description: String
+  }
+
+  class FinancialStore {
+    -records: FinancialRecord[]
+    -errors: Error[]
+    +incomeTotal: Number
+    +expenseTotal: Number
+    +balance: Number
+    --
+    +fetchRecords()
+    +getRecordsByOwnerId(ownerId): FinancialRecord[]
+    +getBalanceByOwnerId(ownerId): Number
+    +addRecord(record): Boolean
+    +updateRecord(record): Boolean
+    +deleteRecord(record)
+  }
+
+  FinancialStore "1" o-- "0..*" FinancialRecord : gestiona
+}
+
+package "Activities" {
+  class FarmActivity {
+    +id: Number
+    +ownerId: Number
+    +veterinarianId: Number
+    +title: String
+    +type: String
+    +date: String
+    +priority: String
+    +status: String
+  }
+
+  class ActivitiesStore {
+    -activities: FarmActivity[]
+    -errors: Error[]
+    +highPriorityCount: Number
+    --
+    +fetchActivities()
+    +getActivitiesByUser(role, userId): FarmActivity[]
+    +getHighPriorityCountByUser(role, userId): Number
+    +addActivity(activity): Boolean
+    +updateActivity(activity): Boolean
+    +deleteActivity(activity)
+  }
+
+  ActivitiesStore "1" o-- "0..*" FarmActivity : gestiona
+}
+
+package "Analytics" {
+  class AnalyticsStore {
+    -metrics: Object[]
+    -dashboard: Object
+    -errors: Error[]
+    --
+    +fetchMetrics()
+    +fetchDashboard(role, userId)
+  }
+}
+
+package "Devices" {
+  class Device {
+    +id: Number
+    +name: String
+    +type: String
+    +serialNumber: String
+    +status: String
+    +herdId: Number
+    +animalId: Number
+  }
+
+  class DevicesStore {
+    -devices: Device[]
+    -metricsByDevice: Object
+    -latestMetrics: Object
+    -errors: Error[]
+    --
+    +fetchDevices()
+    +fetchDeviceMetrics(deviceId)
+    +fetchLatestMetric(deviceId)
+    +getDeviceById(id): Device
+    +addDevice(device): Boolean
+    +updateDevice(device): Boolean
+    +deleteDevice(device)
+  }
+
+  DevicesStore "1" o-- "0..*" Device : gestiona
+}
+
+package "Subscriptions" {
+  class SubscriptionPlan {
+    +id: Number
+    +name: String
+    +price: Number
+  }
+
+  class SubscriptionsStore {
+    -plans: SubscriptionPlan[]
+    -activeSubscription: Object
+    -payments: Object[]
+    -lastCheckout: Object
+    -errors: Error[]
+    +activePlan: SubscriptionPlan
+    --
+    +fetchPlans()
+    +fetchActiveSubscription(userId)
+    +fetchPayments(userId)
+    +checkout(userId, plan)
+    +confirmCheckout(sessionId, userId)
+  }
+
+  SubscriptionsStore "1" o-- "0..*" SubscriptionPlan : gestiona
+}
+
+package "Shared (UI)" {
+  class Router {
+    +beforeEach()
+    +dashboardByRole()
+  }
+
+  class RancherDashboard {
+    +selectedHerdId: Number
+    +rancherAnimals: Animal[]
+    +animalsAtRisk: Animal[]
+    +recentHealthEvents: HealthEvent[]
+    +upcomingActivities: FarmActivity[]
+  }
+
+  class VeterinarianDashboard {
+    +selectedClientId: Number
+    +assignedRanchers: User[]
+    +assignedAnimals: Animal[]
+    +activePatients: Animal[]
+    +pendingFollowUps: HealthEvent[]
+  }
+
+  class AnalyticsDashboard {
+    +animalStatusData: Object
+    +healthEventTypeData: Object
+    +herdSanitaryData: Object
+  }
+
+  class AnimalForm {
+    +form: Object
+    +isEdit: Boolean
+    +mode: String
+    --
+    -save()
+  }
+
+  class HealthForm {
+    +form: Object
+    +animalOptions: Animal[]
+    --
+    -save()
+  }
+
+  class VeterinaryClients {
+    +clients: User[]
+    --
+    -removeClient()
+  }
+
+  Router ..> IamStore : usa
+  RancherDashboard ..> LivestockStore : usa
+  RancherDashboard ..> SanitaryStore : usa
+  RancherDashboard ..> ActivitiesStore : usa
+  VeterinarianDashboard ..> LivestockStore : usa
+  VeterinarianDashboard ..> IamStore : usa
+  AnalyticsDashboard ..> AnalyticsStore : usa
+  AnimalForm ..> LivestockStore : usa
+  HealthForm ..> SanitaryStore : usa
+  VeterinaryClients ..> IamStore : usa
+}
+
+@enduml

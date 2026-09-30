@@ -104,11 +104,11 @@ Diagrama regenerado en Structurizr DSL, en una vista propia (separada de `12-Com
 
 | Backlog Item | Estado |
 |---|---|
-| 1. Autenticación de dispositivo | ✅ Diseño completo (to-be) |
-| 2. Endpoint de ingesta de telemetría | ✅ Diseño completo (to-be) |
-| 3. Justificación de polling HTTP vs. protocolo persistente | ✅ Done |
-| 4. Rate limiting | ✅ Diseño completo (to-be) |
-| 5. Documentar cierre de la preocupación #2 | ✅ Done |
+| 1. Autenticación de dispositivo | Diseño completo (to-be) |
+| 2. Endpoint de ingesta de telemetría | Diseño completo (to-be) |
+| 3. Justificación de polling HTTP vs. protocolo persistente | Done |
+| 4. Rate limiting | Diseño completo (to-be) |
+| 5. Documentar cierre de la preocupación #2 | Done |
 
 **Revisión de la meta:** cumplida a nivel de diseño — QAS-11 tiene ahora una solución concreta, trazable a una columna de esquema, un middleware y un endpoint específicos, reutilizando la lógica de negocio de Metrics ya existente en vez de duplicarla. Se reitera: **no existe código de autenticación de dispositivo ni del endpoint de telemetría a la fecha de este informe** — es un diseño para implementación futura, igual que el resto del capítulo.
 

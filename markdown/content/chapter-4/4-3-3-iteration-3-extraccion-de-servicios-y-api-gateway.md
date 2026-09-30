@@ -88,11 +88,11 @@ Todo lo demás del diagrama de contenedores y los diagramas de componentes resta
 
 | Backlog Item | Estado |
 |---|---|
-| 1. Justificar candidato de extracción | ✅ Done (diseño) |
-| 2. Diseñar el API Gateway | ✅ Done (diseño) |
-| 3. Diseñar desacoplamiento de datos | ✅ Done (diseño) |
-| 4. Identificar enabler de eventos (TS-027) | ✅ Identificado — 🔲 diseño detallado fuera de alcance de esta iteración |
-| 5. Documentar qué no se extrae y por qué | ✅ Done |
+| 1. Justificar candidato de extracción | Done (diseño) |
+| 2. Diseñar el API Gateway | Done (diseño) |
+| 3. Diseñar desacoplamiento de datos | Done (diseño) |
+| 4. Identificar enabler de eventos (TS-027) | Identificado — diseño detallado fuera de alcance de esta iteración |
+| 5. Documentar qué no se extrae y por qué | Done |
 
 **Revisión de la meta:** cumplida — se obtiene un plan de extracción incremental, concreto, de bajo riesgo y respaldado por evidencia real del código (cero acoplamiento entrante hacia Subscriptions), en vez de una migración total no realista para las restricciones del proyecto (4.2.4). El trade-off de latencia adicional se reconoce y se acepta explícitamente por no afectar la ruta crítica diaria del ganadero.
 
