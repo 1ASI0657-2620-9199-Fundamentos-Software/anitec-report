@@ -46,11 +46,11 @@ El diagrama de contexto muestra a AniTec como un único sistema de software con 
   <img src="../../assets/chapter-4/c4diagrams/02-Containers-AsBuilt.svg" alt="Diagrama de Contenedores C4 - AniTec (as-built)" width="750">
 </div>
 
-Diagrama regenerado en Structurizr DSL — corrige las dos imprecisiones que tenía la versión anterior (el motor real es **MySQL**, no SQL Server, vía `Pomelo.EntityFrameworkCore.MySql`; y las relaciones ya tienen su tecnología completa: SPA → API Application en **JSON/HTTPS**, API Application → Base de datos en **Entity Framework Core / MySQL**, Usuarios → Landing/Web App en **HTTPS**). Muestra el sistema **real, hoy**: Landing Page, Web Application que sirve el SPA, Single Page Application en Vue 3 + Vite, API Application y la base de datos — excluye el API Gateway, el Subscriptions Service y la Mobile App, que son diseño *to-be* de las Iteraciones 3 y 4 (secciones 4.3.3 y 4.3.4, con sus propios diagramas de contenedores extendidos).
+Diagrama regenerado en Structurizr DSL, verificado contra el código real: el motor de base de datos es **MySQL** vía `Pomelo.EntityFrameworkCore.MySql`, y cada relación entre contenedores incluye su tecnología completa — SPA → API Application en **JSON/HTTPS**, API Application → Base de datos en **Entity Framework Core / MySQL**, Usuarios → Landing/Web App en **HTTPS**. Muestra el sistema **real, hoy**: Landing Page, Web Application que sirve el SPA, Single Page Application en Vue 3 + Vite, API Application y la base de datos — excluye el API Gateway, el Subscriptions Service y la Mobile App, que son diseño *to-be* de las Iteraciones 3 y 4 (secciones 4.3.3 y 4.3.4, con sus propios diagramas de contenedores extendidos).
 
 ### Diagramas de Componentes (C4) por Bounded Context
 
-Regenerados en Structurizr DSL a partir del inventario real de clases del backend (verificado directamente contra `Program.cs` y cada carpeta `Interfaces/Rest`) — cierran el vacío que tenía la versión anterior del equipo, que no cubría **Clients** ni **Metrics**. Los 12 bounded contexts expuestos en la API Application quedan documentados, cada uno con su borde de entrada (SPA) y salida (Database) reales:
+Regenerados en Structurizr DSL a partir del inventario real de clases del backend (verificado directamente contra `Program.cs` y cada carpeta `Interfaces/Rest`). Los 12 bounded contexts expuestos en la API Application quedan documentados, cada uno con su borde de entrada (SPA) y salida (Database) reales:
 
 <div align="center">
   <img src="../../assets/chapter-4/c4diagrams/05-Components-Iam.svg" alt="Diagrama de Componentes - Iam" width="700">
@@ -108,15 +108,15 @@ El de **Shared** ya incluye `AuditLogger`, diseñado en la Iteración 7 (4.3.7) 
   <img src="../../assets/chapter-4/class-diagram.svg" alt="Diagrama de clases AniTec" width="750">
 </div>
 
-Diagrama regenerado en PlantUML a partir del esquema real (verificado contra `AppDbContextModelSnapshot.cs`) — cierra el vacío que tenía la versión anterior: incluye `Corral` y los atributos agregados a `Animal` este ciclo (`corralId`, `imageUrl`, `source`, `ageRange`). Las 14 entidades de dominio quedan agrupadas por bounded context, con sus 9 relaciones FK reales (diferenciadas entre agregación y composición según el comportamiento real de `ON DELETE` en MySQL) y sus 6 referencias lógicas hacia `User` en línea punteada, sin FK real, consistente con el principio de aislamiento por bounded context (4.1.1.1). Los 3 campos de `HealthEvent` marcados como *to-be* (`Status`, `RectifiesEventId`, `RectificationReason`) corresponden al diseño objetivo de la sección 4.4.1 — verificado en el código que no existen hoy.
+Diagrama regenerado en PlantUML a partir del esquema real (verificado contra `AppDbContextModelSnapshot.cs`): incluye `Corral` y los atributos agregados a `Animal` este ciclo (`corralId`, `imageUrl`, `source`, `ageRange`). Las 14 entidades de dominio quedan agrupadas por bounded context, con sus 9 relaciones FK reales (diferenciadas entre agregación y composición según el comportamiento real de `ON DELETE` en MySQL) y sus 6 referencias lógicas hacia `User` en línea punteada, sin FK real, consistente con el principio de aislamiento por bounded context (4.1.1.1). Los 3 campos de `HealthEvent` marcados como *to-be* (`Status`, `RectifiesEventId`, `RectificationReason`) corresponden al diseño objetivo de la sección 4.4.1 — verificado en el código que no existen hoy.
 
-Este diagrama documenta el **modelo de dominio del backend**. El *statement* no exige que el diagrama de clases sea de una capa en particular — como complemento, y porque el equipo ya tenía uno del *frontend* que había quedado desactualizado, se incluye también la vista de clases del lado del cliente:
+Este diagrama documenta el **modelo de dominio del backend**. El *statement* no exige que el diagrama de clases sea de una capa en particular — como complemento, se incluye también la vista de clases del lado del cliente:
 
 <div align="center">
   <img src="../../assets/chapter-4/class-diagram-frontend.svg" alt="Diagrama de clases - Frontend (Vue 3 + Pinia)" width="750">
 </div>
 
-Diagrama regenerado en PlantUML, verificado directamente contra los 8 *stores* de Pinia reales (`anitec-frontend/src`) — no es el modelo de dominio del backend, es la arquitectura de estado del cliente (*stores*, entidades locales, *dashboards*, formularios). Cierra el mismo vacío que tenía la versión anterior (`Corral` no existía, `Animal` no tenía los campos nuevos, faltaban los 4 métodos de registro por lote/imagen en `LivestockStore`) y agrega dos *stores* que la versión anterior no cubría en absoluto: `DevicesStore` y `SubscriptionsStore`.
+Diagrama regenerado en PlantUML, verificado directamente contra los 8 *stores* de Pinia reales (`anitec-frontend/src`) — no es el modelo de dominio del backend, es la arquitectura de estado del cliente (*stores*, entidades locales, *dashboards*, formularios), e incluye `DevicesStore` y `SubscriptionsStore`.
 
 ### Diagrama de actividad — Registro de animales (individual vs. por lote)
 
@@ -144,14 +144,7 @@ AniTec usa una única base de datos relacional **MySQL**, con un `DbContext` com
   <img src="../../assets/chapter-4/anitec-schema.png" alt="Diagrama Entidad-Relación - Esquema real de AniTec" width="800">
 </div>
 
-Diagrama ER regenerado a partir del esquema SQL real (`CodeDiagrams/4-1-design-concepts-viewpoints-er-diagrams/anitec-schema.sql`, extraído de `AppDbContextModelSnapshot.cs`) — reemplaza el boceto inicial del equipo, que no representaba el esquema real implementado (modelaba `species`/`breed` como tablas normalizadas cuando son columnas de texto simples; nombraba `farms` a lo que en el código es `herds`; no incluía `corrals` ni las columnas agregadas a `animals` este ciclo). Nota de lectura: las líneas que conectan `users` con otras tablas (`herds`, `financial_records`, `farm_activities`, `veterinarian_clients`, `subscriptions`, `payments`) son inferencia de la herramienta de diagramación por nombre de columna, no *foreign keys* reales — ninguna de esas columnas tiene un `CONSTRAINT` en el SQL, consistente con el principio de aislamiento por bounded context (4.1.1.1).
-
-<details>
-<summary>Boceto ER inicial (histórico, no vigente)</summary>
-<div align="center">
-  <img src="../../assets/chapter-4/DiagramaBaseDeDatosAnitec.png" alt="Boceto ER inicial de AniTec (desactualizado)" width="700">
-</div>
-</details>
+Diagrama ER regenerado a partir del esquema SQL real (`CodeDiagrams/4-1-design-concepts-viewpoints-er-diagrams/anitec-schema.sql`, extraído de `AppDbContextModelSnapshot.cs`). Nota de lectura: las líneas que conectan `users` con otras tablas (`herds`, `financial_records`, `farm_activities`, `veterinarian_clients`, `subscriptions`, `payments`) son inferencia de la herramienta de diagramación por nombre de columna, no *foreign keys* reales — ninguna de esas columnas tiene un `CONSTRAINT` en el SQL, consistente con el principio de aislamiento por bounded context (4.1.1.1).
 
 ### Diccionario de tablas (esquema real, MySQL)
 
