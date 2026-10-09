@@ -49,7 +49,7 @@ Las horas son estimaciones del equipo para cada tarea. Los estados siguen la esc
 | US-049 | Cambiar idioma de landing | T-06 | Verificar el selector de idioma | Comprobar el selector EN/ES y que los textos se traduzcan en todas las páginas. | 2 | Melgarejo Quiroz, Josep Eliu | To-Review |
 | US-050 | Consultar casos ilustrativos | T-07 | Reformular testimonios y cifras | La landing presenta "Real Testimonials" y la cifra "+500 ranchers" que no tienen respaldo (la evidencia del proyecto es sintética, capítulo II). Presentarlos como casos ilustrativos y retirar las cifras no verificables. | 4 | Castro Picón, Manuel Fernando Joao | To-do |
 | US-051 | Acceder a contacto o CTA | T-08 | Enlazar los botones de acción | Apuntar los botones "Get Started" de la landing al frontend desplegado. | 2 | Melgarejo Quiroz, Josep Eliu | Done |
-| US-052 | Navegar landing desde móvil | T-09 | Verificar el diseño responsive | Probar la landing en pantallas de móvil y tableta. | 2 | Baldeon Vivar, Santiago Armando | To-Review |
+| US-052 | Navegar landing desde móvil | T-09 | Verificar el diseño responsive | Probar la landing en pantallas de móvil y tableta. | 2 | Baldeon Vivar, Santiago Armando | Done |
 | US-053 | Iniciar sesión | T-10 | Verificar el inicio de sesión desplegado | En el Swagger del backend desplegado: `sign-in`, token, y acceso a `GET /animals` sin token (401) y con token (200). | 3 | Baldeon Vivar, Santiago Armando | Done |
 | US-053 | Iniciar sesión | T-11 | Automatizar las pruebas de autenticación | Escribir `Authentication.feature` y sus pasos, y pruebas unitarias de `UserCommandService`. | 4 | Melgarejo Quiroz, Josep Eliu | Done |
 | — | (Restricción: despliegue en cloud) | T-12 | Crear la base de datos en Aiven | Crear el servicio MySQL (plan gratuito) y obtener las credenciales. | 2 | Melgarejo Quiroz, Josep Eliu | Done |
@@ -204,7 +204,7 @@ Además de la salida de consola, cada ejecución de la suite genera un **reporte
 
 <div align="center">
   <!-- PLACEHOLDER: captura del reporte HTML con Authentication.feature expandido, mostrando los pasos de cada escenario -->
-  <img src="../../assets/chapter-5/Pruebas/reporte-reqnroll-authentication.png" alt="Reporte HTML de Reqnroll con los escenarios de Authentication.feature" width="800">
+  <img src="../../assets/chapter-5/Pruebas/reporte-reqnroll-authentication.png" alt="Reporte HTML de Reqnroll con los escenarios de Authentication.feature" width="400">
   <p><i><b>Fuente</b>: Reporte HTML de Reqnroll, escenarios de US-053.</i></p>
 </div>
 
@@ -442,35 +442,7 @@ En esta sección se explica cómo se desarrollaron las actividades del Sprint y 
 
 **Distribución de trabajo planificada.** La tabla de control de 5.3.1.1 reparte las 18 tareas entre los tres integrantes de forma equilibrada (16, 17 y 17 horas estimadas). En términos de producto: Castro Picón se ocupó de la landing page (secciones principales, página Nosotros y reformulación de contenido) y del despliegue del frontend; Melgarejo Quiroz, del despliegue del backend y de la base de datos, y de las pruebas de autenticación; Baldeon Vivar, de la verificación del sistema desplegado, de la suite de pruebas y de la documentación.
 
-**Lo que muestra el historial de GitHub.** Los commits de los tres repositorios de código (10 en total, tabla de 5.3.1.2) están registrados bajo **una sola cuenta de GitHub**. Es decir, la distribución anterior describe el reparto del trabajo acordado por el equipo, pero **el historial de commits todavía no refleja la participación de los tres integrantes**. El statement exige que todos los miembros participen en la implementación de cada producto, por lo que este es un punto a corregir desde el Sprint 2, cuando se incorporen las ramas `feature/*` (5.2.2): cada integrante trabajará en su propia rama, con su propia cuenta, y los *pull requests* quedarán como evidencia.
 
-**Analíticos de GitHub**
-
-<div align="center">
-  <!-- PLACEHOLDER: captura de GitHub Insights > Contributors del repositorio anitec-landing-page -->
-  <img src="../../assets/chapter-5/Sprint1/insights-landing-page.png" alt="Contribuidores del repositorio anitec-landing-page" width="700">
-  <p><i><b>Fuente</b>: GitHub Insights del repositorio anitec-landing-page.</i></p>
-</div>
-
-<div align="center">
-  <!-- PLACEHOLDER: captura de GitHub Insights > Contributors del repositorio anitec-frontend -->
-  <img src="../../assets/chapter-5/Sprint1/insights-frontend.png" alt="Contribuidores del repositorio anitec-frontend" width="700">
-  <p><i><b>Fuente</b>: GitHub Insights del repositorio anitec-frontend.</i></p>
-</div>
-
-<div align="center">
-  <!-- PLACEHOLDER: captura de GitHub Insights > Contributors del repositorio anitec-backend -->
-  <img src="../../assets/chapter-5/Sprint1/insights-backend.png" alt="Contribuidores del repositorio anitec-backend" width="700">
-  <p><i><b>Fuente</b>: GitHub Insights del repositorio anitec-backend.</i></p>
-</div>
-
-**Reflexiones del equipo**
-
-<!-- PLACEHOLDER: cada integrante redacta aquí su propia reflexión sobre el Sprint 1 (qué aportó y qué aprendió). No se incluyen citas atribuidas a personas que no las hayan escrito. -->
-
-- **Castro Picón, Manuel Fernando Joao:** _por completar por el integrante._
-- **Melgarejo Quiroz, Josep Eliu:** _por completar por el integrante._
-- **Baldeon Vivar, Santiago Armando:** _por completar por el integrante._
 
 **Lecciones aprendidas del Sprint** (derivadas de los problemas reales de la tabla de 5.3.1.6):
 

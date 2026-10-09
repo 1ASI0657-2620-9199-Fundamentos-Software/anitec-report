@@ -29,7 +29,7 @@ El trabajo arquitectónico se realizará de forma iterativa. Los architectural d
 <table>
   <tr>
     <td width="30%" align="center">
-      <img src="../../assets/chapter-1/Integrante-1.jpg" width="180">
+      <img src="../../assets/chapter-1/integrante-1.png" width="180">
     </td>
     <td width="70%">
       <h3>Manuel Fernando Joao Castro Picón</h3>
@@ -54,7 +54,7 @@ El trabajo arquitectónico se realizará de forma iterativa. Los architectural d
   </tr>
    <tr>
     <td width="30%" align="center">
-      <img src="../../assets/chapter-1/Integrante-4.jpg" width="180">
+      <img src="../../assets/chapter-1/integrante-3.png" width="180">
     </td>
     <td width="70%">
       <h3>Santiago Armando Baldeon Vivar</h3>
