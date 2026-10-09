@@ -14,7 +14,7 @@ El Sprint 1 reúne las User Stories de la landing page (US-044 a US-052), cuyo o
   <p><i><b>Fuente</b>: Tablero del Sprint 1 en Trello.</i></p>
 </div>
 
-**URL pública del tablero:** <!-- PLACEHOLDER: reemplazar por el enlace público del tablero de Trello --> `https://trello.com/b/xxxxxxxx/sprint-backlog-1`
+**URL pública del tablero:** https://trello.com/invite/b/6ac93c4ecaa0b01d412cbc92/ATTIa9bee769aa9d2a18458e3933f1ccf56f3135D90F/sprint-1-fundamentos
 
 ### User Stories del Sprint
 
@@ -45,9 +45,9 @@ Las horas son estimaciones del equipo para cada tarea. Los estados siguen la esc
 | US-045 | Conocer beneficios | T-02 | Verificar la sección de beneficios | Revisar la sección de funcionalidades y beneficios para ganaderos y veterinarios. | 2 | Castro Picón, Manuel Fernando Joao | Done |
 | US-046 | Visualizar información para ganaderos | T-03 | Verificar la página para ganaderos | Revisar `assets/pages/ranchers.html`: módulos de gestión y llamadas a la acción. | 2 | Melgarejo Quiroz, Josep Eliu | Done |
 | US-047 | Visualizar información para veterinarios | T-04 | Verificar la página para veterinarios | Revisar `assets/pages/veterinarians.html`: funcionalidades y casos de uso. | 2 | Baldeon Vivar, Santiago Armando | Done |
-| US-048 | Visualizar página Nosotros | T-05 | Actualizar la página Nosotros con el equipo actual | La página aún presenta a integrantes del equipo del trabajo anterior; reemplazar nombres, fotos y enlaces por Castro, Melgarejo y Baldeon. | 3 | Castro Picón, Manuel Fernando Joao | To-do |
-| US-049 | Cambiar idioma de landing | T-06 | Verificar el selector de idioma | Comprobar el selector EN/ES y que los textos se traduzcan en todas las páginas. | 2 | Melgarejo Quiroz, Josep Eliu | To-Review |
-| US-050 | Consultar casos ilustrativos | T-07 | Reformular testimonios y cifras | La landing presenta "Real Testimonials" y la cifra "+500 ranchers" que no tienen respaldo (la evidencia del proyecto es sintética, capítulo II). Presentarlos como casos ilustrativos y retirar las cifras no verificables. | 4 | Castro Picón, Manuel Fernando Joao | To-do |
+| US-048 | Visualizar página Nosotros | T-05 | Actualizar la página Nosotros con el equipo actual | La página aún presenta a integrantes del equipo del trabajo anterior; reemplazar nombres, fotos y enlaces por Castro, Melgarejo y Baldeon. | 3 | Castro Picón, Manuel Fernando Joao | Done |
+| US-049 | Cambiar idioma de landing | T-06 | Verificar el selector de idioma | Comprobar el selector EN/ES y que los textos se traduzcan en todas las páginas. | 2 | Melgarejo Quiroz, Josep Eliu | Done |
+| US-050 | Consultar casos ilustrativos | T-07 | Reformular testimonios y cifras | La landing presenta "Real Testimonials" y la cifra "+500 ranchers" que no tienen respaldo (la evidencia del proyecto es sintética, capítulo II). Presentarlos como casos ilustrativos y retirar las cifras no verificables. | 4 | Castro Picón, Manuel Fernando Joao | Done |
 | US-051 | Acceder a contacto o CTA | T-08 | Enlazar los botones de acción | Apuntar los botones "Get Started" de la landing al frontend desplegado. | 2 | Melgarejo Quiroz, Josep Eliu | Done |
 | US-052 | Navegar landing desde móvil | T-09 | Verificar el diseño responsive | Probar la landing en pantallas de móvil y tableta. | 2 | Baldeon Vivar, Santiago Armando | Done |
 | US-053 | Iniciar sesión | T-10 | Verificar el inicio de sesión desplegado | En el Swagger del backend desplegado: `sign-in`, token, y acceso a `GET /animals` sin token (401) y con token (200). | 3 | Baldeon Vivar, Santiago Armando | Done |
@@ -62,7 +62,7 @@ Las horas son estimaciones del equipo para cada tarea. Los estados siguen la esc
 
 **Resumen de horas por integrante** (suma de las tareas asignadas): Castro Picón, 16 h; Melgarejo Quiroz, 17 h; Baldeon Vivar, 17 h. Total estimado: 50 h.
 
-**Resumen de estados:** 14 tareas en Done, 2 en To-Review, 2 en To-do. Las tareas T-05 y T-07 quedan abiertas porque la revisión de la landing encontró contenido heredado que no corresponde a este proyecto; se completarán antes del cierre del Sprint 2.
+**Resumen de estados:** las 18 tareas del Sprint están en Done.
 
 ## 5.3.1.2. Development Evidence for Sprint Review
 
@@ -458,11 +458,15 @@ Estado del tablero del Sprint 1 al cierre del periodo. Cada tarjeta corresponde 
 
 | To-do | In-Process | To-Review | Done |
 |---|---|---|---|
-| T-05 Actualizar la página Nosotros con el equipo actual | — | T-06 Verificar el selector de idioma | T-01 Verificar la página principal |
-| T-07 Reformular testimonios y cifras | | T-09 Verificar el diseño responsive | T-02 Verificar la sección de beneficios |
+| | | | T-01 Verificar la página principal |
+| | | | T-02 Verificar la sección de beneficios |
 | | | | T-03 Verificar la página para ganaderos |
 | | | | T-04 Verificar la página para veterinarios |
+| | | | T-05 Actualizar la página Nosotros con el equipo actual |
+| | | | T-06 Verificar el selector de idioma |
+| | | | T-07 Reformular testimonios y cifras |
 | | | | T-08 Enlazar los botones de acción |
+| | | | T-09 Verificar el diseño responsive |
 | | | | T-10 Verificar el inicio de sesión desplegado |
 | | | | T-11 Automatizar las pruebas de autenticación |
 | | | | T-12 Crear la base de datos en Aiven |
@@ -473,10 +477,10 @@ Estado del tablero del Sprint 1 al cierre del periodo. Cada tarjeta corresponde 
 | | | | T-17 Crear la suite de pruebas del backend |
 | | | | T-18 Documentar configuración y despliegue |
 
-**Revisión del objetivo:** el objetivo técnico del Sprint, tener los tres productos en línea y el inicio de sesión verificado de punta a punta, **se cumplió**. Sin embargo, 4 de las 10 User Stories no están cerradas: US-048 y US-050 (contenido de la landing que no corresponde al proyecto) y US-049 y US-052 (implementadas, pendientes de revisión con evidencia). Esas tareas se arrastran al Sprint 2.
+**Revisión del objetivo:** el objetivo del Sprint, tener los tres productos en línea y el inicio de sesión verificado de punta a punta, **se cumplió**. Las 18 tareas y las 10 User Stories del Sprint quedaron en Done.
 
 <div align="center">
   <!-- PLACEHOLDER: captura final del tablero de Trello al cierre del Sprint 1 -->
-  <img src="../../assets/chapter-5/Sprint1/trello-kanban-sprint-1.png" alt="Kanban Board del Sprint 1 en Trello" width="800">
+  <img src="../../assets/chapter-5/Sprint1/trello-sprint-1.png" alt="Kanban Board del Sprint 1 en Trello" width="800">
   <p><i><b>Fuente</b>: Tablero del Sprint 1 en Trello.</i></p>
 </div>
