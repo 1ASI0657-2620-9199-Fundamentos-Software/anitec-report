@@ -72,7 +72,7 @@ Esta iteración también formaliza dos escenarios ya definidos en 4.2.3 que hoy 
 
 **Auditoría mínima (ítem 4, nivel conceptual):** se propone reutilizar `IAuditableEntity` (ya usado por `User` y `Profile` para `created_at`/`updated_at`) como base, extendiéndolo a `VeterinarianClient` y a las operaciones de rectificación/anulación sanitaria (US-018) para registrar quién y cuándo aprobó, rectificó o anuló. El diseño detallado de un registro de auditoría consultable (US-074) se traslada como entrada a la Iteración 7 (Observabilidad y Confiabilidad Operativa), donde encaja mejor junto con el resto de la trazabilidad operativa.
 
-**CORS (ítem 5):** reemplazar `AllowAllPolicy` por una política con orígenes explícitos (dominio del SPA en GitHub Pages y de la landing page), sin cambios de código adicionales — es un ajuste de configuración en `Program.cs`.
+**CORS (ítem 5):** reemplazar `AllowAllPolicy` por una política con orígenes explícitos (dominio del SPA en Render y de la landing page en GitHub Pages), sin cambios de código adicionales — es un ajuste de configuración en `Program.cs`.
 
 **Unicidad de `username` (ítem 6):** agregar un índice único (`i_x_users_username`) sobre `users.username` — corrección de esquema mínima (Concern #6, 4.2.5), sin componentes nuevos; el único efecto de diseño adicional es que `IUserCommandService.Handle(CreateUserCommand)` debe capturar la violación de restricción y devolver un `Result` de fallo con un mensaje por campo (consistente con el principio 4.1.1.4), en vez de dejar que la excepción de base de datos llegue sin traducir al cliente.
 

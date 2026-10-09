@@ -179,67 +179,56 @@
   - [4.4.4. Physical View](./markdown/content/chapter-4/4-4-architectural-view-model.md)
   - [4.4.5. Database Diagram](./markdown/content/chapter-4/4-4-architectural-view-model.md)
 
-### Material de apoyo: Product UX Design
 
-Contenido de diseño UX/UI, arquitectura de información, DDD/EventStorming y diseño OO/BD elaborado por el equipo que no corresponde a la numeración de este capítulo (Product Architecture Design / ADD v3). Se conserva como material de apoyo y fuente de diagramas reutilizados en el Capítulo IV.
-
-- [UX-A. Style Guidelines](./markdown/content/chapter-4-ux-design/4-1-style-guidelines.md)
-- [UX-B. Information Architecture](./markdown/content/chapter-4-ux-design/4-2-information-architecture.md)
-- [UX-C. Landing Page UI Design](./markdown/content/chapter-4-ux-design/4-3-landing-page-ui-design.md)
-- [UX-D. Web Applications UX/UI Design](./markdown/content/chapter-4-ux-design/4-4-web-applications-ux-ui-design.md)
-- [UX-E. Web Applications Prototyping](./markdown/content/chapter-4-ux-design/4-5-web-applications-prototyping.md)
-- [UX-F. Domain-Driven Software Architecture](./markdown/content/chapter-4-ux-design/4-6-domain-driven-software-architecture.md)
-- [UX-G. Software Object-Oriented Design](./markdown/content/chapter-4-ux-design/4-7-software-object-oriented-design.md)
-- [UX-H. Database Design](./markdown/content/chapter-4-ux-design/4-8-database-design.md)
 
 ## CAPÍTULO V: Product Implementation, Validation & Deployment
 
-- 5.1. Testing Suites & General Patterns
-  - 5.1.1. Backend Application Core Testing Suite
-  - 5.1.2. Pattern Based Backend Application(s)
-  - 5.1.3. Pattern Based Custom Software Library
-  - 5.1.4. Framework Pattern Driven Refactoring Report
-- [5.2. Software Configuration Management](./markdown/content/chapter-5/5-1-software-configuration-management.md)
-  - [5.2.1. Software Development Environment Configuration](./markdown/content/chapter-5/5-1-software-configuration-management.md)
-  - [5.2.2. Source Code Management](./markdown/content/chapter-5/5-1-software-configuration-management.md)
-  - [5.2.3. Source Code Style Guide & Conventions](./markdown/content/chapter-5/5-1-software-configuration-management.md)
-  - [5.2.4. Software Deployment Configuration](./markdown/content/chapter-5/5-1-software-configuration-management.md)
-- 5.3. MicroServices Implementation
-  - [5.3.1. Sprint 1](./markdown/content/chapter-5/5-2-1-Sprint1.md)
-    - [5.3.1.1. Sprint Backlog 1](./markdown/content/chapter-5/5-2-1-Sprint1.md)
-    - [5.3.1.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-2-1-Sprint1.md)
-    - 5.3.1.3. Testing Suite Evidence for Sprint Review
-    - [5.3.1.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-2-1-Sprint1.md)
-    - [5.3.1.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-2-1-Sprint1.md)
-    - [5.3.1.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-2-1-Sprint1.md)
-    - [5.3.1.7. Team Collaboration Insights during Sprint](./markdown/content/chapter-5/5-2-1-Sprint1.md)
-    - 5.3.1.8. Kanban Board
-  - [5.3.2. Sprint 2](./markdown/content/chapter-5/5-2-2-Sprint2.md)
-    - [5.3.2.1. Sprint Backlog 2](./markdown/content/chapter-5/5-2-2-Sprint2.md)
-    - [5.3.2.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-2-2-Sprint2.md)
+- [5.1. Testing Suites & General Patterns](./markdown/content/chapter-5/5-1-testing-suites-and-general-patterns.md)
+  - [5.1.1. Backend Application Core Testing Suite](./markdown/content/chapter-5/5-1-testing-suites-and-general-patterns.md)
+  - [5.1.2. Pattern Based Backend Application(s)](./markdown/content/chapter-5/5-1-testing-suites-and-general-patterns.md)
+  - [5.1.3. Pattern Based Custom Software Library](./markdown/content/chapter-5/5-1-testing-suites-and-general-patterns.md)
+  - [5.1.4. Framework Pattern Driven Refactoring Report](./markdown/content/chapter-5/5-1-testing-suites-and-general-patterns.md)
+- [5.2. Software Configuration Management](./markdown/content/chapter-5/5-2-software-configuration-management.md)
+  - [5.2.1. Software Development Environment Configuration](./markdown/content/chapter-5/5-2-software-configuration-management.md)
+  - [5.2.2. Source Code Management](./markdown/content/chapter-5/5-2-software-configuration-management.md)
+  - [5.2.3. Source Code Style Guide & Conventions](./markdown/content/chapter-5/5-2-software-configuration-management.md)
+  - [5.2.4. Software Deployment Configuration](./markdown/content/chapter-5/5-2-software-configuration-management.md)
+- [5.3. MicroServices Implementation](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+  - [5.3.1. Sprint 1](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
+    - [5.3.1.1. Sprint Backlog 1](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
+    - [5.3.1.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
+    - [5.3.1.3. Testing Suite Evidence for Sprint Review](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
+    - [5.3.1.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
+    - [5.3.1.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
+    - [5.3.1.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
+    - [5.3.1.7. Team Collaboration Insights during Sprint](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
+    - [5.3.1.8. Kanban Board](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
+  - [5.3.2. Sprint 2](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.2.1. Sprint Backlog 2](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.2.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
     - 5.3.2.3. Testing Suite Evidence for Sprint Review
-    - [5.3.2.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-2-2-Sprint2.md)
-    - [5.3.2.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-2-2-Sprint2.md)
-    - [5.3.2.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-2-2-Sprint2.md)
-    - [5.3.2.7. Team Collaboration Insights During Sprint](./markdown/content/chapter-5/5-2-2-Sprint2.md)
+    - [5.3.2.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.2.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.2.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.2.7. Team Collaboration Insights During Sprint](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
     - 5.3.2.8. Kanban Board
-  - [5.3.3. Sprint 3](./markdown/content/chapter-5/5-2-3-Sprint3.md)
-    - [5.3.3.1. Sprint Backlog 3](./markdown/content/chapter-5/5-2-3-Sprint3.md)
-    - [5.3.3.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-2-3-Sprint3.md)
+  - [5.3.3. Sprint 3](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.3.1. Sprint Backlog 3](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.3.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
     - 5.3.3.3. Testing Suite Evidence for Sprint Review
-    - [5.3.3.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-2-3-Sprint3.md)
-    - [5.3.3.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-2-3-Sprint3.md)
-    - [5.3.3.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-2-3-Sprint3.md)
-    - [5.3.3.7. Team Collaboration Insights During Sprint](./markdown/content/chapter-5/5-2-3-Sprint3.md)
+    - [5.3.3.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.3.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.3.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.3.7. Team Collaboration Insights During Sprint](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
     - 5.3.3.8. Kanban Board
-  - [5.3.4. Sprint 4](./markdown/content/chapter-5/5-2-4-Sprint4.md)
-    - [5.3.4.1. Sprint Backlog 4](./markdown/content/chapter-5/5-2-4-Sprint4.md)
-    - [5.3.4.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-2-4-Sprint4.md)
+  - [5.3.4. Sprint 4](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.4.1. Sprint Backlog 4](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.4.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
     - 5.3.4.3. Testing Suite Evidence for Sprint Review
-    - [5.3.4.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-2-4-Sprint4.md)
-    - [5.3.4.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-2-4-Sprint4.md)
-    - [5.3.4.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-2-4-Sprint4.md)
-    - [5.3.4.7. Team Collaboration Insights During Sprint](./markdown/content/chapter-5/5-2-4-Sprint4.md)
+    - [5.3.4.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.4.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.4.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
+    - [5.3.4.7. Team Collaboration Insights During Sprint](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
     - 5.3.4.8. Kanban Board
 - 5.4. MicroServices Deployment
   - 5.4.1. Cloud Architecture Diagrams

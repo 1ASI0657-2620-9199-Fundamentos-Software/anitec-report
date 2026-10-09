@@ -77,7 +77,7 @@ src/
 
 ## 4.4.3. Process View
 
-**Estado actual (as-built):** AniTec corre hoy como un **único proceso** ASP.NET Core (Kestrel) sirviendo peticiones HTTP síncronas request/response sobre el *thread pool* estándar de .NET — cada petición HTTP se atiende en su propio hilo administrado por el runtime, sin *workers* en segundo plano, sin colas ni *message broker* (confirmado en 4.1.1.2), y sin tareas programadas (`IHostedService`/`BackgroundService`) registradas en `Program.cs`. Las conexiones a MySQL se gestionan mediante el *connection pooling* propio de EF Core/Pomelo, transparente a nivel de aplicación. En síntesis: **no existen hoy problemas reales de concurrencia, distribución ni sincronización entre procesos** que documentar — sería incorrecto describir mecanismos que el sistema no tiene.
+**Estado actual (as-built):** AniTec corre hoy como un **único proceso** ASP.NET Core (Kestrel) sirviendo peticiones HTTP síncronas request/response sobre el *thread pool* estándar de .NET — cada petición HTTP se atiende en su propio hilo administrado por el runtime, sin *workers* en segundo plano, sin colas ni *message broker* (confirmado en 4.1.1.2), y sin tareas programadas (`IHostedService`/`BackgroundService`) registradas en `Program.cs`. Las conexiones a MySQL se gestionan mediante el *connection pooling* propio de EF Core (`MySql.EntityFrameworkCore`), transparente a nivel de aplicación. En síntesis: **no existen hoy problemas reales de concurrencia, distribución ni sincronización entre procesos** que documentar — sería incorrecto describir mecanismos que el sistema no tiene.
 
 **Estado objetivo (to-be, cross-referenciado con las Iteraciones 3, 4 y 5):** la Process View sí gana complejidad real una vez que el diseño de las Iteraciones 3, 4 y 5 se implemente:
 
@@ -98,7 +98,7 @@ Diagrama regenerado en Structurizr DSL, verificado contra la configuración real
 
 ```
 ┌─────────────────────────────┐        HTTPS/JSON        ┌──────────────────────────────┐
-│  Cliente (navegador)         │ ────────────────────────▶│  GitHub Pages                │
+│  Cliente (navegador)         │ ────────────────────────▶│  Render (Static Site)        │
 │                               │                           │  Single Page Application     │
 │                               │                           │  (Vue 3 + Vite, estático)    │
 └─────────────────────────────┘                           └──────────────┬───────────────┘
@@ -109,29 +109,29 @@ Diagrama regenerado en Structurizr DSL, verificado contra la configuración real
                                                              │  Anitec.Platform API          │
                                                              │  ASP.NET Core / Kestrel        │
                                                              │  puerto interno 8080           │
-                                                             │  anitec-backend.onrender.com  │
+                                                             │  anitec-backend-tbm0           │
+                                                             │  .onrender.com                 │
                                                              └──────────────┬───────────────┘
-                                                                            │ EF Core / MySQL
+                                                                            │ EF Core / MySQL (SSL)
                                                                             ▼
                                                              ┌──────────────────────────────┐
-                                                             │  Base de datos MySQL          │
-                                                             │  (cadena de conexión inyectada │
-                                                             │  por variable de entorno       │
-                                                             │  "DefaultConnection")          │
+                                                             │  Aiven for MySQL 8.4          │
+                                                             │  (DigitalOcean, región sfo,   │
+                                                             │  plan gratuito)                │
                                                              └──────────────────────────────┘
 ```
 
 **Elementos verificados directamente:**
-- El SPA se publica en GitHub Pages mediante el script `deploy: gh-pages -d dist` del `package.json` de `anitec-frontend`, y su build de producción (`.env.production`) apunta explícitamente a `https://anitec-backend.onrender.com/api/v1` — confirma que la API corre en Render, no en el mismo host que el SPA.
-- La API se empaqueta como imagen Docker (`Dockerfile`: build multi-stage sobre `mcr.microsoft.com/dotnet/sdk:10.0` → runtime `mcr.microsoft.com/dotnet/aspnet:10.0`) que expone el puerto `8080` — consistente con el modelo de despliegue por contenedor de Render.
-- La cadena de conexión a MySQL se obtiene de `builder.Configuration.GetConnectionString("DefaultConnection")` (`Program.cs`), es decir, se inyecta por configuración/variable de entorno en el entorno de despliegue — **no está hardcodeada ni versionada en el repositorio**, por lo que el proveedor físico exacto de la base de datos (instancia gestionada de Render u otro proveedor externo) no se puede verificar desde el código fuente; se documenta la conexión lógica (API → MySQL vía EF Core), no la ubicación física exacta del servidor de base de datos.
-- La Landing Page (contenedor ya documentado en el Context/Container Diagram, sección 4.1.3–4.1.4) se despliega como sitio estático independiente, separado del SPA de la aplicación — mismo patrón de hosting estático que el SPA, sin backend propio.
+- El SPA se publica como **Static Site en Render**, conectado a la rama `main` del repositorio `anitec-frontend` de la organización del curso; el comando de build es `npm install && npm run build`, el directorio publicado es `dist`, y una regla de *rewrite* `/*` → `/index.html` permite que el router de Vue (modo *history*) funcione al refrescar cualquier ruta. Las variables `VITE_ANITEC_API_URL` y `VITE_ANITEC_SERVER_URL` se definen en Render y apuntan a `https://anitec-backend-tbm0.onrender.com` — confirma que la API corre en un servicio distinto del que sirve el SPA. URL pública: https://anitec-frontend-cve3.onrender.com
+- La API se empaqueta como imagen Docker (`Dockerfile`: build multi-stage sobre `mcr.microsoft.com/dotnet/sdk:10.0` → runtime `mcr.microsoft.com/dotnet/aspnet:10.0`) que expone el puerto `8080` — consistente con el modelo de despliegue por contenedor de Render, que recibe la variable `PORT=8080`.
+- La cadena de conexión a MySQL se obtiene de `builder.Configuration.GetConnectionString("DefaultConnection")` (`Program.cs`) y se inyecta mediante la variable de entorno `ConnectionStrings__DefaultConnection` en Render — **no está hardcodeada ni versionada en el repositorio**. La base de datos es una instancia **Aiven for MySQL 8.4** en el plan gratuito (DigitalOcean, región `sfo`), con SSL obligatorio; las 15 tablas del esquema se crean en el primer arranque, porque la API ejecuta `Database.Migrate()` al iniciar.
+- La Landing Page (contenedor ya documentado en el Context/Container Diagram, sección 4.1.3–4.1.4) se despliega como sitio estático independiente en **GitHub Pages**, separado del SPA de la aplicación y sin backend propio. URL pública: https://1asi0657-2620-9199-fundamentos-software.github.io/anitec-landing-page/
 
 **Estado objetivo (to-be, cross-referenciado con la Iteración 3):** el diagrama y el diagrama de texto anteriores describen el despliegue *as-built* (un único proceso Render + una única base de datos MySQL). Una vez implementado el diseño de la Iteración 3 (4.3.3), la Physical View gana una unidad de despliegue nueva:
 
 ```
 ┌─────────────────────────────┐        HTTPS/JSON        ┌──────────────────────────────┐
-│  Cliente (navegador)         │ ────────────────────────▶│  GitHub Pages                │
+│  Cliente (navegador)         │ ────────────────────────▶│  Render (Static Site)        │
 │                               │                           │  Single Page Application     │
 └─────────────────────────────┘                           └──────────────┬───────────────┘
                                                                             │ HTTPS/JSON
@@ -169,7 +169,7 @@ El cambio físico relevante frente al estado actual: de **un** proceso desplegad
 └─────────────────────────────┘                           └──────────────────────────────┘
 ```
 
-El dispositivo IoT no pasa por GitHub Pages ni por el SPA — se conecta directamente al backend, autenticado por API key en vez de sesión de usuario (4.3.6.5). Es un terminador físico en el sentido literal que usa el statement para esta vista (*"objetos físicos integrados... que interactúan e intercambian información"*): un sensor de campo con conectividad intermitente, no un cliente interactivo. Ningún dispositivo real está desplegado a la fecha de este informe — el diseño es *to-be*, igual que el resto de esta vista.
+El dispositivo IoT no pasa por el SPA — se conecta directamente al backend, autenticado por API key en vez de sesión de usuario (4.3.6.5). Es un terminador físico en el sentido literal que usa el statement para esta vista (*"objetos físicos integrados... que interactúan e intercambian información"*): un sensor de campo con conectividad intermitente, no un cliente interactivo. Ningún dispositivo real está desplegado a la fecha de este informe — el diseño es *to-be*, igual que el resto de esta vista.
 
 ## 4.4.5. Scenarios View
 

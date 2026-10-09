@@ -1,9 +1,9 @@
 # Project Report Collaboration Insights
 
-- URL del repositorio para el reporte del proyecto: https://github.com/upc-1asi0730-2610-12206-titan-team-4/anitec-report
-- URL del repositorio para la Landing Page: https://github.com/upc-1asi0730-2610-12206-titan-team-4/anitec-landing-page
-- URL del repositorio para el desarrollo del frontend web applications (VueJS): https://github.com/upc-1asi0730-2610-12206-titan-team-4/anitec-frontend
-- URL del repositorio para el desarrollo del backend web applications (.NET Web API): https://github.com/upc-1asi0730-2610-12206-titan-team-4/anitec-backend.git
+- URL del repositorio para el reporte del proyecto: https://github.com/1ASI0657-2620-9199-Fundamentos-Software/anitec-report.git
+- URL del repositorio para la Landing Page: https://github.com/1ASI0657-2620-9199-Fundamentos-Software/anitec-landing-page.git
+- URL del repositorio para el desarrollo del frontend web applications (VueJS): https://github.com/1ASI0657-2620-9199-Fundamentos-Software/anitec-frontend.git
+- URL del repositorio para el desarrollo del backend web applications (.NET Web API): https://github.com/1ASI0657-2620-9199-Fundamentos-Software/anitec-backend.git
 
 **AV1**
 

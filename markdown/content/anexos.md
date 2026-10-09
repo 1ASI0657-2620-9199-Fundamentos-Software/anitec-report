@@ -47,15 +47,13 @@
 
 ## Anexo E. Repositorios y despliegues
 
-- Repositorio del informe del proyecto: https://github.com/upc-1asi0730-2610-12206-titan-team-4/anitec-report
-- Repositorio de la landing page: https://github.com/upc-1asi0730-2610-12206-titan-team-4/anitec-landing-page
-- Repositorio del frontend web: https://github.com/upc-1asi0730-2610-12206-titan-team-4/anitec-frontend
-- Repositorio del backend web: https://github.com/upc-1asi0730-2610-12206-titan-team-4/anitec-backend
-- Repositorio de datos de prueba: https://github.com/upc-1asi0730-2610-12206-titan-team-4/anitec-jsonserver
-- Despliegue de la landing page: https://upc-1asi0730-2610-12206-titan-team-4.github.io/anitec-landing-page/
-- Despliegue del frontend web: https://upc-1asi0730-2610-12206-titan-team-4.github.io/anitec-frontend/iam/sign-in
-- Despliegue del backend web: https://anitec-backend.onrender.com/swagger/index.html
-- API mock del frontend: https://my-json-server.typicode.com/upc-1asi0730-2610-12206-titan-team-4/anitec-jsonserver
+- Repositorio del informe del proyecto: https://github.com/1ASI0657-2620-9199-Fundamentos-Software/anitec-report
+- Repositorio de la landing page: https://github.com/1ASI0657-2620-9199-Fundamentos-Software/anitec-landing-page
+- Repositorio del frontend web: https://github.com/1ASI0657-2620-9199-Fundamentos-Software/anitec-frontend
+- Repositorio del backend web: https://github.com/1ASI0657-2620-9199-Fundamentos-Software/anitec-backend
+- Despliegue de la landing page: https://1asi0657-2620-9199-fundamentos-software.github.io/anitec-landing-page/
+- Despliegue del frontend web: https://anitec-frontend-cve3.onrender.com
+- Despliegue del backend web: https://anitec-backend-tbm0.onrender.com/swagger/index.html
 - Tablero del Sprint Backlog 1: https://tinyurl.com/TrelloSprint1Anitec
 - Tablero del Sprint Backlog 2: https://tinyurl.com/TrelloSprint2Anitec
 - Tablero del Sprint Backlog 3: https://tinyurl.com/TrelloSprint3Anitec
@@ -76,9 +74,11 @@
 - Visual Studio Code, para edición de código y archivos Markdown: https://code.visualstudio.com/
 - WebStorm, para desarrollo del frontend: https://www.jetbrains.com/webstorm/
 - Rider, para desarrollo del backend ASP.NET Core: https://www.jetbrains.com/rider/
-- GitHub Pages, para despliegue de la landing page y frontend web: https://pages.github.com
-- Render, para despliegue del backend web: https://render.com/
-- My JSON Server, para datos de prueba: https://my-json-server.typicode.com/
+- GitHub Pages, para despliegue de la landing page: https://pages.github.com
+- Render, para despliegue del backend (Web Service con Docker) y del frontend web (Static Site): https://render.com/
+- Aiven, para la base de datos MySQL administrada: https://aiven.io/
+- MySQL Workbench, para consultar la base de datos desplegada: https://www.mysql.com/products/workbench/
+- xUnit y Reqnroll, para pruebas unitarias y escenarios BDD en Gherkin: https://xunit.net/ / https://reqnroll.net/
 - Structurizr, para diagramas C4: https://structurizr.com
 - Vertabelo, para diagramas de base de datos: https://vertabelo.com
 

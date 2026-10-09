@@ -112,10 +112,10 @@ Cada escenario sigue las seis partes exigidas: fuente del estímulo, estímulo, 
 
 | Categoría | Restricción real |
 |---|---|
-| Topología de red | El SPA (GitHub Pages) y la API (Render) están en dominios distintos → toda comunicación depende de CORS habilitado explícitamente; hoy configurado como `AllowAllPolicy` (permisivo — ver 4.2.5). |
+| Topología de red | El SPA (Render, Static Site) y la API (Render, Web Service) están en dominios distintos → toda comunicación depende de CORS habilitado explícitamente; hoy configurado como `AllowAllPolicy` (permisivo — ver 4.2.5). |
 | Base de datos | Una única instancia MySQL compartida por los 12 bounded contexts, sin *sharding* ni bases de datos separadas por contexto (confirmado en 4.1.5). |
 | Entorno web | HTTPS es obligatorio en producción (Render lo impone); en desarrollo local el redirect a HTTPS se omite explícitamente (`!app.Environment.IsProduction()`). |
-| Servidores | API desplegada en el nivel gratuito/básico de Render (cómputo y memoria limitados, *cold starts* posibles tras inactividad); SPA servida como contenido estático puro en GitHub Pages (sin capacidad de cómputo en servidor). |
+| Servidores | API desplegada en el nivel gratuito/básico de Render (cómputo y memoria limitados, *cold starts* posibles tras inactividad); SPA servida como contenido estático puro desde un Static Site de Render (sin capacidad de cómputo en servidor), base de datos MySQL administrada en Aiven (plan gratuito). |
 | Software de terceros | Stripe integrado únicamente en modo de prueba (`sk_test_*`), sin cuenta *live*; no existe *message broker* ni API Gateway como dependencia de terceros. |
 | Cumplimiento de normas | Proyecto académico, sin auditoría de cumplimiento formal (no aplica HIPAA/GDPR de forma vinculante); se sigue buena práctica de hashing de contraseñas (BCrypt) como mínimo razonable para datos de cuenta de usuario. |
 | Equipo y tiempo | Equipo de 3 integrantes, desarrollo organizado en sprints de un ciclo académico — limita cuántas iteraciones ADD pueden llevarse a implementación real dentro del curso. |

@@ -1,0 +1,3645 @@
+{
+  "configuration" : { },
+  "description" : "Plataforma de gestión ganadera — modelo C4 (Structurizr DSL). Archivo único: todas las vistas comparten un solo modelo, organizado por comentarios de sección según la iteración/sección del capítulo 4 a la que pertenece cada elemento.",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedDate" : "2026-10-09T18:16:16Z",
+  "model" : {
+    "deploymentNodes" : [ {
+      "containerInstances" : [ {
+        "containerId" : "9",
+        "environment" : "Production",
+        "id" : "242",
+        "instanceId" : 1,
+        "properties" : {
+          "structurizr.dsl.identifier" : "prod.cb154a46-842e-4394-adeb-c7b5ca5d0435.71a3d990-da6b-4d2b-a143-45eaf62cd029"
+        },
+        "relationships" : [ {
+          "description" : "Hace llamadas a",
+          "destinationId" : "249",
+          "id" : "250",
+          "linkedRelationshipId" : "207",
+          "sourceId" : "242",
+          "technology" : "JSON/HTTPS"
+        } ],
+        "tags" : "Container Instance"
+      } ],
+      "description" : "Navegador del usuario",
+      "environment" : "Production",
+      "id" : "241",
+      "instances" : "1",
+      "name" : "Cliente",
+      "properties" : {
+        "structurizr.dsl.identifier" : "prod.cb154a46-842e-4394-adeb-c7b5ca5d0435"
+      },
+      "tags" : "Element,Deployment Node",
+      "technology" : "Web Browser"
+    }, {
+      "containerInstances" : [ {
+        "containerId" : "8",
+        "environment" : "Production",
+        "id" : "244",
+        "instanceId" : 1,
+        "properties" : {
+          "structurizr.dsl.identifier" : "prod.3a1fb6d5-00fc-489f-9fcc-5d40b5463d64.e8d7b138-43fa-4b5d-afa1-44f6f30fd2e0"
+        },
+        "relationships" : [ {
+          "description" : "Sirve",
+          "destinationId" : "242",
+          "id" : "245",
+          "linkedRelationshipId" : "206",
+          "sourceId" : "244",
+          "technology" : "HTTPS"
+        } ],
+        "tags" : "Container Instance"
+      } ],
+      "description" : "Hosting estático del SPA (npm run build, directorio dist, anitec-frontend-cve3.onrender.com)",
+      "environment" : "Production",
+      "id" : "243",
+      "instances" : "1",
+      "name" : "Render (Static Site)",
+      "properties" : {
+        "structurizr.dsl.identifier" : "prod.3a1fb6d5-00fc-489f-9fcc-5d40b5463d64"
+      },
+      "tags" : "Element,Deployment Node",
+      "technology" : "Static Site Hosting"
+    }, {
+      "containerInstances" : [ {
+        "containerId" : "7",
+        "environment" : "Production",
+        "id" : "247",
+        "instanceId" : 1,
+        "properties" : {
+          "structurizr.dsl.identifier" : "prod.8817b0f9-27dd-459b-a8ba-be942053e330.14ec72d3-42a5-4d55-bda3-059f472ba798"
+        },
+        "tags" : "Container Instance"
+      } ],
+      "description" : "Hosting estático de la landing page (rama main, raíz del repositorio)",
+      "environment" : "Production",
+      "id" : "246",
+      "instances" : "1",
+      "name" : "GitHub Pages",
+      "properties" : {
+        "structurizr.dsl.identifier" : "prod.8817b0f9-27dd-459b-a8ba-be942053e330"
+      },
+      "tags" : "Element,Deployment Node",
+      "technology" : "Static Site Hosting"
+    }, {
+      "containerInstances" : [ {
+        "containerId" : "11",
+        "environment" : "Production",
+        "id" : "249",
+        "instanceId" : 1,
+        "properties" : {
+          "structurizr.dsl.identifier" : "prod.72ab013a-90ed-4713-ac1c-452bb2bbfbc9.0ecf404b-6ff9-4798-a68d-80871567c6ba"
+        },
+        "relationships" : [ {
+          "description" : "Lee y escribe en",
+          "destinationId" : "252",
+          "id" : "253",
+          "linkedRelationshipId" : "208",
+          "sourceId" : "249",
+          "technology" : "Entity Framework Core / MySQL"
+        } ],
+        "tags" : "Container Instance"
+      } ],
+      "description" : "Contenedor Docker — build multi-stage sobre mcr.microsoft.com/dotnet/sdk:10.0 y aspnet:10.0, puerto interno 8080 (anitec-backend-tbm0.onrender.com)",
+      "environment" : "Production",
+      "id" : "248",
+      "instances" : "1",
+      "name" : "Render",
+      "properties" : {
+        "structurizr.dsl.identifier" : "prod.72ab013a-90ed-4713-ac1c-452bb2bbfbc9"
+      },
+      "tags" : "Element,Deployment Node",
+      "technology" : "Docker Container"
+    }, {
+      "containerInstances" : [ {
+        "containerId" : "10",
+        "environment" : "Production",
+        "id" : "252",
+        "instanceId" : 1,
+        "properties" : {
+          "structurizr.dsl.identifier" : "prod.152a6c0c-1bbf-4f9a-888c-81ab26a1ffcc.cf643435-4ca2-4e06-88c1-1a080fba4fd0"
+        },
+        "tags" : "Container Instance"
+      } ],
+      "description" : "Servicio administrado en el plan gratuito (DigitalOcean, región sfo), SSL obligatorio; la cadena de conexión se inyecta por la variable de entorno ConnectionStrings__DefaultConnection (4.4.4).",
+      "environment" : "Production",
+      "id" : "251",
+      "instances" : "1",
+      "name" : "Aiven for MySQL",
+      "properties" : {
+        "structurizr.dsl.identifier" : "prod.152a6c0c-1bbf-4f9a-888c-81ab26a1ffcc"
+      },
+      "tags" : "Element,Deployment Node",
+      "technology" : "MySQL 8.4"
+    } ],
+    "people" : [ {
+      "description" : "Gestiona su operación: hatos, corrales, animales, finanzas.",
+      "id" : "1",
+      "name" : "Ganadero (Rancher)",
+      "properties" : {
+        "structurizr.dsl.identifier" : "rancher"
+      },
+      "relationships" : [ {
+        "description" : "Usa",
+        "destinationId" : "9",
+        "id" : "200",
+        "sourceId" : "1",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Usa",
+        "destinationId" : "6",
+        "id" : "201",
+        "linkedRelationshipId" : "200",
+        "sourceId" : "1",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Visita",
+        "destinationId" : "7",
+        "id" : "204",
+        "sourceId" : "1",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Usa en campo, sin conexión",
+        "destinationId" : "199",
+        "id" : "236",
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person,Usuario"
+    }, {
+      "description" : "Emite diagnósticos, prescribe tratamientos, valida historiales clínicos.",
+      "id" : "2",
+      "name" : "Veterinario (Veterinarian)",
+      "properties" : {
+        "structurizr.dsl.identifier" : "veterinarian"
+      },
+      "relationships" : [ {
+        "description" : "Usa",
+        "destinationId" : "9",
+        "id" : "202",
+        "sourceId" : "2",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Usa",
+        "destinationId" : "6",
+        "id" : "203",
+        "linkedRelationshipId" : "202",
+        "sourceId" : "2",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Visita",
+        "destinationId" : "7",
+        "id" : "205",
+        "sourceId" : "2",
+        "tags" : "Relationship",
+        "technology" : "HTTPS"
+      }, {
+        "description" : "Usa en campo, sin conexión",
+        "destinationId" : "199",
+        "id" : "237",
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person,Usuario"
+    } ],
+    "softwareSystems" : [ {
+      "description" : "Pasarela de pagos (modo de prueba). Integración real vía Stripe.net / SessionService.",
+      "documentation" : { },
+      "id" : "3",
+      "name" : "Stripe",
+      "properties" : {
+        "structurizr.dsl.identifier" : "stripe"
+      },
+      "tags" : "Element,Software System,Sistema Externo"
+    }, {
+      "description" : "Mensajería de correo planeada para notificaciones. SIN integración real en el backend a la fecha de este informe (4.1.3).",
+      "documentation" : { },
+      "id" : "4",
+      "name" : "Resend",
+      "properties" : {
+        "structurizr.dsl.identifier" : "resend"
+      },
+      "tags" : "Element,Software System,Sistema Externo,To-Be"
+    }, {
+      "description" : "Collar GPS, sensor de corral u otro dispositivo de campo. Reporta telemetría periódica autenticado por API key propia, no por JWT de usuario (Iteración 6, 4.3.6). NO existe ningún mecanismo de ingesta real a la fecha de este informe.",
+      "documentation" : { },
+      "id" : "5",
+      "name" : "Dispositivo IoT",
+      "properties" : {
+        "structurizr.dsl.identifier" : "iotDevice"
+      },
+      "relationships" : [ {
+        "description" : "Envía telemetría periódica, autenticado por API key (no JWT de usuario)",
+        "destinationId" : "11",
+        "id" : "239",
+        "sourceId" : "5",
+        "tags" : "Relationship",
+        "technology" : "HTTPS/REST (POST /devices/{id}/telemetry)"
+      }, {
+        "description" : "Envía telemetría periódica, autenticado por API key (no JWT de usuario)",
+        "destinationId" : "6",
+        "id" : "240",
+        "linkedRelationshipId" : "239",
+        "sourceId" : "5",
+        "technology" : "HTTPS/REST (POST /devices/{id}/telemetry)"
+      } ],
+      "tags" : "Element,Software System,Sistema Externo,To-Be"
+    }, {
+      "containers" : [ {
+        "description" : "Sitio estático de marketing (HTML/CSS/JS, i18n EN/ES).",
+        "documentation" : { },
+        "id" : "7",
+        "name" : "Landing Page",
+        "properties" : {
+          "structurizr.dsl.identifier" : "anitec.landingPage"
+        },
+        "tags" : "Element,Container",
+        "technology" : "HTML/CSS/JS"
+      }, {
+        "description" : "Sirve los archivos estáticos del SPA.",
+        "documentation" : { },
+        "id" : "8",
+        "name" : "Web Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "anitec.webApplication"
+        },
+        "relationships" : [ {
+          "description" : "Sirve",
+          "destinationId" : "9",
+          "id" : "206",
+          "sourceId" : "8",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "Static Hosting (Render Static Site)"
+      }, {
+        "description" : "Interfaz de usuario de AniTec. Autenticación stateless vía JWT.",
+        "documentation" : { },
+        "id" : "9",
+        "name" : "Single Page Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "anitec.spa"
+        },
+        "relationships" : [ {
+          "description" : "Hace llamadas a",
+          "destinationId" : "11",
+          "id" : "207",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Consulta usuarios",
+          "destinationId" : "12",
+          "id" : "213",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Inicia sesión / se registra",
+          "destinationId" : "13",
+          "id" : "214",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Gestiona perfiles",
+          "destinationId" : "28",
+          "id" : "215",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Gestiona animales",
+          "destinationId" : "37",
+          "id" : "216",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Gestiona corrales",
+          "destinationId" : "38",
+          "id" : "217",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Gestiona hatos",
+          "destinationId" : "39",
+          "id" : "218",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Gestiona registros sanitarios",
+          "destinationId" : "61",
+          "id" : "219",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Gestiona movimientos financieros",
+          "destinationId" : "69",
+          "id" : "220",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Gestiona actividades",
+          "destinationId" : "77",
+          "id" : "221",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Consulta métricas",
+          "destinationId" : "85",
+          "id" : "222",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Consulta dashboards",
+          "destinationId" : "86",
+          "id" : "223",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Gestiona dispositivos",
+          "destinationId" : "94",
+          "id" : "224",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Consulta métricas de dispositivo",
+          "destinationId" : "102",
+          "id" : "225",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Gestiona suscripciones/pagos",
+          "destinationId" : "110",
+          "id" : "226",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Consulta planes",
+          "destinationId" : "111",
+          "id" : "227",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Gestiona relaciones veterinario-ganadero",
+          "destinationId" : "134",
+          "id" : "228",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Hace llamadas a (reemplaza la llamada directa a apiApplication)",
+          "destinationId" : "196",
+          "id" : "231",
+          "sourceId" : "9",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "Vue 3 + Vite"
+      }, {
+        "description" : "Almacena hatos, corrales, animales, registros sanitarios, financieros, suscripciones, etc. Una sola base compartida por los 12 bounded contexts (4.1.1.1).",
+        "documentation" : { },
+        "id" : "10",
+        "name" : "Database",
+        "properties" : {
+          "structurizr.dsl.identifier" : "anitec.database"
+        },
+        "tags" : "Element,Container,Database",
+        "technology" : "MySQL"
+      }, {
+        "components" : [ {
+          "description" : "Expone api/v1/users.",
+          "documentation" : { },
+          "group" : "Iam",
+          "id" : "12",
+          "name" : "UsersController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.iam_UsersController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "15",
+            "id" : "20",
+            "sourceId" : "12",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "16",
+            "id" : "21",
+            "sourceId" : "12",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Expone api/v1/authentication (sign-in, sign-up).",
+          "documentation" : { },
+          "group" : "Iam",
+          "id" : "13",
+          "name" : "AuthenticationController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.iam_AuthenticationController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "15",
+            "id" : "22",
+            "sourceId" : "13",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "18",
+            "id" : "23",
+            "sourceId" : "13",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "19",
+            "id" : "24",
+            "sourceId" : "13",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de User.",
+          "documentation" : { },
+          "group" : "Iam",
+          "id" : "14",
+          "name" : "IUserRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.iam_IUserRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "179",
+            "sourceId" : "14",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre User.",
+          "documentation" : { },
+          "group" : "Iam",
+          "id" : "15",
+          "name" : "IUserCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.iam_IUserCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "14",
+            "id" : "25",
+            "sourceId" : "15",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre User.",
+          "documentation" : { },
+          "group" : "Iam",
+          "id" : "16",
+          "name" : "IUserQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.iam_IUserQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "14",
+            "id" : "26",
+            "sourceId" : "16",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Fachada ACL — superficie de integración sancionada para que otros contextos consulten Iam sin acoplarse a su dominio interno.",
+          "documentation" : { },
+          "group" : "Iam",
+          "id" : "17",
+          "name" : "IamContextFacade",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.iam_IamContextFacade"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "16",
+            "id" : "27",
+            "sourceId" : "17",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,ACL Facade",
+          "technology" : "C# Facade"
+        }, {
+          "description" : "Emisión/validación de JWT (ClaimTypes.Sid, ClaimTypes.Role).",
+          "documentation" : { },
+          "group" : "Iam",
+          "id" : "18",
+          "name" : "ITokenService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.iam_TokenService"
+          },
+          "tags" : "Element,Component",
+          "technology" : "Outbound Service"
+        }, {
+          "description" : "Hashing BCrypt de contraseñas.",
+          "documentation" : { },
+          "group" : "Iam",
+          "id" : "19",
+          "name" : "IHashingService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.iam_HashingService"
+          },
+          "tags" : "Element,Component",
+          "technology" : "Outbound Service"
+        }, {
+          "description" : "Expone api/v1/profiles.",
+          "documentation" : { },
+          "group" : "Profiles",
+          "id" : "28",
+          "name" : "ProfilesController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.profiles_ProfilesController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "30",
+            "id" : "33",
+            "sourceId" : "28",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "31",
+            "id" : "34",
+            "sourceId" : "28",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de Profile.",
+          "documentation" : { },
+          "group" : "Profiles",
+          "id" : "29",
+          "name" : "IProfileRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.profiles_IProfileRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "180",
+            "sourceId" : "29",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre Profile.",
+          "documentation" : { },
+          "group" : "Profiles",
+          "id" : "30",
+          "name" : "IProfileCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.profiles_IProfileCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "29",
+            "id" : "35",
+            "sourceId" : "30",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre Profile.",
+          "documentation" : { },
+          "group" : "Profiles",
+          "id" : "31",
+          "name" : "IProfileQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.profiles_IProfileQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "29",
+            "id" : "36",
+            "sourceId" : "31",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Fachada ACL de Profiles.",
+          "documentation" : { },
+          "group" : "Profiles",
+          "id" : "32",
+          "name" : "ProfilesContextFacade",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.profiles_ProfilesContextFacade"
+          },
+          "tags" : "Element,Component,ACL Facade",
+          "technology" : "C# Facade"
+        }, {
+          "description" : "Expone api/v1/animals (incluye registro individual y por lote).",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "37",
+          "name" : "AnimalsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_AnimalsController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "43",
+            "id" : "49",
+            "sourceId" : "37",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "46",
+            "id" : "50",
+            "sourceId" : "37",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Expone api/v1/corrals.",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "38",
+          "name" : "CorralsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_CorralsController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "44",
+            "id" : "51",
+            "sourceId" : "38",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "47",
+            "id" : "52",
+            "sourceId" : "38",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Expone api/v1/herds.",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "39",
+          "name" : "HerdsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_HerdsController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "45",
+            "id" : "53",
+            "sourceId" : "39",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "48",
+            "id" : "54",
+            "sourceId" : "39",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de Animal.",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "40",
+          "name" : "IAnimalRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_IAnimalRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "181",
+            "sourceId" : "40",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Persistencia de Corral.",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "41",
+          "name" : "ICorralRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_ICorralRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "182",
+            "sourceId" : "41",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Persistencia de Herd.",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "42",
+          "name" : "IHerdRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_IHerdRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "183",
+            "sourceId" : "42",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre Animal (incluye alta por lote).",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "43",
+          "name" : "IAnimalCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_IAnimalCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "40",
+            "id" : "55",
+            "sourceId" : "43",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Comandos sobre Corral.",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "44",
+          "name" : "ICorralCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_ICorralCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "41",
+            "id" : "57",
+            "sourceId" : "44",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Comandos sobre Herd.",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "45",
+          "name" : "IHerdCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_IHerdCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "42",
+            "id" : "59",
+            "sourceId" : "45",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre Animal — SIN filtrado por propietario hoy (QAS-08, 4.3.2).",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "46",
+          "name" : "IAnimalQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_IAnimalQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "40",
+            "id" : "56",
+            "sourceId" : "46",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Consultas sobre Corral.",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "47",
+          "name" : "ICorralQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_ICorralQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "41",
+            "id" : "58",
+            "sourceId" : "47",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Consultas sobre Herd.",
+          "documentation" : { },
+          "group" : "Livestock",
+          "id" : "48",
+          "name" : "IHerdQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.livestock_IHerdQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "42",
+            "id" : "60",
+            "sourceId" : "48",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Expone api/v1/health-events.",
+          "documentation" : { },
+          "group" : "Sanitary",
+          "id" : "61",
+          "name" : "HealthEventsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.sanitary_HealthEventsController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "63",
+            "id" : "65",
+            "sourceId" : "61",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "64",
+            "id" : "66",
+            "sourceId" : "61",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de HealthEvent.",
+          "documentation" : { },
+          "group" : "Sanitary",
+          "id" : "62",
+          "name" : "IHealthEventRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.sanitary_IHealthEventRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "184",
+            "sourceId" : "62",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre HealthEvent. NO soporta borrador/rectificación/anulación hoy (US-017/018, diseño to-be en 4.4.1).",
+          "documentation" : { },
+          "group" : "Sanitary",
+          "id" : "63",
+          "name" : "IHealthEventCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.sanitary_IHealthEventCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "62",
+            "id" : "67",
+            "sourceId" : "63",
+            "tags" : "Relationship"
+          }, {
+            "description" : "invoca al rectificar/anular (US-018)",
+            "destinationId" : "165",
+            "id" : "167",
+            "sourceId" : "63",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre HealthEvent — SIN filtrado por propietario hoy (QAS-08, 4.3.2).",
+          "documentation" : { },
+          "group" : "Sanitary",
+          "id" : "64",
+          "name" : "IHealthEventQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.sanitary_IHealthEventQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "62",
+            "id" : "68",
+            "sourceId" : "64",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Expone api/v1/financial-records.",
+          "documentation" : { },
+          "group" : "Financial",
+          "id" : "69",
+          "name" : "FinancialRecordsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.financial_FinancialRecordsController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "71",
+            "id" : "73",
+            "sourceId" : "69",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "72",
+            "id" : "74",
+            "sourceId" : "69",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de FinancialRecord.",
+          "documentation" : { },
+          "group" : "Financial",
+          "id" : "70",
+          "name" : "IFinancialRecordRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.financial_IFinancialRecordRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "185",
+            "sourceId" : "70",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre FinancialRecord.",
+          "documentation" : { },
+          "group" : "Financial",
+          "id" : "71",
+          "name" : "IFinancialRecordCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.financial_IFinancialRecordCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "70",
+            "id" : "75",
+            "sourceId" : "71",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre FinancialRecord.",
+          "documentation" : { },
+          "group" : "Financial",
+          "id" : "72",
+          "name" : "IFinancialRecordQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.financial_IFinancialRecordQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "70",
+            "id" : "76",
+            "sourceId" : "72",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Expone api/v1/farm-events (nota: el slug de ruta no coincide con el nombre de la clase/entidad).",
+          "documentation" : { },
+          "group" : "Activities",
+          "id" : "77",
+          "name" : "FarmActivitiesController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.activities_FarmActivitiesController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "79",
+            "id" : "81",
+            "sourceId" : "77",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "80",
+            "id" : "82",
+            "sourceId" : "77",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de FarmActivity.",
+          "documentation" : { },
+          "group" : "Activities",
+          "id" : "78",
+          "name" : "IFarmActivityRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.activities_IFarmActivityRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "186",
+            "sourceId" : "78",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre FarmActivity.",
+          "documentation" : { },
+          "group" : "Activities",
+          "id" : "79",
+          "name" : "IFarmActivityCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.activities_IFarmActivityCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "78",
+            "id" : "83",
+            "sourceId" : "79",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre FarmActivity.",
+          "documentation" : { },
+          "group" : "Activities",
+          "id" : "80",
+          "name" : "IFarmActivityQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.activities_IFarmActivityQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "78",
+            "id" : "84",
+            "sourceId" : "80",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Expone api/v1/report-metrics.",
+          "documentation" : { },
+          "group" : "Analytics",
+          "id" : "85",
+          "name" : "ReportMetricsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.analytics_ReportMetricsController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "88",
+            "id" : "90",
+            "sourceId" : "85",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "89",
+            "id" : "91",
+            "sourceId" : "85",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Expone api/v1/analytics — agregador cruzado: compone dashboards a partir de otros bounded contexts.",
+          "documentation" : { },
+          "group" : "Analytics",
+          "id" : "86",
+          "name" : "DashboardAnalyticsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.analytics_DashboardAnalyticsController"
+          },
+          "relationships" : [ {
+            "description" : "usa (agregador de dashboard)",
+            "destinationId" : "80",
+            "id" : "169",
+            "sourceId" : "86",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa (agregador de dashboard)",
+            "destinationId" : "137",
+            "id" : "170",
+            "sourceId" : "86",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa (agregador de dashboard)",
+            "destinationId" : "97",
+            "id" : "171",
+            "sourceId" : "86",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa (agregador de dashboard)",
+            "destinationId" : "72",
+            "id" : "172",
+            "sourceId" : "86",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa (agregador de dashboard)",
+            "destinationId" : "46",
+            "id" : "173",
+            "sourceId" : "86",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa (agregador de dashboard)",
+            "destinationId" : "64",
+            "id" : "174",
+            "sourceId" : "86",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de ReportMetric.",
+          "documentation" : { },
+          "group" : "Analytics",
+          "id" : "87",
+          "name" : "IReportMetricRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.analytics_IReportMetricRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "187",
+            "sourceId" : "87",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre ReportMetric.",
+          "documentation" : { },
+          "group" : "Analytics",
+          "id" : "88",
+          "name" : "IReportMetricCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.analytics_IReportMetricCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "87",
+            "id" : "92",
+            "sourceId" : "88",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre ReportMetric.",
+          "documentation" : { },
+          "group" : "Analytics",
+          "id" : "89",
+          "name" : "IReportMetricQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.analytics_IReportMetricQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "87",
+            "id" : "93",
+            "sourceId" : "89",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Expone api/v1/devices.",
+          "documentation" : { },
+          "group" : "Devices",
+          "id" : "94",
+          "name" : "DevicesController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.devices_DevicesController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "96",
+            "id" : "98",
+            "sourceId" : "94",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "97",
+            "id" : "99",
+            "sourceId" : "94",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "105",
+            "id" : "178",
+            "sourceId" : "94",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de Device.",
+          "documentation" : { },
+          "group" : "Devices",
+          "id" : "95",
+          "name" : "IDeviceRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.devices_IDeviceRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "188",
+            "sourceId" : "95",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre Device.",
+          "documentation" : { },
+          "group" : "Devices",
+          "id" : "96",
+          "name" : "IDeviceCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.devices_IDeviceCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "95",
+            "id" : "100",
+            "sourceId" : "96",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre Device.",
+          "documentation" : { },
+          "group" : "Devices",
+          "id" : "97",
+          "name" : "IDeviceQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.devices_IDeviceQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "95",
+            "id" : "101",
+            "sourceId" : "97",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Expone api/v1/device-metrics.",
+          "documentation" : { },
+          "group" : "Metrics",
+          "id" : "102",
+          "name" : "DeviceMetricsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.metrics_DeviceMetricsController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "104",
+            "id" : "106",
+            "sourceId" : "102",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "105",
+            "id" : "107",
+            "sourceId" : "102",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de DeviceMetric.",
+          "documentation" : { },
+          "group" : "Metrics",
+          "id" : "103",
+          "name" : "IDeviceMetricRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.metrics_IDeviceMetricRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "189",
+            "sourceId" : "103",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre DeviceMetric.",
+          "documentation" : { },
+          "group" : "Metrics",
+          "id" : "104",
+          "name" : "IDeviceMetricCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.metrics_IDeviceMetricCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "103",
+            "id" : "108",
+            "sourceId" : "104",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre DeviceMetric.",
+          "documentation" : { },
+          "group" : "Metrics",
+          "id" : "105",
+          "name" : "IDeviceMetricQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.metrics_IDeviceMetricQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "103",
+            "id" : "109",
+            "sourceId" : "105",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Expone api/v1/subscriptions — incluye checkout Stripe real y MockCheckout local.",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "110",
+          "name" : "SubscriptionsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_SubscriptionsController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "115",
+            "id" : "121",
+            "sourceId" : "110",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "118",
+            "id" : "122",
+            "sourceId" : "110",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "119",
+            "id" : "123",
+            "sourceId" : "110",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "117",
+            "id" : "124",
+            "sourceId" : "110",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "120",
+            "id" : "125",
+            "sourceId" : "110",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Crea sesiones de checkout, consulta suscripciones",
+            "destinationId" : "3",
+            "id" : "230",
+            "sourceId" : "110",
+            "tags" : "Relationship",
+            "technology" : "HTTPS/REST (Stripe.net)"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Expone api/v1/subscription-plans.",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "111",
+          "name" : "SubscriptionPlansController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_SubscriptionPlansController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "116",
+            "id" : "126",
+            "sourceId" : "111",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "119",
+            "id" : "127",
+            "sourceId" : "111",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de Subscription.",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "112",
+          "name" : "ISubscriptionRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_ISubscriptionRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "190",
+            "sourceId" : "112",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Persistencia de SubscriptionPlan.",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "113",
+          "name" : "ISubscriptionPlanRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_ISubscriptionPlanRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "191",
+            "sourceId" : "113",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Persistencia de Payment.",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "114",
+          "name" : "IPaymentRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_IPaymentRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "192",
+            "sourceId" : "114",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre Subscription.",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "115",
+          "name" : "ISubscriptionCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_ISubscriptionCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "112",
+            "id" : "128",
+            "sourceId" : "115",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Comandos sobre SubscriptionPlan. `max_animals` se persiste pero NO se aplica hoy (4.2.5).",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "116",
+          "name" : "ISubscriptionPlanCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_ISubscriptionPlanCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "113",
+            "id" : "130",
+            "sourceId" : "116",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Comandos sobre Payment.",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "117",
+          "name" : "IPaymentCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_IPaymentCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "114",
+            "id" : "132",
+            "sourceId" : "117",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre Subscription.",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "118",
+          "name" : "ISubscriptionQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_ISubscriptionQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "112",
+            "id" : "129",
+            "sourceId" : "118",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Consultas sobre SubscriptionPlan.",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "119",
+          "name" : "ISubscriptionPlanQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_ISubscriptionPlanQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "113",
+            "id" : "131",
+            "sourceId" : "119",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Consultas sobre Payment.",
+          "documentation" : { },
+          "group" : "Subscriptions",
+          "id" : "120",
+          "name" : "IPaymentQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.subscriptions_IPaymentQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "114",
+            "id" : "133",
+            "sourceId" : "120",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Expone api/v1/veterinarian. HOY crea la relación ya 'Accepted' — sin flujo de aprobación real (diseño to-be en 4.3.2).",
+          "documentation" : { },
+          "group" : "Clients",
+          "id" : "134",
+          "name" : "VeterinarianClientsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.clients_VeterinarianClientsController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "136",
+            "id" : "138",
+            "sourceId" : "134",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "137",
+            "id" : "139",
+            "sourceId" : "134",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "16",
+            "id" : "175",
+            "sourceId" : "134",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "48",
+            "id" : "176",
+            "sourceId" : "134",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "46",
+            "id" : "177",
+            "sourceId" : "134",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de VeterinarianClient.",
+          "documentation" : { },
+          "group" : "Clients",
+          "id" : "135",
+          "name" : "IVeterinarianClientRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.clients_IVeterinarianClientRepository"
+          },
+          "relationships" : [ {
+            "description" : "implementa vía",
+            "destinationId" : "161",
+            "id" : "193",
+            "sourceId" : "135",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre VeterinarianClient.",
+          "documentation" : { },
+          "group" : "Clients",
+          "id" : "136",
+          "name" : "IVeterinarianClientCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.clients_IVeterinarianClientCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "135",
+            "id" : "140",
+            "sourceId" : "136",
+            "tags" : "Relationship"
+          }, {
+            "description" : "invoca al aprobar/rechazar/revocar",
+            "destinationId" : "165",
+            "id" : "168",
+            "sourceId" : "136",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre VeterinarianClient.",
+          "documentation" : { },
+          "group" : "Clients",
+          "id" : "137",
+          "name" : "IVeterinarianClientQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.clients_IVeterinarianClientQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "135",
+            "id" : "141",
+            "sourceId" : "137",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "Expone api/v1/alerts (confirmar/posponer/cerrar). NO existe hoy — diseño to-be (Iteración 5, 4.3.5).",
+          "documentation" : { },
+          "group" : "Notifications",
+          "id" : "142",
+          "name" : "AlertsController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.notifications_AlertsController"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "144",
+            "id" : "148",
+            "sourceId" : "142",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa",
+            "destinationId" : "145",
+            "id" : "149",
+            "sourceId" : "142",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,To-Be",
+          "technology" : "ASP.NET Core REST Controller"
+        }, {
+          "description" : "Persistencia de Alert.",
+          "documentation" : { },
+          "group" : "Notifications",
+          "id" : "143",
+          "name" : "IAlertRepository",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.notifications_IAlertRepository"
+          },
+          "tags" : "Element,Component,To-Be",
+          "technology" : "Repository Interface"
+        }, {
+          "description" : "Comandos sobre Alert.",
+          "documentation" : { },
+          "group" : "Notifications",
+          "id" : "144",
+          "name" : "IAlertCommandService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.notifications_IAlertCommandService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "143",
+            "id" : "150",
+            "sourceId" : "144",
+            "tags" : "Relationship"
+          }, {
+            "description" : "invoca al crear una alerta",
+            "destinationId" : "147",
+            "id" : "152",
+            "sourceId" : "144",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,To-Be",
+          "technology" : "Command Service Interface"
+        }, {
+          "description" : "Consultas sobre Alert, filtradas por propietario (reutiliza el patrón QAS-08).",
+          "documentation" : { },
+          "group" : "Notifications",
+          "id" : "145",
+          "name" : "IAlertQueryService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.notifications_IAlertQueryService"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "143",
+            "id" : "151",
+            "sourceId" : "145",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,To-Be",
+          "technology" : "Query Service Interface"
+        }, {
+          "description" : "BackgroundService — primer worker en segundo plano del sistema (4.4.3). Escanea vencimientos sin confirmar en Sanitary/Activities.",
+          "documentation" : { },
+          "group" : "Notifications",
+          "id" : "146",
+          "name" : "DueDateScanningService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.notifications_DueDateScanningService"
+          },
+          "relationships" : [ {
+            "description" : "crea alertas nuevas",
+            "destinationId" : "144",
+            "id" : "153",
+            "sourceId" : "146",
+            "tags" : "Relationship"
+          }, {
+            "description" : "consulta vencimientos",
+            "destinationId" : "64",
+            "id" : "154",
+            "sourceId" : "146",
+            "tags" : "Relationship"
+          }, {
+            "description" : "consulta vencimientos",
+            "destinationId" : "80",
+            "id" : "155",
+            "sourceId" : "146",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,To-Be",
+          "technology" : "IHostedService"
+        }, {
+          "description" : "Envía notificación de alerta vía Resend, mismo patrón que ITokenService/IHashingService en Iam.",
+          "documentation" : { },
+          "group" : "Notifications",
+          "id" : "147",
+          "name" : "IEmailNotificationService",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.notifications_IEmailNotificationService"
+          },
+          "tags" : "Element,Component,To-Be",
+          "technology" : "Outbound Service"
+        }, {
+          "description" : "Esquema de autenticación independiente del JWT de usuario — valida X-Device-Api-Key contra Device.ApiKeyHash (Iteración 6, 4.3.6.5). NO existe hoy.",
+          "documentation" : { },
+          "group" : "Devices - IoT Ingestion",
+          "id" : "156",
+          "name" : "DeviceApiKeyAuthenticationHandler",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.devices_DeviceApiKeyAuthenticationHandler"
+          },
+          "tags" : "Element,Component,To-Be",
+          "technology" : "ASP.NET Core AuthenticationHandler"
+        }, {
+          "description" : "Ingesta de lecturas de dispositivo, autenticado por API key, delega en IDeviceMetricCommandService (Iteración 6). NO existe hoy.",
+          "documentation" : { },
+          "group" : "Devices - IoT Ingestion",
+          "id" : "157",
+          "name" : "POST .../telemetry",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.devices_TelemetryEndpoint"
+          },
+          "relationships" : [ {
+            "description" : "se autentica vía",
+            "destinationId" : "156",
+            "id" : "158",
+            "sourceId" : "157",
+            "tags" : "Relationship"
+          }, {
+            "description" : "usa (reutiliza, no duplica)",
+            "destinationId" : "104",
+            "id" : "159",
+            "sourceId" : "157",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,To-Be",
+          "technology" : "ASP.NET Core REST Endpoint"
+        }, {
+          "description" : "DbContext único de EF Core, compartido por los 12 bounded contexts.",
+          "documentation" : { },
+          "group" : "Shared",
+          "id" : "160",
+          "name" : "AppDbContext",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.shared_AppDbContext"
+          },
+          "relationships" : [ {
+            "description" : "aplica",
+            "destinationId" : "162",
+            "id" : "195",
+            "sourceId" : "160",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Lee y escribe en",
+            "destinationId" : "10",
+            "id" : "229",
+            "sourceId" : "160",
+            "tags" : "Relationship",
+            "technology" : "EF Core / MySQL"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "EF Core DbContext"
+        }, {
+          "description" : "Implementación base de repositorio + unidad de trabajo, reutilizada por todos los contextos.",
+          "documentation" : { },
+          "group" : "Shared",
+          "id" : "161",
+          "name" : "BaseRepository / IUnitOfWork",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.shared_BaseRepository"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "160",
+            "id" : "194",
+            "sourceId" : "161",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component",
+          "technology" : "Infrastructure"
+        }, {
+          "description" : "Rellena CreatedAt/UpdatedAt para entidades IAuditableEntity (hoy: solo User y Profile).",
+          "documentation" : { },
+          "group" : "Shared",
+          "id" : "162",
+          "name" : "AuditableEntityInterceptor",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.shared_AuditableEntityInterceptor"
+          },
+          "tags" : "Element,Component",
+          "technology" : "EF Core Interceptor"
+        }, {
+          "description" : "Middleware transversal de manejo de errores no controlados.",
+          "documentation" : { },
+          "group" : "Shared",
+          "id" : "163",
+          "name" : "GlobalExceptionHandlerMiddleware",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.shared_GlobalExceptionHandlerMiddleware"
+          },
+          "tags" : "Element,Component",
+          "technology" : "Middleware"
+        }, {
+          "description" : "Construye respuestas de error RFC 7807 consistentes entre contextos.",
+          "documentation" : { },
+          "group" : "Shared",
+          "id" : "164",
+          "name" : "ProblemDetailsFactory",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.shared_ProblemDetailsFactory"
+          },
+          "tags" : "Element,Component",
+          "technology" : "Infrastructure"
+        }, {
+          "description" : "Registra una fila en audit_log por operación sensible (rectificar/anular sanitario, aprobar/rechazar/revocar veterinario-cliente), enlazada al X-Correlation-Id de la petición. NO existe hoy — diseño to-be (4.3.7.5).",
+          "documentation" : { },
+          "group" : "Shared - Auditoría",
+          "id" : "165",
+          "name" : "AuditLogger",
+          "properties" : {
+            "structurizr.dsl.identifier" : "anitec.apiApplication.shared_AuditLogger"
+          },
+          "relationships" : [ {
+            "description" : "usa",
+            "destinationId" : "160",
+            "id" : "166",
+            "sourceId" : "165",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,To-Be",
+          "technology" : "Application Service"
+        } ],
+        "description" : "Expone la lógica de negocio de AniTec vía API REST. Monolito modular ASP.NET Core, un solo Program.cs, un solo .csproj (4.1.2).",
+        "documentation" : { },
+        "id" : "11",
+        "name" : "API Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "anitec.apiApplication"
+        },
+        "relationships" : [ {
+          "description" : "Lee y escribe en",
+          "destinationId" : "10",
+          "id" : "208",
+          "sourceId" : "11",
+          "tags" : "Relationship",
+          "technology" : "Entity Framework Core / MySQL"
+        }, {
+          "description" : "Crea sesiones de checkout, consulta suscripciones",
+          "destinationId" : "3",
+          "id" : "209",
+          "sourceId" : "11",
+          "tags" : "Relationship",
+          "technology" : "HTTPS/REST (Stripe.net)"
+        }, {
+          "description" : "Envía notificaciones (TO-BE — sin integración real)",
+          "destinationId" : "4",
+          "id" : "211",
+          "sourceId" : "11",
+          "tags" : "Relationship",
+          "technology" : "HTTPS/REST"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "ASP.NET Core / C#"
+      }, {
+        "description" : "Único punto de entrada del SPA/Mobile App. Enruta por prefijo de ruta hacia Core API o Subscriptions Service. NO existe hoy — diseño to-be (4.3.3).",
+        "documentation" : { },
+        "id" : "196",
+        "name" : "API Gateway",
+        "properties" : {
+          "structurizr.dsl.identifier" : "anitec.apiGateway"
+        },
+        "relationships" : [ {
+          "description" : "Enruta /api/v1/* (excepto subscriptions)",
+          "destinationId" : "11",
+          "id" : "232",
+          "sourceId" : "196",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        }, {
+          "description" : "Enruta /api/v1/subscriptions*, /api/v1/subscription-plans*, /api/v1/payments*",
+          "destinationId" : "197",
+          "id" : "233",
+          "sourceId" : "196",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS"
+        } ],
+        "tags" : "Element,Container,To-Be",
+        "technology" : "YARP"
+      }, {
+        "description" : "Subscriptions extraído como servicio independientemente desplegable, con su propia base de datos. NO existe hoy — diseño to-be (4.3.3).",
+        "documentation" : { },
+        "id" : "197",
+        "name" : "Subscriptions Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "anitec.subscriptionsService"
+        },
+        "relationships" : [ {
+          "description" : "Lee y escribe en",
+          "destinationId" : "198",
+          "id" : "234",
+          "sourceId" : "197",
+          "tags" : "Relationship",
+          "technology" : "Entity Framework Core / MySQL"
+        }, {
+          "description" : "Crea sesiones de checkout, consulta suscripciones",
+          "destinationId" : "3",
+          "id" : "235",
+          "sourceId" : "197",
+          "tags" : "Relationship",
+          "technology" : "HTTPS/REST (Stripe.net)"
+        } ],
+        "tags" : "Element,Container,To-Be",
+        "technology" : "ASP.NET Core / C#"
+      }, {
+        "description" : "Base de datos exclusiva del Subscriptions Service (subscription_plans, subscriptions, payments). NO existe hoy — diseño to-be (4.3.3).",
+        "documentation" : { },
+        "id" : "198",
+        "name" : "Subscriptions Database",
+        "properties" : {
+          "structurizr.dsl.identifier" : "anitec.subscriptionsDatabase"
+        },
+        "tags" : "Element,Container,Database,To-Be",
+        "technology" : "MySQL"
+      }, {
+        "description" : "Cliente offline-first (Room/SQLite, WorkManager). NO existe ningún código a la fecha de este informe — diseño to-be (4.3.4, EP-014).",
+        "documentation" : { },
+        "id" : "199",
+        "name" : "AniTec Mobile App",
+        "properties" : {
+          "structurizr.dsl.identifier" : "anitec.mobileApp"
+        },
+        "relationships" : [ {
+          "description" : "Sincroniza lote de operaciones pendientes",
+          "destinationId" : "196",
+          "id" : "238",
+          "sourceId" : "199",
+          "tags" : "Relationship",
+          "technology" : "JSON/HTTPS (POST /api/v1/sync/batch)"
+        } ],
+        "tags" : "Element,Container,To-Be",
+        "technology" : "Kotlin, Android, Room"
+      } ],
+      "description" : "Plataforma de gestión ganadera para Latinoamérica.",
+      "documentation" : { },
+      "id" : "6",
+      "name" : "AniTec",
+      "properties" : {
+        "structurizr.dsl.identifier" : "anitec"
+      },
+      "relationships" : [ {
+        "description" : "Crea sesiones de checkout, consulta suscripciones",
+        "destinationId" : "3",
+        "id" : "210",
+        "linkedRelationshipId" : "209",
+        "sourceId" : "6",
+        "technology" : "HTTPS/REST (Stripe.net)"
+      }, {
+        "description" : "Envía notificaciones (TO-BE — sin integración real)",
+        "destinationId" : "4",
+        "id" : "212",
+        "linkedRelationshipId" : "211",
+        "sourceId" : "6",
+        "technology" : "HTTPS/REST"
+      } ],
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "AniTec",
+  "properties" : {
+    "structurizr.inspection.error" : "114",
+    "structurizr.dsl" : "d29ya3NwYWNlICJBbmlUZWMiICJQbGF0YWZvcm1hIGRlIGdlc3Rpw7NuIGdhbmFkZXJhIOKAlCBtb2RlbG8gQzQgKFN0cnVjdHVyaXpyIERTTCkuIEFyY2hpdm8gw7puaWNvOiB0b2RhcyBsYXMgdmlzdGFzIGNvbXBhcnRlbiB1biBzb2xvIG1vZGVsbywgb3JnYW5pemFkbyBwb3IgY29tZW50YXJpb3MgZGUgc2VjY2nDs24gc2Vnw7puIGxhIGl0ZXJhY2nDs24vc2VjY2nDs24gZGVsIGNhcMOtdHVsbyA0IGEgbGEgcXVlIHBlcnRlbmVjZSBjYWRhIGVsZW1lbnRvLiIgewoKICAgICFpZGVudGlmaWVycyBoaWVyYXJjaGljYWwKCiAgICBtb2RlbCB7CgogICAgICAgICMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgICMgNC4xIOKAlCBEZXNpZ24gQ29uY2VwdHMsIFZpZXdQb2ludHMgJiBFUiBEaWFncmFtcyAoYXMtYnVpbHQpCiAgICAgICAgIyBQZXJzb25hcywgc2lzdGVtYXMgZXh0ZXJub3MgeWEgcmVhbGVzLCB5IGVsIHNpc3RlbWEgQW5pVGVjIGJhc2UuCiAgICAgICAgIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgogICAgICAgIHJhbmNoZXIgPSBwZXJzb24gIkdhbmFkZXJvIChSYW5jaGVyKSIgIkdlc3Rpb25hIHN1IG9wZXJhY2nDs246IGhhdG9zLCBjb3JyYWxlcywgYW5pbWFsZXMsIGZpbmFuemFzLiIgIlVzdWFyaW8iCiAgICAgICAgdmV0ZXJpbmFyaWFuID0gcGVyc29uICJWZXRlcmluYXJpbyAoVmV0ZXJpbmFyaWFuKSIgIkVtaXRlIGRpYWduw7NzdGljb3MsIHByZXNjcmliZSB0cmF0YW1pZW50b3MsIHZhbGlkYSBoaXN0b3JpYWxlcyBjbMOtbmljb3MuIiAiVXN1YXJpbyIKCiAgICAgICAgc3RyaXBlID0gc29mdHdhcmVTeXN0ZW0gIlN0cmlwZSIgIlBhc2FyZWxhIGRlIHBhZ29zIChtb2RvIGRlIHBydWViYSkuIEludGVncmFjacOzbiByZWFsIHbDrWEgU3RyaXBlLm5ldCAvIFNlc3Npb25TZXJ2aWNlLiIgIlNpc3RlbWEgRXh0ZXJubyIKICAgICAgICByZXNlbmQgPSBzb2Z0d2FyZVN5c3RlbSAiUmVzZW5kIiAiTWVuc2FqZXLDrWEgZGUgY29ycmVvIHBsYW5lYWRhIHBhcmEgbm90aWZpY2FjaW9uZXMuIFNJTiBpbnRlZ3JhY2nDs24gcmVhbCBlbiBlbCBiYWNrZW5kIGEgbGEgZmVjaGEgZGUgZXN0ZSBpbmZvcm1lICg0LjEuMykuIiAiU2lzdGVtYSBFeHRlcm5vLCBUby1CZSIKCiAgICAgICAgIyAtLS0tIDQuMy42IOKAlCBJbnRlZ3JhY2nDs24gUmVhbCBjb24gRGlzcG9zaXRpdm9zIElvVCAodG8tYmUpIC0tLS0KICAgICAgICBpb3REZXZpY2UgPSBzb2Z0d2FyZVN5c3RlbSAiRGlzcG9zaXRpdm8gSW9UIiAiQ29sbGFyIEdQUywgc2Vuc29yIGRlIGNvcnJhbCB1IG90cm8gZGlzcG9zaXRpdm8gZGUgY2FtcG8uIFJlcG9ydGEgdGVsZW1ldHLDrWEgcGVyacOzZGljYSBhdXRlbnRpY2FkbyBwb3IgQVBJIGtleSBwcm9waWEsIG5vIHBvciBKV1QgZGUgdXN1YXJpbyAoSXRlcmFjacOzbiA2LCA0LjMuNikuIE5PIGV4aXN0ZSBuaW5nw7puIG1lY2FuaXNtbyBkZSBpbmdlc3RhIHJlYWwgYSBsYSBmZWNoYSBkZSBlc3RlIGluZm9ybWUuIiAiU2lzdGVtYSBFeHRlcm5vLCBUby1CZSIKCiAgICAgICAgYW5pdGVjID0gc29mdHdhcmVTeXN0ZW0gIkFuaVRlYyIgIlBsYXRhZm9ybWEgZGUgZ2VzdGnDs24gZ2FuYWRlcmEgcGFyYSBMYXRpbm9hbcOpcmljYS4iIHsKCiAgICAgICAgICAgICMgLS0tLSA0LjEuNCDigJQgQ29udGVuZWRvcmVzIGFzLWJ1aWx0IC0tLS0KICAgICAgICAgICAgbGFuZGluZ1BhZ2UgPSBjb250YWluZXIgIkxhbmRpbmcgUGFnZSIgIlNpdGlvIGVzdMOhdGljbyBkZSBtYXJrZXRpbmcgKEhUTUwvQ1NTL0pTLCBpMThuIEVOL0VTKS4iICJIVE1ML0NTUy9KUyIKICAgICAgICAgICAgd2ViQXBwbGljYXRpb24gPSBjb250YWluZXIgIldlYiBBcHBsaWNhdGlvbiIgIlNpcnZlIGxvcyBhcmNoaXZvcyBlc3TDoXRpY29zIGRlbCBTUEEuIiAiU3RhdGljIEhvc3RpbmcgKFJlbmRlciBTdGF0aWMgU2l0ZSkiCiAgICAgICAgICAgIHNwYSA9IGNvbnRhaW5lciAiU2luZ2xlIFBhZ2UgQXBwbGljYXRpb24iICJJbnRlcmZheiBkZSB1c3VhcmlvIGRlIEFuaVRlYy4gQXV0ZW50aWNhY2nDs24gc3RhdGVsZXNzIHbDrWEgSldULiIgIlZ1ZSAzICsgVml0ZSIKICAgICAgICAgICAgZGF0YWJhc2UgPSBjb250YWluZXIgIkRhdGFiYXNlIiAiQWxtYWNlbmEgaGF0b3MsIGNvcnJhbGVzLCBhbmltYWxlcywgcmVnaXN0cm9zIHNhbml0YXJpb3MsIGZpbmFuY2llcm9zLCBzdXNjcmlwY2lvbmVzLCBldGMuIFVuYSBzb2xhIGJhc2UgY29tcGFydGlkYSBwb3IgbG9zIDEyIGJvdW5kZWQgY29udGV4dHMgKDQuMS4xLjEpLiIgIk15U1FMIiAiRGF0YWJhc2UiCgogICAgICAgICAgICBhcGlBcHBsaWNhdGlvbiA9IGNvbnRhaW5lciAiQVBJIEFwcGxpY2F0aW9uIiAiRXhwb25lIGxhIGzDs2dpY2EgZGUgbmVnb2NpbyBkZSBBbmlUZWMgdsOtYSBBUEkgUkVTVC4gTW9ub2xpdG8gbW9kdWxhciBBU1AuTkVUIENvcmUsIHVuIHNvbG8gUHJvZ3JhbS5jcywgdW4gc29sbyAuY3Nwcm9qICg0LjEuMikuIiAiQVNQLk5FVCBDb3JlIC8gQyMiIHsKCiAgICAgICAgICAgICAgICAjIC0tLS0gNC4xLjQg4oCUIElhbSAtLS0tCiAgICAgICAgICAgICAgICBncm91cCAiSWFtIiB7CiAgICAgICAgICAgICAgICAgICAgaWFtX1VzZXJzQ29udHJvbGxlciA9IGNvbXBvbmVudCAiVXNlcnNDb250cm9sbGVyIiAiRXhwb25lIGFwaS92MS91c2Vycy4iICJBU1AuTkVUIENvcmUgUkVTVCBDb250cm9sbGVyIgogICAgICAgICAgICAgICAgICAgIGlhbV9BdXRoZW50aWNhdGlvbkNvbnRyb2xsZXIgPSBjb21wb25lbnQgIkF1dGhlbnRpY2F0aW9uQ29udHJvbGxlciIgIkV4cG9uZSBhcGkvdjEvYXV0aGVudGljYXRpb24gKHNpZ24taW4sIHNpZ24tdXApLiIgIkFTUC5ORVQgQ29yZSBSRVNUIENvbnRyb2xsZXIiCiAgICAgICAgICAgICAgICAgICAgaWFtX0lVc2VyUmVwb3NpdG9yeSA9IGNvbXBvbmVudCAiSVVzZXJSZXBvc2l0b3J5IiAiUGVyc2lzdGVuY2lhIGRlIFVzZXIuIiAiUmVwb3NpdG9yeSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgaWFtX0lVc2VyQ29tbWFuZFNlcnZpY2UgPSBjb21wb25lbnQgIklVc2VyQ29tbWFuZFNlcnZpY2UiICJDb21hbmRvcyBzb2JyZSBVc2VyLiIgIkNvbW1hbmQgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgaWFtX0lVc2VyUXVlcnlTZXJ2aWNlID0gY29tcG9uZW50ICJJVXNlclF1ZXJ5U2VydmljZSIgIkNvbnN1bHRhcyBzb2JyZSBVc2VyLiIgIlF1ZXJ5IFNlcnZpY2UgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIGlhbV9JYW1Db250ZXh0RmFjYWRlID0gY29tcG9uZW50ICJJYW1Db250ZXh0RmFjYWRlIiAiRmFjaGFkYSBBQ0wg4oCUIHN1cGVyZmljaWUgZGUgaW50ZWdyYWNpw7NuIHNhbmNpb25hZGEgcGFyYSBxdWUgb3Ryb3MgY29udGV4dG9zIGNvbnN1bHRlbiBJYW0gc2luIGFjb3BsYXJzZSBhIHN1IGRvbWluaW8gaW50ZXJuby4iICJDIyBGYWNhZGUiICJBQ0wgRmFjYWRlIgogICAgICAgICAgICAgICAgICAgIGlhbV9Ub2tlblNlcnZpY2UgPSBjb21wb25lbnQgIklUb2tlblNlcnZpY2UiICJFbWlzacOzbi92YWxpZGFjacOzbiBkZSBKV1QgKENsYWltVHlwZXMuU2lkLCBDbGFpbVR5cGVzLlJvbGUpLiIgIk91dGJvdW5kIFNlcnZpY2UiCiAgICAgICAgICAgICAgICAgICAgaWFtX0hhc2hpbmdTZXJ2aWNlID0gY29tcG9uZW50ICJJSGFzaGluZ1NlcnZpY2UiICJIYXNoaW5nIEJDcnlwdCBkZSBjb250cmFzZcOxYXMuIiAiT3V0Ym91bmQgU2VydmljZSIKCiAgICAgICAgICAgICAgICAgICAgaWFtX1VzZXJzQ29udHJvbGxlciAtPiBpYW1fSVVzZXJDb21tYW5kU2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIGlhbV9Vc2Vyc0NvbnRyb2xsZXIgLT4gaWFtX0lVc2VyUXVlcnlTZXJ2aWNlICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgaWFtX0F1dGhlbnRpY2F0aW9uQ29udHJvbGxlciAtPiBpYW1fSVVzZXJDb21tYW5kU2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIGlhbV9BdXRoZW50aWNhdGlvbkNvbnRyb2xsZXIgLT4gaWFtX1Rva2VuU2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIGlhbV9BdXRoZW50aWNhdGlvbkNvbnRyb2xsZXIgLT4gaWFtX0hhc2hpbmdTZXJ2aWNlICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgaWFtX0lVc2VyQ29tbWFuZFNlcnZpY2UgLT4gaWFtX0lVc2VyUmVwb3NpdG9yeSAidXNhIgogICAgICAgICAgICAgICAgICAgIGlhbV9JVXNlclF1ZXJ5U2VydmljZSAtPiBpYW1fSVVzZXJSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgaWFtX0lhbUNvbnRleHRGYWNhZGUgLT4gaWFtX0lVc2VyUXVlcnlTZXJ2aWNlICJ1c2EiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgIyAtLS0tIDQuMS40IOKAlCBQcm9maWxlcyAtLS0tCiAgICAgICAgICAgICAgICBncm91cCAiUHJvZmlsZXMiIHsKICAgICAgICAgICAgICAgICAgICBwcm9maWxlc19Qcm9maWxlc0NvbnRyb2xsZXIgPSBjb21wb25lbnQgIlByb2ZpbGVzQ29udHJvbGxlciIgIkV4cG9uZSBhcGkvdjEvcHJvZmlsZXMuIiAiQVNQLk5FVCBDb3JlIFJFU1QgQ29udHJvbGxlciIKICAgICAgICAgICAgICAgICAgICBwcm9maWxlc19JUHJvZmlsZVJlcG9zaXRvcnkgPSBjb21wb25lbnQgIklQcm9maWxlUmVwb3NpdG9yeSIgIlBlcnNpc3RlbmNpYSBkZSBQcm9maWxlLiIgIlJlcG9zaXRvcnkgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIHByb2ZpbGVzX0lQcm9maWxlQ29tbWFuZFNlcnZpY2UgPSBjb21wb25lbnQgIklQcm9maWxlQ29tbWFuZFNlcnZpY2UiICJDb21hbmRvcyBzb2JyZSBQcm9maWxlLiIgIkNvbW1hbmQgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgcHJvZmlsZXNfSVByb2ZpbGVRdWVyeVNlcnZpY2UgPSBjb21wb25lbnQgIklQcm9maWxlUXVlcnlTZXJ2aWNlIiAiQ29uc3VsdGFzIHNvYnJlIFByb2ZpbGUuIiAiUXVlcnkgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgcHJvZmlsZXNfUHJvZmlsZXNDb250ZXh0RmFjYWRlID0gY29tcG9uZW50ICJQcm9maWxlc0NvbnRleHRGYWNhZGUiICJGYWNoYWRhIEFDTCBkZSBQcm9maWxlcy4iICJDIyBGYWNhZGUiICJBQ0wgRmFjYWRlIgoKICAgICAgICAgICAgICAgICAgICBwcm9maWxlc19Qcm9maWxlc0NvbnRyb2xsZXIgLT4gcHJvZmlsZXNfSVByb2ZpbGVDb21tYW5kU2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIHByb2ZpbGVzX1Byb2ZpbGVzQ29udHJvbGxlciAtPiBwcm9maWxlc19JUHJvZmlsZVF1ZXJ5U2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIHByb2ZpbGVzX0lQcm9maWxlQ29tbWFuZFNlcnZpY2UgLT4gcHJvZmlsZXNfSVByb2ZpbGVSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgcHJvZmlsZXNfSVByb2ZpbGVRdWVyeVNlcnZpY2UgLT4gcHJvZmlsZXNfSVByb2ZpbGVSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgIyAtLS0tIDQuMS40IOKAlCBMaXZlc3RvY2sgLS0tLQogICAgICAgICAgICAgICAgZ3JvdXAgIkxpdmVzdG9jayIgewogICAgICAgICAgICAgICAgICAgIGxpdmVzdG9ja19BbmltYWxzQ29udHJvbGxlciA9IGNvbXBvbmVudCAiQW5pbWFsc0NvbnRyb2xsZXIiICJFeHBvbmUgYXBpL3YxL2FuaW1hbHMgKGluY2x1eWUgcmVnaXN0cm8gaW5kaXZpZHVhbCB5IHBvciBsb3RlKS4iICJBU1AuTkVUIENvcmUgUkVTVCBDb250cm9sbGVyIgogICAgICAgICAgICAgICAgICAgIGxpdmVzdG9ja19Db3JyYWxzQ29udHJvbGxlciA9IGNvbXBvbmVudCAiQ29ycmFsc0NvbnRyb2xsZXIiICJFeHBvbmUgYXBpL3YxL2NvcnJhbHMuIiAiQVNQLk5FVCBDb3JlIFJFU1QgQ29udHJvbGxlciIKICAgICAgICAgICAgICAgICAgICBsaXZlc3RvY2tfSGVyZHNDb250cm9sbGVyID0gY29tcG9uZW50ICJIZXJkc0NvbnRyb2xsZXIiICJFeHBvbmUgYXBpL3YxL2hlcmRzLiIgIkFTUC5ORVQgQ29yZSBSRVNUIENvbnRyb2xsZXIiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lBbmltYWxSZXBvc2l0b3J5ID0gY29tcG9uZW50ICJJQW5pbWFsUmVwb3NpdG9yeSIgIlBlcnNpc3RlbmNpYSBkZSBBbmltYWwuIiAiUmVwb3NpdG9yeSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lDb3JyYWxSZXBvc2l0b3J5ID0gY29tcG9uZW50ICJJQ29ycmFsUmVwb3NpdG9yeSIgIlBlcnNpc3RlbmNpYSBkZSBDb3JyYWwuIiAiUmVwb3NpdG9yeSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lIZXJkUmVwb3NpdG9yeSA9IGNvbXBvbmVudCAiSUhlcmRSZXBvc2l0b3J5IiAiUGVyc2lzdGVuY2lhIGRlIEhlcmQuIiAiUmVwb3NpdG9yeSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lBbmltYWxDb21tYW5kU2VydmljZSA9IGNvbXBvbmVudCAiSUFuaW1hbENvbW1hbmRTZXJ2aWNlIiAiQ29tYW5kb3Mgc29icmUgQW5pbWFsIChpbmNsdXllIGFsdGEgcG9yIGxvdGUpLiIgIkNvbW1hbmQgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lDb3JyYWxDb21tYW5kU2VydmljZSA9IGNvbXBvbmVudCAiSUNvcnJhbENvbW1hbmRTZXJ2aWNlIiAiQ29tYW5kb3Mgc29icmUgQ29ycmFsLiIgIkNvbW1hbmQgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lIZXJkQ29tbWFuZFNlcnZpY2UgPSBjb21wb25lbnQgIklIZXJkQ29tbWFuZFNlcnZpY2UiICJDb21hbmRvcyBzb2JyZSBIZXJkLiIgIkNvbW1hbmQgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lBbmltYWxRdWVyeVNlcnZpY2UgPSBjb21wb25lbnQgIklBbmltYWxRdWVyeVNlcnZpY2UiICJDb25zdWx0YXMgc29icmUgQW5pbWFsIOKAlCBTSU4gZmlsdHJhZG8gcG9yIHByb3BpZXRhcmlvIGhveSAoUUFTLTA4LCA0LjMuMikuIiAiUXVlcnkgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lDb3JyYWxRdWVyeVNlcnZpY2UgPSBjb21wb25lbnQgIklDb3JyYWxRdWVyeVNlcnZpY2UiICJDb25zdWx0YXMgc29icmUgQ29ycmFsLiIgIlF1ZXJ5IFNlcnZpY2UgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIGxpdmVzdG9ja19JSGVyZFF1ZXJ5U2VydmljZSA9IGNvbXBvbmVudCAiSUhlcmRRdWVyeVNlcnZpY2UiICJDb25zdWx0YXMgc29icmUgSGVyZC4iICJRdWVyeSBTZXJ2aWNlIEludGVyZmFjZSIKCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0FuaW1hbHNDb250cm9sbGVyIC0+IGxpdmVzdG9ja19JQW5pbWFsQ29tbWFuZFNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBsaXZlc3RvY2tfQW5pbWFsc0NvbnRyb2xsZXIgLT4gbGl2ZXN0b2NrX0lBbmltYWxRdWVyeVNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBsaXZlc3RvY2tfQ29ycmFsc0NvbnRyb2xsZXIgLT4gbGl2ZXN0b2NrX0lDb3JyYWxDb21tYW5kU2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIGxpdmVzdG9ja19Db3JyYWxzQ29udHJvbGxlciAtPiBsaXZlc3RvY2tfSUNvcnJhbFF1ZXJ5U2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIGxpdmVzdG9ja19IZXJkc0NvbnRyb2xsZXIgLT4gbGl2ZXN0b2NrX0lIZXJkQ29tbWFuZFNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBsaXZlc3RvY2tfSGVyZHNDb250cm9sbGVyIC0+IGxpdmVzdG9ja19JSGVyZFF1ZXJ5U2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIGxpdmVzdG9ja19JQW5pbWFsQ29tbWFuZFNlcnZpY2UgLT4gbGl2ZXN0b2NrX0lBbmltYWxSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lBbmltYWxRdWVyeVNlcnZpY2UgLT4gbGl2ZXN0b2NrX0lBbmltYWxSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lDb3JyYWxDb21tYW5kU2VydmljZSAtPiBsaXZlc3RvY2tfSUNvcnJhbFJlcG9zaXRvcnkgInVzYSIKICAgICAgICAgICAgICAgICAgICBsaXZlc3RvY2tfSUNvcnJhbFF1ZXJ5U2VydmljZSAtPiBsaXZlc3RvY2tfSUNvcnJhbFJlcG9zaXRvcnkgInVzYSIKICAgICAgICAgICAgICAgICAgICBsaXZlc3RvY2tfSUhlcmRDb21tYW5kU2VydmljZSAtPiBsaXZlc3RvY2tfSUhlcmRSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgbGl2ZXN0b2NrX0lIZXJkUXVlcnlTZXJ2aWNlIC0+IGxpdmVzdG9ja19JSGVyZFJlcG9zaXRvcnkgInVzYSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAjIC0tLS0gNC4xLjQg4oCUIFNhbml0YXJ5IC0tLS0KICAgICAgICAgICAgICAgIGdyb3VwICJTYW5pdGFyeSIgewogICAgICAgICAgICAgICAgICAgIHNhbml0YXJ5X0hlYWx0aEV2ZW50c0NvbnRyb2xsZXIgPSBjb21wb25lbnQgIkhlYWx0aEV2ZW50c0NvbnRyb2xsZXIiICJFeHBvbmUgYXBpL3YxL2hlYWx0aC1ldmVudHMuIiAiQVNQLk5FVCBDb3JlIFJFU1QgQ29udHJvbGxlciIKICAgICAgICAgICAgICAgICAgICBzYW5pdGFyeV9JSGVhbHRoRXZlbnRSZXBvc2l0b3J5ID0gY29tcG9uZW50ICJJSGVhbHRoRXZlbnRSZXBvc2l0b3J5IiAiUGVyc2lzdGVuY2lhIGRlIEhlYWx0aEV2ZW50LiIgIlJlcG9zaXRvcnkgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIHNhbml0YXJ5X0lIZWFsdGhFdmVudENvbW1hbmRTZXJ2aWNlID0gY29tcG9uZW50ICJJSGVhbHRoRXZlbnRDb21tYW5kU2VydmljZSIgIkNvbWFuZG9zIHNvYnJlIEhlYWx0aEV2ZW50LiBOTyBzb3BvcnRhIGJvcnJhZG9yL3JlY3RpZmljYWNpw7NuL2FudWxhY2nDs24gaG95IChVUy0wMTcvMDE4LCBkaXNlw7FvIHRvLWJlIGVuIDQuNC4xKS4iICJDb21tYW5kIFNlcnZpY2UgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIHNhbml0YXJ5X0lIZWFsdGhFdmVudFF1ZXJ5U2VydmljZSA9IGNvbXBvbmVudCAiSUhlYWx0aEV2ZW50UXVlcnlTZXJ2aWNlIiAiQ29uc3VsdGFzIHNvYnJlIEhlYWx0aEV2ZW50IOKAlCBTSU4gZmlsdHJhZG8gcG9yIHByb3BpZXRhcmlvIGhveSAoUUFTLTA4LCA0LjMuMikuIiAiUXVlcnkgU2VydmljZSBJbnRlcmZhY2UiCgogICAgICAgICAgICAgICAgICAgIHNhbml0YXJ5X0hlYWx0aEV2ZW50c0NvbnRyb2xsZXIgLT4gc2FuaXRhcnlfSUhlYWx0aEV2ZW50Q29tbWFuZFNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBzYW5pdGFyeV9IZWFsdGhFdmVudHNDb250cm9sbGVyIC0+IHNhbml0YXJ5X0lIZWFsdGhFdmVudFF1ZXJ5U2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIHNhbml0YXJ5X0lIZWFsdGhFdmVudENvbW1hbmRTZXJ2aWNlIC0+IHNhbml0YXJ5X0lIZWFsdGhFdmVudFJlcG9zaXRvcnkgInVzYSIKICAgICAgICAgICAgICAgICAgICBzYW5pdGFyeV9JSGVhbHRoRXZlbnRRdWVyeVNlcnZpY2UgLT4gc2FuaXRhcnlfSUhlYWx0aEV2ZW50UmVwb3NpdG9yeSAidXNhIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICMgLS0tLSA0LjEuNCDigJQgRmluYW5jaWFsIC0tLS0KICAgICAgICAgICAgICAgIGdyb3VwICJGaW5hbmNpYWwiIHsKICAgICAgICAgICAgICAgICAgICBmaW5hbmNpYWxfRmluYW5jaWFsUmVjb3Jkc0NvbnRyb2xsZXIgPSBjb21wb25lbnQgIkZpbmFuY2lhbFJlY29yZHNDb250cm9sbGVyIiAiRXhwb25lIGFwaS92MS9maW5hbmNpYWwtcmVjb3Jkcy4iICJBU1AuTkVUIENvcmUgUkVTVCBDb250cm9sbGVyIgogICAgICAgICAgICAgICAgICAgIGZpbmFuY2lhbF9JRmluYW5jaWFsUmVjb3JkUmVwb3NpdG9yeSA9IGNvbXBvbmVudCAiSUZpbmFuY2lhbFJlY29yZFJlcG9zaXRvcnkiICJQZXJzaXN0ZW5jaWEgZGUgRmluYW5jaWFsUmVjb3JkLiIgIlJlcG9zaXRvcnkgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIGZpbmFuY2lhbF9JRmluYW5jaWFsUmVjb3JkQ29tbWFuZFNlcnZpY2UgPSBjb21wb25lbnQgIklGaW5hbmNpYWxSZWNvcmRDb21tYW5kU2VydmljZSIgIkNvbWFuZG9zIHNvYnJlIEZpbmFuY2lhbFJlY29yZC4iICJDb21tYW5kIFNlcnZpY2UgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIGZpbmFuY2lhbF9JRmluYW5jaWFsUmVjb3JkUXVlcnlTZXJ2aWNlID0gY29tcG9uZW50ICJJRmluYW5jaWFsUmVjb3JkUXVlcnlTZXJ2aWNlIiAiQ29uc3VsdGFzIHNvYnJlIEZpbmFuY2lhbFJlY29yZC4iICJRdWVyeSBTZXJ2aWNlIEludGVyZmFjZSIKCiAgICAgICAgICAgICAgICAgICAgZmluYW5jaWFsX0ZpbmFuY2lhbFJlY29yZHNDb250cm9sbGVyIC0+IGZpbmFuY2lhbF9JRmluYW5jaWFsUmVjb3JkQ29tbWFuZFNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBmaW5hbmNpYWxfRmluYW5jaWFsUmVjb3Jkc0NvbnRyb2xsZXIgLT4gZmluYW5jaWFsX0lGaW5hbmNpYWxSZWNvcmRRdWVyeVNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBmaW5hbmNpYWxfSUZpbmFuY2lhbFJlY29yZENvbW1hbmRTZXJ2aWNlIC0+IGZpbmFuY2lhbF9JRmluYW5jaWFsUmVjb3JkUmVwb3NpdG9yeSAidXNhIgogICAgICAgICAgICAgICAgICAgIGZpbmFuY2lhbF9JRmluYW5jaWFsUmVjb3JkUXVlcnlTZXJ2aWNlIC0+IGZpbmFuY2lhbF9JRmluYW5jaWFsUmVjb3JkUmVwb3NpdG9yeSAidXNhIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICMgLS0tLSA0LjEuNCDigJQgQWN0aXZpdGllcyAtLS0tCiAgICAgICAgICAgICAgICBncm91cCAiQWN0aXZpdGllcyIgewogICAgICAgICAgICAgICAgICAgIGFjdGl2aXRpZXNfRmFybUFjdGl2aXRpZXNDb250cm9sbGVyID0gY29tcG9uZW50ICJGYXJtQWN0aXZpdGllc0NvbnRyb2xsZXIiICJFeHBvbmUgYXBpL3YxL2Zhcm0tZXZlbnRzIChub3RhOiBlbCBzbHVnIGRlIHJ1dGEgbm8gY29pbmNpZGUgY29uIGVsIG5vbWJyZSBkZSBsYSBjbGFzZS9lbnRpZGFkKS4iICJBU1AuTkVUIENvcmUgUkVTVCBDb250cm9sbGVyIgogICAgICAgICAgICAgICAgICAgIGFjdGl2aXRpZXNfSUZhcm1BY3Rpdml0eVJlcG9zaXRvcnkgPSBjb21wb25lbnQgIklGYXJtQWN0aXZpdHlSZXBvc2l0b3J5IiAiUGVyc2lzdGVuY2lhIGRlIEZhcm1BY3Rpdml0eS4iICJSZXBvc2l0b3J5IEludGVyZmFjZSIKICAgICAgICAgICAgICAgICAgICBhY3Rpdml0aWVzX0lGYXJtQWN0aXZpdHlDb21tYW5kU2VydmljZSA9IGNvbXBvbmVudCAiSUZhcm1BY3Rpdml0eUNvbW1hbmRTZXJ2aWNlIiAiQ29tYW5kb3Mgc29icmUgRmFybUFjdGl2aXR5LiIgIkNvbW1hbmQgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgYWN0aXZpdGllc19JRmFybUFjdGl2aXR5UXVlcnlTZXJ2aWNlID0gY29tcG9uZW50ICJJRmFybUFjdGl2aXR5UXVlcnlTZXJ2aWNlIiAiQ29uc3VsdGFzIHNvYnJlIEZhcm1BY3Rpdml0eS4iICJRdWVyeSBTZXJ2aWNlIEludGVyZmFjZSIKCiAgICAgICAgICAgICAgICAgICAgYWN0aXZpdGllc19GYXJtQWN0aXZpdGllc0NvbnRyb2xsZXIgLT4gYWN0aXZpdGllc19JRmFybUFjdGl2aXR5Q29tbWFuZFNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBhY3Rpdml0aWVzX0Zhcm1BY3Rpdml0aWVzQ29udHJvbGxlciAtPiBhY3Rpdml0aWVzX0lGYXJtQWN0aXZpdHlRdWVyeVNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBhY3Rpdml0aWVzX0lGYXJtQWN0aXZpdHlDb21tYW5kU2VydmljZSAtPiBhY3Rpdml0aWVzX0lGYXJtQWN0aXZpdHlSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgYWN0aXZpdGllc19JRmFybUFjdGl2aXR5UXVlcnlTZXJ2aWNlIC0+IGFjdGl2aXRpZXNfSUZhcm1BY3Rpdml0eVJlcG9zaXRvcnkgInVzYSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAjIC0tLS0gNC4xLjQg4oCUIEFuYWx5dGljcyAtLS0tCiAgICAgICAgICAgICAgICBncm91cCAiQW5hbHl0aWNzIiB7CiAgICAgICAgICAgICAgICAgICAgYW5hbHl0aWNzX1JlcG9ydE1ldHJpY3NDb250cm9sbGVyID0gY29tcG9uZW50ICJSZXBvcnRNZXRyaWNzQ29udHJvbGxlciIgIkV4cG9uZSBhcGkvdjEvcmVwb3J0LW1ldHJpY3MuIiAiQVNQLk5FVCBDb3JlIFJFU1QgQ29udHJvbGxlciIKICAgICAgICAgICAgICAgICAgICBhbmFseXRpY3NfRGFzaGJvYXJkQW5hbHl0aWNzQ29udHJvbGxlciA9IGNvbXBvbmVudCAiRGFzaGJvYXJkQW5hbHl0aWNzQ29udHJvbGxlciIgIkV4cG9uZSBhcGkvdjEvYW5hbHl0aWNzIOKAlCBhZ3JlZ2Fkb3IgY3J1emFkbzogY29tcG9uZSBkYXNoYm9hcmRzIGEgcGFydGlyIGRlIG90cm9zIGJvdW5kZWQgY29udGV4dHMuIiAiQVNQLk5FVCBDb3JlIFJFU1QgQ29udHJvbGxlciIKICAgICAgICAgICAgICAgICAgICBhbmFseXRpY3NfSVJlcG9ydE1ldHJpY1JlcG9zaXRvcnkgPSBjb21wb25lbnQgIklSZXBvcnRNZXRyaWNSZXBvc2l0b3J5IiAiUGVyc2lzdGVuY2lhIGRlIFJlcG9ydE1ldHJpYy4iICJSZXBvc2l0b3J5IEludGVyZmFjZSIKICAgICAgICAgICAgICAgICAgICBhbmFseXRpY3NfSVJlcG9ydE1ldHJpY0NvbW1hbmRTZXJ2aWNlID0gY29tcG9uZW50ICJJUmVwb3J0TWV0cmljQ29tbWFuZFNlcnZpY2UiICJDb21hbmRvcyBzb2JyZSBSZXBvcnRNZXRyaWMuIiAiQ29tbWFuZCBTZXJ2aWNlIEludGVyZmFjZSIKICAgICAgICAgICAgICAgICAgICBhbmFseXRpY3NfSVJlcG9ydE1ldHJpY1F1ZXJ5U2VydmljZSA9IGNvbXBvbmVudCAiSVJlcG9ydE1ldHJpY1F1ZXJ5U2VydmljZSIgIkNvbnN1bHRhcyBzb2JyZSBSZXBvcnRNZXRyaWMuIiAiUXVlcnkgU2VydmljZSBJbnRlcmZhY2UiCgogICAgICAgICAgICAgICAgICAgIGFuYWx5dGljc19SZXBvcnRNZXRyaWNzQ29udHJvbGxlciAtPiBhbmFseXRpY3NfSVJlcG9ydE1ldHJpY0NvbW1hbmRTZXJ2aWNlICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgYW5hbHl0aWNzX1JlcG9ydE1ldHJpY3NDb250cm9sbGVyIC0+IGFuYWx5dGljc19JUmVwb3J0TWV0cmljUXVlcnlTZXJ2aWNlICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgYW5hbHl0aWNzX0lSZXBvcnRNZXRyaWNDb21tYW5kU2VydmljZSAtPiBhbmFseXRpY3NfSVJlcG9ydE1ldHJpY1JlcG9zaXRvcnkgInVzYSIKICAgICAgICAgICAgICAgICAgICBhbmFseXRpY3NfSVJlcG9ydE1ldHJpY1F1ZXJ5U2VydmljZSAtPiBhbmFseXRpY3NfSVJlcG9ydE1ldHJpY1JlcG9zaXRvcnkgInVzYSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAjIC0tLS0gNC4xLjQg4oCUIERldmljZXMgKGJhc2Ug4oCUIGxhIGV4dGVuc2nDs24gSW9UIHRvLWJlIHZpdmUgZW4gNC4zLjYpIC0tLS0KICAgICAgICAgICAgICAgIGdyb3VwICJEZXZpY2VzIiB7CiAgICAgICAgICAgICAgICAgICAgZGV2aWNlc19EZXZpY2VzQ29udHJvbGxlciA9IGNvbXBvbmVudCAiRGV2aWNlc0NvbnRyb2xsZXIiICJFeHBvbmUgYXBpL3YxL2RldmljZXMuIiAiQVNQLk5FVCBDb3JlIFJFU1QgQ29udHJvbGxlciIKICAgICAgICAgICAgICAgICAgICBkZXZpY2VzX0lEZXZpY2VSZXBvc2l0b3J5ID0gY29tcG9uZW50ICJJRGV2aWNlUmVwb3NpdG9yeSIgIlBlcnNpc3RlbmNpYSBkZSBEZXZpY2UuIiAiUmVwb3NpdG9yeSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgZGV2aWNlc19JRGV2aWNlQ29tbWFuZFNlcnZpY2UgPSBjb21wb25lbnQgIklEZXZpY2VDb21tYW5kU2VydmljZSIgIkNvbWFuZG9zIHNvYnJlIERldmljZS4iICJDb21tYW5kIFNlcnZpY2UgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIGRldmljZXNfSURldmljZVF1ZXJ5U2VydmljZSA9IGNvbXBvbmVudCAiSURldmljZVF1ZXJ5U2VydmljZSIgIkNvbnN1bHRhcyBzb2JyZSBEZXZpY2UuIiAiUXVlcnkgU2VydmljZSBJbnRlcmZhY2UiCgogICAgICAgICAgICAgICAgICAgIGRldmljZXNfRGV2aWNlc0NvbnRyb2xsZXIgLT4gZGV2aWNlc19JRGV2aWNlQ29tbWFuZFNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBkZXZpY2VzX0RldmljZXNDb250cm9sbGVyIC0+IGRldmljZXNfSURldmljZVF1ZXJ5U2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIGRldmljZXNfSURldmljZUNvbW1hbmRTZXJ2aWNlIC0+IGRldmljZXNfSURldmljZVJlcG9zaXRvcnkgInVzYSIKICAgICAgICAgICAgICAgICAgICBkZXZpY2VzX0lEZXZpY2VRdWVyeVNlcnZpY2UgLT4gZGV2aWNlc19JRGV2aWNlUmVwb3NpdG9yeSAidXNhIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICMgLS0tLSA0LjEuNCDigJQgTWV0cmljcyAtLS0tCiAgICAgICAgICAgICAgICBncm91cCAiTWV0cmljcyIgewogICAgICAgICAgICAgICAgICAgIG1ldHJpY3NfRGV2aWNlTWV0cmljc0NvbnRyb2xsZXIgPSBjb21wb25lbnQgIkRldmljZU1ldHJpY3NDb250cm9sbGVyIiAiRXhwb25lIGFwaS92MS9kZXZpY2UtbWV0cmljcy4iICJBU1AuTkVUIENvcmUgUkVTVCBDb250cm9sbGVyIgogICAgICAgICAgICAgICAgICAgIG1ldHJpY3NfSURldmljZU1ldHJpY1JlcG9zaXRvcnkgPSBjb21wb25lbnQgIklEZXZpY2VNZXRyaWNSZXBvc2l0b3J5IiAiUGVyc2lzdGVuY2lhIGRlIERldmljZU1ldHJpYy4iICJSZXBvc2l0b3J5IEludGVyZmFjZSIKICAgICAgICAgICAgICAgICAgICBtZXRyaWNzX0lEZXZpY2VNZXRyaWNDb21tYW5kU2VydmljZSA9IGNvbXBvbmVudCAiSURldmljZU1ldHJpY0NvbW1hbmRTZXJ2aWNlIiAiQ29tYW5kb3Mgc29icmUgRGV2aWNlTWV0cmljLiIgIkNvbW1hbmQgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgbWV0cmljc19JRGV2aWNlTWV0cmljUXVlcnlTZXJ2aWNlID0gY29tcG9uZW50ICJJRGV2aWNlTWV0cmljUXVlcnlTZXJ2aWNlIiAiQ29uc3VsdGFzIHNvYnJlIERldmljZU1ldHJpYy4iICJRdWVyeSBTZXJ2aWNlIEludGVyZmFjZSIKCiAgICAgICAgICAgICAgICAgICAgbWV0cmljc19EZXZpY2VNZXRyaWNzQ29udHJvbGxlciAtPiBtZXRyaWNzX0lEZXZpY2VNZXRyaWNDb21tYW5kU2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIG1ldHJpY3NfRGV2aWNlTWV0cmljc0NvbnRyb2xsZXIgLT4gbWV0cmljc19JRGV2aWNlTWV0cmljUXVlcnlTZXJ2aWNlICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgbWV0cmljc19JRGV2aWNlTWV0cmljQ29tbWFuZFNlcnZpY2UgLT4gbWV0cmljc19JRGV2aWNlTWV0cmljUmVwb3NpdG9yeSAidXNhIgogICAgICAgICAgICAgICAgICAgIG1ldHJpY3NfSURldmljZU1ldHJpY1F1ZXJ5U2VydmljZSAtPiBtZXRyaWNzX0lEZXZpY2VNZXRyaWNSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgIyAtLS0tIDQuMS40IOKAlCBTdWJzY3JpcHRpb25zIC0tLS0KICAgICAgICAgICAgICAgIGdyb3VwICJTdWJzY3JpcHRpb25zIiB7CiAgICAgICAgICAgICAgICAgICAgc3Vic2NyaXB0aW9uc19TdWJzY3JpcHRpb25zQ29udHJvbGxlciA9IGNvbXBvbmVudCAiU3Vic2NyaXB0aW9uc0NvbnRyb2xsZXIiICJFeHBvbmUgYXBpL3YxL3N1YnNjcmlwdGlvbnMg4oCUIGluY2x1eWUgY2hlY2tvdXQgU3RyaXBlIHJlYWwgeSBNb2NrQ2hlY2tvdXQgbG9jYWwuIiAiQVNQLk5FVCBDb3JlIFJFU1QgQ29udHJvbGxlciIKICAgICAgICAgICAgICAgICAgICBzdWJzY3JpcHRpb25zX1N1YnNjcmlwdGlvblBsYW5zQ29udHJvbGxlciA9IGNvbXBvbmVudCAiU3Vic2NyaXB0aW9uUGxhbnNDb250cm9sbGVyIiAiRXhwb25lIGFwaS92MS9zdWJzY3JpcHRpb24tcGxhbnMuIiAiQVNQLk5FVCBDb3JlIFJFU1QgQ29udHJvbGxlciIKICAgICAgICAgICAgICAgICAgICBzdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25SZXBvc2l0b3J5ID0gY29tcG9uZW50ICJJU3Vic2NyaXB0aW9uUmVwb3NpdG9yeSIgIlBlcnNpc3RlbmNpYSBkZSBTdWJzY3JpcHRpb24uIiAiUmVwb3NpdG9yeSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgc3Vic2NyaXB0aW9uc19JU3Vic2NyaXB0aW9uUGxhblJlcG9zaXRvcnkgPSBjb21wb25lbnQgIklTdWJzY3JpcHRpb25QbGFuUmVwb3NpdG9yeSIgIlBlcnNpc3RlbmNpYSBkZSBTdWJzY3JpcHRpb25QbGFuLiIgIlJlcG9zaXRvcnkgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIHN1YnNjcmlwdGlvbnNfSVBheW1lbnRSZXBvc2l0b3J5ID0gY29tcG9uZW50ICJJUGF5bWVudFJlcG9zaXRvcnkiICJQZXJzaXN0ZW5jaWEgZGUgUGF5bWVudC4iICJSZXBvc2l0b3J5IEludGVyZmFjZSIKICAgICAgICAgICAgICAgICAgICBzdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25Db21tYW5kU2VydmljZSA9IGNvbXBvbmVudCAiSVN1YnNjcmlwdGlvbkNvbW1hbmRTZXJ2aWNlIiAiQ29tYW5kb3Mgc29icmUgU3Vic2NyaXB0aW9uLiIgIkNvbW1hbmQgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgc3Vic2NyaXB0aW9uc19JU3Vic2NyaXB0aW9uUGxhbkNvbW1hbmRTZXJ2aWNlID0gY29tcG9uZW50ICJJU3Vic2NyaXB0aW9uUGxhbkNvbW1hbmRTZXJ2aWNlIiAiQ29tYW5kb3Mgc29icmUgU3Vic2NyaXB0aW9uUGxhbi4gYG1heF9hbmltYWxzYCBzZSBwZXJzaXN0ZSBwZXJvIE5PIHNlIGFwbGljYSBob3kgKDQuMi41KS4iICJDb21tYW5kIFNlcnZpY2UgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIHN1YnNjcmlwdGlvbnNfSVBheW1lbnRDb21tYW5kU2VydmljZSA9IGNvbXBvbmVudCAiSVBheW1lbnRDb21tYW5kU2VydmljZSIgIkNvbWFuZG9zIHNvYnJlIFBheW1lbnQuIiAiQ29tbWFuZCBTZXJ2aWNlIEludGVyZmFjZSIKICAgICAgICAgICAgICAgICAgICBzdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25RdWVyeVNlcnZpY2UgPSBjb21wb25lbnQgIklTdWJzY3JpcHRpb25RdWVyeVNlcnZpY2UiICJDb25zdWx0YXMgc29icmUgU3Vic2NyaXB0aW9uLiIgIlF1ZXJ5IFNlcnZpY2UgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIHN1YnNjcmlwdGlvbnNfSVN1YnNjcmlwdGlvblBsYW5RdWVyeVNlcnZpY2UgPSBjb21wb25lbnQgIklTdWJzY3JpcHRpb25QbGFuUXVlcnlTZXJ2aWNlIiAiQ29uc3VsdGFzIHNvYnJlIFN1YnNjcmlwdGlvblBsYW4uIiAiUXVlcnkgU2VydmljZSBJbnRlcmZhY2UiCiAgICAgICAgICAgICAgICAgICAgc3Vic2NyaXB0aW9uc19JUGF5bWVudFF1ZXJ5U2VydmljZSA9IGNvbXBvbmVudCAiSVBheW1lbnRRdWVyeVNlcnZpY2UiICJDb25zdWx0YXMgc29icmUgUGF5bWVudC4iICJRdWVyeSBTZXJ2aWNlIEludGVyZmFjZSIKCiAgICAgICAgICAgICAgICAgICAgc3Vic2NyaXB0aW9uc19TdWJzY3JpcHRpb25zQ29udHJvbGxlciAtPiBzdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25Db21tYW5kU2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIHN1YnNjcmlwdGlvbnNfU3Vic2NyaXB0aW9uc0NvbnRyb2xsZXIgLT4gc3Vic2NyaXB0aW9uc19JU3Vic2NyaXB0aW9uUXVlcnlTZXJ2aWNlICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgc3Vic2NyaXB0aW9uc19TdWJzY3JpcHRpb25zQ29udHJvbGxlciAtPiBzdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25QbGFuUXVlcnlTZXJ2aWNlICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgc3Vic2NyaXB0aW9uc19TdWJzY3JpcHRpb25zQ29udHJvbGxlciAtPiBzdWJzY3JpcHRpb25zX0lQYXltZW50Q29tbWFuZFNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBzdWJzY3JpcHRpb25zX1N1YnNjcmlwdGlvbnNDb250cm9sbGVyIC0+IHN1YnNjcmlwdGlvbnNfSVBheW1lbnRRdWVyeVNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBzdWJzY3JpcHRpb25zX1N1YnNjcmlwdGlvblBsYW5zQ29udHJvbGxlciAtPiBzdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25QbGFuQ29tbWFuZFNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBzdWJzY3JpcHRpb25zX1N1YnNjcmlwdGlvblBsYW5zQ29udHJvbGxlciAtPiBzdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25QbGFuUXVlcnlTZXJ2aWNlICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgc3Vic2NyaXB0aW9uc19JU3Vic2NyaXB0aW9uQ29tbWFuZFNlcnZpY2UgLT4gc3Vic2NyaXB0aW9uc19JU3Vic2NyaXB0aW9uUmVwb3NpdG9yeSAidXNhIgogICAgICAgICAgICAgICAgICAgIHN1YnNjcmlwdGlvbnNfSVN1YnNjcmlwdGlvblF1ZXJ5U2VydmljZSAtPiBzdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25SZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgc3Vic2NyaXB0aW9uc19JU3Vic2NyaXB0aW9uUGxhbkNvbW1hbmRTZXJ2aWNlIC0+IHN1YnNjcmlwdGlvbnNfSVN1YnNjcmlwdGlvblBsYW5SZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgc3Vic2NyaXB0aW9uc19JU3Vic2NyaXB0aW9uUGxhblF1ZXJ5U2VydmljZSAtPiBzdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25QbGFuUmVwb3NpdG9yeSAidXNhIgogICAgICAgICAgICAgICAgICAgIHN1YnNjcmlwdGlvbnNfSVBheW1lbnRDb21tYW5kU2VydmljZSAtPiBzdWJzY3JpcHRpb25zX0lQYXltZW50UmVwb3NpdG9yeSAidXNhIgogICAgICAgICAgICAgICAgICAgIHN1YnNjcmlwdGlvbnNfSVBheW1lbnRRdWVyeVNlcnZpY2UgLT4gc3Vic2NyaXB0aW9uc19JUGF5bWVudFJlcG9zaXRvcnkgInVzYSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAjIC0tLS0gNC4xLjQg4oCUIENsaWVudHMgLS0tLQogICAgICAgICAgICAgICAgZ3JvdXAgIkNsaWVudHMiIHsKICAgICAgICAgICAgICAgICAgICBjbGllbnRzX1ZldGVyaW5hcmlhbkNsaWVudHNDb250cm9sbGVyID0gY29tcG9uZW50ICJWZXRlcmluYXJpYW5DbGllbnRzQ29udHJvbGxlciIgIkV4cG9uZSBhcGkvdjEvdmV0ZXJpbmFyaWFuLiBIT1kgY3JlYSBsYSByZWxhY2nDs24geWEgJ0FjY2VwdGVkJyDigJQgc2luIGZsdWpvIGRlIGFwcm9iYWNpw7NuIHJlYWwgKGRpc2XDsW8gdG8tYmUgZW4gNC4zLjIpLiIgIkFTUC5ORVQgQ29yZSBSRVNUIENvbnRyb2xsZXIiCiAgICAgICAgICAgICAgICAgICAgY2xpZW50c19JVmV0ZXJpbmFyaWFuQ2xpZW50UmVwb3NpdG9yeSA9IGNvbXBvbmVudCAiSVZldGVyaW5hcmlhbkNsaWVudFJlcG9zaXRvcnkiICJQZXJzaXN0ZW5jaWEgZGUgVmV0ZXJpbmFyaWFuQ2xpZW50LiIgIlJlcG9zaXRvcnkgSW50ZXJmYWNlIgogICAgICAgICAgICAgICAgICAgIGNsaWVudHNfSVZldGVyaW5hcmlhbkNsaWVudENvbW1hbmRTZXJ2aWNlID0gY29tcG9uZW50ICJJVmV0ZXJpbmFyaWFuQ2xpZW50Q29tbWFuZFNlcnZpY2UiICJDb21hbmRvcyBzb2JyZSBWZXRlcmluYXJpYW5DbGllbnQuIiAiQ29tbWFuZCBTZXJ2aWNlIEludGVyZmFjZSIKICAgICAgICAgICAgICAgICAgICBjbGllbnRzX0lWZXRlcmluYXJpYW5DbGllbnRRdWVyeVNlcnZpY2UgPSBjb21wb25lbnQgIklWZXRlcmluYXJpYW5DbGllbnRRdWVyeVNlcnZpY2UiICJDb25zdWx0YXMgc29icmUgVmV0ZXJpbmFyaWFuQ2xpZW50LiIgIlF1ZXJ5IFNlcnZpY2UgSW50ZXJmYWNlIgoKICAgICAgICAgICAgICAgICAgICBjbGllbnRzX1ZldGVyaW5hcmlhbkNsaWVudHNDb250cm9sbGVyIC0+IGNsaWVudHNfSVZldGVyaW5hcmlhbkNsaWVudENvbW1hbmRTZXJ2aWNlICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgY2xpZW50c19WZXRlcmluYXJpYW5DbGllbnRzQ29udHJvbGxlciAtPiBjbGllbnRzX0lWZXRlcmluYXJpYW5DbGllbnRRdWVyeVNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgICAgICBjbGllbnRzX0lWZXRlcmluYXJpYW5DbGllbnRDb21tYW5kU2VydmljZSAtPiBjbGllbnRzX0lWZXRlcmluYXJpYW5DbGllbnRSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgY2xpZW50c19JVmV0ZXJpbmFyaWFuQ2xpZW50UXVlcnlTZXJ2aWNlIC0+IGNsaWVudHNfSVZldGVyaW5hcmlhbkNsaWVudFJlcG9zaXRvcnkgInVzYSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAjIC0tLS0gNC4zLjUg4oCUIE5vdGlmaWNhdGlvbnMgKEl0ZXJhY2nDs24gNSwgdG8tYmUpIC0tLS0KICAgICAgICAgICAgICAgIGdyb3VwICJOb3RpZmljYXRpb25zIiB7CiAgICAgICAgICAgICAgICAgICAgbm90aWZpY2F0aW9uc19BbGVydHNDb250cm9sbGVyID0gY29tcG9uZW50ICJBbGVydHNDb250cm9sbGVyIiAiRXhwb25lIGFwaS92MS9hbGVydHMgKGNvbmZpcm1hci9wb3Nwb25lci9jZXJyYXIpLiBOTyBleGlzdGUgaG95IOKAlCBkaXNlw7FvIHRvLWJlIChJdGVyYWNpw7NuIDUsIDQuMy41KS4iICJBU1AuTkVUIENvcmUgUkVTVCBDb250cm9sbGVyIiAiVG8tQmUiCiAgICAgICAgICAgICAgICAgICAgbm90aWZpY2F0aW9uc19JQWxlcnRSZXBvc2l0b3J5ID0gY29tcG9uZW50ICJJQWxlcnRSZXBvc2l0b3J5IiAiUGVyc2lzdGVuY2lhIGRlIEFsZXJ0LiIgIlJlcG9zaXRvcnkgSW50ZXJmYWNlIiAiVG8tQmUiCiAgICAgICAgICAgICAgICAgICAgbm90aWZpY2F0aW9uc19JQWxlcnRDb21tYW5kU2VydmljZSA9IGNvbXBvbmVudCAiSUFsZXJ0Q29tbWFuZFNlcnZpY2UiICJDb21hbmRvcyBzb2JyZSBBbGVydC4iICJDb21tYW5kIFNlcnZpY2UgSW50ZXJmYWNlIiAiVG8tQmUiCiAgICAgICAgICAgICAgICAgICAgbm90aWZpY2F0aW9uc19JQWxlcnRRdWVyeVNlcnZpY2UgPSBjb21wb25lbnQgIklBbGVydFF1ZXJ5U2VydmljZSIgIkNvbnN1bHRhcyBzb2JyZSBBbGVydCwgZmlsdHJhZGFzIHBvciBwcm9waWV0YXJpbyAocmV1dGlsaXphIGVsIHBhdHLDs24gUUFTLTA4KS4iICJRdWVyeSBTZXJ2aWNlIEludGVyZmFjZSIgIlRvLUJlIgogICAgICAgICAgICAgICAgICAgIG5vdGlmaWNhdGlvbnNfRHVlRGF0ZVNjYW5uaW5nU2VydmljZSA9IGNvbXBvbmVudCAiRHVlRGF0ZVNjYW5uaW5nU2VydmljZSIgIkJhY2tncm91bmRTZXJ2aWNlIOKAlCBwcmltZXIgd29ya2VyIGVuIHNlZ3VuZG8gcGxhbm8gZGVsIHNpc3RlbWEgKDQuNC4zKS4gRXNjYW5lYSB2ZW5jaW1pZW50b3Mgc2luIGNvbmZpcm1hciBlbiBTYW5pdGFyeS9BY3Rpdml0aWVzLiIgIklIb3N0ZWRTZXJ2aWNlIiAiVG8tQmUiCiAgICAgICAgICAgICAgICAgICAgbm90aWZpY2F0aW9uc19JRW1haWxOb3RpZmljYXRpb25TZXJ2aWNlID0gY29tcG9uZW50ICJJRW1haWxOb3RpZmljYXRpb25TZXJ2aWNlIiAiRW52w61hIG5vdGlmaWNhY2nDs24gZGUgYWxlcnRhIHbDrWEgUmVzZW5kLCBtaXNtbyBwYXRyw7NuIHF1ZSBJVG9rZW5TZXJ2aWNlL0lIYXNoaW5nU2VydmljZSBlbiBJYW0uIiAiT3V0Ym91bmQgU2VydmljZSIgIlRvLUJlIgoKICAgICAgICAgICAgICAgICAgICBub3RpZmljYXRpb25zX0FsZXJ0c0NvbnRyb2xsZXIgLT4gbm90aWZpY2F0aW9uc19JQWxlcnRDb21tYW5kU2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIG5vdGlmaWNhdGlvbnNfQWxlcnRzQ29udHJvbGxlciAtPiBub3RpZmljYXRpb25zX0lBbGVydFF1ZXJ5U2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgICAgIG5vdGlmaWNhdGlvbnNfSUFsZXJ0Q29tbWFuZFNlcnZpY2UgLT4gbm90aWZpY2F0aW9uc19JQWxlcnRSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgbm90aWZpY2F0aW9uc19JQWxlcnRRdWVyeVNlcnZpY2UgLT4gbm90aWZpY2F0aW9uc19JQWxlcnRSZXBvc2l0b3J5ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgbm90aWZpY2F0aW9uc19JQWxlcnRDb21tYW5kU2VydmljZSAtPiBub3RpZmljYXRpb25zX0lFbWFpbE5vdGlmaWNhdGlvblNlcnZpY2UgImludm9jYSBhbCBjcmVhciB1bmEgYWxlcnRhIgogICAgICAgICAgICAgICAgICAgIG5vdGlmaWNhdGlvbnNfRHVlRGF0ZVNjYW5uaW5nU2VydmljZSAtPiBub3RpZmljYXRpb25zX0lBbGVydENvbW1hbmRTZXJ2aWNlICJjcmVhIGFsZXJ0YXMgbnVldmFzIgogICAgICAgICAgICAgICAgICAgIG5vdGlmaWNhdGlvbnNfRHVlRGF0ZVNjYW5uaW5nU2VydmljZSAtPiBzYW5pdGFyeV9JSGVhbHRoRXZlbnRRdWVyeVNlcnZpY2UgImNvbnN1bHRhIHZlbmNpbWllbnRvcyIKICAgICAgICAgICAgICAgICAgICBub3RpZmljYXRpb25zX0R1ZURhdGVTY2FubmluZ1NlcnZpY2UgLT4gYWN0aXZpdGllc19JRmFybUFjdGl2aXR5UXVlcnlTZXJ2aWNlICJjb25zdWx0YSB2ZW5jaW1pZW50b3MiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgIyAtLS0tIDQuMy42IOKAlCBEZXZpY2VzIC0gSW9UIEluZ2VzdGlvbiAoSXRlcmFjacOzbiA2LCB0by1iZSkgLS0tLQogICAgICAgICAgICAgICAgZ3JvdXAgIkRldmljZXMgLSBJb1QgSW5nZXN0aW9uIiB7CiAgICAgICAgICAgICAgICAgICAgZGV2aWNlc19EZXZpY2VBcGlLZXlBdXRoZW50aWNhdGlvbkhhbmRsZXIgPSBjb21wb25lbnQgIkRldmljZUFwaUtleUF1dGhlbnRpY2F0aW9uSGFuZGxlciIgIkVzcXVlbWEgZGUgYXV0ZW50aWNhY2nDs24gaW5kZXBlbmRpZW50ZSBkZWwgSldUIGRlIHVzdWFyaW8g4oCUIHZhbGlkYSBYLURldmljZS1BcGktS2V5IGNvbnRyYSBEZXZpY2UuQXBpS2V5SGFzaCAoSXRlcmFjacOzbiA2LCA0LjMuNi41KS4gTk8gZXhpc3RlIGhveS4iICJBU1AuTkVUIENvcmUgQXV0aGVudGljYXRpb25IYW5kbGVyIiAiVG8tQmUiCiAgICAgICAgICAgICAgICAgICAgZGV2aWNlc19UZWxlbWV0cnlFbmRwb2ludCA9IGNvbXBvbmVudCAiUE9TVCAuLi4vdGVsZW1ldHJ5IiAiSW5nZXN0YSBkZSBsZWN0dXJhcyBkZSBkaXNwb3NpdGl2bywgYXV0ZW50aWNhZG8gcG9yIEFQSSBrZXksIGRlbGVnYSBlbiBJRGV2aWNlTWV0cmljQ29tbWFuZFNlcnZpY2UgKEl0ZXJhY2nDs24gNikuIE5PIGV4aXN0ZSBob3kuIiAiQVNQLk5FVCBDb3JlIFJFU1QgRW5kcG9pbnQiICJUby1CZSIKCiAgICAgICAgICAgICAgICAgICAgZGV2aWNlc19UZWxlbWV0cnlFbmRwb2ludCAtPiBkZXZpY2VzX0RldmljZUFwaUtleUF1dGhlbnRpY2F0aW9uSGFuZGxlciAic2UgYXV0ZW50aWNhIHbDrWEiCiAgICAgICAgICAgICAgICAgICAgZGV2aWNlc19UZWxlbWV0cnlFbmRwb2ludCAtPiBtZXRyaWNzX0lEZXZpY2VNZXRyaWNDb21tYW5kU2VydmljZSAidXNhIChyZXV0aWxpemEsIG5vIGR1cGxpY2EpIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICMgLS0tLSA0LjEuNCDigJQgU2hhcmVkIC0tLS0KICAgICAgICAgICAgICAgIGdyb3VwICJTaGFyZWQiIHsKICAgICAgICAgICAgICAgICAgICBzaGFyZWRfQXBwRGJDb250ZXh0ID0gY29tcG9uZW50ICJBcHBEYkNvbnRleHQiICJEYkNvbnRleHQgw7puaWNvIGRlIEVGIENvcmUsIGNvbXBhcnRpZG8gcG9yIGxvcyAxMiBib3VuZGVkIGNvbnRleHRzLiIgIkVGIENvcmUgRGJDb250ZXh0IgogICAgICAgICAgICAgICAgICAgIHNoYXJlZF9CYXNlUmVwb3NpdG9yeSA9IGNvbXBvbmVudCAiQmFzZVJlcG9zaXRvcnkgLyBJVW5pdE9mV29yayIgIkltcGxlbWVudGFjacOzbiBiYXNlIGRlIHJlcG9zaXRvcmlvICsgdW5pZGFkIGRlIHRyYWJham8sIHJldXRpbGl6YWRhIHBvciB0b2RvcyBsb3MgY29udGV4dG9zLiIgIkluZnJhc3RydWN0dXJlIgogICAgICAgICAgICAgICAgICAgIHNoYXJlZF9BdWRpdGFibGVFbnRpdHlJbnRlcmNlcHRvciA9IGNvbXBvbmVudCAiQXVkaXRhYmxlRW50aXR5SW50ZXJjZXB0b3IiICJSZWxsZW5hIENyZWF0ZWRBdC9VcGRhdGVkQXQgcGFyYSBlbnRpZGFkZXMgSUF1ZGl0YWJsZUVudGl0eSAoaG95OiBzb2xvIFVzZXIgeSBQcm9maWxlKS4iICJFRiBDb3JlIEludGVyY2VwdG9yIgogICAgICAgICAgICAgICAgICAgIHNoYXJlZF9HbG9iYWxFeGNlcHRpb25IYW5kbGVyTWlkZGxld2FyZSA9IGNvbXBvbmVudCAiR2xvYmFsRXhjZXB0aW9uSGFuZGxlck1pZGRsZXdhcmUiICJNaWRkbGV3YXJlIHRyYW5zdmVyc2FsIGRlIG1hbmVqbyBkZSBlcnJvcmVzIG5vIGNvbnRyb2xhZG9zLiIgIk1pZGRsZXdhcmUiCiAgICAgICAgICAgICAgICAgICAgc2hhcmVkX1Byb2JsZW1EZXRhaWxzRmFjdG9yeSA9IGNvbXBvbmVudCAiUHJvYmxlbURldGFpbHNGYWN0b3J5IiAiQ29uc3RydXllIHJlc3B1ZXN0YXMgZGUgZXJyb3IgUkZDIDc4MDcgY29uc2lzdGVudGVzIGVudHJlIGNvbnRleHRvcy4iICJJbmZyYXN0cnVjdHVyZSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAjIC0tLS0gNC4zLjcg4oCUIFNoYXJlZCAtIEF1ZGl0b3LDrWEgKEl0ZXJhY2nDs24gNywgdG8tYmUpIC0tLS0KICAgICAgICAgICAgICAgIGdyb3VwICJTaGFyZWQgLSBBdWRpdG9yw61hIiB7CiAgICAgICAgICAgICAgICAgICAgc2hhcmVkX0F1ZGl0TG9nZ2VyID0gY29tcG9uZW50ICJBdWRpdExvZ2dlciIgIlJlZ2lzdHJhIHVuYSBmaWxhIGVuIGF1ZGl0X2xvZyBwb3Igb3BlcmFjacOzbiBzZW5zaWJsZSAocmVjdGlmaWNhci9hbnVsYXIgc2FuaXRhcmlvLCBhcHJvYmFyL3JlY2hhemFyL3Jldm9jYXIgdmV0ZXJpbmFyaW8tY2xpZW50ZSksIGVubGF6YWRhIGFsIFgtQ29ycmVsYXRpb24tSWQgZGUgbGEgcGV0aWNpw7NuLiBOTyBleGlzdGUgaG95IOKAlCBkaXNlw7FvIHRvLWJlICg0LjMuNy41KS4iICJBcHBsaWNhdGlvbiBTZXJ2aWNlIiAiVG8tQmUiCgogICAgICAgICAgICAgICAgICAgIHNoYXJlZF9BdWRpdExvZ2dlciAtPiBzaGFyZWRfQXBwRGJDb250ZXh0ICJ1c2EiCiAgICAgICAgICAgICAgICAgICAgc2FuaXRhcnlfSUhlYWx0aEV2ZW50Q29tbWFuZFNlcnZpY2UgLT4gc2hhcmVkX0F1ZGl0TG9nZ2VyICJpbnZvY2EgYWwgcmVjdGlmaWNhci9hbnVsYXIgKFVTLTAxOCkiCiAgICAgICAgICAgICAgICAgICAgY2xpZW50c19JVmV0ZXJpbmFyaWFuQ2xpZW50Q29tbWFuZFNlcnZpY2UgLT4gc2hhcmVkX0F1ZGl0TG9nZ2VyICJpbnZvY2EgYWwgYXByb2Jhci9yZWNoYXphci9yZXZvY2FyIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICMgLS0tLSA0LjEuNCDigJQgUmVsYWNpb25lcyBjcnV6YWRhcyBlbnRyZSBib3VuZGVkIGNvbnRleHRzICh2ZXJpZmljYWRhcyBlbiBQcm9ncmFtLmNzIC8gY29uc3RydWN0b3JlcykgLS0tLQogICAgICAgICAgICAgICAgYW5hbHl0aWNzX0Rhc2hib2FyZEFuYWx5dGljc0NvbnRyb2xsZXIgLT4gYWN0aXZpdGllc19JRmFybUFjdGl2aXR5UXVlcnlTZXJ2aWNlICJ1c2EgKGFncmVnYWRvciBkZSBkYXNoYm9hcmQpIgogICAgICAgICAgICAgICAgYW5hbHl0aWNzX0Rhc2hib2FyZEFuYWx5dGljc0NvbnRyb2xsZXIgLT4gY2xpZW50c19JVmV0ZXJpbmFyaWFuQ2xpZW50UXVlcnlTZXJ2aWNlICJ1c2EgKGFncmVnYWRvciBkZSBkYXNoYm9hcmQpIgogICAgICAgICAgICAgICAgYW5hbHl0aWNzX0Rhc2hib2FyZEFuYWx5dGljc0NvbnRyb2xsZXIgLT4gZGV2aWNlc19JRGV2aWNlUXVlcnlTZXJ2aWNlICJ1c2EgKGFncmVnYWRvciBkZSBkYXNoYm9hcmQpIgogICAgICAgICAgICAgICAgYW5hbHl0aWNzX0Rhc2hib2FyZEFuYWx5dGljc0NvbnRyb2xsZXIgLT4gZmluYW5jaWFsX0lGaW5hbmNpYWxSZWNvcmRRdWVyeVNlcnZpY2UgInVzYSAoYWdyZWdhZG9yIGRlIGRhc2hib2FyZCkiCiAgICAgICAgICAgICAgICBhbmFseXRpY3NfRGFzaGJvYXJkQW5hbHl0aWNzQ29udHJvbGxlciAtPiBsaXZlc3RvY2tfSUFuaW1hbFF1ZXJ5U2VydmljZSAidXNhIChhZ3JlZ2Fkb3IgZGUgZGFzaGJvYXJkKSIKICAgICAgICAgICAgICAgIGFuYWx5dGljc19EYXNoYm9hcmRBbmFseXRpY3NDb250cm9sbGVyIC0+IHNhbml0YXJ5X0lIZWFsdGhFdmVudFF1ZXJ5U2VydmljZSAidXNhIChhZ3JlZ2Fkb3IgZGUgZGFzaGJvYXJkKSIKCiAgICAgICAgICAgICAgICBjbGllbnRzX1ZldGVyaW5hcmlhbkNsaWVudHNDb250cm9sbGVyIC0+IGlhbV9JVXNlclF1ZXJ5U2VydmljZSAidXNhIgogICAgICAgICAgICAgICAgY2xpZW50c19WZXRlcmluYXJpYW5DbGllbnRzQ29udHJvbGxlciAtPiBsaXZlc3RvY2tfSUhlcmRRdWVyeVNlcnZpY2UgInVzYSIKICAgICAgICAgICAgICAgIGNsaWVudHNfVmV0ZXJpbmFyaWFuQ2xpZW50c0NvbnRyb2xsZXIgLT4gbGl2ZXN0b2NrX0lBbmltYWxRdWVyeVNlcnZpY2UgInVzYSIKCiAgICAgICAgICAgICAgICBkZXZpY2VzX0RldmljZXNDb250cm9sbGVyIC0+IG1ldHJpY3NfSURldmljZU1ldHJpY1F1ZXJ5U2VydmljZSAidXNhIgoKICAgICAgICAgICAgICAgICMgLS0tLSBUb2RhcyBsYXMgaW1wbGVtZW50YWNpb25lcyBkZSBSZXBvc2l0b3J5IGRlcGVuZGVuIGRlIGxhIGluZnJhZXN0cnVjdHVyYSBjb21wYXJ0aWRhIC0tLS0KICAgICAgICAgICAgICAgIGlhbV9JVXNlclJlcG9zaXRvcnkgLT4gc2hhcmVkX0Jhc2VSZXBvc2l0b3J5ICJpbXBsZW1lbnRhIHbDrWEiCiAgICAgICAgICAgICAgICBwcm9maWxlc19JUHJvZmlsZVJlcG9zaXRvcnkgLT4gc2hhcmVkX0Jhc2VSZXBvc2l0b3J5ICJpbXBsZW1lbnRhIHbDrWEiCiAgICAgICAgICAgICAgICBsaXZlc3RvY2tfSUFuaW1hbFJlcG9zaXRvcnkgLT4gc2hhcmVkX0Jhc2VSZXBvc2l0b3J5ICJpbXBsZW1lbnRhIHbDrWEiCiAgICAgICAgICAgICAgICBsaXZlc3RvY2tfSUNvcnJhbFJlcG9zaXRvcnkgLT4gc2hhcmVkX0Jhc2VSZXBvc2l0b3J5ICJpbXBsZW1lbnRhIHbDrWEiCiAgICAgICAgICAgICAgICBsaXZlc3RvY2tfSUhlcmRSZXBvc2l0b3J5IC0+IHNoYXJlZF9CYXNlUmVwb3NpdG9yeSAiaW1wbGVtZW50YSB2w61hIgogICAgICAgICAgICAgICAgc2FuaXRhcnlfSUhlYWx0aEV2ZW50UmVwb3NpdG9yeSAtPiBzaGFyZWRfQmFzZVJlcG9zaXRvcnkgImltcGxlbWVudGEgdsOtYSIKICAgICAgICAgICAgICAgIGZpbmFuY2lhbF9JRmluYW5jaWFsUmVjb3JkUmVwb3NpdG9yeSAtPiBzaGFyZWRfQmFzZVJlcG9zaXRvcnkgImltcGxlbWVudGEgdsOtYSIKICAgICAgICAgICAgICAgIGFjdGl2aXRpZXNfSUZhcm1BY3Rpdml0eVJlcG9zaXRvcnkgLT4gc2hhcmVkX0Jhc2VSZXBvc2l0b3J5ICJpbXBsZW1lbnRhIHbDrWEiCiAgICAgICAgICAgICAgICBhbmFseXRpY3NfSVJlcG9ydE1ldHJpY1JlcG9zaXRvcnkgLT4gc2hhcmVkX0Jhc2VSZXBvc2l0b3J5ICJpbXBsZW1lbnRhIHbDrWEiCiAgICAgICAgICAgICAgICBkZXZpY2VzX0lEZXZpY2VSZXBvc2l0b3J5IC0+IHNoYXJlZF9CYXNlUmVwb3NpdG9yeSAiaW1wbGVtZW50YSB2w61hIgogICAgICAgICAgICAgICAgbWV0cmljc19JRGV2aWNlTWV0cmljUmVwb3NpdG9yeSAtPiBzaGFyZWRfQmFzZVJlcG9zaXRvcnkgImltcGxlbWVudGEgdsOtYSIKICAgICAgICAgICAgICAgIHN1YnNjcmlwdGlvbnNfSVN1YnNjcmlwdGlvblJlcG9zaXRvcnkgLT4gc2hhcmVkX0Jhc2VSZXBvc2l0b3J5ICJpbXBsZW1lbnRhIHbDrWEiCiAgICAgICAgICAgICAgICBzdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25QbGFuUmVwb3NpdG9yeSAtPiBzaGFyZWRfQmFzZVJlcG9zaXRvcnkgImltcGxlbWVudGEgdsOtYSIKICAgICAgICAgICAgICAgIHN1YnNjcmlwdGlvbnNfSVBheW1lbnRSZXBvc2l0b3J5IC0+IHNoYXJlZF9CYXNlUmVwb3NpdG9yeSAiaW1wbGVtZW50YSB2w61hIgogICAgICAgICAgICAgICAgY2xpZW50c19JVmV0ZXJpbmFyaWFuQ2xpZW50UmVwb3NpdG9yeSAtPiBzaGFyZWRfQmFzZVJlcG9zaXRvcnkgImltcGxlbWVudGEgdsOtYSIKICAgICAgICAgICAgICAgIHNoYXJlZF9CYXNlUmVwb3NpdG9yeSAtPiBzaGFyZWRfQXBwRGJDb250ZXh0ICJ1c2EiCiAgICAgICAgICAgICAgICBzaGFyZWRfQXBwRGJDb250ZXh0IC0+IHNoYXJlZF9BdWRpdGFibGVFbnRpdHlJbnRlcmNlcHRvciAiYXBsaWNhIgogICAgICAgICAgICB9CgogICAgICAgICAgICAjID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgICAgICAgIyA0LjMuMyDigJQgSXRlcmF0aW9uIDM6IEV4dHJhY2Npw7NuIGRlIFNlcnZpY2lvcyBDcsOtdGljb3MgeSBBUEkgR2F0ZXdheSAodG8tYmUpCiAgICAgICAgICAgICMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgICAgICBhcGlHYXRld2F5ID0gY29udGFpbmVyICJBUEkgR2F0ZXdheSIgIsOabmljbyBwdW50byBkZSBlbnRyYWRhIGRlbCBTUEEvTW9iaWxlIEFwcC4gRW5ydXRhIHBvciBwcmVmaWpvIGRlIHJ1dGEgaGFjaWEgQ29yZSBBUEkgbyBTdWJzY3JpcHRpb25zIFNlcnZpY2UuIE5PIGV4aXN0ZSBob3kg4oCUIGRpc2XDsW8gdG8tYmUgKDQuMy4zKS4iICJZQVJQIiAiVG8tQmUiCiAgICAgICAgICAgIHN1YnNjcmlwdGlvbnNTZXJ2aWNlID0gY29udGFpbmVyICJTdWJzY3JpcHRpb25zIFNlcnZpY2UiICJTdWJzY3JpcHRpb25zIGV4dHJhw61kbyBjb21vIHNlcnZpY2lvIGluZGVwZW5kaWVudGVtZW50ZSBkZXNwbGVnYWJsZSwgY29uIHN1IHByb3BpYSBiYXNlIGRlIGRhdG9zLiBOTyBleGlzdGUgaG95IOKAlCBkaXNlw7FvIHRvLWJlICg0LjMuMykuIiAiQVNQLk5FVCBDb3JlIC8gQyMiICJUby1CZSIKICAgICAgICAgICAgc3Vic2NyaXB0aW9uc0RhdGFiYXNlID0gY29udGFpbmVyICJTdWJzY3JpcHRpb25zIERhdGFiYXNlIiAiQmFzZSBkZSBkYXRvcyBleGNsdXNpdmEgZGVsIFN1YnNjcmlwdGlvbnMgU2VydmljZSAoc3Vic2NyaXB0aW9uX3BsYW5zLCBzdWJzY3JpcHRpb25zLCBwYXltZW50cykuIE5PIGV4aXN0ZSBob3kg4oCUIGRpc2XDsW8gdG8tYmUgKDQuMy4zKS4iICJNeVNRTCIgIkRhdGFiYXNlLCBUby1CZSIKCiAgICAgICAgICAgICMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgICAgICAjIDQuMy40IOKAlCBJdGVyYXRpb24gNDogU2luY3Jvbml6YWNpw7NuIEVkZ2UtdG8tQ2xvdWQgKHRvLWJlKQogICAgICAgICAgICAjID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgICAgICAgbW9iaWxlQXBwID0gY29udGFpbmVyICJBbmlUZWMgTW9iaWxlIEFwcCIgIkNsaWVudGUgb2ZmbGluZS1maXJzdCAoUm9vbS9TUUxpdGUsIFdvcmtNYW5hZ2VyKS4gTk8gZXhpc3RlIG5pbmfDum4gY8OzZGlnbyBhIGxhIGZlY2hhIGRlIGVzdGUgaW5mb3JtZSDigJQgZGlzZcOxbyB0by1iZSAoNC4zLjQsIEVQLTAxNCkuIiAiS290bGluLCBBbmRyb2lkLCBSb29tIiAiVG8tQmUiCiAgICAgICAgfQoKICAgICAgICAjID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgICAjIDQuMS40IOKAlCBSZWxhY2lvbmVzIGFzLWJ1aWx0IGEgbml2ZWwgZGUgY29udGVuZWRvci9zaXN0ZW1hCiAgICAgICAgIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgcmFuY2hlciAtPiBhbml0ZWMuc3BhICJVc2EiICJIVFRQUyIKICAgICAgICB2ZXRlcmluYXJpYW4gLT4gYW5pdGVjLnNwYSAiVXNhIiAiSFRUUFMiCiAgICAgICAgcmFuY2hlciAtPiBhbml0ZWMubGFuZGluZ1BhZ2UgIlZpc2l0YSIgIkhUVFBTIgogICAgICAgIHZldGVyaW5hcmlhbiAtPiBhbml0ZWMubGFuZGluZ1BhZ2UgIlZpc2l0YSIgIkhUVFBTIgoKICAgICAgICBhbml0ZWMud2ViQXBwbGljYXRpb24gLT4gYW5pdGVjLnNwYSAiU2lydmUiICJIVFRQUyIKICAgICAgICBhbml0ZWMuc3BhIC0+IGFuaXRlYy5hcGlBcHBsaWNhdGlvbiAiSGFjZSBsbGFtYWRhcyBhIiAiSlNPTi9IVFRQUyIKICAgICAgICBhbml0ZWMuYXBpQXBwbGljYXRpb24gLT4gYW5pdGVjLmRhdGFiYXNlICJMZWUgeSBlc2NyaWJlIGVuIiAiRW50aXR5IEZyYW1ld29yayBDb3JlIC8gTXlTUUwiCiAgICAgICAgYW5pdGVjLmFwaUFwcGxpY2F0aW9uIC0+IHN0cmlwZSAiQ3JlYSBzZXNpb25lcyBkZSBjaGVja291dCwgY29uc3VsdGEgc3VzY3JpcGNpb25lcyIgIkhUVFBTL1JFU1QgKFN0cmlwZS5uZXQpIgogICAgICAgIGFuaXRlYy5hcGlBcHBsaWNhdGlvbiAtPiByZXNlbmQgIkVudsOtYSBub3RpZmljYWNpb25lcyAoVE8tQkUg4oCUIHNpbiBpbnRlZ3JhY2nDs24gcmVhbCkiICJIVFRQUy9SRVNUIgoKICAgICAgICAjIC0tLS0gNC4xLjQg4oCUIFNQQSAtPiBjb250cm9sYWRvcmVzIHBvciBib3VuZGVkIGNvbnRleHQgKGJvcmRlIGRlIGVudHJhZGEgZGUgY2FkYSBkaWFncmFtYSBkZSBjb21wb25lbnRlcykgLS0tLQogICAgICAgIGFuaXRlYy5zcGEgLT4gYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmlhbV9Vc2Vyc0NvbnRyb2xsZXIgIkNvbnN1bHRhIHVzdWFyaW9zIiAiSlNPTi9IVFRQUyIKICAgICAgICBhbml0ZWMuc3BhIC0+IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5pYW1fQXV0aGVudGljYXRpb25Db250cm9sbGVyICJJbmljaWEgc2VzacOzbiAvIHNlIHJlZ2lzdHJhIiAiSlNPTi9IVFRQUyIKICAgICAgICBhbml0ZWMuc3BhIC0+IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5wcm9maWxlc19Qcm9maWxlc0NvbnRyb2xsZXIgIkdlc3Rpb25hIHBlcmZpbGVzIiAiSlNPTi9IVFRQUyIKICAgICAgICBhbml0ZWMuc3BhIC0+IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5saXZlc3RvY2tfQW5pbWFsc0NvbnRyb2xsZXIgIkdlc3Rpb25hIGFuaW1hbGVzIiAiSlNPTi9IVFRQUyIKICAgICAgICBhbml0ZWMuc3BhIC0+IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5saXZlc3RvY2tfQ29ycmFsc0NvbnRyb2xsZXIgIkdlc3Rpb25hIGNvcnJhbGVzIiAiSlNPTi9IVFRQUyIKICAgICAgICBhbml0ZWMuc3BhIC0+IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5saXZlc3RvY2tfSGVyZHNDb250cm9sbGVyICJHZXN0aW9uYSBoYXRvcyIgIkpTT04vSFRUUFMiCiAgICAgICAgYW5pdGVjLnNwYSAtPiBhbml0ZWMuYXBpQXBwbGljYXRpb24uc2FuaXRhcnlfSGVhbHRoRXZlbnRzQ29udHJvbGxlciAiR2VzdGlvbmEgcmVnaXN0cm9zIHNhbml0YXJpb3MiICJKU09OL0hUVFBTIgogICAgICAgIGFuaXRlYy5zcGEgLT4gYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmZpbmFuY2lhbF9GaW5hbmNpYWxSZWNvcmRzQ29udHJvbGxlciAiR2VzdGlvbmEgbW92aW1pZW50b3MgZmluYW5jaWVyb3MiICJKU09OL0hUVFBTIgogICAgICAgIGFuaXRlYy5zcGEgLT4gYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmFjdGl2aXRpZXNfRmFybUFjdGl2aXRpZXNDb250cm9sbGVyICJHZXN0aW9uYSBhY3RpdmlkYWRlcyIgIkpTT04vSFRUUFMiCiAgICAgICAgYW5pdGVjLnNwYSAtPiBhbml0ZWMuYXBpQXBwbGljYXRpb24uYW5hbHl0aWNzX1JlcG9ydE1ldHJpY3NDb250cm9sbGVyICJDb25zdWx0YSBtw6l0cmljYXMiICJKU09OL0hUVFBTIgogICAgICAgIGFuaXRlYy5zcGEgLT4gYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmFuYWx5dGljc19EYXNoYm9hcmRBbmFseXRpY3NDb250cm9sbGVyICJDb25zdWx0YSBkYXNoYm9hcmRzIiAiSlNPTi9IVFRQUyIKICAgICAgICBhbml0ZWMuc3BhIC0+IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5kZXZpY2VzX0RldmljZXNDb250cm9sbGVyICJHZXN0aW9uYSBkaXNwb3NpdGl2b3MiICJKU09OL0hUVFBTIgogICAgICAgIGFuaXRlYy5zcGEgLT4gYW5pdGVjLmFwaUFwcGxpY2F0aW9uLm1ldHJpY3NfRGV2aWNlTWV0cmljc0NvbnRyb2xsZXIgIkNvbnN1bHRhIG3DqXRyaWNhcyBkZSBkaXNwb3NpdGl2byIgIkpTT04vSFRUUFMiCiAgICAgICAgYW5pdGVjLnNwYSAtPiBhbml0ZWMuYXBpQXBwbGljYXRpb24uc3Vic2NyaXB0aW9uc19TdWJzY3JpcHRpb25zQ29udHJvbGxlciAiR2VzdGlvbmEgc3VzY3JpcGNpb25lcy9wYWdvcyIgIkpTT04vSFRUUFMiCiAgICAgICAgYW5pdGVjLnNwYSAtPiBhbml0ZWMuYXBpQXBwbGljYXRpb24uc3Vic2NyaXB0aW9uc19TdWJzY3JpcHRpb25QbGFuc0NvbnRyb2xsZXIgIkNvbnN1bHRhIHBsYW5lcyIgIkpTT04vSFRUUFMiCiAgICAgICAgYW5pdGVjLnNwYSAtPiBhbml0ZWMuYXBpQXBwbGljYXRpb24uY2xpZW50c19WZXRlcmluYXJpYW5DbGllbnRzQ29udHJvbGxlciAiR2VzdGlvbmEgcmVsYWNpb25lcyB2ZXRlcmluYXJpby1nYW5hZGVybyIgIkpTT04vSFRUUFMiCgogICAgICAgICMgLS0tLSA0LjEuNCDigJQgQXBwRGJDb250ZXh0IC0+IERhdGFiYXNlIChib3JkZSBkZSBzYWxpZGEgZGUgY2FkYSBkaWFncmFtYSBkZSBjb21wb25lbnRlcykgLS0tLQogICAgICAgIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zaGFyZWRfQXBwRGJDb250ZXh0IC0+IGFuaXRlYy5kYXRhYmFzZSAiTGVlIHkgZXNjcmliZSBlbiIgIkVGIENvcmUgLyBNeVNRTCIKCiAgICAgICAgIyAtLS0tIDQuMS40IOKAlCBTdWJzY3JpcHRpb25zQ29udHJvbGxlciAtPiBTdHJpcGUgKGJvcmRlIGRlIHNhbGlkYSBlc3BlY8OtZmljbyBkZSBTdWJzY3JpcHRpb25zKSAtLS0tCiAgICAgICAgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnN1YnNjcmlwdGlvbnNfU3Vic2NyaXB0aW9uc0NvbnRyb2xsZXIgLT4gc3RyaXBlICJDcmVhIHNlc2lvbmVzIGRlIGNoZWNrb3V0LCBjb25zdWx0YSBzdXNjcmlwY2lvbmVzIiAiSFRUUFMvUkVTVCAoU3RyaXBlLm5ldCkiCgogICAgICAgICMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgICMgNC4zLjMg4oCUIFJlbGFjaW9uZXMgVE8tQkUgKEdhdGV3YXkgKyBTdWJzY3JpcHRpb25zIGV4dHJhw61kbykKICAgICAgICAjID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgICBhbml0ZWMuc3BhIC0+IGFuaXRlYy5hcGlHYXRld2F5ICJIYWNlIGxsYW1hZGFzIGEgKHJlZW1wbGF6YSBsYSBsbGFtYWRhIGRpcmVjdGEgYSBhcGlBcHBsaWNhdGlvbikiICJKU09OL0hUVFBTIgogICAgICAgIGFuaXRlYy5hcGlHYXRld2F5IC0+IGFuaXRlYy5hcGlBcHBsaWNhdGlvbiAiRW5ydXRhIC9hcGkvdjEvKiAoZXhjZXB0byBzdWJzY3JpcHRpb25zKSIgIkpTT04vSFRUUFMiCiAgICAgICAgYW5pdGVjLmFwaUdhdGV3YXkgLT4gYW5pdGVjLnN1YnNjcmlwdGlvbnNTZXJ2aWNlICJFbnJ1dGEgL2FwaS92MS9zdWJzY3JpcHRpb25zKiwgL2FwaS92MS9zdWJzY3JpcHRpb24tcGxhbnMqLCAvYXBpL3YxL3BheW1lbnRzKiIgIkpTT04vSFRUUFMiCiAgICAgICAgYW5pdGVjLnN1YnNjcmlwdGlvbnNTZXJ2aWNlIC0+IGFuaXRlYy5zdWJzY3JpcHRpb25zRGF0YWJhc2UgIkxlZSB5IGVzY3JpYmUgZW4iICJFbnRpdHkgRnJhbWV3b3JrIENvcmUgLyBNeVNRTCIKICAgICAgICBhbml0ZWMuc3Vic2NyaXB0aW9uc1NlcnZpY2UgLT4gc3RyaXBlICJDcmVhIHNlc2lvbmVzIGRlIGNoZWNrb3V0LCBjb25zdWx0YSBzdXNjcmlwY2lvbmVzIiAiSFRUUFMvUkVTVCAoU3RyaXBlLm5ldCkiCgogICAgICAgICMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgICMgNC4zLjQg4oCUIFJlbGFjaW9uZXMgVE8tQkUgKE1vYmlsZSBBcHAgKyBzeW5jKQogICAgICAgICMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgIHJhbmNoZXIgLT4gYW5pdGVjLm1vYmlsZUFwcCAiVXNhIGVuIGNhbXBvLCBzaW4gY29uZXhpw7NuIiAiIgogICAgICAgIHZldGVyaW5hcmlhbiAtPiBhbml0ZWMubW9iaWxlQXBwICJVc2EgZW4gY2FtcG8sIHNpbiBjb25leGnDs24iICIiCiAgICAgICAgYW5pdGVjLm1vYmlsZUFwcCAtPiBhbml0ZWMuYXBpR2F0ZXdheSAiU2luY3Jvbml6YSBsb3RlIGRlIG9wZXJhY2lvbmVzIHBlbmRpZW50ZXMiICJKU09OL0hUVFBTIChQT1NUIC9hcGkvdjEvc3luYy9iYXRjaCkiCgogICAgICAgICMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQogICAgICAgICMgNC4zLjYg4oCUIFJlbGFjacOzbiBUTy1CRSAoSW50ZWdyYWNpw7NuIFJlYWwgY29uIERpc3Bvc2l0aXZvcyBJb1QpCiAgICAgICAgIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgaW90RGV2aWNlIC0+IGFuaXRlYy5hcGlBcHBsaWNhdGlvbiAiRW52w61hIHRlbGVtZXRyw61hIHBlcmnDs2RpY2EsIGF1dGVudGljYWRvIHBvciBBUEkga2V5IChubyBKV1QgZGUgdXN1YXJpbykiICJIVFRQUy9SRVNUIChQT1NUIC9kZXZpY2VzL3tpZH0vdGVsZW1ldHJ5KSIKCiAgICAgICAgIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAgICAgICAgIyA0LjQuNCDigJQgUGh5c2ljYWwgVmlldyAvIERlcGxveW1lbnQg4oCUIHZlcmlmaWNhZG8gY29udHJhIERvY2tlcmZpbGUsCiAgICAgICAgIyAuZW52LnByb2R1Y3Rpb24geSBQcm9ncmFtLmNzIChHZXRDb25uZWN0aW9uU3RyaW5nKS4KICAgICAgICAjID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KICAgICAgICBwcm9kID0gZGVwbG95bWVudEVudmlyb25tZW50ICJQcm9kdWN0aW9uIiB7CiAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJDbGllbnRlIiAiTmF2ZWdhZG9yIGRlbCB1c3VhcmlvIiAiV2ViIEJyb3dzZXIiIHsKICAgICAgICAgICAgICAgIGNvbnRhaW5lckluc3RhbmNlIGFuaXRlYy5zcGEKICAgICAgICAgICAgfQogICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiUmVuZGVyIChTdGF0aWMgU2l0ZSkiICJIb3N0aW5nIGVzdMOhdGljbyBkZWwgU1BBIChucG0gcnVuIGJ1aWxkLCBkaXJlY3RvcmlvIGRpc3QsIGFuaXRlYy1mcm9udGVuZC1jdmUzLm9ucmVuZGVyLmNvbSkiICJTdGF0aWMgU2l0ZSBIb3N0aW5nIiB7CiAgICAgICAgICAgICAgICBjb250YWluZXJJbnN0YW5jZSBhbml0ZWMud2ViQXBwbGljYXRpb24KICAgICAgICAgICAgfQogICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiR2l0SHViIFBhZ2VzIiAiSG9zdGluZyBlc3TDoXRpY28gZGUgbGEgbGFuZGluZyBwYWdlIChyYW1hIG1haW4sIHJhw616IGRlbCByZXBvc2l0b3JpbykiICJTdGF0aWMgU2l0ZSBIb3N0aW5nIiB7CiAgICAgICAgICAgICAgICBjb250YWluZXJJbnN0YW5jZSBhbml0ZWMubGFuZGluZ1BhZ2UKICAgICAgICAgICAgfQogICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiUmVuZGVyIiAiQ29udGVuZWRvciBEb2NrZXIg4oCUIGJ1aWxkIG11bHRpLXN0YWdlIHNvYnJlIG1jci5taWNyb3NvZnQuY29tL2RvdG5ldC9zZGs6MTAuMCB5IGFzcG5ldDoxMC4wLCBwdWVydG8gaW50ZXJubyA4MDgwIChhbml0ZWMtYmFja2VuZC10Ym0wLm9ucmVuZGVyLmNvbSkiICJEb2NrZXIgQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBjb250YWluZXJJbnN0YW5jZSBhbml0ZWMuYXBpQXBwbGljYXRpb24KICAgICAgICAgICAgfQogICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiQWl2ZW4gZm9yIE15U1FMIiAiU2VydmljaW8gYWRtaW5pc3RyYWRvIGVuIGVsIHBsYW4gZ3JhdHVpdG8gKERpZ2l0YWxPY2VhbiwgcmVnacOzbiBzZm8pLCBTU0wgb2JsaWdhdG9yaW87IGxhIGNhZGVuYSBkZSBjb25leGnDs24gc2UgaW55ZWN0YSBwb3IgbGEgdmFyaWFibGUgZGUgZW50b3JubyBDb25uZWN0aW9uU3RyaW5nc19fRGVmYXVsdENvbm5lY3Rpb24gKDQuNC40KS4iICJNeVNRTCA4LjQiIHsKICAgICAgICAgICAgICAgIGNvbnRhaW5lckluc3RhbmNlIGFuaXRlYy5kYXRhYmFzZQogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQoKICAgIHZpZXdzIHsKCiAgICAgICAgIyAtLS0tIDQuMS4zIC8gNC4xLjQgLS0tLQogICAgICAgIHN5c3RlbUNvbnRleHQgYW5pdGVjICIwMS1TeXN0ZW1Db250ZXh0IiAiRGlhZ3JhbWEgZGUgQ29udGV4dG8g4oCUIEFuaVRlYyAoY29ycmVzcG9uZGUgYSA0LjEuMykuIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgYW5pdGVjICIwMi1Db250YWluZXJzLUFzQnVpbHQiICJEaWFncmFtYSBkZSBDb250ZW5lZG9yZXMg4oCUIHNpc3RlbWEgcmVhbCBob3kgKGNvcnJlc3BvbmRlIGEgNC4xLjQsIGNvbiBNeVNRTCBjb3JyZWdpZG8geSB0ZWNub2xvZ8OtYXMgY29tcGxldGFzKS4gRXhjbHV5ZSBHYXRld2F5LCBTdWJzY3JpcHRpb25zIFNlcnZpY2UvREIgeSBNb2JpbGUgQXBwICh0by1iZSkuIiB7CiAgICAgICAgICAgIGluY2x1ZGUgcmFuY2hlciB2ZXRlcmluYXJpYW4gYW5pdGVjLmxhbmRpbmdQYWdlIGFuaXRlYy53ZWJBcHBsaWNhdGlvbiBhbml0ZWMuc3BhIGFuaXRlYy5hcGlBcHBsaWNhdGlvbiBhbml0ZWMuZGF0YWJhc2Ugc3RyaXBlIHJlc2VuZAogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICAjIC0tLS0gNC4zLjMgLS0tLQogICAgICAgIGNvbnRhaW5lciBhbml0ZWMgIjAzLUNvbnRhaW5lcnMtSXRlcmF0aW9uMy1HYXRld2F5IiAiRGlhZ3JhbWEgZGUgQ29udGVuZWRvcmVzIOKAlCBUTy1CRSB0cmFzIGxhIEl0ZXJhY2nDs24gMzogZXh0cmFjY2nDs24gZGUgU3Vic2NyaXB0aW9ucyArIEFQSSBHYXRld2F5IChjb3JyZXNwb25kZSBhIDQuMy4zLjYpLiIgewogICAgICAgICAgICBpbmNsdWRlIHJhbmNoZXIgdmV0ZXJpbmFyaWFuIGFuaXRlYy5sYW5kaW5nUGFnZSBhbml0ZWMud2ViQXBwbGljYXRpb24gYW5pdGVjLnNwYSBhbml0ZWMuYXBpR2F0ZXdheSBhbml0ZWMuYXBpQXBwbGljYXRpb24gYW5pdGVjLmRhdGFiYXNlIGFuaXRlYy5zdWJzY3JpcHRpb25zU2VydmljZSBhbml0ZWMuc3Vic2NyaXB0aW9uc0RhdGFiYXNlIHN0cmlwZSByZXNlbmQKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgIyAtLS0tIDQuMy40IC0tLS0KICAgICAgICBjb250YWluZXIgYW5pdGVjICIwNC1Db250YWluZXJzLUl0ZXJhdGlvbjQtTW9iaWxlU3luYyIgIkRpYWdyYW1hIGRlIENvbnRlbmVkb3JlcyDigJQgVE8tQkUgdHJhcyBsYSBJdGVyYWNpw7NuIDQ6IHNlIGFncmVnYSBBbmlUZWMgTW9iaWxlIEFwcCAoY29ycmVzcG9uZGUgYSA0LjMuNC42KS4gRXN0YWRvIG9iamV0aXZvIGRlbCBzaXN0ZW1hIGhhc3RhIGVzdGEgaXRlcmFjacOzbi4iIHsKICAgICAgICAgICAgaW5jbHVkZSByYW5jaGVyIHZldGVyaW5hcmlhbiBhbml0ZWMubGFuZGluZ1BhZ2UgYW5pdGVjLndlYkFwcGxpY2F0aW9uIGFuaXRlYy5zcGEgYW5pdGVjLmFwaUdhdGV3YXkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uIGFuaXRlYy5kYXRhYmFzZSBhbml0ZWMuc3Vic2NyaXB0aW9uc1NlcnZpY2UgYW5pdGVjLnN1YnNjcmlwdGlvbnNEYXRhYmFzZSBhbml0ZWMubW9iaWxlQXBwIHN0cmlwZSByZXNlbmQKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgIyAtLS0tIDQuMS40IOKAlCBDb21wb25lbnRlcyBiYXNlICgxMiBib3VuZGVkIGNvbnRleHRzKSAtLS0tCiAgICAgICAgY29tcG9uZW50IGFuaXRlYy5hcGlBcHBsaWNhdGlvbiAiMDUtQ29tcG9uZW50cy1JYW0iICJEaWFncmFtYSBkZSBDb21wb25lbnRlcyDigJQgSWFtIChjb3JyZXNwb25kZSBhIDQuMS40KS4iIHsKICAgICAgICAgICAgaW5jbHVkZSBhbml0ZWMuc3BhIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5pYW1fVXNlcnNDb250cm9sbGVyIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5pYW1fQXV0aGVudGljYXRpb25Db250cm9sbGVyIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5pYW1fSVVzZXJSZXBvc2l0b3J5IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5pYW1fSVVzZXJDb21tYW5kU2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uaWFtX0lVc2VyUXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5pYW1fSWFtQ29udGV4dEZhY2FkZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uaWFtX1Rva2VuU2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uaWFtX0hhc2hpbmdTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zaGFyZWRfQmFzZVJlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9BcHBEYkNvbnRleHQgYW5pdGVjLmRhdGFiYXNlCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBhbml0ZWMuYXBpQXBwbGljYXRpb24gIjA2LUNvbXBvbmVudHMtUHJvZmlsZXMiICJEaWFncmFtYSBkZSBDb21wb25lbnRlcyDigJQgUHJvZmlsZXMgKGNvcnJlc3BvbmRlIGEgNC4xLjQpLiIgewogICAgICAgICAgICBpbmNsdWRlIGFuaXRlYy5zcGEgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnByb2ZpbGVzX1Byb2ZpbGVzQ29udHJvbGxlciBhbml0ZWMuYXBpQXBwbGljYXRpb24ucHJvZmlsZXNfSVByb2ZpbGVSZXBvc2l0b3J5IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5wcm9maWxlc19JUHJvZmlsZUNvbW1hbmRTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5wcm9maWxlc19JUHJvZmlsZVF1ZXJ5U2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24ucHJvZmlsZXNfUHJvZmlsZXNDb250ZXh0RmFjYWRlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zaGFyZWRfQmFzZVJlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9BcHBEYkNvbnRleHQgYW5pdGVjLmRhdGFiYXNlCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBhbml0ZWMuYXBpQXBwbGljYXRpb24gIjA3LUNvbXBvbmVudHMtTGl2ZXN0b2NrIiAiRGlhZ3JhbWEgZGUgQ29tcG9uZW50ZXMg4oCUIExpdmVzdG9jayAoY29ycmVzcG9uZGUgYSA0LjEuNDsgaW5jbHV5ZSBDb3JyYWwsIGFncmVnYWRvIGVzdGUgY2ljbG8pLiIgewogICAgICAgICAgICBpbmNsdWRlIGFuaXRlYy5zcGEgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmxpdmVzdG9ja19BbmltYWxzQ29udHJvbGxlciBhbml0ZWMuYXBpQXBwbGljYXRpb24ubGl2ZXN0b2NrX0NvcnJhbHNDb250cm9sbGVyIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5saXZlc3RvY2tfSGVyZHNDb250cm9sbGVyIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5saXZlc3RvY2tfSUFuaW1hbFJlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmxpdmVzdG9ja19JQ29ycmFsUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24ubGl2ZXN0b2NrX0lIZXJkUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24ubGl2ZXN0b2NrX0lBbmltYWxDb21tYW5kU2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24ubGl2ZXN0b2NrX0lDb3JyYWxDb21tYW5kU2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24ubGl2ZXN0b2NrX0lIZXJkQ29tbWFuZFNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmxpdmVzdG9ja19JQW5pbWFsUXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5saXZlc3RvY2tfSUNvcnJhbFF1ZXJ5U2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24ubGl2ZXN0b2NrX0lIZXJkUXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zaGFyZWRfQmFzZVJlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9BcHBEYkNvbnRleHQgYW5pdGVjLmRhdGFiYXNlCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBhbml0ZWMuYXBpQXBwbGljYXRpb24gIjA4LUNvbXBvbmVudHMtU2FuaXRhcnkiICJEaWFncmFtYSBkZSBDb21wb25lbnRlcyDigJQgU2FuaXRhcnkgKGNvcnJlc3BvbmRlIGEgNC4xLjQpLiIgewogICAgICAgICAgICBpbmNsdWRlIGFuaXRlYy5zcGEgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNhbml0YXJ5X0hlYWx0aEV2ZW50c0NvbnRyb2xsZXIgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNhbml0YXJ5X0lIZWFsdGhFdmVudFJlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNhbml0YXJ5X0lIZWFsdGhFdmVudENvbW1hbmRTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zYW5pdGFyeV9JSGVhbHRoRXZlbnRRdWVyeVNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9CYXNlUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24uc2hhcmVkX0FwcERiQ29udGV4dCBhbml0ZWMuZGF0YWJhc2UKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGFuaXRlYy5hcGlBcHBsaWNhdGlvbiAiMDktQ29tcG9uZW50cy1GaW5hbmNpYWwiICJEaWFncmFtYSBkZSBDb21wb25lbnRlcyDigJQgRmluYW5jaWFsIChjb3JyZXNwb25kZSBhIDQuMS40KS4iIHsKICAgICAgICAgICAgaW5jbHVkZSBhbml0ZWMuc3BhIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5maW5hbmNpYWxfRmluYW5jaWFsUmVjb3Jkc0NvbnRyb2xsZXIgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmZpbmFuY2lhbF9JRmluYW5jaWFsUmVjb3JkUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24uZmluYW5jaWFsX0lGaW5hbmNpYWxSZWNvcmRDb21tYW5kU2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uZmluYW5jaWFsX0lGaW5hbmNpYWxSZWNvcmRRdWVyeVNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9CYXNlUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24uc2hhcmVkX0FwcERiQ29udGV4dCBhbml0ZWMuZGF0YWJhc2UKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGFuaXRlYy5hcGlBcHBsaWNhdGlvbiAiMTAtQ29tcG9uZW50cy1BY3Rpdml0aWVzIiAiRGlhZ3JhbWEgZGUgQ29tcG9uZW50ZXMg4oCUIEFjdGl2aXRpZXMgKGNvcnJlc3BvbmRlIGEgNC4xLjQpLiIgewogICAgICAgICAgICBpbmNsdWRlIGFuaXRlYy5zcGEgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmFjdGl2aXRpZXNfRmFybUFjdGl2aXRpZXNDb250cm9sbGVyIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5hY3Rpdml0aWVzX0lGYXJtQWN0aXZpdHlSZXBvc2l0b3J5IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5hY3Rpdml0aWVzX0lGYXJtQWN0aXZpdHlDb21tYW5kU2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uYWN0aXZpdGllc19JRmFybUFjdGl2aXR5UXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zaGFyZWRfQmFzZVJlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9BcHBEYkNvbnRleHQgYW5pdGVjLmRhdGFiYXNlCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBhbml0ZWMuYXBpQXBwbGljYXRpb24gIjExLUNvbXBvbmVudHMtQW5hbHl0aWNzIiAiRGlhZ3JhbWEgZGUgQ29tcG9uZW50ZXMg4oCUIEFuYWx5dGljcyAoY29ycmVzcG9uZGUgYSA0LjEuNDsgRGFzaGJvYXJkQW5hbHl0aWNzQ29udHJvbGxlciBhZ3JlZ2EgZGF0b3MgZGUgb3Ryb3MgNiBjb250ZXh0b3MpLiIgewogICAgICAgICAgICBpbmNsdWRlIGFuaXRlYy5zcGEgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmFuYWx5dGljc19SZXBvcnRNZXRyaWNzQ29udHJvbGxlciBhbml0ZWMuYXBpQXBwbGljYXRpb24uYW5hbHl0aWNzX0Rhc2hib2FyZEFuYWx5dGljc0NvbnRyb2xsZXIgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmFuYWx5dGljc19JUmVwb3J0TWV0cmljUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24uYW5hbHl0aWNzX0lSZXBvcnRNZXRyaWNDb21tYW5kU2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uYW5hbHl0aWNzX0lSZXBvcnRNZXRyaWNRdWVyeVNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmFjdGl2aXRpZXNfSUZhcm1BY3Rpdml0eVF1ZXJ5U2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uY2xpZW50c19JVmV0ZXJpbmFyaWFuQ2xpZW50UXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5kZXZpY2VzX0lEZXZpY2VRdWVyeVNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmZpbmFuY2lhbF9JRmluYW5jaWFsUmVjb3JkUXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5saXZlc3RvY2tfSUFuaW1hbFF1ZXJ5U2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uc2FuaXRhcnlfSUhlYWx0aEV2ZW50UXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zaGFyZWRfQmFzZVJlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9BcHBEYkNvbnRleHQgYW5pdGVjLmRhdGFiYXNlCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBhbml0ZWMuYXBpQXBwbGljYXRpb24gIjEyLUNvbXBvbmVudHMtRGV2aWNlcyIgIkRpYWdyYW1hIGRlIENvbXBvbmVudGVzIOKAlCBEZXZpY2VzIChjb3JyZXNwb25kZSBhIDQuMS40OyBlbCBjYW5hbCBkZSBpbmdlc3RhIElvVCB0by1iZSB0aWVuZSBzdSBwcm9waW8gZGlhZ3JhbWEsIHZlciAxOCkuIiB7CiAgICAgICAgICAgIGluY2x1ZGUgYW5pdGVjLnNwYSBhbml0ZWMuYXBpQXBwbGljYXRpb24uZGV2aWNlc19EZXZpY2VzQ29udHJvbGxlciBhbml0ZWMuYXBpQXBwbGljYXRpb24uZGV2aWNlc19JRGV2aWNlUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24uZGV2aWNlc19JRGV2aWNlQ29tbWFuZFNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmRldmljZXNfSURldmljZVF1ZXJ5U2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24ubWV0cmljc19JRGV2aWNlTWV0cmljUXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zaGFyZWRfQmFzZVJlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9BcHBEYkNvbnRleHQgYW5pdGVjLmRhdGFiYXNlCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBhbml0ZWMuYXBpQXBwbGljYXRpb24gIjEzLUNvbXBvbmVudHMtTWV0cmljcyIgIkRpYWdyYW1hIGRlIENvbXBvbmVudGVzIOKAlCBNZXRyaWNzIChjb3JyZXNwb25kZSBhIDQuMS40OyBjaWVycmEgZWwgdmFjw61vIGRlIGRvY3VtZW50YWNpw7NuIHNlw7FhbGFkbyBlbiBsYSBJdGVyYWNpw7NuIDEsIDQuMy4xLjUpLiIgewogICAgICAgICAgICBpbmNsdWRlIGFuaXRlYy5zcGEgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLm1ldHJpY3NfRGV2aWNlTWV0cmljc0NvbnRyb2xsZXIgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLm1ldHJpY3NfSURldmljZU1ldHJpY1JlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLm1ldHJpY3NfSURldmljZU1ldHJpY0NvbW1hbmRTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5tZXRyaWNzX0lEZXZpY2VNZXRyaWNRdWVyeVNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9CYXNlUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24uc2hhcmVkX0FwcERiQ29udGV4dCBhbml0ZWMuZGF0YWJhc2UKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGFuaXRlYy5hcGlBcHBsaWNhdGlvbiAiMTQtQ29tcG9uZW50cy1TdWJzY3JpcHRpb25zIiAiRGlhZ3JhbWEgZGUgQ29tcG9uZW50ZXMg4oCUIFN1YnNjcmlwdGlvbnMgKGNvcnJlc3BvbmRlIGEgNC4xLjQ7IGNhbmRpZGF0byBkZSBleHRyYWNjacOzbiBkZSBsYSBJdGVyYWNpw7NuIDMpLiIgewogICAgICAgICAgICBpbmNsdWRlIGFuaXRlYy5zcGEgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnN1YnNjcmlwdGlvbnNfU3Vic2NyaXB0aW9uc0NvbnRyb2xsZXIgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnN1YnNjcmlwdGlvbnNfU3Vic2NyaXB0aW9uUGxhbnNDb250cm9sbGVyIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25SZXBvc2l0b3J5IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25QbGFuUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24uc3Vic2NyaXB0aW9uc19JUGF5bWVudFJlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnN1YnNjcmlwdGlvbnNfSVN1YnNjcmlwdGlvbkNvbW1hbmRTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25QbGFuQ29tbWFuZFNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnN1YnNjcmlwdGlvbnNfSVBheW1lbnRDb21tYW5kU2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uc3Vic2NyaXB0aW9uc19JU3Vic2NyaXB0aW9uUXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zdWJzY3JpcHRpb25zX0lTdWJzY3JpcHRpb25QbGFuUXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zdWJzY3JpcHRpb25zX0lQYXltZW50UXVlcnlTZXJ2aWNlIHN0cmlwZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uc2hhcmVkX0Jhc2VSZXBvc2l0b3J5IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zaGFyZWRfQXBwRGJDb250ZXh0IGFuaXRlYy5kYXRhYmFzZQogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgYW5pdGVjLmFwaUFwcGxpY2F0aW9uICIxNS1Db21wb25lbnRzLUNsaWVudHMiICJEaWFncmFtYSBkZSBDb21wb25lbnRlcyDigJQgQ2xpZW50cyAoY29ycmVzcG9uZGUgYSA0LjEuNDsgY2llcnJhIGVsIHZhY8OtbyBkZSBkb2N1bWVudGFjacOzbiBzZcOxYWxhZG8gZW4gbGEgSXRlcmFjacOzbiAxLCA0LjMuMS41KS4iIHsKICAgICAgICAgICAgaW5jbHVkZSBhbml0ZWMuc3BhIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5jbGllbnRzX1ZldGVyaW5hcmlhbkNsaWVudHNDb250cm9sbGVyIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5jbGllbnRzX0lWZXRlcmluYXJpYW5DbGllbnRSZXBvc2l0b3J5IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5jbGllbnRzX0lWZXRlcmluYXJpYW5DbGllbnRDb21tYW5kU2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uY2xpZW50c19JVmV0ZXJpbmFyaWFuQ2xpZW50UXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5pYW1fSVVzZXJRdWVyeVNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmxpdmVzdG9ja19JSGVyZFF1ZXJ5U2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24ubGl2ZXN0b2NrX0lBbmltYWxRdWVyeVNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9CYXNlUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24uc2hhcmVkX0FwcERiQ29udGV4dCBhbml0ZWMuZGF0YWJhc2UKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGFuaXRlYy5hcGlBcHBsaWNhdGlvbiAiMTYtQ29tcG9uZW50cy1TaGFyZWQiICJEaWFncmFtYSBkZSBDb21wb25lbnRlcyDigJQgU2hhcmVkIChpbmZyYWVzdHJ1Y3R1cmEgdHJhbnN2ZXJzYWwsIGNvcnJlc3BvbmRlIGEgNC4xLjQ7IGluY2x1eWUgQXVkaXRMb2dnZXIgdG8tYmUgZGUgbGEgSXRlcmFjacOzbiA3LCA0LjMuNykuIiB7CiAgICAgICAgICAgIGluY2x1ZGUgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9BcHBEYkNvbnRleHQgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9CYXNlUmVwb3NpdG9yeSBhbml0ZWMuYXBpQXBwbGljYXRpb24uc2hhcmVkX0F1ZGl0YWJsZUVudGl0eUludGVyY2VwdG9yIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5zaGFyZWRfR2xvYmFsRXhjZXB0aW9uSGFuZGxlck1pZGRsZXdhcmUgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9Qcm9ibGVtRGV0YWlsc0ZhY3RvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLnNoYXJlZF9BdWRpdExvZ2dlciBhbml0ZWMuZGF0YWJhc2UKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgIyAtLS0tIDQuMy41IC0tLS0KICAgICAgICBjb21wb25lbnQgYW5pdGVjLmFwaUFwcGxpY2F0aW9uICIxNy1Db21wb25lbnRzLU5vdGlmaWNhdGlvbnMiICJEaWFncmFtYSBkZSBDb21wb25lbnRlcyDigJQgTm90aWZpY2F0aW9ucywgYm91bmRlZCBjb250ZXh0IG51ZXZvICh0by1iZSwgY29ycmVzcG9uZGUgYSBsYSBJdGVyYWNpw7NuIDUsIDQuMy41KS4iIHsKICAgICAgICAgICAgaW5jbHVkZSBhbml0ZWMuYXBpQXBwbGljYXRpb24ubm90aWZpY2F0aW9uc19BbGVydHNDb250cm9sbGVyIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5ub3RpZmljYXRpb25zX0lBbGVydFJlcG9zaXRvcnkgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLm5vdGlmaWNhdGlvbnNfSUFsZXJ0Q29tbWFuZFNlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLm5vdGlmaWNhdGlvbnNfSUFsZXJ0UXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5ub3RpZmljYXRpb25zX0R1ZURhdGVTY2FubmluZ1NlcnZpY2UgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLm5vdGlmaWNhdGlvbnNfSUVtYWlsTm90aWZpY2F0aW9uU2VydmljZSBhbml0ZWMuYXBpQXBwbGljYXRpb24uc2FuaXRhcnlfSUhlYWx0aEV2ZW50UXVlcnlTZXJ2aWNlIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5hY3Rpdml0aWVzX0lGYXJtQWN0aXZpdHlRdWVyeVNlcnZpY2UgcmVzZW5kCiAgICAgICAgICAgIGF1dG9MYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgICMgLS0tLSA0LjMuNiAtLS0tCiAgICAgICAgY29tcG9uZW50IGFuaXRlYy5hcGlBcHBsaWNhdGlvbiAiMTgtQ29tcG9uZW50cy1EZXZpY2VzLUlvVCIgIkRpYWdyYW1hIGRlIENvbXBvbmVudGVzIOKAlCBjYW5hbCBkZSBpbmdlc3RhIElvVCAodG8tYmUsIGNvcnJlc3BvbmRlIGEgbGEgSXRlcmFjacOzbiA2LCA0LjMuNikuIiB7CiAgICAgICAgICAgIGluY2x1ZGUgYW5pdGVjLmFwaUFwcGxpY2F0aW9uLmRldmljZXNfRGV2aWNlQXBpS2V5QXV0aGVudGljYXRpb25IYW5kbGVyIGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5kZXZpY2VzX1RlbGVtZXRyeUVuZHBvaW50IGFuaXRlYy5hcGlBcHBsaWNhdGlvbi5tZXRyaWNzX0lEZXZpY2VNZXRyaWNDb21tYW5kU2VydmljZSBpb3REZXZpY2UKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgIyAtLS0tIDQuNC40IC0tLS0KICAgICAgICBkZXBsb3ltZW50IGFuaXRlYyAiUHJvZHVjdGlvbiIgIjE5LURlcGxveW1lbnQtUHJvZHVjdGlvbiIgIkRpYWdyYW1hIGRlIERlc3BsaWVndWUg4oCUIFBoeXNpY2FsIFZpZXcgKGNvcnJlc3BvbmRlIGEgNC40LjQpLiIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgZWxlbWVudCAiVXN1YXJpbyIgewogICAgICAgICAgICAgICAgc2hhcGUgUGVyc29uCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwODQyN2IKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTaXN0ZW1hIEV4dGVybm8iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzk5OTk5OQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlRvLUJlIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNmZmZmZmYKICAgICAgICAgICAgICAgIGNvbG9yICNkMDRhMDIKICAgICAgICAgICAgICAgIHN0cm9rZSAjZDA0YTAyCiAgICAgICAgICAgICAgICBzdHJva2VXaWR0aCAzCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIEN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQUNMIEZhY2FkZSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNmRiMzNmCiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM0MzhkZDUKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb21wb25lbnQiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzg1YmJmMAogICAgICAgICAgICAgICAgY29sb3IgIzAwMDAwMAogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQoKfQ==",
+    "structurizr.inspection.info" : "0",
+    "structurizr.inspection.ignore" : "0",
+    "structurizr.inspection.warning" : "0"
+  },
+  "views" : {
+    "componentViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Iam (corresponde a 4.1.4).",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "12",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "14",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "15",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "16",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "17",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "19",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "05-Components-Iam",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 5,
+      "relationships" : [ {
+        "id" : "179"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "20"
+      }, {
+        "id" : "21"
+      }, {
+        "id" : "213"
+      }, {
+        "id" : "214"
+      }, {
+        "id" : "22"
+      }, {
+        "id" : "229"
+      }, {
+        "id" : "23"
+      }, {
+        "id" : "24"
+      }, {
+        "id" : "25"
+      }, {
+        "id" : "26"
+      }, {
+        "id" : "27"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Profiles (corresponde a 4.1.4).",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "28",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "29",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "30",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "31",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "32",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "06-Components-Profiles",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 6,
+      "relationships" : [ {
+        "id" : "180"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "215"
+      }, {
+        "id" : "229"
+      }, {
+        "id" : "33"
+      }, {
+        "id" : "34"
+      }, {
+        "id" : "35"
+      }, {
+        "id" : "36"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Livestock (corresponde a 4.1.4; incluye Corral, agregado este ciclo).",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "37",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "38",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "39",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "40",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "41",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "42",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "43",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "44",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "45",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "46",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "47",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "48",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "07-Components-Livestock",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 7,
+      "relationships" : [ {
+        "id" : "181"
+      }, {
+        "id" : "182"
+      }, {
+        "id" : "183"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "216"
+      }, {
+        "id" : "217"
+      }, {
+        "id" : "218"
+      }, {
+        "id" : "229"
+      }, {
+        "id" : "49"
+      }, {
+        "id" : "50"
+      }, {
+        "id" : "51"
+      }, {
+        "id" : "52"
+      }, {
+        "id" : "53"
+      }, {
+        "id" : "54"
+      }, {
+        "id" : "55"
+      }, {
+        "id" : "56"
+      }, {
+        "id" : "57"
+      }, {
+        "id" : "58"
+      }, {
+        "id" : "59"
+      }, {
+        "id" : "60"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Sanitary (corresponde a 4.1.4).",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "61",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "62",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "63",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "64",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "08-Components-Sanitary",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 8,
+      "relationships" : [ {
+        "id" : "184"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "219"
+      }, {
+        "id" : "229"
+      }, {
+        "id" : "65"
+      }, {
+        "id" : "66"
+      }, {
+        "id" : "67"
+      }, {
+        "id" : "68"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Financial (corresponde a 4.1.4).",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "69",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "70",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "71",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "72",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "09-Components-Financial",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 9,
+      "relationships" : [ {
+        "id" : "185"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "220"
+      }, {
+        "id" : "229"
+      }, {
+        "id" : "73"
+      }, {
+        "id" : "74"
+      }, {
+        "id" : "75"
+      }, {
+        "id" : "76"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Activities (corresponde a 4.1.4).",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "77",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "78",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "79",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "80",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "10-Components-Activities",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 10,
+      "relationships" : [ {
+        "id" : "186"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "221"
+      }, {
+        "id" : "229"
+      }, {
+        "id" : "81"
+      }, {
+        "id" : "82"
+      }, {
+        "id" : "83"
+      }, {
+        "id" : "84"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Analytics (corresponde a 4.1.4; DashboardAnalyticsController agrega datos de otros 6 contextos).",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "46",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "64",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "72",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "80",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "85",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "86",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "87",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "88",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "89",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "97",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "137",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "11-Components-Analytics",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 11,
+      "relationships" : [ {
+        "id" : "169"
+      }, {
+        "id" : "170"
+      }, {
+        "id" : "171"
+      }, {
+        "id" : "172"
+      }, {
+        "id" : "173"
+      }, {
+        "id" : "174"
+      }, {
+        "id" : "187"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "222"
+      }, {
+        "id" : "223"
+      }, {
+        "id" : "229"
+      }, {
+        "id" : "90"
+      }, {
+        "id" : "91"
+      }, {
+        "id" : "92"
+      }, {
+        "id" : "93"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Devices (corresponde a 4.1.4; el canal de ingesta IoT to-be tiene su propio diagrama, ver 18).",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "94",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "95",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "96",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "97",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "105",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "12-Components-Devices",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 12,
+      "relationships" : [ {
+        "id" : "100"
+      }, {
+        "id" : "101"
+      }, {
+        "id" : "178"
+      }, {
+        "id" : "188"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "224"
+      }, {
+        "id" : "229"
+      }, {
+        "id" : "98"
+      }, {
+        "id" : "99"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Metrics (corresponde a 4.1.4; cierra el vacío de documentación señalado en la Iteración 1, 4.3.1.5).",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "102",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "103",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "104",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "105",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "13-Components-Metrics",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 13,
+      "relationships" : [ {
+        "id" : "106"
+      }, {
+        "id" : "107"
+      }, {
+        "id" : "108"
+      }, {
+        "id" : "109"
+      }, {
+        "id" : "189"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "225"
+      }, {
+        "id" : "229"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Subscriptions (corresponde a 4.1.4; candidato de extracción de la Iteración 3).",
+      "elements" : [ {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "110",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "111",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "112",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "113",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "114",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "115",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "116",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "117",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "118",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "119",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "120",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "14-Components-Subscriptions",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 14,
+      "relationships" : [ {
+        "id" : "121"
+      }, {
+        "id" : "122"
+      }, {
+        "id" : "123"
+      }, {
+        "id" : "124"
+      }, {
+        "id" : "125"
+      }, {
+        "id" : "126"
+      }, {
+        "id" : "127"
+      }, {
+        "id" : "128"
+      }, {
+        "id" : "129"
+      }, {
+        "id" : "130"
+      }, {
+        "id" : "131"
+      }, {
+        "id" : "132"
+      }, {
+        "id" : "133"
+      }, {
+        "id" : "190"
+      }, {
+        "id" : "191"
+      }, {
+        "id" : "192"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "226"
+      }, {
+        "id" : "227"
+      }, {
+        "id" : "229"
+      }, {
+        "id" : "230"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Clients (corresponde a 4.1.4; cierra el vacío de documentación señalado en la Iteración 1, 4.3.1.5).",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "16",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "46",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "48",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "134",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "135",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "136",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "137",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "15-Components-Clients",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 15,
+      "relationships" : [ {
+        "id" : "138"
+      }, {
+        "id" : "139"
+      }, {
+        "id" : "140"
+      }, {
+        "id" : "141"
+      }, {
+        "id" : "175"
+      }, {
+        "id" : "176"
+      }, {
+        "id" : "177"
+      }, {
+        "id" : "193"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "228"
+      }, {
+        "id" : "229"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Shared (infraestructura transversal, corresponde a 4.1.4; incluye AuditLogger to-be de la Iteración 7, 4.3.7).",
+      "elements" : [ {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "160",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "161",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "162",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "163",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "164",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "165",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "16-Components-Shared",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 16,
+      "relationships" : [ {
+        "id" : "166"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "195"
+      }, {
+        "id" : "229"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — Notifications, bounded context nuevo (to-be, corresponde a la Iteración 5, 4.3.5).",
+      "elements" : [ {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "64",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "80",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "142",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "143",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "144",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "145",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "146",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "147",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "17-Components-Notifications",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 17,
+      "relationships" : [ {
+        "id" : "148"
+      }, {
+        "id" : "149"
+      }, {
+        "id" : "150"
+      }, {
+        "id" : "151"
+      }, {
+        "id" : "152"
+      }, {
+        "id" : "153"
+      }, {
+        "id" : "154"
+      }, {
+        "id" : "155"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "containerId" : "11",
+      "description" : "Diagrama de Componentes — canal de ingesta IoT (to-be, corresponde a la Iteración 6, 4.3.6).",
+      "elements" : [ {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "104",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "156",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "157",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "18-Components-Devices-IoT",
+      "name" : "Component View: AniTec - API Application",
+      "order" : 18,
+      "relationships" : [ {
+        "id" : "158"
+      }, {
+        "id" : "159"
+      } ]
+    } ],
+    "configuration" : {
+      "styles" : {
+        "elements" : [ {
+          "background" : "#6db33f",
+          "color" : "#ffffff",
+          "tag" : "ACL Facade"
+        }, {
+          "background" : "#85bbf0",
+          "color" : "#000000",
+          "tag" : "Component"
+        }, {
+          "background" : "#438dd5",
+          "color" : "#ffffff",
+          "tag" : "Container"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        }, {
+          "background" : "#999999",
+          "color" : "#ffffff",
+          "tag" : "Sistema Externo"
+        }, {
+          "background" : "#ffffff",
+          "color" : "#d04a02",
+          "stroke" : "#d04a02",
+          "strokeWidth" : 3,
+          "tag" : "To-Be"
+        }, {
+          "background" : "#08427b",
+          "color" : "#ffffff",
+          "shape" : "Person",
+          "tag" : "Usuario"
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Diagrama de Contenedores — sistema real hoy (corresponde a 4.1.4, con MySQL corregido y tecnologías completas). Excluye Gateway, Subscriptions Service/DB y Mobile App (to-be).",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "7",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "02-Containers-AsBuilt",
+      "name" : "Container View: AniTec",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "200"
+      }, {
+        "id" : "202"
+      }, {
+        "id" : "204"
+      }, {
+        "id" : "205"
+      }, {
+        "id" : "206"
+      }, {
+        "id" : "207"
+      }, {
+        "id" : "208"
+      }, {
+        "id" : "209"
+      }, {
+        "id" : "211"
+      } ],
+      "softwareSystemId" : "6"
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Diagrama de Contenedores — TO-BE tras la Iteración 3: extracción de Subscriptions + API Gateway (corresponde a 4.3.3.6).",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "7",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "196",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "197",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "198",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "03-Containers-Iteration3-Gateway",
+      "name" : "Container View: AniTec",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "200"
+      }, {
+        "id" : "202"
+      }, {
+        "id" : "204"
+      }, {
+        "id" : "205"
+      }, {
+        "id" : "206"
+      }, {
+        "id" : "207"
+      }, {
+        "id" : "208"
+      }, {
+        "id" : "209"
+      }, {
+        "id" : "211"
+      }, {
+        "id" : "231"
+      }, {
+        "id" : "232"
+      }, {
+        "id" : "233"
+      }, {
+        "id" : "234"
+      }, {
+        "id" : "235"
+      } ],
+      "softwareSystemId" : "6"
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Diagrama de Contenedores — TO-BE tras la Iteración 4: se agrega AniTec Mobile App (corresponde a 4.3.4.6). Estado objetivo del sistema hasta esta iteración.",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "7",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "196",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "197",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "198",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "199",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "04-Containers-Iteration4-MobileSync",
+      "name" : "Container View: AniTec",
+      "order" : 4,
+      "relationships" : [ {
+        "id" : "200"
+      }, {
+        "id" : "202"
+      }, {
+        "id" : "204"
+      }, {
+        "id" : "205"
+      }, {
+        "id" : "206"
+      }, {
+        "id" : "207"
+      }, {
+        "id" : "208"
+      }, {
+        "id" : "209"
+      }, {
+        "id" : "211"
+      }, {
+        "id" : "231"
+      }, {
+        "id" : "232"
+      }, {
+        "id" : "233"
+      }, {
+        "id" : "234"
+      }, {
+        "id" : "235"
+      }, {
+        "id" : "236"
+      }, {
+        "id" : "237"
+      }, {
+        "id" : "238"
+      } ],
+      "softwareSystemId" : "6"
+    } ],
+    "deploymentViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Diagrama de Despliegue — Physical View (corresponde a 4.4.4).",
+      "elements" : [ {
+        "id" : "241",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "242",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "243",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "244",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "246",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "247",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "248",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "249",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "251",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "252",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "environment" : "Production",
+      "key" : "19-Deployment-Production",
+      "name" : "Deployment View: AniTec - Production",
+      "order" : 19,
+      "relationships" : [ {
+        "id" : "245"
+      }, {
+        "id" : "250"
+      }, {
+        "id" : "253"
+      } ],
+      "softwareSystemId" : "6"
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "description" : "Diagrama de Contexto — AniTec (corresponde a 4.1.3).",
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "01-SystemContext",
+      "name" : "System Context View: AniTec",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "201"
+      }, {
+        "id" : "203"
+      }, {
+        "id" : "210"
+      }, {
+        "id" : "212"
+      }, {
+        "id" : "240"
+      } ],
+      "softwareSystemId" : "6"
+    } ]
+  }
+}

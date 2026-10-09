@@ -22,7 +22,7 @@ workspace "AniTec" "Plataforma de gestión ganadera — modelo C4 (Structurizr D
 
             # ---- 4.1.4 — Contenedores as-built ----
             landingPage = container "Landing Page" "Sitio estático de marketing (HTML/CSS/JS, i18n EN/ES)." "HTML/CSS/JS"
-            webApplication = container "Web Application" "Sirve los archivos estáticos del SPA." "Static Hosting (GitHub Pages)"
+            webApplication = container "Web Application" "Sirve los archivos estáticos del SPA." "Static Hosting (Render Static Site)"
             spa = container "Single Page Application" "Interfaz de usuario de AniTec. Autenticación stateless vía JWT." "Vue 3 + Vite"
             database = container "Database" "Almacena hatos, corrales, animales, registros sanitarios, financieros, suscripciones, etc. Una sola base compartida por los 12 bounded contexts (4.1.1.1)." "MySQL" "Database"
 
@@ -373,14 +373,16 @@ workspace "AniTec" "Plataforma de gestión ganadera — modelo C4 (Structurizr D
             deploymentNode "Cliente" "Navegador del usuario" "Web Browser" {
                 containerInstance anitec.spa
             }
-            deploymentNode "GitHub Pages" "Hosting estático (gh-pages -d dist)" "Static Site Hosting" {
+            deploymentNode "Render (Static Site)" "Hosting estático del SPA (npm run build, directorio dist, anitec-frontend-cve3.onrender.com)" "Static Site Hosting" {
                 containerInstance anitec.webApplication
+            }
+            deploymentNode "GitHub Pages" "Hosting estático de la landing page (rama main, raíz del repositorio)" "Static Site Hosting" {
                 containerInstance anitec.landingPage
             }
-            deploymentNode "Render" "Contenedor Docker — build multi-stage sobre mcr.microsoft.com/dotnet/sdk:10.0 y aspnet:10.0, puerto interno 8080 (anitec-backend.onrender.com)" "Docker Container" {
+            deploymentNode "Render" "Contenedor Docker — build multi-stage sobre mcr.microsoft.com/dotnet/sdk:10.0 y aspnet:10.0, puerto interno 8080 (anitec-backend-tbm0.onrender.com)" "Docker Container" {
                 containerInstance anitec.apiApplication
             }
-            deploymentNode "Servidor MySQL" "Proveedor físico exacto no verificable desde el repositorio — la cadena de conexión se inyecta por variable de entorno DefaultConnection (4.4.4), no está versionada en el código." "MySQL 8.x" {
+            deploymentNode "Aiven for MySQL" "Servicio administrado en el plan gratuito (DigitalOcean, región sfo), SSL obligatorio; la cadena de conexión se inyecta por la variable de entorno ConnectionStrings__DefaultConnection (4.4.4)." "MySQL 8.4" {
                 containerInstance anitec.database
             }
         }
