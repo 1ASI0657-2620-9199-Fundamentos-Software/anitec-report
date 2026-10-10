@@ -104,11 +104,6 @@ El commit `0c7acdc` del backend es el que Render desplegó (se ve como *Source* 
 - Backend: https://github.com/1ASI0657-2620-9199-Fundamentos-Software/anitec-backend.git
 - Informe: https://github.com/1ASI0657-2620-9199-Fundamentos-Software/anitec-report.git
 
-**Estadísticas de los commits registrados (tres repositorios de código):**
-
-- Ramas utilizadas: 1 (`main`)
-- Commits registrados: 10 (landing 3, frontend 4, backend 3)
-- Cuentas de GitHub con commits: 1 (los autores aparecen como `Melgarejo` y `Melga1502`, los *Initial commit* de cada repositorio); ver 5.3.1.7.
 
 ## 5.3.1.3. Testing Suite Evidence for Sprint Review
 
@@ -212,9 +207,8 @@ Además de la salida de consola, cada ejecución de la suite genera un **reporte
 
 | Repository | Branch | Commit Id | Commit Message | Commit Message Body | Committed on (Date) |
 |---|---|---|---|---|---|
-| 1ASI0657-2620-9199-Fundamentos-Software/anitec-backend | main | _pendiente_ | test: add backend test suite with unit tests and BDD scenarios | _pendiente_ | _pendiente_ |
+| 1ASI0657-2620-9199-Fundamentos-Software/anitec-backend | main | b009c70 | chore: add report for test | — | 09/10/2026 |
 
-<!-- PLACEHOLDER: la suite está escrita y ejecutada en el repositorio local, pero aún no tiene commit. Completar el hash y la fecha tras hacer `git commit` y `git push` en anitec-backend. -->
 
 **Verificación manual sobre el sistema desplegado:** además de la suite automatizada, el comportamiento de autenticación se comprobó sobre el backend publicado en Render (capturas en 5.3.1.4): sin token, `GET /api/v1/animals` responde 401; con el token obtenido de `sign-in`, responde 200 con la lista de animales.
 

@@ -2,91 +2,93 @@
 
 ## Conclusiones y recomendaciones
 
+En esta sección el equipo Titan enuncia las conclusiones del trabajo realizado en AniTec entre los capítulos I y V, las contrasta con el proceso Lean UX planteado al inicio (Problem Statement, assumptions, hypotheses y criterios de éxito) y propone los siguientes pasos para el roadmap del producto. Las conclusiones distinguen de forma explícita lo que está **implementado y verificado**, lo que está **diseñado pero no implementado** y lo que **aún no se ha validado con usuarios reales**.
+
 ### Conclusiones
 
-El proyecto AniTec permitio validar la necesidad de una solucion digital orientada a ganaderos y veterinarios, debido a que ambos segmentos requieren mayor orden, trazabilidad y disponibilidad de informacion sobre animales, fincas, actividades, sanidad y gastos. Las entrevistas y validaciones realizadas confirmaron que el problema identificado es real y que una plataforma web puede aportar valor si mantiene una experiencia simple, clara y cercana al contexto ganadero.
+**1. El problema planteado es consistente con la evidencia reunida, pero esa evidencia es sintética.** El análisis del capítulo I y del capítulo II describe a ganaderos pequeños y medianos que registran sus datos en cuadernos y mensajes, y a veterinarios que reciben historiales fragmentados. Las diez entrevistas mock (cinco por segmento) apuntan en la misma dirección: los cinco ganaderos usan registros manuales y trabajan con conectividad limitada, los cinco consideran prioritarias las alertas y cuatro piden control de acceso por roles; los cinco veterinarios reciben historiales fragmentados y exigen permisos y auditoría. Sin embargo, son entrevistas académicas, no investigación de campo: confirman la coherencia del problema, pero no lo validan frente al mercado real.
 
-El diseño del sistema basado en Domain-Driven Design permitio organizar AniTec mediante bounded contexts como IAM, Profiles, Livestock, Sanitary, Financial, Activities, Analytics, Clients, Devices, Metrics y Subscriptions. Esta separacion favorece la mantenibilidad del sistema, facilita la asignacion de responsabilidades dentro del equipo y permite que cada modulo evolucione sin afectar innecesariamente al resto de la aplicacion.
+**2. El análisis competitivo permitió definir una diferenciación, no competir en funciones.** La comparación con CattleMax, AgriWebb y BovControl mostró productos más maduros y amplios. La propuesta de AniTec se apoya en tres rasgos: simplicidad para el contexto local, colaboración sanitaria controlada entre ganadero y veterinario, y resiliencia ante conectividad intermitente. El precio de la suscripción sigue sin validarse.
 
-Durante el Sprint 1 se logro establecer la presencia digital del producto mediante una landing page funcional desplegada en GitHub Pages. Este avance permitio comunicar la propuesta de valor de AniTec, presentar los beneficios principales para ganaderos y veterinarios, y generar una primera base de validacion frente a usuarios potenciales.
+**3. Los requisitos quedaron trazables de punta a punta.** El capítulo III produjo 16 Epics, 88 User Stories con criterios Given–When–Then y 32 Technical Stories, ordenadas por valor de negocio y vinculadas a cuatro Business Goals medibles (adopción del registro, seguimiento sanitario, continuidad clínica y confianza en campo). Esa trazabilidad permitió que cada decisión posterior se pudiera justificar hasta un objetivo de negocio.
 
-Durante el Sprint 2 se implemento la aplicacion web frontend con Vue, organizada por bounded contexts y conectada inicialmente a datos de prueba mediante my-json-server. Este sprint permitio construir las principales vistas funcionales de la plataforma, validar flujos de navegacion y preparar la estructura necesaria para reemplazar progresivamente los datos mock por servicios reales.
+**4. La arquitectura se diseñó con el método ADD y partiendo del código real.** En el capítulo IV se documentó la arquitectura existente (un monolito modular de 12 bounded contexts, 15 tablas y 15 entidades de dominio, con sus vistas C4 y UML verificadas contra el código) y se formalizaron siete escenarios de calidad, restricciones y preocupaciones. A partir de ellos se diseñaron siete iteraciones ADD: validación de la línea base, seguridad e identidad, extracción de Subscriptions detrás de un API Gateway, sincronización edge-to-cloud, notificaciones y alertas, integración de dispositivos IoT, y observabilidad y confiabilidad. El capítulo se cierra con las vistas 4+1 de Kruchten (lógica, desarrollo, proceso, física y escenarios). La revisión contra el código dejó hallazgos concretos, por ejemplo, que la autorización era solo por rol y no por recurso, y que el registro sanitario no tenía estados. **Las iteraciones 2 a 7 son diseño completo, no implementación.**
 
-Durante el Sprint 3 se desarrollo el backend real de AniTec con ASP.NET Core, Entity Framework Core y MySQL. La API implementa autenticacion con JWT, gestion de usuarios, perfiles, hatos, animales, eventos sanitarios, actividades, registros financieros, clientes veterinarios, analiticas, dispositivos IoT, metricas, planes, suscripciones y pagos mock. Con ello, el proyecto dejo de depender solamente de datos simulados y paso a contar con una base de servicios persistentes.
+**5. El sistema quedó desplegado y verificado de punta a punta en el Sprint 1.** Los tres productos están en línea: la landing en GitHub Pages, el frontend como Static Site en Render y el backend como Web Service con Docker en Render, con una base de datos MySQL administrada en Aiven. El backend crea su esquema al arrancar mediante las seis migraciones de Entity Framework Core. Se verificó el inicio de sesión sobre el sistema publicado y la protección de los datos: `GET /api/v1/animals` responde 401 sin token y 200 con token. Todos los recursos usan planes gratuitos, lo que condiciona la disponibilidad (el backend se duerme tras 15 minutos sin tráfico).
 
-La documentacion de servicios mediante Swagger/OpenAPI permitio verificar los endpoints implementados y facilitar las pruebas manuales del backend. Asimismo, las migraciones de Entity Framework Core permitieron mantener alineada la estructura de la base de datos con las entidades del dominio, reduciendo errores en la configuracion y mejorando la trazabilidad tecnica del sistema.
+**6. Las pruebas automatizadas existen, pero cubren una parte limitada.** Se creó el proyecto `Anitec.Platform.Tests` con 48 pruebas (32 unitarias y 16 escenarios BDD en Gherkin) y un reporte HTML de Reqnroll, todas superadas. Cubren el núcleo compartido y los servicios de Iam y Livestock (tres de los doce contextos), a nivel de servicio y no de API HTTP. La revisión del código bajo los patrones del backend produjo ocho hallazgos de refactorización (R1 a R8), **identificados pero no aplicados**; el de mayor impacto es que las imágenes de animales se guardan en el disco del contenedor, que en el plan gratuito de Render es efímero.
 
-El despliegue del backend en Render representa un avance importante para el proyecto, ya que la API queda disponible desde internet y puede ser consumida por el frontend desplegado. Esto permite validar AniTec en un entorno mas cercano a produccion, comprobar la disponibilidad publica del servicio y preparar futuras pruebas de integracion entre frontend, backend y base de datos.
+**7. El trabajo colaborativo está planificado y documentado, pero el historial de código no lo refleja todavía.** El reparto de capítulos y de tareas entre los tres integrantes está registrado en el Student Outcome, el registro de versiones, el performance report y la tabla de control del Sprint 1. Sin embargo, los commits de los repositorios de código provienen de una sola cuenta de GitHub, y hasta el Sprint 1 solo existe la rama `main`. El flujo GitFlow está definido, pero aún no practicado.
 
-En relacion con el Student Outcome, el equipo evidencio trabajo colaborativo y liderazgo conjunto durante los tres avances. Cada integrante asumio responsabilidades claras por modulo o artefacto, participo en la planificacion de tareas, colaboro en la integracion del sistema y aporto a la documentacion del producto. Esto permitio cumplir los objetivos de cada sprint de forma progresiva y mantener coherencia entre la propuesta, el diseño, el frontend, el backend y el despliegue.
+**Contraste con el proceso Lean UX**
 
-**Contraste con Lean UX y validaciones:**
+| Elemento de Lean UX | Resultado frente a lo planteado | Evidencia y estado |
+|---|---|---|
+| **Problem Statement** | Se mantiene vigente. | Las entrevistas mock y el análisis competitivo coinciden con la brecha planteada: registros manuales, información dispersa y poca coordinación ganadero–veterinario. Falta confirmarlo con usuarios reales. |
+| **Business Assumptions** | Parcialmente respaldadas. | Las entrevistas respaldan la necesidad de un registro confiable y del acceso autorizado del veterinario. La viabilidad de la suscripción (cuatro de cinco ganaderos y los cinco veterinarios dicen que pagarían si el valor es adecuado) no valida ningún precio. |
+| **User Assumptions** | Parcialmente respaldadas. | Se confirman la conectividad limitada y la necesidad de interfaces simples. No se ha medido el comportamiento real de usuarios con la aplicación desplegada. |
+| **Feature Assumptions (FA-01 a FA-06)** | Resultados distintos por funcionalidad. | FA-01 (registro): implementado en la aplicación web, incluido el registro por lote, sin aplicación móvil. FA-02 (alertas), FA-04 (acceso por roles, hoy solo por rol) y FA-05 (sincronización diferida): diseñados en las iteraciones 2, 4 y 5, no implementados. FA-03 (historial) y FA-06 (reportes): existen módulos base, sin medición de uso. |
+| **Hypotheses H-01 a H-05** | **No validadas experimentalmente.** | Los experimentos propuestos (pruebas de usabilidad, prototipo de alertas, prueba del flujo ganadero–veterinario y piloto técnico de sincronización) no se han ejecutado. La H-05 tiene diseño completo (iteración 4) pero ninguna prueba con pérdida y recuperación de conexión. |
+| **Criterios de éxito (Business Goals)** | **Sin medir.** | Los umbrales (por ejemplo, 70 % de ganaderos registrando tres eventos semanales, 95 % de sincronización en cinco minutos) requieren un piloto con usuarios reales; hoy el sistema solo está desplegado con datos de demostración. |
 
-El Problem Statement se mantiene vigente, ya que las validaciones confirmaron que ganaderos y veterinarios siguen enfrentando problemas de desorden, registros manuales y falta de trazabilidad. AniTec responde a una necesidad real al centralizar información sanitaria, productiva, económica y operativa en una sola plataforma.
+En síntesis, el ciclo de vida permitió **definir, diseñar y desplegar** una base verificable, pero la contrastación de las hipótesis con el comportamiento real de los segmentos queda como el trabajo principal pendiente.
 
-Las Business Assumptions fueron validadas de forma general, debido a que los usuarios reconocieron valor en contar con una solución web para registrar animales, eventos sanitarios, actividades, finanzas, dispositivos IoT y clientes veterinarios. Sin embargo, todavía se requiere reforzar reportes, alertas y campos específicos para aumentar la utilidad percibida.
-
-Las User Assumptions se confirmaron parcialmente, porque los entrevistados comprendieron la navegación por roles y consideraron útiles los dashboards y módulos principales. Aun así, la experiencia debe seguir simplificándose, especialmente en formularios, mensajes de error y explicación de funciones más técnicas como IoT.
-
-Las Feature Assumptions resultaron pertinentes para una primera versión del producto, ya que los usuarios identificaron valor en el registro de animales, historial sanitario, actividades, finanzas y seguimiento veterinario. Como mejora futura, se deben ampliar los campos clínicos, datos del animal y métricas disponibles para apoyar mejores decisiones.
-
-Las Hypothesis Statements fueron parcialmente validadas. Existe interés inicial y una percepción positiva sobre la utilidad de AniTec, especialmente por la centralización de información; no obstante, la adopción dependerá de fortalecer la confianza, mejorar recordatorios, optimizar reportes y facilitar el uso continuo de la plataforma.
-
-Los criterios de éxito quedan planteados como metas para una siguiente etapa de validación con uso real de la aplicación desplegada. Las entrevistas permiten confirmar intención de uso y valor percibido, pero aún falta medir reducción de errores, mejora en precisión de registros y apoyo efectivo a decisiones basadas en datos.
+**Student Outcome 7 (Aprendizaje continuo y autónomo).** A lo largo de los capítulos I a V cada integrante tuvo que actualizar o adquirir conocimientos nuevos: Lean UX y requirements engineering en los capítulos I a III, Attribute-Driven Design, notación C4 y UML en el capítulo IV, y pruebas BDD, configuración de entornos y despliegue cloud en el capítulo V. El aprendizaje más importante fue metodológico: verificar cada afirmación contra el código real, contra la documentación oficial o contra el sistema desplegado, y corregir la propia documentación cuando no coincidía.
 
 ### Recomendaciones
 
-**Corto plazo:** Se recomienda continuar con la integracion completa entre el frontend desplegado en GitHub Pages y el backend desplegado en Render, asegurando que las variables de entorno del frontend apunten a la API real y que los flujos principales funcionen sin depender de my-json-server.
+Las siguientes recomendaciones se ordenan por horizonte y se vinculan con los hallazgos documentados en los capítulos IV y V.
 
-**Corto plazo:** Se recomienda fortalecer la autenticacion y autorizacion del sistema, definiendo permisos por rol para ganaderos, veterinarios y administradores. Esto permitiria proteger los endpoints sensibles y asegurar que cada usuario solo acceda a la informacion correspondiente a su perfil.
+**Corto plazo (siguientes Sprints)**
 
-**Mediano plazo:** Se recomienda continuar la validacion con ganaderos y veterinarios usando la aplicacion desplegada, no solo prototipos. Esto permitira identificar problemas reales de uso, comprension del lenguaje, dificultad en formularios, utilidad de dashboards y necesidades adicionales en los modulos de sanidad, actividades, finanzas e IoT.
+1. **Evidenciar la colaboración real.** Crear la rama `develop` y trabajar con ramas `feature/*` por integrante y por User Story, con *pull requests* y cuentas individuales, de modo que el historial de GitHub muestre la participación de los tres.
+2. **Integración continua.** Agregar un flujo de GitHub Actions que ejecute `dotnet test` en cada cambio, para que la suite proteja la rama `main`.
+3. **Corregir el almacenamiento de imágenes (hallazgo R6).** Reemplazar el disco local del contenedor por un servicio de almacenamiento de objetos, ya que hoy las imágenes se pierden al reiniciar el servicio.
+4. **Aplicar los refactors de menor costo (R1 a R4)**, que no cambian los contratos REST: un código de error propio para la cantidad inválida, consultas filtradas en la base de datos para el registro por lote y el cambio masivo de estado, y registro de excepciones en el registro de usuarios.
+5. **Cerrar la deuda de seguridad conocida:** restringir la política CORS a los dominios reales (hoy acepta cualquier origen), actualizar la dependencia con vulnerabilidad reportada (`Microsoft.OpenApi`) e implementar la autorización por recurso diseñada en la iteración 2 para que el veterinario solo acceda a sus pacientes autorizados.
+6. **Ampliar las pruebas.** Cubrir los demás bounded contexts y agregar pruebas a nivel HTTP (autorización por rol, códigos de respuesta) y de integración contra MySQL, además de medir la cobertura.
+7. **Mantener la landing alineada con la evidencia del proyecto:** presentar los escenarios de uso como casos ilustrativos y evitar cifras comerciales que el trabajo no ha podido verificar.
 
-**Mediano plazo:** Se recomienda mejorar la experiencia de usuario del frontend en una siguiente iteracion, priorizando claridad en dashboards, simplificacion de formularios, estados visuales para dispositivos IoT y mejor organizacion del flujo veterinario por clientes asignados.
+**Mediano plazo**
 
-**Mediano plazo:** Se recomienda completar y fortalecer las pruebas del backend, incluyendo pruebas de endpoints, validacion de reglas de negocio, manejo de errores y pruebas de integracion con la base de datos. Esto ayudara a asegurar mayor estabilidad antes de seguir ampliando funcionalidades.
+8. **Validar con usuarios reales.** Ejecutar los experimentos de las hipótesis H-01 a H-04 con ganaderos y veterinarios sobre la aplicación desplegada, y medir los umbrales definidos. Validar también el precio de la suscripción antes de publicar tarifas.
+9. **Implementar la aplicación Android offline-first** (EP-014) siguiendo la iteración 4: almacenamiento local, operaciones idempotentes y detección de conflictos de sincronización. Diseñar además la pantalla de resolución de conflictos, que el diseño actual solo detecta.
+10. **Implementar las iteraciones 3 y 5:** extraer Subscriptions con su propia base de datos detrás de un API Gateway, y construir el servicio de alertas con un proceso en segundo plano, de modo que el sistema cumpla las alertas que hoy solo promete.
 
-**Futuro roadmap:** Se recomienda mantener actualizada la documentacion tecnica, incluyendo endpoints, migraciones, evidencias de despliegue, diagramas C4 y decisiones de arquitectura. A medida que AniTec crezca, esta documentacion sera clave para sostener la colaboracion del equipo y facilitar futuras mejoras del producto.
+**Largo plazo (roadmap)**
+
+11. **Integración real con dispositivos IoT** (iteración 6): autenticación por API key y un canal de ingesta, incluyendo el ciclo de vida de las credenciales (emisión, rotación y revocación), que el diseño actual deja pendiente.
+12. **Observabilidad y confiabilidad** (iteración 7): auditoría, identificador de correlación, Circuit Breaker en las fronteras de red reales y un catálogo de pruebas.
+13. **Segunda ola de servicios y alta disponibilidad.** Para extraer más contextos del monolito se requiere un mecanismo de eventos asíncronos que hoy el proyecto no tiene. Conviene también evaluar planes de hosting que no se duerman ni pierdan datos, antes de un piloto con usuarios reales.
+14. **Canal institucional.** Explorar a las asociaciones ganaderas como canal de adopción y como clientes, tal como se planteó en las Business Assumptions.
 
 ---
 
 ## Video About The Team
 
-El video About The Team presenta la participación de los integrantes del equipo Titan Team 4 durante el desarrollo de AniTec, destacando las actividades realizadas, los logros alcanzados en el curso y el desarrollo de competencias asociadas al trabajo colaborativo, liderazgo conjunto, planificación de tareas y cumplimiento de objetivos.
+<!-- PLACEHOLDER: esta sección debe describir el video About-The-Team del equipo Titan. Completarla cuando el video esté grabado y publicado. -->
+
+El statement exige que esta sección incluya un resumen del video, la pauta de secuencias con el tiempo de inicio de cada sección (`hh:mm:ss`), un cuadro de video representativo y el enlace de la versión publicada en YouTube.
 
 **Datos del video:**
 
 | Elemento | Información |
-| -------- | ----------- |
-| Título | Video About The Team - AniTec |
-| Duración | 8:02 minutos |
-| Público objetivo | Docente del curso, visitantes del landing page e interesados en conocer el proceso de trabajo del equipo |
-| URL publicado en Microsoft Stream | https://tinyurl.com/aboutTheTeamAnitec |
-| URL publicado en YouTube | https://www.youtube.com/watch?v=Ai-0rShYlvI |
-| Uso en landing page | El video de YouTube se utiliza como evidencia pública del proceso de trabajo del equipo. |
+|---|---|
+| Título | _Por completar_ |
+| Duración | _Por completar_ |
+| Integrantes que participan | Castro Picón, Manuel Fernando Joao · Melgarejo Quiroz, Josep Eliu · Baldeon Vivar, Santiago Armando |
+| URL publicado en YouTube | _Por completar_ |
 
-**URL del video publicado en Microsoft Stream:**
-
-https://tinyurl.com/aboutTheTeamAnitec
-
-**URL del video publicado en YouTube:**
-
-https://www.youtube.com/watch?v=Ai-0rShYlvI
-
-<div align="center">
-    <img src="../assets/chapter-5/screenshot-video-about-the-team.png" width="700">
-    <p><i><b>Fuente</b>: Elaboración propia.</i></p>
-</div>
+**Resumen del video:** _Por completar._
 
 **Pauta de secuencias del video:**
 
 | Sección | Timing de inicio | Contenido |
-| ------- | ---------------- | --------- |
-| Introducción del equipo y presentación de AniTec | 00:00:00 | Presentación general de Titan Team 4, propósito del producto y contexto del trabajo final. |
-| Organización del trabajo y roles del equipo | 00:01:00 | Explicación de la distribución de responsabilidades, planificación de sprints y colaboración en repositorios. |
-| Desarrollo de landing page y aplicación web | 00:02:30 | Resumen del trabajo realizado en diseño, frontend, navegación por roles y validaciones visuales. |
-| Desarrollo del backend y servicios | 00:04:30 | Explicación de la implementación del backend, base de datos, endpoints, Swagger y despliegue. |
-| Testimonios de integrantes y Student Outcome | 00:06:30 | Participación de los integrantes comentando aprendizajes, trabajo colaborativo, liderazgo y competencias desarrolladas. |
-| Cierre del proceso de trabajo | 00:07:20 | Resumen de logros, dificultades superadas y valor del proyecto AniTec. |
+|---|---|---|
+| _Por completar_ | 00:00:00 | _Por completar_ |
 
-El contenido del video complementa la sección Student Outcome porque muestra la participación de los integrantes, la coordinación del equipo y las competencias desarrolladas durante la construcción de la landing page, la aplicación web, el backend y la documentación del proyecto.
+<div align="center">
+  <!-- PLACEHOLDER: cuadro de video representativo -->
+  <img src="../assets/chapter-5/VideoAboutTheTeam/captura-video-about-the-team.png" alt="Cuadro representativo del video About The Team" width="700">
+  <p><i><b>Fuente</b>: Elaboración propia.</i></p>
+</div>
