@@ -9,7 +9,6 @@ El Sprint no partió de cero: el código de la landing, el frontend y el backend
 El Sprint 1 reúne las User Stories de la landing page (US-044 a US-052), cuyo objetivo es que un visitante comprenda la propuesta de AniTec antes de usar la aplicación, y la User Story de inicio de sesión (US-053), que es la que permite demostrar el sistema desplegado. A ellas se suman tareas de despliegue y documentación que no dependen de una historia en particular, sino de las restricciones del curso (publicar los productos en cloud, documentar la configuración y probar el backend). El total comprometido es de **32 Story Points** (valores del Product Backlog, sección 3.4).
 
 <div align="center">
-  <!-- PLACEHOLDER: captura del tablero de Trello del Sprint 1 -->
   <img src="../../assets/chapter-5/Sprint1/trello-sprint-1.png" alt="Tablero de Trello del Sprint Backlog 1" width="800">
   <p><i><b>Fuente</b>: Tablero del Sprint 1 en Trello.</i></p>
 </div>
@@ -182,7 +181,6 @@ Correctas! - Con error: 0, Superado: 48, Omitido: 0, Total: 48, Duración: 3 s
 ```
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de la ejecución de las pruebas (puede ser la misma de 5.1.1) -->
   <img src="../../assets/chapter-5/Pruebas/dotnet-test-resultado.png" alt="Resultado de dotnet test" width="700">
   <p><i><b>Fuente</b>: Elaboración propia.</i></p>
 </div>
@@ -192,13 +190,11 @@ Correctas! - Con error: 0, Superado: 48, Omitido: 0, Total: 48, Duración: 3 s
 Además de la salida de consola, cada ejecución de la suite genera un **reporte HTML** con los escenarios de los archivos `.feature`, sus pasos y su resultado. Lo produce el formateador HTML de Reqnroll (versión 3.3.4), activado en el archivo `reqnroll.json` del proyecto de pruebas, y se escribe en `Anitec.Platform.Tests/bin/Debug/net10.0/reports/reqnroll_report.html`. En la ejecución del 09/10/2026 el reporte indicó **100 % (16 / 16) escenarios superados**, repartidos en los dos archivos `Authentication.feature` y `BulkAnimalRegistration.feature`.
 
 <div align="center">
-  <!-- PLACEHOLDER: captura del reporte HTML con el resumen (100 % passed) y los dos archivos .feature -->
   <img src="../../assets/chapter-5/Pruebas/reporte-reqnroll-resumen.png" alt="Resumen del reporte HTML de Reqnroll: 16 de 16 escenarios superados" width="800">
   <p><i><b>Fuente</b>: Reporte HTML de Reqnroll, ejecución local.</i></p>
 </div>
 
 <div align="center">
-  <!-- PLACEHOLDER: captura del reporte HTML con Authentication.feature expandido, mostrando los pasos de cada escenario -->
   <img src="../../assets/chapter-5/Pruebas/reporte-reqnroll-authentication.png" alt="Reporte HTML de Reqnroll con los escenarios de Authentication.feature" width="400">
   <p><i><b>Fuente</b>: Reporte HTML de Reqnroll, escenarios de US-053.</i></p>
 </div>
@@ -263,13 +259,11 @@ En este Sprint se logró que los tres productos sean accesibles desde internet y
 ### Interacción vía Postman
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de Postman con POST sign-in -->
   <img src="../../assets/chapter-5/Sprint1/postman-sign-in.png" alt="Postman: POST sign-in" width="800">
   <p><i><b>Fuente</b>: Postman contra el backend desplegado.</i></p>
 </div>
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de Postman con GET animals usando el token -->
   <img src="../../assets/chapter-5/Sprint1/postman-get-animals.png" alt="Postman: GET animals con token" width="800">
   <p><i><b>Fuente</b>: Postman contra el backend desplegado.</i></p>
 </div>
@@ -474,7 +468,6 @@ Estado del tablero del Sprint 1 al cierre del periodo. Cada tarjeta corresponde 
 **Revisión del objetivo:** el objetivo del Sprint, tener los tres productos en línea y el inicio de sesión verificado de punta a punta, **se cumplió**. Las 18 tareas y las 10 User Stories del Sprint quedaron en Done.
 
 <div align="center">
-  <!-- PLACEHOLDER: captura final del tablero de Trello al cierre del Sprint 1 -->
   <img src="../../assets/chapter-5/Sprint1/trello-sprint-1.png" alt="Kanban Board del Sprint 1 en Trello" width="800">
   <p><i><b>Fuente</b>: Tablero del Sprint 1 en Trello.</i></p>
 </div>

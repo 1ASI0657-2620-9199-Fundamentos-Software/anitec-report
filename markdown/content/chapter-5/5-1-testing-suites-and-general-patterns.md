@@ -130,7 +130,6 @@ Correctas! - Con error: 0, Superado: 48, Omitido: 0, Total: 48, Duración: 3 s
 ```
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de la terminal con la ejecución de `dotnet test` (48 pruebas superadas) -->
   <img src="../../assets/chapter-5/Pruebas/dotnet-test-resultado.png" alt="Resultado de dotnet test: 48 pruebas superadas" width="700">
   <p><i><b>Fuente</b>: Elaboración propia.</i></p>
 </div>

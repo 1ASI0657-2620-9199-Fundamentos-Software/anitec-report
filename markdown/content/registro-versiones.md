@@ -10,3 +10,7 @@
 |   1.5   | 24/09/2026 |    Melgarejo Quiroz, Josep Eliu     | Desarrollo el capitulo IV: Iteraciones 2, 3 y 4 (seguridad e identidad, extracción de servicios y sincronización edge-to-cloud) |
 |   1.6   | 28/09/2026 | Santiago Armando Baldeon Vivar | Desarrollo el capitulo IV: Iteraciones 5, 6 y 7, y vista arquitectónica 4.4 (notificaciones, IoT, observabilidad y vistas de proceso/despliegue) |
 |   1.7   | 30/09/2026 |    Melgarejo Quiroz, Josep Eliu     | Revisión y corrección del capítulo IV: verificación de cumplimiento contra el statement y la metodología ADD v3, limpieza de formato y ajustes de consistencia |
+|   v3.0  | 05/10/2026 | Santiago Armando Baldeon Vivar | Desarrollo del capítulo V: secciones 5.1 y 5.2 (suite de pruebas, patrones del backend, reporte de refactorización y gestión de configuración de software) |
+|   v3.1  | 07/10/2026 |    Melgarejo Quiroz, Josep Eliu     | Desarrollo del capítulo V: sección 5.3.1 (Sprint 1) — evidencia de pruebas, ejecución y despliegue del backend y la base de datos (5.3.1.3, 5.3.1.4 y 5.3.1.6) |
+|   v3.2  | 08/10/2026 | Manuel Fernando Joao Castro Picon | Desarrollo del capítulo V: sección 5.3.1 (Sprint 1) — Sprint Backlog, evidencia de desarrollo de la landing page y el frontend, colaboración del equipo y Kanban Board (5.3.1.1, 5.3.1.2, 5.3.1.7 y 5.3.1.8) |
+|   v3.3  | 09/10/2026 |    Melgarejo Quiroz, Josep Eliu     | Revisión del capítulo V: consistencia de URL de despliegue, estado del Sprint 1 al 09/10/2026 y marcadores de secciones pendientes (Sprints 2 a 4 y 5.4) |
