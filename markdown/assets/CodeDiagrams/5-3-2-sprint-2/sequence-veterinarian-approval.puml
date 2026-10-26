@@ -1,0 +1,50 @@
+@startuml sequence-veterinarian-approval
+!theme plain
+title AniTec — Secuencia: aprobación del veterinario por el ganadero (Iteración 2, Sprint 2)
+' Fuente: anitec-backend (Clients, Livestock) y anitec-frontend (rancher-veterinarian-requests.vue)
+
+actor "Veterinario" as Vet
+actor "Ganadero" as Rancher
+participant "SPA Vue 3" as Spa
+participant "VeterinarianClientsController" as VetCtrl
+participant "RancherVeterinarianRequestsController" as RanCtrl
+participant "VeterinarianClientCommandService" as Cmd
+database "veterinarian_clients" as Db
+participant "AnimalQueryService" as Animals
+
+== 1. El veterinario solicita acceso ==
+Vet -> Spa : Agregar cliente
+Spa -> VetCtrl : POST /veterinarian/{vetId}/clients/{rancherId}
+VetCtrl -> VetCtrl : vetId == usuario autenticado
+VetCtrl -> Cmd : CreateVeterinarianClientCommand
+Cmd -> Db : INSERT Status = Pending
+VetCtrl --> Spa : 201 Created
+
+== 2. Sin aprobación no hay datos ==
+Vet -> Spa : Ver animales
+Spa -> Animals : GET /animals
+Animals -> Db : ¿relación Accepted con algún ganadero?
+Animals --> Spa : 200 [] (lista vacía)
+
+== 3. El ganadero decide ==
+Rancher -> Spa : Solicitudes de veterinarios
+Spa -> RanCtrl : GET /rancher/{rancherId}/veterinarian-requests
+RanCtrl --> Spa : solicitudes (Pending, Accepted, Rejected)
+Rancher -> Spa : Aprobar
+Spa -> RanCtrl : PATCH .../{vetId}/approve
+RanCtrl -> RanCtrl : rancherId == usuario autenticado
+RanCtrl -> Cmd : ApproveVeterinarianClientCommand
+Cmd -> Db : UPDATE Status = Accepted, AcceptedAt
+
+== 4. Con aprobación el veterinario ve solo los datos de ese ganadero ==
+Vet -> Spa : Ver animales
+Spa -> Animals : GET /animals
+Animals -> Db : ids de ganaderos con Status = Accepted
+Animals --> Spa : 200 animales de los hatos de esos ganaderos
+
+== 5. Revocación ==
+Rancher -> Spa : Revocar acceso
+Spa -> RanCtrl : PATCH .../{vetId}/reject
+RanCtrl -> Cmd : RejectVeterinarianClientCommand
+Cmd -> Db : UPDATE Status = Rejected
+@enduml

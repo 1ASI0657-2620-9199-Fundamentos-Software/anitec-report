@@ -36,7 +36,7 @@ El diagrama de contexto muestra a AniTec como un único sistema de software con 
 - **Veterinario (Veterinarian)** — emite diagnósticos, prescribe tratamientos y valida historiales clínicos del ganado de sus clientes.
 - **Stripe** *(sistema externo, confirmado real)* — pasarela de pagos utilizada para gestionar suscripciones en modo de prueba (`Stripe.net`, `SessionService` real dentro de `SubscriptionsController`).
 - **Resend** *(sistema externo, aún no implementado)* — el diagrama documenta un sistema de mensajería de correo planeado para notificaciones; a la fecha de este informe **no existe ninguna integración real con Resend en el backend** (se verificó que no hay referencia alguna al SDK ni a llamadas HTTP hacia Resend en el código). Se conserva en el diagrama como parte del diseño objetivo (diseñado en la Iteración 5, 4.3.5), pero debe leerse como *pendiente de implementación*, no como una integración vigente.
-- **Dispositivo IoT** *(sistema externo, to-be)* — collar GPS, sensor de corral u otro dispositivo de campo. Se agrega al diagrama de contexto como parte del diseño de la Iteración 6 (4.3.6); no existe ningún mecanismo de ingesta real a la fecha de este informe.
+- **Dispositivo IoT** *(sistema externo, to-be)* — collar GPS, sensor de corral u otro dispositivo de campo. Se agrega al diagrama de contexto como parte del diseño de la Iteración 6 (4.3.6); desde el Sprint 2 existe un endpoint de ingesta autenticado con una clave por dispositivo (sección 5.3.2), verificado solo en el entorno local; no se probó con un dispositivo físico.
 
 ## 4.1.4. Approach Driven ViewPoints Diagrams
 

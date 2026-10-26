@@ -1,0 +1,36 @@
+@startuml sequence-device-telemetry
+!theme plain
+title AniTec — Secuencia: ingesta de telemetría con clave de dispositivo (Iteración 6, Sprint 2)
+' Fuente: anitec-backend (Devices, Metrics) — QAS-11
+
+actor "Ganadero" as Rancher
+participant "Dispositivo\n(collar, sensor)" as Device
+participant "DeviceApiKeyFilter" as Filter
+participant "DeviceTelemetryController" as Ctrl
+participant "DeviceMetricCommandService" as Cmd
+database "devices / device_metrics" as Db
+
+== Emisión de la clave (una sola vez) ==
+Rancher -> Ctrl : POST /devices/{id}/api-key (JWT de usuario)
+Ctrl -> Db : guarda ApiKeyHash (SHA-256)
+Ctrl --> Rancher : 200 { apiKey } (no se vuelve a mostrar)
+Rancher -> Device : configura la clave en el dispositivo
+
+== Lectura periódica ==
+Device -> Filter : POST /devices/{id}/telemetry\nX-Device-Api-Key: ak_...
+Filter -> Db : comparar el hash de la clave con ApiKeyHash
+alt clave inválida o de otro dispositivo
+  Filter --> Device : 401 Unauthorized
+else clave válida
+  Filter -> Ctrl : dispositivo autenticado
+  Ctrl -> Cmd : IngestDeviceReadingCommand
+  Cmd -> Db : última lectura del dispositivo
+  alt lectura dentro del intervalo mínimo
+    Cmd --> Ctrl : ReadingTooSoon
+    Ctrl --> Device : 429 Too Many Requests (Retry-After)
+  else intervalo cumplido
+    Cmd -> Db : INSERT device_metrics (hora del servidor)
+    Ctrl --> Device : 201 Created
+  end
+end
+@enduml

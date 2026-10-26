@@ -1,0 +1,40 @@
+@startuml compose-load-balancer
+!pragma layout smetana
+!theme plain
+title AniTec — Entorno local con balanceador de carga y dos réplicas (Sprint 2)
+' Fuente: anitec-backend/docker-compose.yml y nginx/nginx.conf
+' Fragmento del diagrama de contenedores que cambia en este Sprint: el monolito pasa a tener
+' dos réplicas detrás de un balanceador. El API Gateway y Subscriptions Service llegan en el Sprint 3.
+
+actor "Ganadero /\nVeterinario" as User
+node "Navegador\n(SPA Vue 3)" as Spa
+
+rectangle "docker compose (red local)" {
+  component "lb\nnginx (round-robin)\npuerto 8080" as Lb
+  component "api1\nASP.NET Core 10\n(monolito modular)" as Api1
+  component "api2\nASP.NET Core 10\n(monolito modular)" as Api2
+  database "db\nMySQL 8.4" as Db
+  folder "volumen uploads\n(imágenes de animales)" as Uploads
+}
+
+User --> Spa : usa
+Spa --> Lb : HTTPS/JSON (JWT)
+Lb --> Api1 : HTTP
+Lb --> Api2 : HTTP
+Api1 --> Db : SQL
+Api2 --> Db : SQL
+Api1 --> Uploads : lectura/escritura
+Api2 --> Uploads : lectura/escritura
+
+note bottom of Lb
+  Si una réplica falla, nginx reenvía
+  la petición a la otra
+  (proxy_next_upstream).
+  Cabecera X-Upstream = réplica que respondió.
+end note
+
+note bottom of Uploads
+  En la nube este volumen se reemplaza por
+  almacenamiento de objetos (hallazgo R6, 5.1.4).
+end note
+@enduml
