@@ -104,13 +104,13 @@ Diagrama regenerado en PlantUML. Resumen del flujo:
 
 | Backlog Item | Estado |
 |---|---|
-| 1. Filtrado por propiedad en Query Services | Diseño completo — Implementación pendiente |
-| 2. Flujo de aprobación pendiente/aceptado | Diseño completo — Implementación pendiente |
-| 3. Endpoints aprobar/rechazar | Diseño completo — Implementación pendiente |
-| 4. Auditoría mínima | Solo nivel conceptual — diseño detallado trasladado a Iteración 7 |
-| 5. Restricción de CORS | Diseño completo — Implementación pendiente |
-| 6. Unicidad de `username` | Diseño completo — Implementación pendiente |
+| 1. Filtrado por propiedad en Query Services | **Implementado en el Sprint 2** (sección 5.3.2) |
+| 2. Flujo de aprobación pendiente/aceptado | **Implementado en el Sprint 2** (sección 5.3.2) |
+| 3. Endpoints aprobar/rechazar | **Implementado en el Sprint 2**, con una diferencia de ruta (sección 5.3.2.5) |
+| 4. Auditoría mínima | Implementada solo como marcas de tiempo de la relación (`created_at`, `updated_at`); el registro de auditoría consultable sigue en la Iteración 7 |
+| 5. Restricción de CORS | **Implementado en el Sprint 2** (sección 5.3.2) |
+| 6. Unicidad de `username` | **Implementado en el Sprint 2** (sección 5.3.2) |
 
-**Revisión de la meta:** la meta se cumplió a nivel de diseño — QAS-08 tiene una solución concreta y trazable a clases y endpoints reales del código actual, sin requerir un cambio de esquema mayor, y se verificó explícitamente que esa solución no regresiona QAS-02 (el propietario del recurso conserva visibilidad). QAS-06 se confirma como línea base ya satisfecha. Se deja explícito que, a la fecha de este informe, **el código de producción todavía no implementa esta corrección** — es un hallazgo y un diseño de esta iteración, no un cambio ya desplegado.
+**Revisión de la meta:** la meta se cumplió a nivel de diseño — QAS-08 tiene una solución concreta y trazable a clases y endpoints reales del código actual, sin requerir un cambio de esquema mayor, y se verificó explícitamente que esa solución no regresiona QAS-02 (el propietario del recurso conserva visibilidad). QAS-06 se confirma como línea base ya satisfecha. **Nota de estado (Sprint 2):** la corrección descrita en esta iteración quedó **implementada en el repositorio y verificada en el entorno local con Docker Compose** durante el Sprint 2 (sección 5.3.2); aún no está desplegada en Render. En la implementación la identidad del usuario se lee de `HttpContext.Items["User"]`, que es donde el middleware de autorización de AniTec la guarda, y no de los claims de `HttpContext.User` como se había supuesto en 4.3.2.4.
 
 **Riesgo que se traslada:** el diseño de auditoría completo (ítem 4) queda abierto y se retoma en la Iteración 7, donde se aborda junto con observabilidad y trazabilidad operativa de forma más coherente.

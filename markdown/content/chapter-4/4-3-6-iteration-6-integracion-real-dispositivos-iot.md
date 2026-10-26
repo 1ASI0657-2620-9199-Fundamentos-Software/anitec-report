@@ -1,6 +1,6 @@
 # 4.3.6. Iteration 6: Integración Real con Dispositivos IoT
 
-Sexta iteración ADD v3. Como la Iteración 5, nace de re-derivar el número de iteraciones directamente desde los drivers de la sección 4.2 en vez de un índice heredado: la **preocupación arquitectónica #2** (4.2.5) señala que Devices y Metrics son CRUD puro sobre datos sembrados manualmente, sin ningún cliente de protocolo de dispositivo real — una brecha arquitectónicamente comparable a la que la Iteración 4 ya diseñó para la app móvil (EP-014, cero código existente), pero que nunca había recibido el mismo tratamiento *to-be*. Esta iteración lo corrige. Como el resto del capítulo, es explícitamente **to-be**: no existe ningún mecanismo de ingesta de dispositivo a la fecha de este informe.
+Sexta iteración ADD v3. Como la Iteración 5, nace de re-derivar el número de iteraciones directamente desde los drivers de la sección 4.2 en vez de un índice heredado: la **preocupación arquitectónica #2** (4.2.5) señala que Devices y Metrics son CRUD puro sobre datos sembrados manualmente, sin ningún cliente de protocolo de dispositivo real — una brecha arquitectónicamente comparable a la que la Iteración 4 ya diseñó para la app móvil (EP-014, cero código existente), pero que nunca había recibido el mismo tratamiento *to-be*. Esta iteración lo corrige. Esta iteración se redactó como diseño **to-be** y fue implementada en el Sprint 2 (sección 5.3.2).
 
 ## 4.3.6.1. Architectural Design Backlog 6
 
@@ -104,12 +104,12 @@ Diagrama regenerado en Structurizr DSL, en una vista propia (separada de `12-Com
 
 | Backlog Item | Estado |
 |---|---|
-| 1. Autenticación de dispositivo | Diseño completo (to-be) |
-| 2. Endpoint de ingesta de telemetría | Diseño completo (to-be) |
+| 1. Autenticación de dispositivo | **Implementado en el Sprint 2** (sección 5.3.2), como filtro propio y no como `AuthenticationHandler` |
+| 2. Endpoint de ingesta de telemetría | **Implementado en el Sprint 2** (sección 5.3.2) |
 | 3. Justificación de polling HTTP vs. protocolo persistente | Done |
-| 4. Rate limiting | Diseño completo (to-be) |
+| 4. Rate limiting | **Implementado en el Sprint 2** (sección 5.3.2), pero con el intervalo comprobado contra la última lectura almacenada y no con el limitador nativo, que no funciona entre réplicas |
 | 5. Documentar cierre de la preocupación #2 | Done |
 
-**Revisión de la meta:** cumplida a nivel de diseño — QAS-11 tiene ahora una solución concreta, trazable a una columna de esquema, un middleware y un endpoint específicos, reutilizando la lógica de negocio de Metrics ya existente en vez de duplicarla. Se reitera: **no existe código de autenticación de dispositivo ni del endpoint de telemetría a la fecha de este informe** — es un diseño para implementación futura, igual que el resto del capítulo.
+**Revisión de la meta:** cumplida a nivel de diseño — QAS-11 tiene ahora una solución concreta, trazable a una columna de esquema, un middleware y un endpoint específicos, reutilizando la lógica de negocio de Metrics ya existente en vez de duplicarla. **Nota de estado (Sprint 2):** la autenticación de dispositivo, el endpoint de telemetría y el límite de frecuencia quedaron **implementados en el repositorio y verificados en el entorno local con Docker Compose** durante el Sprint 2 (sección 5.3.2); aún no están desplegados en Render. La autenticación se resolvió con un filtro de autorización propio (`DeviceApiKeyFilter`) porque AniTec no usa los `AuthenticationHandler` de ASP.NET Core.
 
 **Riesgo que se traslada:** el diseño de pruebas para este canal (¿qué pasa si el mismo dispositivo envía dos lecturas con el mismo `recordedAt`? ¿cómo se audita una API key comprometida?) corresponde a la Iteración 7 (Observabilidad y Confiabilidad Operativa), donde se retoma junto con el resto del catálogo de pruebas del capítulo.
