@@ -53,10 +53,13 @@ Las horas son estimaciones del equipo para cada tarea. Los estados siguen la esc
 | — | (Restricción: calidad) | T-31 | Verificación de punta a punta | Recorrido con el entorno Compose: aislamiento entre usuarios, aprobación, telemetría, CORS, balanceo y caída de una réplica. Encontró tres defectos que se corrigieron (ver "Defectos hallados en la verificación"). | 4 | Melgarejo Quiroz, Josep Eliu | Done |
 | — | (Restricción: documentación) | T-32 | Documentar el Sprint 2 | Redactar la sección 5.3.2, los diagramas de fragmento y las decisiones derivadas de la TB1. | 6 | Castro Picón, Manuel Fernando Joao | Done |
 | — | (Restricción: documentación) | T-33 | Actualizar el informe | Registro de versiones, conclusiones, estado de las iteraciones 2 y 6, índice y Performance Report. | 3 | Baldeon Vivar, Santiago Armando | Done |
+| US-013, US-073 | Consultar animales según rol; Consultar pacientes autorizados | T-34 | Filtrar hatos, corrales, dispositivos y lecturas | Estos cuatro listados y sus escrituras se limitan al propietario o al veterinario aprobado; un dispositivo debe instalarse en un hato o un animal. | 3 | Baldeon Vivar, Santiago Armando | Done |
+| US-013, US-073 | Consultar animales según rol; Consultar pacientes autorizados | T-35 | Pruebas de visibilidad de hatos, corrales, dispositivos y lecturas | `ListingAuthorization.feature` y segundo recorrido de verificación en Compose. | 2 | Melgarejo Quiroz, Josep Eliu | Done |
+| — | (Restricción: documentación) | T-36 | Documentar el cierre de la brecha de listados | Actualizar la sección 5.3.2, las conclusiones y el Performance Report. | 2 | Castro Picón, Manuel Fernando Joao | Done |
 
-**Resumen de horas por integrante** (suma de las tareas asignadas): Castro Picón, 20 h; Melgarejo Quiroz, 20 h; Baldeon Vivar, 19 h. Total estimado: 59 h.
+**Resumen de horas por integrante** (suma de las tareas asignadas): Castro Picón, 22 h; Melgarejo Quiroz, 22 h; Baldeon Vivar, 22 h. Total estimado: 66 h.
 
-**Resumen de estados:** las 15 tareas del Sprint están en Done.
+**Resumen de estados:** las 18 tareas del Sprint están en Done.
 
 ### Decisiones derivadas de la retroalimentación de la TB1
 
@@ -94,9 +97,11 @@ En la TB1 el profesor aceptó el monolito modular, pero señaló que con varias 
 
 La clave de dispositivo se guarda además con SHA-256 y no con BCrypt (`fix/device-key-hashing`): la clave tiene 256 bits aleatorios y no puede adivinarse, y un hash lento en cada lectura no aporta protección. Esa decisión no debe copiarse a las contraseñas de usuario, que sí necesitan un hash lento.
 
+**Brecha cerrada antes del cierre del Sprint.** La primera versión del Sprint filtraba animales, eventos sanitarios, registros financieros, actividades, tableros y clientes, pero dejaba sin filtrar los listados de hatos, corrales, dispositivos y lecturas. Se cerró en la rama `fix/filter-remaining-listings`: el ganadero ve y modifica solo lo suyo, el veterinario ve solo lo de los ganaderos que lo aprobaron y no puede escribir, y crear un hato a nombre de otro, un corral o un dispositivo en un hato o animal ajeno, o una lectura en un dispositivo ajeno responde 404, igual que en los animales. La verificación del recorrido (58 comprobaciones adicionales) y las 29 pruebas de `ListingAuthorization.feature` pasaron; el script primero asumía que el ganadero veía el hato de otro, que era justo el comportamiento corregido.
+
 **Limitaciones y brechas conocidas del Sprint.**
 
-- Los listados de hatos y corrales y los de dispositivos y métricas todavía no se filtran por propietario; la brecha está identificada y no se cerró en este Sprint.
+- Siguen sin filtrar por usuario `GET /users` y `GET /users/{id}` (cualquier usuario autenticado ve el nombre, usuario y rol de todos), `GET /profiles` (nombre y datos de contacto de todos los perfiles) y `report-metrics`, que es un catálogo global sin propietario y que cualquier usuario puede modificar. No se auditaron las rutas de suscripciones más allá de su validación de rol.
 - El servidor sella la hora de cada lectura de telemetría; un dispositivo no puede enviar la hora de medición, por lo que todavía no se admiten lecturas acumuladas sin conexión.
 - El intervalo mínimo se comprueba con una consulta a la tabla de lecturas: con miles de dispositivos convendría un caché compartido (por ejemplo Redis), que no se incorporó en este ciclo.
 - La landing page todavía describe capacidades que no están implementadas (alertas automáticas, acceso móvil y funcionamiento sin conexión). Se revisaron las cifras y los testimonios, no el resto del contenido funcional.
@@ -109,37 +114,21 @@ El Sprint se desarrolló con GitFlow: cada funcionalidad nace de `develop` en un
 
 | Repository | Branch | Commit<br>Id | Commit<br>Message | Commit Message Body | Committed<br>on (Date) |
 |---|---|---|---|---|---|
-| anitec-backend | chore/gitignore-cleanup | `4fccd87` | `chore: stop tracking uploaded images and generated Reqnroll files` | Uploaded animal images, the generated *.feature.cs files and the test report folder were committed by mistake in b009c70. They are now ignored and removed from the index; the files stay on disk and the feature code is regenerated on build. | 26/10/2026 |
-| anitec-backend | feature/resource-authorization | `6c86724` | `feat(clients): expose accepted rancher ids and veterinarian client statuses` | Adds the GetAcceptedRancherIdsByVeterinarianIdQuery, the status constants (Pending, Accepted, Rejected) and a repository lookup by rancher, plus the HttpContext.GetCaller() extension and the CallerContext record that carry the identity of the authenticated user to the query services. | 26/10/2026 |
-| anitec-backend | feature/resource-authorization | `ae1bd5a` | `feat(security): filter data by ownership and approved relationships (QAS-08)` | Animals, health events, financial records and farm activities are now returned according to the authenticated caller: a rancher sees its own herds and a veterinarian only the ranchers that accepted it. Write operations on animals, health events, financial records and activities check ownership, the dashboards and the veterinarian client list require the route id to match the caller. | 26/10/2026 |
-| anitec-backend | feature/veterinarian-approval-flow | `1dc09f4` | `feat(clients): require rancher approval before a veterinarian sees any data` | A veterinarian request now starts as Pending. The rancher can approve, reject or revoke it through the new /api/v1/rancher/{rancherId}/veterinarian-requests endpoints, and a veterinarian may ask again after a rejection. VeterinarianClient is auditable (migration AddVeterinarianClientAudit) and the development seeder includes a pending request. | 26/10/2026 |
-| anitec-backend | feature/cors-allowed-origins | `d7ac254` | `feat(security): restrict CORS to the configured frontend origins` | Replaces the allow-all policy with Cors:AllowedOrigins (SPA on Render, GitHub Pages and the local Vite server). The list can be overridden with Cors__AllowedOrigins__N environment variables. | 26/10/2026 |
-| anitec-backend | feature/unique-username | `d971051` | `feat(iam): enforce unique usernames with a database index` | Adds the unique index i_x_users_username (migration AddUsernameUniqueIndex). When two sign-ups race past the duplicate check, the rejected insert is reported as UsernameAlreadyTaken instead of a generic database error. | 26/10/2026 |
-| anitec-backend | feature/device-api-key-telemetry | `5838ad2` | `feat(devices): issue hashed API keys for physical devices` | Devices gain ApiKeyHash (migration AddDeviceApiKeyHash). IssueDeviceApiKeyCommand creates a 256-bit random key, stores only its BCrypt hash and returns the key once; AuthenticateDeviceQuery verifies a key for a device. | 26/10/2026 |
-| anitec-backend | feature/device-api-key-telemetry | `9e7aec5` | `feat(devices): ingest telemetry with a device API key and rate limiting (QAS-11)` | POST /api/v1/devices/{deviceId}/telemetry authenticates the device with the X-Device-Api-Key header through DeviceApiKeyFilter, reuses IDeviceMetricCommandService and is limited to one reading per device and interval (Telemetry:MinIntervalSeconds, 429 otherwise). POST /api/v1/devices/{id}/api-key lets the owner rancher issue or rotate the key. | 26/10/2026 |
-| anitec-backend | feature/docker-compose-load-balancer | `e0c6b68` | `feat(devops): run two API replicas behind an nginx load balancer with Docker Compose` | docker-compose.yml starts MySQL 8.4, two replicas of the API and nginx with round-robin balancing, a shared volume for uploaded images and a /health endpoint used by the health checks. The second replica waits for the first one, which applies the migrations. nginx forwards the request to the other replica when one fails (answers TB1 feedback about load balancing and horizontal scaling). | 26/10/2026 |
-| anitec-backend | fix/forbidden-status-code | `85d7249` | `fix(iam): answer 403 instead of 500 when the role cannot use an endpoint` | AuthorizeAttribute returned a ForbidResult, which needs an authentication scheme that AniTec does not register, so every role mismatch ended in a 500. It now returns an ObjectResult with status 403. | 26/10/2026 |
-| anitec-backend | fix/device-key-hashing | `fd8dcad` | `fix(devices): hash device API keys with SHA-256 and partition the rate limit by key` | A device key has 256 random bits, so a fast hash is enough and keeps the per-request check cheap. The rate limit window is now per device and per key presented, so requests with a wrong key no longer use up the interval of the real device. | 26/10/2026 |
-| anitec-backend | fix/telemetry-shared-interval | `316740b` | `fix(telemetry): enforce the reading interval against stored readings` | The in-memory rate limiter kept one window per replica, so a second reading could pass when the balancer sent it to the other replica. The minimum interval is now checked against the last stored reading of the device, which all replicas share, and the server stamps the time of reception. | 26/10/2026 |
-| anitec-backend | develop | `804f2de` | `fix(metrics): use the inherited context in DeviceMetricRepository` | Removes the CS9107 warning introduced by the latest-reading query. | 26/10/2026 |
-| anitec-frontend | feature/veterinarian-approval-ui | `df07c51` | `feat(clients): let ranchers approve or reject veterinarian access requests` | Adds the Veterinarian requests view (/rancher/veterinarian-requests) with approve, reject and revoke actions. The veterinarian screens now treat only accepted relationships as clients, show pending requests with a cancel action and use the animal counts returned by the server for ranchers that are not clients yet. | 26/10/2026 |
-| anitec-frontend | feature/device-api-key-ui | `ff1360c` | `feat(devices): let ranchers generate the API key of a device` | The IoT dashboard gets an API key action for ranchers. The key returned by POST /devices/{id}/api-key is shown once with a copy button and the header the device must send, and rotating it asks for confirmation. | 26/10/2026 |
-| anitec-landing-page | fix/illustrative-cases-landing | `12ddc55` | `fix: replace unverifiable claims with illustrative cases and verifiable facts` | The landing still showed invented user counts, ratings, percentages, superlatives, 24/7 support and testimonials with fictitious names and photos (US-050). Testimonials become labelled fictional scenarios without photos or stars, numeric claims become verifiable product facts, the metrics section is presented as product goals, and the previous team's YouTube videos are removed from the About page. | 26/10/2026 |
-| anitec-landing-page | fix/illustrative-cases-landing | `15bc79c` | `fix: remove literal line breaks from translated stat labels` |  | 26/10/2026 |
-| anitec-landing-page | chore/remove-legacy-team-assets | `fda3fcb` | `chore: remove unused photos of the previous team and of fictitious testimonial authors` | The About page now lists only the current team and the testimonial cards became fictional scenarios without photos, so these images are no longer referenced anywhere. | 26/10/2026 |
+| anitec-backend | fix/filter-remaining-listings | `061a452` | `fix(security): filter herds, corrals, devices and readings by owner (QAS-08)` | Closes the gap left in Sprint 2. A rancher sees and changes only its own herds, corrals, devices and readings; a veterinarian sees them only for the ranchers that accepted it and cannot write. Creating a herd for another owner, a corral or a device on a herd or animal that is not yours, or a reading for a device that is not yours now answers 404, like the animal endpoints. A device must be installed on a herd or an animal. | 28/10/2026 |
 
 Además de los commits de implementación, `develop` registra las fusiones de cada rama. El análisis de colaboración se presenta en 5.3.2.7.
 
 ## 5.3.2.3. Testing Suite Evidence for Sprint Review
 
-El proyecto `Anitec.Platform.Tests` pasó de 48 a **96 pruebas**, todas superadas. Las nuevas se escribieron con xUnit y Reqnroll sobre repositorios en memoria y verifican la lógica a nivel de servicio y del filtro de autorización.
+El proyecto `Anitec.Platform.Tests` pasó de 48 a **125 pruebas**, todas superadas. Las nuevas se escribieron con xUnit y Reqnroll sobre repositorios en memoria y verifican la lógica a nivel de servicio y del filtro de autorización.
 
-| Archivo `.feature` | User Stories y escenario de calidad | Escenarios |
+| Archivo `.feature` | User Stories y escenario de calidad | Escenarios ejecutados |
 |---|---|---|
-| `ResourceAuthorization.feature` | US-013, US-014, US-073, QAS-08 | 9 |
+| `ResourceAuthorization.feature` | US-013, US-014, US-073, QAS-08 | 10 |
 | `VeterinarianAccessApproval.feature` | US-023, US-071, US-072 | 9 |
 | `DeviceTelemetry.feature` | US-059, QAS-11 | 10 |
 | `DeviceReadingInterval.feature` | US-059, QAS-11 | 4 |
+| `ListingAuthorization.feature` | US-013, US-073, QAS-08 | 29 |
 
 Se agregaron además pruebas unitarias de las consultas de propiedad y de visibilidad (`AnimalQueryServiceTests`), pruebas de `AuthorizeAttribute` (rol permitido, rol no permitido y usuario ausente) y dos pruebas de registro de usuarios (carrera entre dos altas con el mismo nombre y falla genérica de base de datos).
 
@@ -203,6 +192,117 @@ Feature: Authorization by resource ownership
   Scenario: A rancher cannot register animals in the herd of another rancher
     Then user 1 with role "Rancher" does not own the herd of rancher 2
     And user 1 with role "Rancher" owns its own herd
+```
+
+### Archivo `.feature` de hatos, corrales, dispositivos y lecturas (US-013, US-073)
+
+```gherkin
+Feature: Authorization of herds, corrals, devices and readings
+  As a rancher or a veterinarian
+  I want the herd, corral, device and reading lists to contain only what belongs to me or to the ranchers that approved me
+  So that nobody reads the infrastructure or the sensor data of another owner by calling the API directly (QAS-08)
+
+  Background:
+    Given the rancher "Ana" with id 1 has the herd "Los Alamos" with a corral, a device and a reading
+    And the rancher "Luis" with id 2 has the herd "El Molino" with a corral, a device and a reading
+
+  Scenario: A rancher only sees its own herds
+    When user 1 with role "Rancher" lists the herds
+    Then 1 results are returned
+    And every result is related to "Los Alamos"
+
+  Scenario: A rancher only sees its own corrals
+    When user 1 with role "Rancher" lists the corrals
+    Then 1 results are returned
+    And every result is related to "Los Alamos"
+
+  Scenario: A rancher only sees its own devices
+    When user 1 with role "Rancher" lists the devices
+    Then 1 results are returned
+    And every result is related to "Los Alamos"
+
+  Scenario: A rancher only sees the readings of its own devices
+    When user 1 with role "Rancher" lists the readings
+    Then 1 results are returned
+    And every result is related to "Los Alamos"
+
+  Scenario Outline: A rancher cannot read the detail of a resource of another rancher
+    When user 1 with role "Rancher" asks for the <resource> of rancher 2
+    Then the item is not found
+
+    Examples:
+      | resource |
+      | herd     |
+      | corral   |
+      | device   |
+      | reading  |
+
+  Scenario Outline: A rancher can read the detail of its own resources
+    When user 1 with role "Rancher" asks for the <resource> of rancher 1
+    Then the item is found
+
+    Examples:
+      | resource |
+      | herd     |
+      | corral   |
+      | device   |
+      | reading  |
+
+  Scenario Outline: A veterinarian without an accepted relationship sees nothing
+    Given veterinarian 10 has a "<status>" link with rancher 1
+    When user 10 with role "Veterinarian" lists the <resources>
+    Then 0 results are returned
+
+    Examples:
+      | status   | resources |
+      | Pending  | herds     |
+      | Pending  | corrals   |
+      | Pending  | devices   |
+      | Pending  | readings  |
+      | Rejected | herds     |
+      | Rejected | corrals   |
+      | Rejected | devices   |
+      | Rejected | readings  |
+
+  Scenario: A veterinarian with no relationship sees no devices
+    When user 10 with role "Veterinarian" lists the devices
+    Then 0 results are returned
+
+  Scenario Outline: An approved veterinarian sees only the resources of the rancher that approved it
+    Given veterinarian 10 has a "Accepted" link with rancher 1
+    When user 10 with role "Veterinarian" lists the <resources>
+    Then 1 results are returned
+    And every result is related to "Los Alamos"
+
+    Examples:
+      | resources |
+      | herds     |
+      | corrals   |
+      | devices   |
+      | readings  |
+
+  Scenario: An approved veterinarian cannot read the detail of a resource of another rancher
+    Given veterinarian 10 has a "Accepted" link with rancher 1
+    When user 10 with role "Veterinarian" asks for the device of rancher 2
+    Then the item is not found
+
+  Scenario: A device installed on an animal is visible to the owner and to the approved veterinarian
+    Given rancher 1 also has a device installed on one of its animals
+    And veterinarian 10 has a "Accepted" link with rancher 1
+    When user 1 with role "Rancher" lists the devices
+    Then 2 results are returned
+    When user 10 with role "Veterinarian" lists the devices
+    Then 2 results are returned
+
+  Scenario: A device that is not installed on a herd or an animal is visible to nobody
+    Given a device that is not installed anywhere exists
+    When user 1 with role "Rancher" lists the devices
+    Then 1 results are returned
+
+  Scenario: Only the owner counts as the owner of a herd
+    Then user 1 with role "Rancher" is the owner of the herd of rancher 1
+    And user 1 with role "Rancher" is not the owner of the herd of rancher 2
+    And user 10 with role "Veterinarian" is not the owner of the herd of rancher 1
 ```
 
 ### Archivo `.feature` de aprobación del veterinario (US-023, US-071, US-072)
@@ -359,11 +459,11 @@ Feature: Minimum interval between device readings
 ### Resultado de la ejecución
 
 ```text
-Correctas! - Con error:     0, Superado:    96, Omitido:     0, Total:    96, Duración: 5 s - Anitec.Platform.Tests.dll (net10.0)
+Correctas! - Con error:     0, Superado:   125, Omitido:     0, Total:   125, Duración: 3 s - Anitec.Platform.Tests.dll (net10.0)
 ```
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de la terminal con la ejecución de `dotnet test` (96 pruebas superadas) -->
+  <!-- PLACEHOLDER: captura de la terminal con la ejecución de `dotnet test` (125 pruebas superadas) -->
   <img src="../../assets/chapter-5/Sprint2/dotnet-test-sprint-2.png" alt="Resultado de dotnet test del Sprint 2" width="700">
   <p><i><b>Fuente</b>: Ejecución de <code>dotnet test</code> en <code>anitec-backend</code>.</i></p>
 </div>
@@ -372,15 +472,11 @@ Correctas! - Con error:     0, Superado:    96, Omitido:     0, Total:    96, Du
 
 | Repository | Branch | Commit<br>Id | Commit<br>Message | Commit Message Body | Committed<br>on (Date) |
 |---|---|---|---|---|---|
-| anitec-backend | feature/resource-authorization | `6b4bf0c` | `test: cover resource authorization with Gherkin scenarios and query service tests` | Adds ResourceAuthorization.feature (10 scenarios) with in-memory repositories for herds, health events, financial records, activities and veterinarian clients, and unit tests for the ownership and visibility queries. | 26/10/2026 |
-| anitec-backend | feature/veterinarian-approval-flow | `9273253` | `test: cover the veterinarian access approval flow` | Adds VeterinarianAccessApproval.feature with 9 scenarios: pending by default, approve, reject, revoke, duplicate request, request after rejection and visibility only after approval. | 26/10/2026 |
-| anitec-backend | feature/unique-username | `7f03a9c` | `test: cover a concurrent duplicate sign-up and a generic database failure` |  | 26/10/2026 |
-| anitec-backend | feature/device-api-key-telemetry | `f0d4b48` | `test: cover device API key issuance, authentication and the HTTP filter` | Adds DeviceTelemetry.feature with 10 scenarios that include the authorization filter running on a DefaultHttpContext. | 26/10/2026 |
-| anitec-backend | fix/forbidden-status-code | `20441a0` | `test: cover the unauthorized, forbidden and allowed outcomes of AuthorizeAttribute` |  | 26/10/2026 |
+| anitec-backend | fix/filter-remaining-listings | `6ae22a1` | `test: cover the visibility of herds, corrals, devices and readings` | Adds ListingAuthorization.feature with scenarios for the owner, an approved veterinarian, pending and rejected relationships, devices installed on an animal and devices installed nowhere. | 28/10/2026 |
 
 ### Alcance y límites
 
-Las pruebas cubren ahora cinco de los doce bounded contexts (Shared, Iam, Livestock, Clients y Devices, más la consulta de Sanitary, Financial y Activities a través de los escenarios de autorización). Siguen siendo pruebas de servicio, no de la API HTTP, con repositorios en memoria: no validan el esquema MySQL real, la política CORS ni la respuesta HTTP 429 de la telemetría, que se verificaron a mano en el entorno Compose (la regla del intervalo mínimo sí está cubierta por `DeviceReadingInterval.feature`). La cobertura de código sigue sin medirse.
+Las pruebas cubren ahora seis de los doce bounded contexts (Shared, Iam, Livestock, Clients, Devices y Metrics, más la consulta de Sanitary, Financial y Activities a través de los escenarios de autorización). Siguen siendo pruebas de servicio, no de la API HTTP, con repositorios en memoria: no validan el esquema MySQL real, la política CORS ni la respuesta HTTP 429 de la telemetría, que se verificaron a mano en el entorno Compose (la regla del intervalo mínimo sí está cubierta por `DeviceReadingInterval.feature`). La cobertura de código sigue sin medirse.
 
 ## 5.3.2.4. Execution Evidence for Sprint Review
 
@@ -435,10 +531,10 @@ OK    el dueño emite la clave del dispositivo
 OK    sin clave la telemetría se rechaza -> -> 401
 OK    con una clave incorrecta se rechaza -> -> 401
 OK    la clave de otro dispositivo se rechaza -> -> 401
-OK    con la clave correcta se registra la lectura -> -> 201 id=12
+OK    con la clave correcta se registra la lectura -> -> 201 id=8
 OK    una segunda lectura inmediata se limita (429) -> -> 429
 OK    pasado el intervalo vuelve a aceptarse -> -> 201
-OK    la última lectura queda disponible para el usuario -> -> {'id': 13, 'deviceId': 1, 'type': 'Temperatura', 'value': 38.9, 'unit': 'C', 'recordedAt': '2026-10-26T06:00:02.639992'}
+OK    la última lectura queda disponible para el usuario -> -> {'id': 9, 'deviceId': 1, 'type': 'Temperatura', 'value': 38.9, 'unit': 'C', 'recordedAt': '2026-10-28T08:28:11.172074'}
 OK    al rotar la clave la anterior deja de funcionar -> -> 401
 
 === 6. CORS por origen
@@ -447,7 +543,7 @@ OK    origen https://anitec-frontend-cve3.onrender.com permitido
 OK    origen http://sitio-ajeno.example no permitido
 
 === 7. Nombre de usuario único
-OK    registrar un nombre ya usado falla -> -> 409 {'type': 'https://tools.ietf.org/html/rfc9110#section-15.5.10', 'title': 'UsernameAlreadyTaken', 'status': 409, 'detail': 'UsernameAlreadyTaken', 'instance': '/api/v1/authentication/sign-up', 'traceId': '00-9892ed4b30b3871b4543ba38d099f566-f7e5978ed34bd17c-00'}
+OK    registrar un nombre ya usado falla -> -> 409 {'type': 'https://tools.ietf.org/html/rfc9110#section-15.5.10', 'title': 'UsernameAlreadyTaken', 'status': 409, 'detail': 'UsernameAlreadyTaken', 'instance': '/api/v1/authentication/sign-up', 'traceId': '00-3893e503af258edfa80e2cb21e7942e8-ede70644d85ad7e0-00'}
 OK    existe el índice único en la base de datos
 
 === 8. Réplicas sin estado: token y archivos compartidos
@@ -466,6 +562,83 @@ Evidencia del balanceo: seis peticiones consecutivas a `/health` fueron atendida
 ```
 
 Con `api1` detenida, ocho peticiones seguidas devolvieron 200 y todas las atendió `api2`. El script vuelve a iniciar `api1` al terminar.
+
+Segundo recorrido (`verify_listings.py`) sobre hatos, corrales, dispositivos y lecturas, con el entorno recreado desde cero. El script crea un corral, un dispositivo y una lectura de la ganadera María para comprobar el aislamiento y los borra al terminar:
+
+```text
+=== 1. Hatos
+OK    ganadero solo ve hatos propios
+OK    maria solo ve hatos propios
+OK    jose solo ve hatos propios
+OK    rosa solo ve hatos propios
+OK    veterinaria ve solo hatos de ganadero y maria
+OK    vetlucia ve solo hatos de rosa
+OK    vetpedro no ve hatos de ganadero ni de rosa
+OK    ganadero no puede leer el hato de maria por id
+OK    ganadero lee su propio hato por id
+OK    veterinaria (aceptada) lee el hato de maria
+
+=== 1b. Preparacion: maria crea un corral, un dispositivo y una lectura propios
+OK    maria crea un corral en su hato
+OK    maria instala un dispositivo en su hato
+OK    maria registra una lectura en su dispositivo
+
+=== 2. Corrales
+OK    ganadero solo ve corrales de sus hatos
+OK    maria solo ve corrales de sus hatos
+OK    jose solo ve corrales de sus hatos
+OK    rosa solo ve corrales de sus hatos
+OK    veterinaria ve corrales solo de los hatos visibles
+OK    maria ve su corral y el ganadero no
+OK    veterinaria (aceptada) ve el corral de maria
+OK    ganadero no puede leer un corral de maria por id
+
+=== 3. Dispositivos y lecturas
+OK    ganadero y maria no comparten dispositivos
+OK    cada ganadero ve solo dispositivos de sus hatos o animales
+OK    veterinaria ve los dispositivos de ganadero y maria
+OK    maria ve su dispositivo y el ganadero no
+OK    ganadero no puede leer el dispositivo de maria por id
+OK    ganadero no puede leer las lecturas del dispositivo de maria
+OK    ganadero no puede leer la ultima lectura del dispositivo de maria
+OK    ganadero solo ve lecturas de sus dispositivos
+OK    maria solo ve lecturas de sus dispositivos
+OK    vetlucia ve lecturas solo de dispositivos visibles
+OK    la lectura de maria no aparece al ganadero
+OK    ganadero no puede leer la lectura de maria por id
+OK    ganadero no puede editar la lectura de maria
+OK    ganadero no puede borrar la lectura de maria
+
+=== 4. Escrituras sobre recursos ajenos
+OK    ganadero no puede editar el hato de maria
+OK    ganadero no puede borrar el hato de maria
+OK    ganadero no puede crear un hato a nombre de maria
+OK    ganadero no puede crear un corral en el hato de maria
+OK    ganadero no puede borrar un corral de maria
+OK    ganadero no puede mover a su hato un corral de maria
+OK    ganadero no puede editar el dispositivo de maria
+OK    ganadero no puede instalar un dispositivo en el hato de maria
+OK    un dispositivo sin hato ni animal se rechaza
+OK    ganadero no puede borrar el dispositivo de maria
+OK    ganadero no puede registrar una lectura en el dispositivo de maria
+OK    un veterinario no puede crear hatos
+
+=== 5. El propietario sigue pudiendo operar
+OK    ganadero crea un hato propio
+OK    ganadero crea un corral en su hato
+OK    ganadero instala un dispositivo en su hato
+OK    ganadero registra una lectura en su dispositivo
+OK    ganadero borra su lectura
+OK    ganadero borra su dispositivo
+OK    ganadero borra su corral
+OK    ganadero borra su hato
+
+=== 6. Limpieza de los datos de prueba de maria
+OK    maria borra /device-metrics/10
+OK    maria borra /devices/6
+OK    maria borra /corrals/1
+Resumen: 58 de 58 verificaciones superadas
+```
 
 <div align="center">
   <!-- PLACEHOLDER: captura de Docker Desktop con los contenedores db, api1, api2 y lb en ejecución -->
@@ -522,6 +695,7 @@ Los endpoints se documentan con OpenAPI mediante Swashbuckle. En el entorno Comp
 | `GET /api/v1/analytics/ranchers/{rancherId}/dashboard` y resúmenes | Rancher / Veterinarian | El id de la ruta debe ser el del usuario; el tablero del veterinario cuenta solo clientes aceptados. Modificado. | 200, 403 |
 | `POST /api/v1/devices/{id}/api-key` | Rancher (dueño del hato o animal del dispositivo) | Emite o rota la clave de API del dispositivo; se muestra una sola vez. Es nuevo. | 200, 404 |
 | `POST /api/v1/devices/{deviceId}/telemetry` | Dispositivo (cabecera `X-Device-Api-Key`) | Registra una lectura (tipo, valor, unidad); el servidor sella la hora. Es nuevo. | 201, 400, 401, 429 |
+| `GET /api/v1/herds`, `/corrals`, `/devices`, `/device-metrics` (y sus escrituras y `/devices/{id}/metrics`) | Rancher / Veterinarian | Listados y detalle por propietario o por relación aprobada; las escrituras son solo del ganadero dueño; 404 si el recurso no es suyo. Modificado. | 200, 201, 204, 400, 404 |
 | `GET /health` | Sin autenticación | Comprobación de salud usada por Docker y el balanceador. Es nuevo. | 200 |
 
 ### Ejemplos de petición y respuesta
@@ -604,7 +778,7 @@ docker compose up --build
 curl -i http://localhost:8080/health
 ```
 
-**Pasos pendientes para producción (se harán al integrar el Sprint):** fusionar `develop` en `main`, comprobar antes que no haya nombres de usuario duplicados en la base de Aiven (la migración `AddUsernameUniqueIndex` crea un índice único), definir en Render las variables `Cors__AllowedOrigins__N` solo si cambian los dominios y volver a desplegar el backend, el frontend y la landing page.
+**Comprobación previa a producción:** antes de integrar se consultó la base de Aiven con `SELECT username, COUNT(*) FROM users GROUP BY username HAVING COUNT(*) > 1` y el resultado fue vacío, por lo que la migración `AddUsernameUniqueIndex` (índice único de `username`) no debería fallar al aplicarse. **Pasos pendientes de confirmar:** que el despliegue del backend en Render arranque con las migraciones nuevas, definir en Render las variables `Cors__AllowedOrigins__N` solo si cambian los dominios y desplegar después el frontend y la landing page, en ese orden (el frontend nuevo usa endpoints que el backend anterior no tiene).
 
 <div align="center">
   <!-- PLACEHOLDER: captura de la ejecución de `docker compose up` -->
@@ -636,5 +810,6 @@ Los tres integrantes participaron en las tareas del Sprint según la tabla de co
 
 - Implementar reveló diferencias con el diseño (identidad en `HttpContext.Items`, ruta de los endpoints de aprobación, filtro propio para la clave de dispositivo) que solo se vieron leyendo el código en ejecución; conviene validar el diseño contra el código antes de la siguiente iteración.
 - El filtrado en el servidor obligó a revisar el frontend, que filtraba en el cliente y asumía que todo cliente devuelto era un cliente aprobado.
+- La primera pasada de QAS-08 filtró los módulos que el diseño nombraba y dejó otros sin cubrir hasta que se revisaron todos los controladores uno por uno para ver cuáles usaban la identidad del usuario. Esa revisión, hecha al final, mostró además los controladores de usuarios, perfiles y `report-metrics` sin filtrar; conviene hacerla al empezar la iteración y no al cerrarla.
 - Las pruebas de servicio con repositorios en memoria no habrían detectado ninguno de los tres defectos de la verificación (403 que respondía 500, limitador por réplica y espera de conexión en el failover); la verificación de punta a punta con las dos réplicas sí. Conviene automatizarla en un sprint próximo.
 - La revisión de la landing page mostró que una tarea marcada como terminada en el Sprint 1 no estaba reflejada en el código: la evidencia de cada tarea debe incluir el commit que la implementa.
