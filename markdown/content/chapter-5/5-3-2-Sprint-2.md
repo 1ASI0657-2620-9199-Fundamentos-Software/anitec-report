@@ -56,10 +56,13 @@ Las horas son estimaciones del equipo para cada tarea. Los estados siguen la esc
 | US-013, US-073 | Consultar animales según rol; Consultar pacientes autorizados | T-34 | Filtrar hatos, corrales, dispositivos y lecturas | Estos cuatro listados y sus escrituras se limitan al propietario o al veterinario aprobado; un dispositivo debe instalarse en un hato o un animal. | 3 | Baldeon Vivar, Santiago Armando | Done |
 | US-013, US-073 | Consultar animales según rol; Consultar pacientes autorizados | T-35 | Pruebas de visibilidad de hatos, corrales, dispositivos y lecturas | `ListingAuthorization.feature` y segundo recorrido de verificación en Compose. | 2 | Melgarejo Quiroz, Josep Eliu | Done |
 | — | (Restricción: documentación) | T-36 | Documentar el cierre de la brecha de listados | Actualizar la sección 5.3.2, las conclusiones y el Performance Report. | 2 | Castro Picón, Manuel Fernando Joao | Done |
+| US-013, US-073 | Consultar animales según rol; Consultar pacientes autorizados | T-37 | Filtrar usuarios y perfiles | `GET /users` devuelve al usuario y a quienes tienen una relación abierta con él; cada perfil tiene un dueño (migración `AddProfileOwner`); el usuario inexistente responde 404 en lugar de 400. | 3 | Baldeon Vivar, Santiago Armando | Done |
+| US-023, US-071 | Solicitar acceso sanitario; Aprobar o rechazar acceso | T-38 | Invitaciones de veterinarios en el dashboard del ganadero | El veterinario invita y el ganadero acepta o rechaza desde su dashboard, con contador en el menú; textos de invitación en español e inglés. | 3 | Castro Picón, Manuel Fernando Joao | Done |
+| US-013, US-023, US-071, US-073 | Acceso según rol e invitaciones | T-39 | Pruebas y verificación de usuarios, perfiles e invitaciones | `IdentityDataAuthorization.feature` y tercer recorrido de verificación en Compose. | 3 | Melgarejo Quiroz, Josep Eliu | Done |
 
-**Resumen de horas por integrante** (suma de las tareas asignadas): Castro Picón, 22 h; Melgarejo Quiroz, 22 h; Baldeon Vivar, 22 h. Total estimado: 66 h.
+**Resumen de horas por integrante** (suma de las tareas asignadas): Castro Picón, 25 h; Melgarejo Quiroz, 25 h; Baldeon Vivar, 25 h. Total estimado: 75 h.
 
-**Resumen de estados:** las 18 tareas del Sprint están en Done.
+**Resumen de estados:** las 21 tareas del Sprint están en Done.
 
 ### Decisiones derivadas de la retroalimentación de la TB1
 
@@ -99,9 +102,12 @@ La clave de dispositivo se guarda además con SHA-256 y no con BCrypt (`fix/devi
 
 **Brecha cerrada antes del cierre del Sprint.** La primera versión del Sprint filtraba animales, eventos sanitarios, registros financieros, actividades, tableros y clientes, pero dejaba sin filtrar los listados de hatos, corrales, dispositivos y lecturas. Se cerró en la rama `fix/filter-remaining-listings`: el ganadero ve y modifica solo lo suyo, el veterinario ve solo lo de los ganaderos que lo aprobaron y no puede escribir, y crear un hato a nombre de otro, un corral o un dispositivo en un hato o animal ajeno, o una lectura en un dispositivo ajeno responde 404, igual que en los animales. La verificación del recorrido (58 comprobaciones adicionales) y las 29 pruebas de `ListingAuthorization.feature` pasaron; el script primero asumía que el ganadero veía el hato de otro, que era justo el comportamiento corregido.
 
+**Usuarios, perfiles e invitaciones.** Se cerraron además los endpoints de usuarios y perfiles. `GET /users` y `GET /users/{id}` devuelven al propio usuario y a quienes tienen con él una relación pendiente o aceptada (una rechazada no expone al otro); un usuario ajeno responde 404, que antes caía en 400 por un caso por defecto del traductor de errores. Un perfil no tenía dueño, por lo que no podía filtrarse: se añadió la columna `OwnerId` (migración `AddProfileOwner`, nullable y con índice), que se fija con el usuario autenticado al crear el perfil. Además, la relación veterinario–ganadero se presenta ahora como una invitación: el veterinario invita, el ganadero ve la invitación en su dashboard, con un contador en el menú, y decide si la acepta; mientras no la acepte el veterinario no ve ningún dato suyo. El backend de ese flujo ya existía desde el principio del Sprint; lo nuevo es la presentación en el dashboard del ganadero y el texto.
+
 **Limitaciones y brechas conocidas del Sprint.**
 
-- Siguen sin filtrar por usuario `GET /users` y `GET /users/{id}` (cualquier usuario autenticado ve el nombre, usuario y rol de todos), `GET /profiles` (nombre y datos de contacto de todos los perfiles) y `report-metrics`, que es un catálogo global sin propietario y que cualquier usuario puede modificar. No se auditaron las rutas de suscripciones más allá de su validación de rol.
+- Sigue sin propietario `report-metrics`, un catálogo global que cualquier usuario autenticado puede leer y modificar; se dejó así a propósito. No se auditaron las rutas de suscripciones más allá de su validación de rol. Los perfiles creados antes de la migración `AddProfileOwner` no tienen dueño y ya no se devuelven por la API.
+- El directorio de ganaderos para invitar (`available-ranchers`) muestra a cualquier veterinario el nombre de todos los ganaderos y el número de fincas y animales de cada uno, aunque no sean sus clientes. Hace falta para poder invitar, pero los conteos no, y es una decisión pendiente.
 - El servidor sella la hora de cada lectura de telemetría; un dispositivo no puede enviar la hora de medición, por lo que todavía no se admiten lecturas acumuladas sin conexión.
 - El intervalo mínimo se comprueba con una consulta a la tabla de lecturas: con miles de dispositivos convendría un caché compartido (por ejemplo Redis), que no se incorporó en este ciclo.
 - La landing page todavía describe capacidades que no están implementadas (alertas automáticas, acceso móvil y funcionamiento sin conexión). Se revisaron las cifras y los testimonios, no el resto del contenido funcional.
@@ -114,13 +120,12 @@ El Sprint se desarrolló con GitFlow: cada funcionalidad nace de `develop` en un
 
 | Repository | Branch | Commit<br>Id | Commit<br>Message | Commit Message Body | Committed<br>on (Date) |
 |---|---|---|---|---|---|
-| anitec-backend | fix/filter-remaining-listings | `061a452` | `fix(security): filter herds, corrals, devices and readings by owner (QAS-08)` | Closes the gap left in Sprint 2. A rancher sees and changes only its own herds, corrals, devices and readings; a veterinarian sees them only for the ranchers that accepted it and cannot write. Creating a herd for another owner, a corral or a device on a herd or animal that is not yours, or a reading for a device that is not yours now answers 404, like the animal endpoints. A device must be installed on a herd or an animal. | 28/10/2026 |
 
 Además de los commits de implementación, `develop` registra las fusiones de cada rama. El análisis de colaboración se presenta en 5.3.2.7.
 
 ## 5.3.2.3. Testing Suite Evidence for Sprint Review
 
-El proyecto `Anitec.Platform.Tests` pasó de 48 a **125 pruebas**, todas superadas. Las nuevas se escribieron con xUnit y Reqnroll sobre repositorios en memoria y verifican la lógica a nivel de servicio y del filtro de autorización.
+El proyecto `Anitec.Platform.Tests` pasó de 48 a **141 pruebas**, todas superadas. Las nuevas se escribieron con xUnit y Reqnroll sobre repositorios en memoria y verifican la lógica a nivel de servicio y del filtro de autorización.
 
 | Archivo `.feature` | User Stories y escenario de calidad | Escenarios ejecutados |
 |---|---|---|
@@ -129,6 +134,7 @@ El proyecto `Anitec.Platform.Tests` pasó de 48 a **125 pruebas**, todas superad
 | `DeviceTelemetry.feature` | US-059, QAS-11 | 10 |
 | `DeviceReadingInterval.feature` | US-059, QAS-11 | 4 |
 | `ListingAuthorization.feature` | US-013, US-073, QAS-08 | 29 |
+| `IdentityDataAuthorization.feature` | US-013, US-073, QAS-08 | 16 |
 
 Se agregaron además pruebas unitarias de las consultas de propiedad y de visibilidad (`AnimalQueryServiceTests`), pruebas de `AuthorizeAttribute` (rol permitido, rol no permitido y usuario ausente) y dos pruebas de registro de usuarios (carrera entre dos altas con el mismo nombre y falla genérica de base de datos).
 
@@ -192,6 +198,86 @@ Feature: Authorization by resource ownership
   Scenario: A rancher cannot register animals in the herd of another rancher
     Then user 1 with role "Rancher" does not own the herd of rancher 2
     And user 1 with role "Rancher" owns its own herd
+```
+
+### Archivo `.feature` de usuarios y perfiles (US-013, US-073)
+
+```gherkin
+Feature: Authorization of users and profiles
+  As a rancher or a veterinarian
+  I want to see only myself and the users I have a relationship with, and only the profiles I created
+  So that nobody lists the identity and contact data of every user by calling the API directly (QAS-08)
+
+  Background:
+    Given the user "Ana" with id 1 and role "Rancher"
+    And the user "Luis" with id 2 and role "Rancher"
+    And the user "Pedro" with id 10 and role "Veterinarian"
+    And the user "Rosa" with id 11 and role "Veterinarian"
+
+  Scenario: A user without relationships only sees itself
+    When user 1 with role "Rancher" lists the users
+    Then the users returned are "Ana"
+
+  Scenario Outline: A pending or accepted relationship makes both users visible to each other
+    Given veterinarian 10 has the "<status>" connection with rancher 1
+    When user 1 with role "Rancher" lists the users
+    Then the users returned are "Ana, Pedro"
+    When user 10 with role "Veterinarian" lists the users
+    Then the users returned are "Ana, Pedro"
+
+    Examples:
+      | status   |
+      | Pending  |
+      | Accepted |
+
+  Scenario: A rejected relationship does not expose the other user
+    Given veterinarian 10 has the "Rejected" connection with rancher 1
+    When user 1 with role "Rancher" lists the users
+    Then the users returned are "Ana"
+    When user 10 with role "Veterinarian" lists the users
+    Then the users returned are "Pedro"
+
+  Scenario: A relationship does not expose the other users of the counterpart
+    Given veterinarian 10 has the "Accepted" connection with rancher 1
+    And veterinarian 11 has the "Accepted" connection with rancher 2
+    When user 10 with role "Veterinarian" lists the users
+    Then the users returned are "Ana, Pedro"
+
+  Scenario Outline: The detail of a user is visible only for oneself or a related user
+    Given veterinarian 10 has the "Accepted" connection with rancher 1
+    When user <caller> with role "<role>" asks for the user <target>
+    Then the user is <result>
+
+    Examples:
+      | caller | role         | target | result    |
+      | 1      | Rancher      | 1      | found     |
+      | 1      | Rancher      | 10     | found     |
+      | 1      | Rancher      | 2      | not found |
+      | 1      | Rancher      | 11     | not found |
+      | 10     | Veterinarian | 1      | found     |
+      | 10     | Veterinarian | 2      | not found |
+      | 11     | Veterinarian | 1      | not found |
+
+  Scenario: A user only sees the profiles it created
+    Given user 1 created the profile "Ana Perez"
+    And user 2 created the profile "Luis Rojas"
+    When user 1 with role "Rancher" lists the profiles
+    Then the profiles returned are "Ana Perez"
+
+  Scenario: A user cannot read the profile of another user by id
+    Given user 2 created the profile "Luis Rojas"
+    When user 1 with role "Rancher" asks for the profile "Luis Rojas"
+    Then the profile is not found
+
+  Scenario: A user can read its own profile by id
+    Given user 1 created the profile "Ana Perez"
+    When user 1 with role "Rancher" asks for the profile "Ana Perez"
+    Then the profile is found
+
+  Scenario: A profile without an owner is visible to nobody
+    Given a profile "Legacy Profile" exists without an owner
+    When user 1 with role "Rancher" lists the profiles
+    Then the profiles returned are ""
 ```
 
 ### Archivo `.feature` de hatos, corrales, dispositivos y lecturas (US-013, US-073)
@@ -459,11 +545,11 @@ Feature: Minimum interval between device readings
 ### Resultado de la ejecución
 
 ```text
-Correctas! - Con error:     0, Superado:   125, Omitido:     0, Total:   125, Duración: 3 s - Anitec.Platform.Tests.dll (net10.0)
+Correctas! - Con error:     0, Superado:   141, Omitido:     0, Total:   141, Duración: 4 s - Anitec.Platform.Tests.dll (net10.0)
 ```
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de la terminal con la ejecución de `dotnet test` (125 pruebas superadas) -->
+  <!-- PLACEHOLDER: captura de la terminal con la ejecución de `dotnet test` (141 pruebas superadas) -->
   <img src="../../assets/chapter-5/Sprint2/dotnet-test-sprint-2.png" alt="Resultado de dotnet test del Sprint 2" width="700">
   <p><i><b>Fuente</b>: Ejecución de <code>dotnet test</code> en <code>anitec-backend</code>.</i></p>
 </div>
@@ -472,7 +558,6 @@ Correctas! - Con error:     0, Superado:   125, Omitido:     0, Total:   125, Du
 
 | Repository | Branch | Commit<br>Id | Commit<br>Message | Commit Message Body | Committed<br>on (Date) |
 |---|---|---|---|---|---|
-| anitec-backend | fix/filter-remaining-listings | `6ae22a1` | `test: cover the visibility of herds, corrals, devices and readings` | Adds ListingAuthorization.feature with scenarios for the owner, an approved veterinarian, pending and rejected relationships, devices installed on an animal and devices installed nowhere. | 28/10/2026 |
 
 ### Alcance y límites
 
@@ -534,7 +619,7 @@ OK    la clave de otro dispositivo se rechaza -> -> 401
 OK    con la clave correcta se registra la lectura -> -> 201 id=8
 OK    una segunda lectura inmediata se limita (429) -> -> 429
 OK    pasado el intervalo vuelve a aceptarse -> -> 201
-OK    la última lectura queda disponible para el usuario -> -> {'id': 9, 'deviceId': 1, 'type': 'Temperatura', 'value': 38.9, 'unit': 'C', 'recordedAt': '2026-10-28T08:28:11.172074'}
+OK    la última lectura queda disponible para el usuario -> -> {'id': 9, 'deviceId': 1, 'type': 'Temperatura', 'value': 38.9, 'unit': 'C', 'recordedAt': '2026-10-29T07:40:02.448047'}
 OK    al rotar la clave la anterior deja de funcionar -> -> 401
 
 === 6. CORS por origen
@@ -543,7 +628,7 @@ OK    origen https://anitec-frontend-cve3.onrender.com permitido
 OK    origen http://sitio-ajeno.example no permitido
 
 === 7. Nombre de usuario único
-OK    registrar un nombre ya usado falla -> -> 409 {'type': 'https://tools.ietf.org/html/rfc9110#section-15.5.10', 'title': 'UsernameAlreadyTaken', 'status': 409, 'detail': 'UsernameAlreadyTaken', 'instance': '/api/v1/authentication/sign-up', 'traceId': '00-3893e503af258edfa80e2cb21e7942e8-ede70644d85ad7e0-00'}
+OK    registrar un nombre ya usado falla -> -> 409 {'type': 'https://tools.ietf.org/html/rfc9110#section-15.5.10', 'title': 'UsernameAlreadyTaken', 'status': 409, 'detail': 'UsernameAlreadyTaken', 'instance': '/api/v1/authentication/sign-up', 'traceId': '00-df9998dfde48916d01b19d6f692558ec-9bd84db41ecafd76-00'}
 OK    existe el índice único en la base de datos
 
 === 8. Réplicas sin estado: token y archivos compartidos
@@ -640,6 +725,37 @@ OK    maria borra /corrals/1
 Resumen: 58 de 58 verificaciones superadas
 ```
 
+Tercer recorrido (`verify_identity.py`) sobre usuarios, perfiles y el flujo de invitación, también sobre un entorno recreado desde cero. La interfaz se comprobó a mano con el servidor de desarrollo del frontend contra ese backend: el ganadero ve la invitación en su dashboard y la acepta, y el veterinario ve el aviso de invitación enviada y la lista de invitaciones pendientes.
+
+```text
+=== 1. Usuarios
+OK    jose ve a su veterinario aceptado (vetpedro) y a si mismo, nadie mas
+OK    rosa ve a vetlucia (relacion aceptada) y a si misma
+OK    vetpedro ve a jose, a maria (invitacion pendiente) y a si mismo
+OK    veterinaria ve a ganadero, maria y a si misma
+OK    jose no puede leer a rosa por id
+OK    jose se lee a si mismo por id
+OK    rosa lee a su veterinaria por id
+
+=== 2. Perfiles
+OK    maria crea un perfil
+OK    maria ve su perfil
+OK    jose no ve el perfil de maria
+OK    jose no puede leer el perfil de maria por id
+OK    maria lee su perfil por id
+OK    un veterinario con relacion con maria tampoco lee su perfil
+
+=== 3. Invitaciones del veterinario
+OK    rosa solo tiene la relacion aceptada con vetlucia
+OK    vetpedro invita a rosa
+OK    la invitacion no convierte a rosa en cliente: queda Pending
+OK    vetpedro todavia no ve hatos de rosa
+OK    rosa ve la invitacion pendiente de vetpedro
+OK    rosa acepta la invitacion
+OK    tras aceptar, vetpedro ve los hatos de rosa
+Resumen: 20 de 20 verificaciones superadas
+```
+
 <div align="center">
   <!-- PLACEHOLDER: captura de Docker Desktop con los contenedores db, api1, api2 y lb en ejecución -->
   <img src="../../assets/chapter-5/Sprint2/docker-desktop-compose.png" alt="Docker Desktop con el entorno Compose" width="800">
@@ -696,6 +812,8 @@ Los endpoints se documentan con OpenAPI mediante Swashbuckle. En el entorno Comp
 | `POST /api/v1/devices/{id}/api-key` | Rancher (dueño del hato o animal del dispositivo) | Emite o rota la clave de API del dispositivo; se muestra una sola vez. Es nuevo. | 200, 404 |
 | `POST /api/v1/devices/{deviceId}/telemetry` | Dispositivo (cabecera `X-Device-Api-Key`) | Registra una lectura (tipo, valor, unidad); el servidor sella la hora. Es nuevo. | 201, 400, 401, 429 |
 | `GET /api/v1/herds`, `/corrals`, `/devices`, `/device-metrics` (y sus escrituras y `/devices/{id}/metrics`) | Rancher / Veterinarian | Listados y detalle por propietario o por relación aprobada; las escrituras son solo del ganadero dueño; 404 si el recurso no es suyo. Modificado. | 200, 201, 204, 400, 404 |
+| `GET /api/v1/users`, `GET /api/v1/users/{id}` | Cualquier usuario autenticado | Devuelven al usuario y a quienes tienen con él una relación pendiente o aceptada; 404 para los demás. Modificado. | 200, 404 |
+| `GET /api/v1/profiles`, `GET /api/v1/profiles/{id}`, `POST /api/v1/profiles` | Rancher / Veterinarian | Cada perfil pertenece a quien lo creó y solo ese usuario lo lee. Modificado. | 200, 201, 404 |
 | `GET /health` | Sin autenticación | Comprobación de salud usada por Docker y el balanceador. Es nuevo. | 200 |
 
 ### Ejemplos de petición y respuesta
@@ -778,7 +896,7 @@ docker compose up --build
 curl -i http://localhost:8080/health
 ```
 
-**Comprobación previa a producción:** antes de integrar se consultó la base de Aiven con `SELECT username, COUNT(*) FROM users GROUP BY username HAVING COUNT(*) > 1` y el resultado fue vacío, por lo que la migración `AddUsernameUniqueIndex` (índice único de `username`) no debería fallar al aplicarse. **Pasos pendientes de confirmar:** que el despliegue del backend en Render arranque con las migraciones nuevas, definir en Render las variables `Cors__AllowedOrigins__N` solo si cambian los dominios y desplegar después el frontend y la landing page, en ese orden (el frontend nuevo usa endpoints que el backend anterior no tiene).
+**Comprobación previa a producción:** antes de integrar se consultó la base de Aiven con `SELECT username, COUNT(*) FROM users GROUP BY username HAVING COUNT(*) > 1` y el resultado fue vacío, por lo que la migración `AddUsernameUniqueIndex` (índice único de `username`) no debería fallar al aplicarse. El despliegue del backend aplica además `AddProfileOwner`, que solo añade una columna opcional y un índice a la tabla de perfiles. **Pasos pendientes de confirmar:** que el despliegue del backend en Render arranque con las migraciones nuevas, definir en Render las variables `Cors__AllowedOrigins__N` solo si cambian los dominios y desplegar después el frontend y la landing page, en ese orden (el frontend nuevo usa endpoints que el backend anterior no tiene).
 
 <div align="center">
   <!-- PLACEHOLDER: captura de la ejecución de `docker compose up` -->

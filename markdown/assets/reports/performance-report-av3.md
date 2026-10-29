@@ -29,7 +29,7 @@
     <tr>
         <td><b>1</b></td>
         <td>Manuel Fernando Joao Castro Picon</td>
-        <td>Capítulo V, Sprint 2 (22 h estimadas): reformular cifras y testimonios de la landing page como casos ilustrativos (T-19), retirar los videos y fotos del equipo anterior (T-20), desarrollar la pantalla de solicitudes de veterinarios y ajustar las pantallas del veterinario (T-25), agregar la generación de la clave de API de dispositivos en el frontend (T-27), documentar el Sprint 2, sección 5.3.2 (T-32) y documentar el cierre de la brecha de listados (T-36)</td>
+        <td>Capítulo V, Sprint 2 (25 h estimadas): reformular cifras y testimonios de la landing page como casos ilustrativos (T-19), retirar los videos y fotos del equipo anterior (T-20), desarrollar la pantalla de solicitudes de veterinarios y ajustar las pantallas del veterinario (T-25), agregar la generación de la clave de API de dispositivos en el frontend (T-27), documentar el Sprint 2, sección 5.3.2 (T-32) documentar el cierre de la brecha de listados (T-36) y presentar las invitaciones de veterinarios en el dashboard del ganadero (T-38)</td>
         <td>X</td>
         <td></td>
         <td></td>
@@ -39,7 +39,7 @@
     <tr>
         <td><b>2</b></td>
         <td>Josep Eliu Melgarejo Quiroz</td>
-        <td>Capítulo V, Sprint 2 (22 h estimadas): excluir del repositorio las imágenes subidas y los archivos generados (T-21), filtrar los datos por propietario en el backend (T-22), implementar el flujo de aprobación del veterinario (T-23), configurar el balanceador y las dos réplicas con Docker Compose (T-28), verificar el sistema de punta a punta (T-31) y probar la visibilidad de hatos, corrales, dispositivos y lecturas (T-35)</td>
+        <td>Capítulo V, Sprint 2 (25 h estimadas): excluir del repositorio las imágenes subidas y los archivos generados (T-21), filtrar los datos por propietario en el backend (T-22), implementar el flujo de aprobación del veterinario (T-23), configurar el balanceador y las dos réplicas con Docker Compose (T-28), verificar el sistema de punta a punta (T-31) probar la visibilidad de hatos, corrales, dispositivos y lecturas (T-35) y verificar usuarios, perfiles e invitaciones (T-39)</td>
         <td>X</td>
         <td></td>
         <td></td>
@@ -49,7 +49,7 @@
     <tr>
         <td><b>3</b></td>
         <td>Santiago Armando Baldeon Vivar</td>
-        <td>Capítulo V, Sprint 2 (22 h estimadas): restringir CORS por origen y exigir nombres de usuario únicos (T-24), implementar la clave de API y la ingesta de telemetría con intervalo mínimo entre lecturas (T-26), escribir las pruebas de autorización y aprobación (T-29) y las de telemetría y nombre de usuario (T-30), actualizar el informe (T-33) y filtrar hatos, corrales, dispositivos y lecturas por propietario (T-34)</td>
+        <td>Capítulo V, Sprint 2 (25 h estimadas): restringir CORS por origen y exigir nombres de usuario únicos (T-24), implementar la clave de API y la ingesta de telemetría con intervalo mínimo entre lecturas (T-26), escribir las pruebas de autorización y aprobación (T-29) y las de telemetría y nombre de usuario (T-30), actualizar el informe (T-33) filtrar hatos, corrales, dispositivos y lecturas por propietario (T-34) y filtrar usuarios y perfiles (T-37)</td>
         <td>X</td>
         <td></td>
         <td></td>
