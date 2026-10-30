@@ -47,8 +47,8 @@
   </table>
 </div>
 
-<h3 align="center"><strong>Período 202610</strong></h3>
-<h3 align="center"><strong>Junio 2026</strong></h3>
+<h3 align="center"><strong>Período 202620</strong></h3>
+<h3 align="center"><strong>Octubre 2026</strong></h3>
 
 <div style="page-break-before: always;"></div>
 
@@ -203,15 +203,15 @@
     - [5.3.1.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
     - [5.3.1.7. Team Collaboration Insights during Sprint](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
     - [5.3.1.8. Kanban Board](./markdown/content/chapter-5/5-3-1-Sprint-1.md)
-  - [5.3.2. Sprint 2](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
-    - [5.3.2.1. Sprint Backlog 2](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
-    - [5.3.2.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
-    - 5.3.2.3. Testing Suite Evidence for Sprint Review
-    - [5.3.2.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
-    - [5.3.2.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
-    - [5.3.2.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
-    - [5.3.2.7. Team Collaboration Insights During Sprint](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
-    - 5.3.2.8. Kanban Board
+  - [5.3.2. Sprint 2](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
+    - [5.3.2.1. Sprint Backlog 2](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
+    - [5.3.2.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
+    - [5.3.2.3. Testing Suite Evidence for Sprint Review](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
+    - [5.3.2.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
+    - [5.3.2.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
+    - [5.3.2.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
+    - [5.3.2.7. Team Collaboration Insights During Sprint](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
+    - [5.3.2.8. Kanban Board](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
   - [5.3.3. Sprint 3](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
     - [5.3.3.1. Sprint Backlog 3](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
     - [5.3.3.2. Development Evidence for Sprint Review](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
