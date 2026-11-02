@@ -2,7 +2,7 @@
 
 El Sprint 2 es el primero que lleva a código las iteraciones de diseño del capítulo IV. Su objetivo fue **que cada usuario vea solo los datos que le corresponden y que el sistema soporte más de una instancia**: implementar la autorización por recurso y la aprobación del veterinario por el ganadero (iteración 2, QAS-08), la ingesta de telemetría autenticada con una clave por dispositivo (iteración 6, QAS-11) y un entorno local con balanceador de carga y dos réplicas del backend, que responde a la retroalimentación de la TB1. Además se corrigieron dos pendientes del Sprint 1: los testimonios y cifras de la landing page y los archivos que no debían estar en el repositorio del backend.
 
-El periodo cubierto va del 26/10/2026 al 08/11/2026 <!-- PLACEHOLDER: confirmar la fecha de cierre del Sprint 2 (se asumió la semana previa al Avance 3) -->. Todo el trabajo de este Sprint se verificó en un entorno local con Docker Compose; **todavía no se desplegó en Render ni en Aiven**, y los Sprints 3 y 4 continuarán con las iteraciones 3, 5 y 7.
+El periodo cubierto va del 26/10/2026 al 04/11/2026. Todo el trabajo de este Sprint se verificó en un entorno local con Docker Compose; **todavía no se desplegó en Render ni en Aiven**, y los Sprints 3 y 4 continuarán con las iteraciones 3, 5 y 7.
 
 ## 5.3.2.1. Sprint Backlog 2
 
@@ -14,7 +14,7 @@ El Sprint reúne las User Stories de acceso a los datos según el rol y del fluj
   <p><i><b>Fuente</b>: Tablero del Sprint 2 en Trello.</i></p>
 </div>
 
-**URL pública del tablero:** <!-- PLACEHOLDER: URL pública del tablero de Trello del Sprint 2 -->
+**URL pública del tablero:** <https://trello.com/invite/b/6ae83d4902155738c72f92e2/ATTId3dbe5193b7234fba01078fea9a7bedbABD3E1BD/sprint-2-fundamentos>
 
 ### User Stories del Sprint
 
