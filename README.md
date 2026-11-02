@@ -210,7 +210,6 @@
     - [5.3.2.4. Execution Evidence for Sprint Review](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
     - [5.3.2.5. Microservices Documentation Evidence for Sprint Review](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
     - [5.3.2.6. Software Deployment Evidence for Sprint Review](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
-    - [5.3.2.7. Team Collaboration Insights During Sprint](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
     - [5.3.2.8. Kanban Board](./markdown/content/chapter-5/5-3-2-Sprint-2.md)
   - [5.3.3. Sprint 3](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
     - [5.3.3.1. Sprint Backlog 3](./markdown/content/chapter-5/5-3-0-microservices-implementation.md)
