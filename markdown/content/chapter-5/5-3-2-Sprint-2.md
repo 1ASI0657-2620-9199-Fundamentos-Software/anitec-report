@@ -549,8 +549,7 @@ Correctas! - Con error:     0, Superado:   141, Omitido:     0, Total:   141, Du
 ```
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de la terminal con la ejecución de `dotnet test` (141 pruebas superadas) -->
-  <img src="../../assets/chapter-5/Sprint2/dotnet-test-sprint-2.png" alt="Resultado de dotnet test del Sprint 2" width="700">
+  <img src="../../assets/chapter-5/Sprint2/dotnet-test-sprint-2.png" alt="Resultado de dotnet test del Sprint 2: 141 pruebas superadas" width="900">
   <p><i><b>Fuente</b>: Ejecución de <code>dotnet test</code> en <code>anitec-backend</code>.</i></p>
 </div>
 
@@ -757,9 +756,8 @@ Resumen: 20 de 20 verificaciones superadas
 ```
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de Docker Desktop con los contenedores db, api1, api2 y lb en ejecución -->
   <img src="../../assets/chapter-5/Sprint2/docker-desktop-compose.png" alt="Docker Desktop con el entorno Compose" width="800">
-  <p><i><b>Fuente</b>: Docker Desktop.</i></p>
+  <p><i><b>Fuente</b>: Docker Desktop, proyecto <code>anitec</code> con los servicios <code>db</code>, <code>api1</code>, <code>api2</code> y <code>lb</code> y el registro de arranque de la API.</i></p>
 </div>
 
 <div align="center">
@@ -870,9 +868,8 @@ Content-Type: application/json
 ```
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de Swagger con los endpoints de solicitudes de veterinarios y de telemetría -->
   <img src="../../assets/chapter-5/Sprint2/swagger-sprint-2.png" alt="Swagger con los endpoints del Sprint 2" width="800">
-  <p><i><b>Fuente</b>: Swagger del backend en el entorno Compose.</i></p>
+  <p><i><b>Fuente</b>: Swagger del backend en el entorno Compose. El candado es el esquema Bearer global de Swagger; el endpoint de telemetría se autentica con la cabecera <code>X-Device-Api-Key</code>.</i></p>
 </div>
 
 ## 5.3.2.6. Software Deployment Evidence for Sprint Review
@@ -899,9 +896,8 @@ curl -i http://localhost:8080/health
 **Comprobación previa a producción:** antes de integrar se consultó la base de Aiven con `SELECT username, COUNT(*) FROM users GROUP BY username HAVING COUNT(*) > 1` y el resultado fue vacío, por lo que la migración `AddUsernameUniqueIndex` (índice único de `username`) no debería fallar al aplicarse. El despliegue del backend aplica además `AddProfileOwner`, que solo añade una columna opcional y un índice a la tabla de perfiles. **Pasos pendientes de confirmar:** que el despliegue del backend en Render arranque con las migraciones nuevas, definir en Render las variables `Cors__AllowedOrigins__N` solo si cambian los dominios y desplegar después el frontend y la landing page, en ese orden (el frontend nuevo usa endpoints que el backend anterior no tiene).
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de la ejecución de `docker compose up` -->
   <img src="../../assets/chapter-5/Sprint2/docker-compose-up.png" alt="Ejecución de docker compose up" width="800">
-  <p><i><b>Fuente</b>: Terminal.</i></p>
+  <p><i><b>Fuente</b>: Terminal de <code>anitec-backend</code> al ejecutar <code>docker compose up</code>.</i></p>
 </div>
 
 ## 5.3.2.7. Team Collaboration Insights during Sprint
