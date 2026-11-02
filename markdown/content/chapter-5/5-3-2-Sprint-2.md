@@ -761,15 +761,13 @@ Resumen: 20 de 20 verificaciones superadas
 </div>
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de Postman con las solicitudes de aprobación del veterinario -->
-  <img src="../../assets/chapter-5/Sprint2/postman-aprobacion.png" alt="Postman: aprobación del veterinario" width="800">
-  <p><i><b>Fuente</b>: Postman.</i></p>
+  <img src="../../assets/chapter-5/Sprint2/postman-aprobacion.png" alt="Postman: aprobación del veterinario" width="700">
+  <p><i><b>Fuente</b>: Postman contra el entorno Compose local (<code>http://localhost:8080</code>), con el token de María. Arriba, la consulta de las solicitudes devuelve 200 con la de "Dr. Pedro Ramirez" en <code>Pending</code>; abajo, el <code>PATCH</code> de aprobación devuelve 200 con el estado <code>Accepted</code> y la fecha de aceptación.</i></p>
 </div>
 
 <div align="center">
-  <!-- PLACEHOLDER: captura de Postman con la ingesta de telemetría (401, 201 y 429) -->
-  <img src="../../assets/chapter-5/Sprint2/postman-telemetria.png" alt="Postman: telemetría de dispositivos" width="800">
-  <p><i><b>Fuente</b>: Postman.</i></p>
+  <img src="../../assets/chapter-5/Sprint2/postman-telemetria.png" alt="Postman: telemetría de dispositivos" width="700">
+  <p><i><b>Fuente</b>: Postman contra el entorno Compose local, con el dispositivo 2 (Collar Luna) del ganadero de prueba. De arriba abajo: sin la cabecera <code>X-Device-Api-Key</code> (401), con la clave del dispositivo (201 Created) y una segunda lectura dentro del intervalo de 10 s (429 Too Many Requests). La cabecera <code>Retry-After</code> no se ve en esta captura; se comprobó en la ejecución por línea de comandos. La clave no aparece: se guarda en una variable del entorno de Postman.</i></p>
 </div>
 
 **Enlace al video de demostración del Sprint 2:** <!-- PLACEHOLDER: reemplazar por la URL del video (YouTube) que muestre la aprobación del veterinario, la telemetría y el balanceo --> `https://youtu.be/xxxxxxxxxxx`
