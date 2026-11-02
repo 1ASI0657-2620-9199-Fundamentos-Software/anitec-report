@@ -33,7 +33,7 @@ En esta sección el equipo Titan enuncia las conclusiones del trabajo realizado 
 
 En síntesis, el ciclo de vida permitió **definir, diseñar y desplegar** una base verificable, pero la contrastación de las hipótesis con el comportamiento real de los segmentos queda como el trabajo principal pendiente.
 
-**Student Outcome 7 (Aprendizaje continuo y autónomo).** A lo largo de los capítulos I a V cada integrante tuvo que actualizar o adquirir conocimientos nuevos: Lean UX y requirements engineering en los capítulos I a III, Attribute-Driven Design, notación C4 y UML en el capítulo IV, y pruebas BDD, configuración de entornos y despliegue cloud en el capítulo V. El aprendizaje más importante fue metodológico: verificar cada afirmación contra el código real, contra la documentación oficial o contra el sistema desplegado, y corregir la propia documentación cuando no coincidía.
+**Student Outcome 7 (Aprendizaje continuo y autónomo).** A lo largo de los capítulos I a V cada integrante tuvo que actualizar o adquirir conocimientos nuevos: Lean UX y requirements engineering en los capítulos I a III, Attribute-Driven Design, notación C4 y UML en el capítulo IV, y pruebas BDD, configuración de entornos, despliegue cloud, autorización por recurso, autenticación de dispositivos y balanceo de carga con Docker Compose en el capítulo V. El aprendizaje más importante fue metodológico: verificar cada afirmación contra el código real, contra la documentación oficial o contra el sistema desplegado, y corregir la propia documentación cuando no coincidía.
 
 ### Recomendaciones
 
