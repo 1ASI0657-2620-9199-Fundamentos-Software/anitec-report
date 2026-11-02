@@ -9,12 +9,11 @@ El periodo cubierto va del 26/10/2026 al 04/11/2026. Todo el trabajo de este Spr
 El Sprint reúne las User Stories de acceso a los datos según el rol y del flujo de aprobación veterinario–ganadero (US-013, US-014, US-023, US-071, US-072 y US-073) y la de consulta de métricas IoT (US-059), que ahora puede alimentarse desde un dispositivo autenticado. A ellas se suman tareas de corrección y de infraestructura que no dependen de una historia: la landing page (US-050, del Sprint 1), el entorno con balanceador de carga y las pruebas. El total comprometido es de **27 Story Points** (valores del Product Backlog, sección 3.4). Las Technical Stories atendidas son TS-028 (autorización de mínimo privilegio, sin el registro de auditoría), TS-010 (telemetría, todavía dentro del monolito) y TS-030 (pruebas de seguridad).
 
 <div align="center">
-  <!-- PLACEHOLDER: captura del tablero de Trello del Sprint 2 -->
   <img src="../../assets/chapter-5/Sprint2/trello-sprint-2.png" alt="Tablero de Trello del Sprint Backlog 2" width="800">
-  <p><i><b>Fuente</b>: Tablero del Sprint 2 en Trello.</i></p>
+  <p><i><b>Fuente</b>: Tablero del Sprint 2 en Trello. La lista <code>Sprint Backlog</code> contiene las 7 User Stories y la lista <code>To-do</code> las 21 tareas (T-19 a T-39) con sus horas estimadas; se ven las primeras por el desplazamiento de la lista.</i></p>
 </div>
 
-**URL pública del tablero:** <https://trello.com/invite/b/6ae83d4902155738c72f92e2/ATTId3dbe5193b7234fba01078fea9a7bedbABD3E1BD/sprint-2-fundamentos>
+**URL pública del tablero:** <https://trello.com/b/qqmYGwfz/sprint-2-fundamentos>
 
 ### User Stories del Sprint
 
@@ -926,9 +925,8 @@ Los tres integrantes participaron en las tareas del Sprint según la tabla de co
 ## 5.3.2.8. Kanban Board --> Avance 3
 
 <div align="center">
-  <!-- PLACEHOLDER: captura final del tablero de Trello al cierre del Sprint 2 -->
   <img src="../../assets/chapter-5/Sprint2/trello-kanban-sprint-2.png" alt="Kanban Board del Sprint 2 en Trello" width="800">
-  <p><i><b>Fuente</b>: Tablero del Sprint 2 en Trello.</i></p>
+  <p><i><b>Fuente</b>: Tablero del Sprint 2 en Trello al cierre del Sprint: las 21 tareas están en la lista <code>Done</code> (se ven las primeras por el desplazamiento de la lista) y las listas <code>To-do</code>, <code>In-Process</code> y <code>To-Review</code> están vacías.</i></p>
 </div>
 
 **Revisión del objetivo:** el objetivo del Sprint se cumplió en el entorno local: las consultas devuelven solo los datos del propietario o del veterinario aprobado, el ganadero decide quién accede, un dispositivo con clave válida registra lecturas y el servicio continúa si una de las dos réplicas se detiene. Queda pendiente llevar estos cambios a producción y atender las brechas listadas en 5.3.2.1.
