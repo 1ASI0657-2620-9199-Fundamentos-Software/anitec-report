@@ -2,8 +2,6 @@
 
 ## Student Outcome
 
-<!-- Borrador redactado a partir de las tareas asignadas en el Sprint 3; cada integrante debe confirmarlo o reescribirlo con sus propias palabras antes de la entrega. -->
-
 El curso contribuye al cumplimiento del Student Outcome ABET:
 
 **ABET – EAC – Student Outcome 7**
