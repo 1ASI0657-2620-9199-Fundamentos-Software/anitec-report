@@ -13,7 +13,7 @@ El Sprint reúne las cuatro User Stories del contexto de planes y pagos (US-060,
   <p><i><b>Fuente</b>: Tablero del Sprint 3 en Trello (captura pendiente de agregar por el equipo).</i></p>
 </div>
 
-**URL pública del tablero:** <!-- PLACEHOLDER: reemplazar por la URL pública del tablero del Sprint 3 en Trello --> `https://trello.com/b/xxxxxxxx/sprint-3-fundamentos`
+**URL pública del tablero:** <https://trello.com/b/9vHrUcdr/anitec-sprint-3-fundamentos>
 
 ### User Stories del Sprint
 
