@@ -1,6 +1,6 @@
 # 5.4. MicroServices Deployment
 
-Esta sección documenta cómo se despliegan los servicios de AniTec en la nube. En el Sprint 3 se hizo el primer despliegue en **Microsoft Azure**: el API Gateway, el núcleo y el servicio de suscripciones corren en Azure Container Apps y la base de datos del servicio de suscripciones está en Azure Database for MySQL. El despliegue anterior en Render y Aiven no se modificó y sigue siendo el que usa el frontend publicado. El estado descrito es el del 12/11/2026; lo que no se ejecutó se marca como diseñado.
+Esta sección documenta cómo se despliegan los servicios de AniTec en la nube. En el Sprint 3 se hizo el primer despliegue en **Microsoft Azure**: el API Gateway, el núcleo y el servicio de suscripciones corren en Azure Container Apps y la base de datos del servicio de suscripciones está en Azure Database for MySQL. El estado descrito es el del 12/11/2026; lo que no se ejecutó se marca como diseñado.
 
 ## 5.4.1. Cloud Architecture Diagrams
 
@@ -37,7 +37,7 @@ El diagrama muestra los recursos de Azure y su relación con Stripe y con la bas
 | Sin token, `/api/v1/herds` responde 401; `/api/v2/...` responde 400; el webhook sin firma o con firma falsa responde 400. | El comportamiento con varias réplicas del gateway bajo carga (solo se usó una). |
 | El núcleo llega a la base de Aiven por TLS (un inicio de sesión inválido responde 400 `InvalidCredentials`). | Un recorrido autenticado completo sobre el núcleo en Azure con los scripts de verificación (usan cuentas del entorno de desarrollo). |
 | Un pago real de prueba (plan Ganadero Pro, PEN 99,00) desde el frontend en local hacia el gateway de Azure dejó la suscripción activa y un pago `Paid`; los registros muestran un solo `INSERT` por tabla. | La copia de los datos legados de suscripciones a Azure (el script solo se ejecutó en local). |
-| El destino de webhook `anitec-azure` en Stripe recibió un evento real y Azure respondió 200 con `duplicate: true` tras la reentrega. | El frontend y la landing desplegados en nube; siguen en Render y GitHub Pages. |
+| El destino de webhook `anitec-azure` en Stripe recibió un evento real y Azure respondió 200 con `duplicate: true` tras la reentrega. | El cobro con otros medios de pago de Stripe; solo se probó la tarjeta de prueba. |
 
 **Costo y duración.** Entre el 08/11 y el 12/11/2026 el grupo consumió USD 6,10 de los USD 100 del crédito (ritmo de entre USD 1,5 y 2 al día, estimado). Los recursos permanecen encendidos para la evaluación y se eliminarán con `deploy.sh destroy yes-delete-rg-anitec-sprint3` al terminar.
 
