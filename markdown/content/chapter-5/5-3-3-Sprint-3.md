@@ -9,11 +9,13 @@ El periodo cubierto va del 07/11/2026 al 19/11/2026; el estado que describe esta
 El Sprint reúne las cuatro User Stories del contexto de planes y pagos (US-060, US-061, US-062 y US-063) y las Technical Stories que las habilitan: TS-008 (extracción incremental de un bounded context), TS-025 (API Gateway y contratos versionados), TS-016 y TS-017 (integración de Stripe en backend y frontend) y TS-030 (pruebas de contrato y de seguridad). El escenario de calidad que gobierna el Sprint es QAS-09 (aislamiento de fallos del subsistema de facturación), y la restricción de nube pedida por el curso se atiende con el despliegue en Azure. El total comprometido es de **17 Story Points** (valores del Product Backlog, sección 3.4).
 
 <div align="center">
-  <!-- PLACEHOLDER: captura del tablero de Trello del Sprint 3 (lista Sprint Backlog con las 4 User Stories y lista To-do con las 13 tareas) -->
-  <p><i><b>Fuente</b>: Tablero del Sprint 3 en Trello (captura pendiente de agregar por el equipo).</i></p>
+  <img src="../../assets/chapter-5/Sprint3/trello-sprint-3.png" alt="Tablero de Trello del Sprint Backlog 3" width="800">
+  <p><i><b>Fuente</b>: Tablero del Sprint 3 en Trello al iniciar el Sprint. La lista <code>Sprint Backlog</code> contiene las 4 User Stories y la lista <code>To-do</code> las 13 tareas (T-40 a T-52) con sus horas estimadas; se ven las primeras por el desplazamiento de la lista.</i></p>
 </div>
 
-**URL pública del tablero:** <https://trello.com/b/9vHrUcdr/anitec-sprint-3-fundamentos>
+**URL del tablero:** <https://trello.com/b/9vHrUcdr/anitec-sprint-3-fundamentos>
+
+**Enlace de invitación al tablero:** <https://trello.com/invite/b/6af637d50fe9233b03f43c0e/ATTI6e83c702ec8527994a555386c80262bf81AE560D/anitec-sprint-3-fundamentos>
 
 ### User Stories del Sprint
 
@@ -44,13 +46,13 @@ Las horas son estimaciones del equipo para cada tarea. Los estados siguen la esc
 | US-060 a US-063 | Planes y pagos | T-47 | Pruebas de Subscriptions y del gateway | `Anitec.Subscriptions.Tests` y `Anitec.Gateway.Tests` (pruebas HTTP contra el servicio real y contra un gateway real frente a servidores simulados) y siete archivos `.feature` de Reqnroll. | 6 | Baldeon Vivar, Santiago Armando | Done |
 | US-060, US-062 | Visualizar planes; Realizar pago de prueba | T-48 | Frontend: URL del gateway y estados del pago | El frontend habla solo con el gateway, la página de éxito distingue confirmado, en proceso y fallido (con reintento) y los errores de Stripe tienen mensaje propio en español e inglés. | 5 | Castro Picón, Manuel Fernando Joao | Done |
 | US-060 | Visualizar planes | T-49 | Landing: precios y promesas reales | La página muestra los tres planes reales con su límite de animales y retira las promesas que el producto no cumple. | 3 | Castro Picón, Manuel Fernando Joao | Done |
-| — | (Restricción: calidad) | T-50 | GitHub Actions: compilar, probar y construir imágenes | Flujo `.github/workflows/ci.yml` que compila la solución, corre las pruebas contra un MySQL descartable y construye las tres imágenes. **Escrito pero aún no ejecutado en GitHub.** | 3 | Castro Picón, Manuel Fernando Joao | To-Review |
-| — | (Restricción: documentación) | T-51 | Documentar el Sprint 3 | Redactar la sección 5.3.3, los diagramas y las diferencias de diseño. | 8 | Castro Picón, Manuel Fernando Joao | To-Review |
-| — | (Restricción: documentación) | T-52 | Actualizar el informe | Índice, registro de versiones, conclusiones, estado de la iteración 3, sección 5.4, Student Outcome y Performance Report. | 6 | Castro Picón, Manuel Fernando Joao | To-Review |
+| — | (Restricción: calidad) | T-50 | GitHub Actions: compilar, probar y construir imágenes | Flujo `.github/workflows/ci.yml` que compila la solución, corre las pruebas contra un MySQL descartable y construye las tres imágenes. **Escrito, pero aún no ejecutado en GitHub (su primera ejecución es un pendiente).** | 3 | Castro Picón, Manuel Fernando Joao | Done |
+| — | (Restricción: documentación) | T-51 | Documentar el Sprint 3 | Redactar la sección 5.3.3, los diagramas y las diferencias de diseño. | 8 | Castro Picón, Manuel Fernando Joao | Done |
+| — | (Restricción: documentación) | T-52 | Actualizar el informe | Índice, registro de versiones, conclusiones, estado de la iteración 3, sección 5.4, Student Outcome y Performance Report. | 6 | Castro Picón, Manuel Fernando Joao | Done |
 
 **Resumen de horas por integrante** (suma de las tareas asignadas): Melgarejo Quiroz, 25 h; Baldeon Vivar, 25 h; Castro Picón, 25 h. Total estimado: 75 h.
 
-**Resumen de estados:** de las 13 tareas, 10 están en Done y 3 en To-Review (T-50 espera su primera ejecución en GitHub; T-51 y T-52 son esta documentación y la actualización del informe, pendientes de la revisión del equipo). La sección 5.3.3.2 lista los commits como están en los repositorios.
+**Resumen de estados:** las 13 tareas del Sprint están en Done, como muestra el tablero de la sección 5.3.3.8. T-50 se da por terminada porque el flujo está escrito y revisado, pero **no se ha ejecutado en GitHub**: esa primera ejecución es un pendiente. La sección 5.3.3.2 lista los commits como están en los repositorios.
 
 ### Decisiones y diferencias con el diseño de la iteración 3
 
@@ -496,7 +498,12 @@ El webhook se configuró en el panel de Stripe (Workbench, modo de prueba) como 
 
 <div align="center">
   <img src="../../assets/chapter-5/Sprint3/azure-container-app-core.png" alt="Container App ca-core en ejecución" width="900">
-  <p><i><b>Fuente</b>: Portal de Azure: <code>ca-core</code> en ejecución. La captura no muestra el número de réplicas.</i></p>
+  <p><i><b>Fuente</b>: Portal de Azure: <code>ca-core</code> en ejecución.</i></p>
+</div>
+
+<div align="center">
+  <img src="../../assets/chapter-5/Sprint3/azure-core-replicas.png" alt="Escala de ca-core: mínimo 2, máximo 2 y 2 réplicas actuales" width="900">
+  <p><i><b>Fuente</b>: Portal de Azure, <code>ca-core</code>, pantalla <code>Escala</code>: réplicas mínimas 2, máximo de réplicas 2 y número actual de réplicas 2.</i></p>
 </div>
 
 <div align="center">
@@ -531,8 +538,8 @@ El flujo `.github/workflows/ci.yml` compila la solución, ejecuta las pruebas de
 ## 5.3.3.8. Kanban Board --> Avance 4
 
 <div align="center">
-  <!-- PLACEHOLDER: captura del tablero Kanban del Sprint 3 en Trello al cierre del Sprint -->
-  <p><i><b>Fuente</b>: Tablero del Sprint 3 en Trello (captura pendiente de agregar por el equipo al cierre del Sprint).</i></p>
+  <img src="../../assets/chapter-5/Sprint3/trello-kanban-sprint-3.png" alt="Kanban Board del Sprint 3 en Trello" width="800">
+  <p><i><b>Fuente</b>: Tablero del Sprint 3 en Trello al cierre: las 13 tareas están en la lista <code>Done</code> (se ven las primeras por el desplazamiento de la lista), las listas <code>To-do</code>, <code>In-Process</code> y <code>To-Review</code> están vacías y las 4 User Stories permanecen en <code>Sprint Backlog</code>.</i></p>
 </div>
 
 **Revisión del objetivo:** el objetivo del Sprint se cumplió en el entorno local y en Azure. Subscriptions corre como un servicio independiente con su propia base de datos, el gateway enruta y aísla las fallas (60 de 60 peticiones al núcleo respondieron 200 con el servicio detenido), y un pago real de prueba con Stripe se registró de punta a punta con el webhook firmado, con la verificación de la firma en Azure y la idempotencia confirmadas. Quedan pendientes llevar el frontend y la landing page a producción, ejecutar el flujo de CI en GitHub, el despliegue del núcleo y de su base fuera de Aiven y las brechas listadas en 5.3.3.1.
