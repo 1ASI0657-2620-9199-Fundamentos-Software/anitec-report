@@ -88,12 +88,14 @@ Todo lo demás del diagrama de contenedores y los diagramas de componentes resta
 
 | Backlog Item | Estado |
 |---|---|
-| 1. Justificar candidato de extracción | Done (diseño) |
-| 2. Diseñar el API Gateway | Done (diseño) |
-| 3. Diseñar desacoplamiento de datos | Done (diseño) |
+| 1. Justificar candidato de extracción | Done (diseño); **implementado en el Sprint 3** (sección 5.3.3) |
+| 2. Diseñar el API Gateway | Done (diseño); **implementado en el Sprint 3** con YARP, con diferencias respecto del diseño (sección 5.3.3.1) |
+| 3. Diseñar desacoplamiento de datos | Done (diseño); **implementado en el Sprint 3**: base de datos propia, con copia de los datos por script y sin borrar las tablas del núcleo (sección 5.3.3.1) |
 | 4. Identificar enabler de eventos (TS-027) | Identificado — diseño detallado fuera de alcance de esta iteración |
 | 5. Documentar qué no se extrae y por qué | Done |
 
 **Revisión de la meta:** cumplida — se obtiene un plan de extracción incremental, concreto, de bajo riesgo y respaldado por evidencia real del código (cero acoplamiento entrante hacia Subscriptions), en vez de una migración total no realista para las restricciones del proyecto (4.2.4). El trade-off de latencia adicional se reconoce y se acepta explícitamente por no afectar la ruta crítica diaria del ganadero.
 
 **Riesgo que se traslada:** si el equipo decide en el futuro extraer un segundo servicio más acoplado (candidato natural: Sanitary, por su relación con Livestock), TS-027 deja de ser opcional — se convierte en un prerequisito duro. Esta iteración no lo resuelve, solo lo deja señalado.
+
+**Nota de estado (Sprint 3, 12/11/2026):** la iteración se implementó y se desplegó en el Sprint 3 (sección 5.3.3). Subscriptions corre como un servicio independiente con su propia base de datos detrás de un API Gateway con YARP, y QAS-09 se midió en el entorno local: con el servicio detenido, 60 de 60 peticiones al núcleo respondieron 200 y las rutas de Subscriptions devolvieron un error controlado que nombra el servicio. Se implementó con siete diferencias respecto del diseño (balanceador antes del gateway, gateway que no valida el token, identidad por claims en el servicio nuevo, reescritura de Stripe con webhook firmado, copia de datos en lugar de migración con borrado, circuit breaker y eventos fuera de alcance, y reparto del núcleo por Azure en la nube), documentadas en 5.3.3.1. **No se implementaron** el Circuit Breaker ni los eventos entre servicios (TS-027), que corresponden a la iteración 7, y el límite de animales de cada plan sigue sin aplicarse. El contenido de este capítulo se mantiene como se entregó; esta nota solo registra el estado.

@@ -1,0 +1,52 @@
+@startuml azure-container-apps
+!pragma layout smetana
+!theme plain
+title AniTec — Despliegue en Azure Container Apps (Sprint 3)
+' Fuente: anitec-backend/deploy/azure/deploy.sh. Verificado el 09/11/2026 y el 12/11/2026.
+
+actor "Ganadero /\nVeterinario" as User
+node "Navegador\n(SPA Vue 3, en local\npara la demostración)" as Spa
+cloud "Stripe\n(modo de prueba)" as Stripe
+
+rectangle "Grupo de recursos rg-anitec-sprint3 (East US 2)" {
+  rectangle "Entorno de Container Apps cae-anitec-sprint3 (Consumo)" {
+    component "ca-gateway\nYARP, ingreso externo HTTPS\n1 a 2 réplicas" as Gw
+    component "ca-core\nnúcleo (monolito modular)\ningreso interno, 2 réplicas fijas" as Core
+    component "ca-subscriptions\ningreso interno, 1 réplica" as Subs
+  }
+  component "acranitecd188d9\nContainer Registry (Basic)" as Acr
+  component "log-anitec-sprint3\nLog Analytics (tope 0,5 GB/día)" as Log
+}
+
+rectangle "Mexico Central" {
+  database "mysql-anitec-d188d9\nAzure Database for MySQL\nflexible (B1ms, 8.4)\nbase anitec-subscriptions" as Mysql
+}
+
+cloud "Aiven\nMySQL gratuito\n(base real del núcleo)" as Aiven
+
+User --> Spa
+Spa --> Gw : HTTPS/JSON (JWT)
+Gw --> Core : HTTPS interno
+Gw --> Subs : HTTPS interno
+Core --> Aiven : SQL (TLS)
+Subs --> Mysql : SQL (TLS)
+Subs --> Stripe : Checkout
+Stripe ..> Gw : webhook firmado
+Acr ..> Core : imagen
+Acr ..> Gw : imagen
+Acr ..> Subs : imagen
+Gw ..> Log : registros
+Core ..> Log
+Subs ..> Log
+
+note bottom of Core
+  El gateway mantiene dos destinos del núcleo (api1 y api2) con la
+  misma dirección interna: el reparto entre las 2 réplicas lo hace
+  el balanceador de Azure, no el gateway.
+end note
+
+note bottom of Mysql
+  Eastus2 no ofrece SKUs de MySQL para esta suscripción;
+  la base de Subscriptions está en otra región (latencia sin medir).
+end note
+@enduml

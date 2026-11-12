@@ -1,0 +1,51 @@
+@startuml compose-gateway-topology
+!pragma layout smetana
+!theme plain
+title AniTec — Entorno local con API Gateway y Subscriptions como servicio (Sprint 3)
+' Fuente: anitec-backend/docker-compose.yml, nginx/nginx.conf y Anitec.Gateway/appsettings.json
+' Fragmento del diagrama de contenedores que cambia en este Sprint: entre el balanceador y el backend
+' aparecen dos réplicas del gateway y el servicio de suscripciones con su propia base de datos.
+
+actor "Ganadero /\nVeterinario" as User
+node "Navegador\n(SPA Vue 3)" as Spa
+
+rectangle "docker compose (red local)" {
+  component "lb\nnginx (round-robin)\npuerto 8080" as Lb
+  component "gateway1\nYARP (ASP.NET Core 10)" as Gw1
+  component "gateway2\nYARP (ASP.NET Core 10)" as Gw2
+  component "api1\nnúcleo (monolito modular)" as Api1
+  component "api2\nnúcleo (monolito modular)" as Api2
+  component "subscriptions\nASP.NET Core 10" as Subs
+  database "db\nMySQL 8.4\nbase anitec + base anitec-subscriptions" as Db
+}
+
+cloud "Stripe\n(modo de prueba)" as Stripe
+
+User --> Spa : usa
+Spa --> Lb : HTTP/JSON (JWT)
+Lb --> Gw1 : HTTP
+Lb --> Gw2 : HTTP
+Gw1 --> Api1 : resto de /api/v1 y /uploads
+Gw1 --> Api2 : round-robin + health checks
+Gw2 --> Api1
+Gw2 --> Api2
+Gw1 --> Subs : /subscription-plans y\n/subscriptions
+Gw2 --> Subs
+Api1 --> Db : SQL (usuario del núcleo)
+Api2 --> Db : SQL (usuario del núcleo)
+Subs --> Db : SQL (usuario propio,\nsolo su base)
+Subs --> Stripe : Checkout (HTTPS)
+Stripe ..> Lb : webhook firmado
+
+note bottom of Gw1
+  El gateway reenvía Authorization sin validarlo;
+  cada servicio valida el JWT con el mismo secreto.
+  Si Subscriptions cae, sus rutas responden 503 con
+  un error JSON y el núcleo sigue respondiendo 200.
+end note
+
+note bottom of Lb
+  Solo los errores de conexión y los tiempos de espera
+  sacan un gateway de la rotación (fix/nginx-keep-gateways-in-rotation).
+end note
+@enduml
