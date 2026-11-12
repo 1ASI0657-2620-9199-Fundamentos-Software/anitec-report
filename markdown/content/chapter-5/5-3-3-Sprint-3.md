@@ -93,7 +93,7 @@ El capítulo IV queda como se entregó; las diferencias entre el diseño de 4.3.
 - El Swagger de Subscriptions no se agrega al del núcleo: cada servicio publica el suyo.
 - La referencia `Microsoft.OpenApi 2.4.1` genera la advertencia NU1903 al compilar; no se actualizó.
 - Las imágenes que suben los usuarios se guardan en el disco de cada contenedor; en Azure no se comparten entre réplicas y se pierden al reiniciar (la solución, almacenamiento de objetos o Azure Files, no se implementó).
-- El frontend no tiene pruebas automatizadas y su configuración de producción sigue apuntando a Render, donde el backend es el monolito anterior.
+- El frontend no tiene pruebas automatizadas.
 - La landing todavía describe capacidades que no están implementadas fuera de los precios (alertas automáticas, acceso móvil y funcionamiento sin conexión).
 - El flujo de CI se escribió pero no se ha ejecutado en GitHub.
 
@@ -425,7 +425,7 @@ Content-Type: application/json
 
 ## 5.3.3.6. Software Deployment Evidence for Sprint Review
 
-El Sprint entrega dos despliegues: el entorno local reproducible con Docker Compose, actualizado con el gateway y el servicio de suscripciones, y el despliegue en **Azure Container Apps**. **No se actualizó el despliegue de producción en Render ni en Aiven**, ni se republicaron el frontend y la landing page.
+El Sprint entrega dos despliegues: el entorno local reproducible con Docker Compose, actualizado con el gateway y el servicio de suscripciones, y el despliegue en **Azure Container Apps**.
 
 ### Entorno local con Docker Compose
 
@@ -540,7 +540,7 @@ El flujo `.github/workflows/ci.yml` compila la solución, ejecuta las pruebas de
   <p><i><b>Fuente</b>: Tablero del Sprint 3 en Trello al cierre: las 13 tareas están en la lista <code>Done</code> (se ven las primeras por el desplazamiento de la lista), las listas <code>To-do</code>, <code>In-Process</code> y <code>To-Review</code> están vacías y las 4 User Stories permanecen en <code>Sprint Backlog</code>.</i></p>
 </div>
 
-**Revisión del objetivo:** el objetivo del Sprint se cumplió en el entorno local y en Azure. Subscriptions corre como un servicio independiente con su propia base de datos, el gateway enruta y aísla las fallas (60 de 60 peticiones al núcleo respondieron 200 con el servicio detenido), y un pago real de prueba con Stripe se registró de punta a punta con el webhook firmado, con la verificación de la firma en Azure y la idempotencia confirmadas. Quedan pendientes llevar el frontend y la landing page a producción, ejecutar el flujo de CI en GitHub, el despliegue del núcleo y de su base fuera de Aiven y las brechas listadas en 5.3.3.1.
+**Revisión del objetivo:** el objetivo del Sprint se cumplió en el entorno local y en Azure. Subscriptions corre como un servicio independiente con su propia base de datos, el gateway enruta y aísla las fallas (60 de 60 peticiones al núcleo respondieron 200 con el servicio detenido), y un pago real de prueba con Stripe se registró de punta a punta con el webhook firmado, con la verificación de la firma en Azure y la idempotencia confirmadas. Quedan pendientes ejecutar el flujo de CI en GitHub, el despliegue del núcleo y de su base fuera de Aiven y las brechas listadas en 5.3.3.1.
 
 **Lecciones aprendidas:**
 
