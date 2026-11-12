@@ -352,8 +352,6 @@ El script `scripts/subscriptions-cutover/copy-subscriptions-data.sh` copia los p
   <p><i><b>Fuente</b>: Salida de consola reproducida de una ejecución real del script en el MySQL local de Compose; no es una captura de pantalla.</i></p>
 </div>
 
-**Enlace al video de demostración del Sprint 3:** <!-- PLACEHOLDER: reemplazar por la URL del video (YouTube) que muestre el entorno con gateway, el aislamiento del servicio de suscripciones y el pago de prueba --> `https://youtu.be/xxxxxxxxxxx`
-
 ### Diagramas de los cambios del Sprint
 
 Solo se muestran los fragmentos que cambian en este Sprint.
