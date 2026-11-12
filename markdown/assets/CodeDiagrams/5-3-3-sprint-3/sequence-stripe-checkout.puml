@@ -1,0 +1,53 @@
+@startuml sequence-stripe-checkout
+!theme plain
+title AniTec — Pago de una suscripción con Stripe Checkout y webhook firmado (Sprint 3)
+' Fuente: Anitec.Subscriptions (SubscriptionsController, StripeWebhookController, StripePaymentGateway)
+' El webhook es la vía principal para registrar el pago; el endpoint confirm es un respaldo idempotente.
+
+actor "Ganadero" as User
+participant "SPA\n(Vue 3)" as Spa
+participant "API Gateway\n(YARP)" as Gw
+participant "Subscriptions\nService" as Subs
+database "Base\nanitec-subscriptions" as Db
+participant "Stripe" as Stripe
+
+User -> Spa : elige un plan
+Spa -> Gw : POST /api/v1/subscriptions/stripe-checkout\n(Authorization: Bearer)
+Gw -> Subs : reenvía sin validar el token
+Subs -> Subs : valida el JWT y toma el usuario y el precio del plan
+Subs -> Stripe : crea la sesión de Checkout\n(modo subscription, PEN, metadata userId y planId)
+Stripe --> Subs : id de sesión y URL
+Subs --> Spa : URL de Stripe
+Spa -> Stripe : redirige al ganadero
+User -> Stripe : paga con la tarjeta de prueba
+Stripe --> User : redirige a /subscriptions/success?session_id=...
+
+par pago registrado por el webhook
+  Stripe -> Gw : POST /api/v1/subscriptions/stripe/webhook\n(Stripe-Signature)
+  Gw -> Subs : cuerpo y firma sin modificar
+  Subs -> Subs : verifica la firma con el cuerpo crudo
+  alt firma inválida
+    Subs --> Stripe : 400
+  else sesión pagada y completa
+    Subs -> Db : busca el pago por id de sesión
+    alt ya existía
+      Subs --> Stripe : 200 (duplicate = true)
+    else nuevo
+      Subs -> Db : guarda suscripción y pago
+      Subs --> Stripe : 200 (handled = true)
+    end
+  end
+else respaldo desde la página de éxito
+  Spa -> Gw : GET /api/v1/subscriptions/stripe-checkout/{sessionId}/confirm
+  Gw -> Subs : reenvía
+  Subs -> Stripe : consulta la sesión
+  Subs -> Db : mismo registro idempotente
+  Subs --> Spa : 200 con el pago (404 si la sesión es de otro usuario)
+end
+
+note over Db
+  Índices únicos sobre el id de sesión del pago y sobre
+  la suscripción del proveedor: si el webhook y confirm llegan
+  a la vez, solo uno inserta.
+end note
+@enduml
